@@ -1,0 +1,154 @@
+@font-face {
+  font-family: "AdobeClean";
+  src: url("../assets/fonts/AdobeClean-Regular.otf");
+  font-weight: normal;
+}
+@font-face {
+  font-family: "AdobeClean";
+  src: url("../assets/fonts/AdobeClean-Bold.otf");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "AdobeClean";
+  src: url("../assets/fonts/AdobeClean-Light.otf");
+  font-weight: 300;
+}
+* {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+body {
+  margin: 0;
+  background-color: black;
+  font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.sticky {
+  position: sticky !important;
+  top: 0;
+}
+
+.scroll-sequence {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+}
+
+.sequence-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.image-sequence {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 0px);
+  padding-top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-wrapper {
+  position: absolute;
+  width: 1677px;
+  height: 1105px;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.section {
+  position: relative;
+  background: transparent;
+}
+
+#section-transform .transform-container {
+  position: relative;
+  width: 100%;
+}
+#section-transform .transform-title-container {
+  width: 630px;
+  position: absolute;
+  top: 24.5vh;
+  left: 10vw;
+}
+#section-transform .transform-title {
+  font-size: 88px;
+  line-height: 81px;
+  letter-spacing: -0.2px;
+}
+#section-transform .transform-copy-p {
+  color: #e7e7e7;
+  font-size: 25px;
+  line-height: 32px;
+  width: 520px;
+}
+#section-transform .transform-panel {
+  width: 30.5vw;
+  margin-left: 75px;
+}
+#section-transform .transform-tools-container {
+  position: absolute;
+  top: 11vh;
+  right: 7vw;
+}
+
+.intro-container {
+  position: relative;
+  z-index: 10;
+}
+.intro-image {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=main.css.map */

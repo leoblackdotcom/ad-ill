@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Photoshop Reimagine</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <main id="main" class="main">
+      <div class="scroll-sequence">
+        <div class="sequence-container">
+          <div class="image-sequence">
+            <div class="canvas-container">
+              <div class="canvas-wrapper">
+                <!--<canvas></canvas>-->
+                <img
+                  class="canvas transform-sequence-01"
+                  src="assets/images/transform/01.jpg"
+                  alt="transform"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="intro-container">
+        <img
+          src="assets/images/transform/intro.jpg"
+          alt="Temp Intro"
+          class="transform-intro"
+        />
+      </section>
+      <section id="section-transform" class="section">
+        <div class="transform-container sticky">
+          <div class="transform-title-container">
+            <h1 class="transform-title section-title">
+              Transform photos into fantasy
+            </h1>
+            <div class="transform-copy-container">
+              <p class="transform-copy-p p1">
+                Combine photos, graphics, effects, and typography to create what
+                your camera can’t capture.
+              </p>
+              <p class="transform-copy-p p2">Create with unlimited layers</p>
+              <p class="transform-copy-p p3">Easy, automatic selections</p>
+            </div>
+            <div class="transform-panel-container">
+              <img
+                src="assets/images/transform/transform-panel.jpg"
+                alt="Transform Panel"
+                class="transform-panel"
+              />
+            </div>
+          </div>
+          <div class="transform-tools-container">
+            <img
+              src="assets/images/transform/transform-tools.jpg"
+              alt="Transform Tools"
+              class="transform-tools"
+            />
+          </div>
+        </div>
+        <div class="spacer" style="height: 500vh;"></div>
+      </section>
+      <section class="section" style="height: 500vh;"></section>
+    </main>
+    <script src="scripts/libs/gsap/gsap.min.js"></script>
+    <script src="js/libs/gsap/CSSRulePlugin.min.js"></script>
+    <script src="scripts/libs/gsap/ScrollTrigger.min.js"></script>
+    <script src="scripts/libs/gsap/EasePack.min.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
