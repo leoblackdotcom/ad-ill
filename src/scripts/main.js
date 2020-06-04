@@ -2,7 +2,7 @@ const ps = (function () {
   //const counter = 0;
   const screenDims = {};
   let tl;
-  let curCanvas; //for drawing image frames
+  let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let sceneConfig = {
     nativeWidth: 1679,
     nativeHeight: 1119,
@@ -37,11 +37,14 @@ const ps = (function () {
   onScrollUpdate = (self) => {
     let curLabel = tl.currentLabel();
     if (curLabel === 'masksPanelIn'){
-      const labelProgress = tl.getTweensOf('.transform-masks-panel-container')[0].progress();
-      const vidDuration = sceneConfig.videos[0].duration;
-      const vidTime = labelProgress * vidDuration;
-      console.log(labelProgress,vidTime,fishVid);
-      fishVid.currentTime = vidTime;
+      const labelProgress = tl.getTweensOf('.transform-masks-panel-container')[0].progress().toFixed(3);
+      const vidDuration = curConfig.duration;
+      const vidFrames = curConfig.duration;
+      const vidTime = labelProgress * curConfig.duration;
+      const vidFrame = Math.ceil(labelProgress * curConfig.frames);
+      console.log(labelProgress,vidFrame);
+      //fishVid.currentTime = vidTime;
+      showVideoFrame(vidFrame);
     }
     //console.log(tl.currentLabel())
     //console.log(self.getTweensOf('.transform-masks-panel-container').progress())
@@ -104,24 +107,31 @@ const ps = (function () {
       .addLabel("end");
   };
 
-  initVideo = function(){
+  showVideoFrame = function(videoFrame,doDraw = true){
     
-    curCanvas = document.querySelector(sceneConfig.videos[appState.curVidIndex].selector);
-
-    const configRef = sceneConfig.videos[appState.curVidIndex];
-
-    curPath = `${sceneConfig.videoBasePath}/${configRef.directory}/frames/${configRef.directory}`; 
-
-    curCanvas.width = sceneConfig.nativeWidth;
-    curCanvas.height = sceneConfig.nativeHeight;
-    const context = curCanvas.getContext('2d');
-
-    
-    const curImagePath = `${curPath}01.jpg`;
+    const frameNumber = videoFrame > 9 ? videoFrame : `0${videoFrame}`;
+    const curImagePath = `${curPath}${frameNumber}.jpg`;
     const curImage = new Image();
     curImage.src=curImagePath;
-    context.drawImage(curImage, 0, 0);
+    if (doDraw){
+      curContext.drawImage(curImage, 0, 0);
+    }
+  }
 
+  preloadVideo = function(){
+    for (let i=0; i<curConfig.frames;i++){
+      showVideoFrame(i,false);
+    }
+  }
+
+  initVideo = function(){
+    curConfig = sceneConfig.videos[appState.curVidIndex];
+    curPath = `${sceneConfig.videoBasePath}/${curConfig.directory}/frames/${curConfig.directory}`; 
+    curCanvas = document.querySelector(sceneConfig.videos[appState.curVidIndex].selector);
+    curCanvas.width = sceneConfig.nativeWidth;
+    curCanvas.height = sceneConfig.nativeHeight;
+    curContext = curCanvas.getContext('2d');
+    showVideoFrame(0);
   }
 
   mapValue = function(value, low1, high1, low2, high2) {
@@ -130,7 +140,8 @@ const ps = (function () {
 
   init = function () {
     getScreenDims();
-    //initVideo();
+    initVideo();
+    preloadVideo();
     initTimeline();
   };
 
