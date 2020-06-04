@@ -14,7 +14,9 @@ const ps = (function () {
       {
         directory: 'fish',
         frames: 53, //ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 [filename].mp4
-        selector: '.transform-sequence.t4'
+        selector: '.transform-sequence.t4',
+        scrollStart: .76,
+        scrollEnd: .84,
       }
     ]
   };
@@ -29,14 +31,21 @@ const ps = (function () {
   };
 
   onScrollUpdate = (self) => {
-    /*console.log(
-      "progress:",
-      self.progress.toFixed(3),
-      "direction:",
-      self.direction,
-      "velocity",
-      self.getVelocity()
-    );*/
+    let curLabel = tl.currentLabel();
+    if (curLabel === 'masksPanelIn'){
+      const labelProgress = tl.getTweensOf('.transform-masks-panel-container')[0].progress();
+      console.log(labelProgress);
+    }
+    //console.log(tl.currentLabel())
+    //console.log(self.getTweensOf('.transform-masks-panel-container').progress())
+    // console.log(
+    //   "progress:",
+    //   self.progress.toFixed(3),
+    //   "direction:",
+    //   self.direction,
+    //   "velocity",
+    //   self.getVelocity(),
+    // );
   };
 
   initTimeline = function () {
@@ -57,6 +66,7 @@ const ps = (function () {
         onUpdate: onScrollUpdate,
       },
     });
+    
     tl.from(".transform-title", { autoAlpha: 0, translateY: 20 }, "start")
       //.from(".transform-sequence-01", { autoAlpha: 0 }, "start")
       .from(".transform-copy-p.p1", { autoAlpha: 0 }, "l1")
@@ -76,9 +86,6 @@ const ps = (function () {
         ".transform-masks-panel-container",
         {
           translateY: "100vh",
-          onUpdate: (self)=>{
-            console.log(self.progress());
-          }
         },
         "masksPanelIn"
       )
@@ -107,6 +114,10 @@ const ps = (function () {
     curImage.src=curImagePath;
     context.drawImage(curImage, 0, 0);
 
+  }
+
+  mapValue = function(value, low1, high1, low2, high2) {
+    return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   }
 
   init = function () {
