@@ -25,6 +25,7 @@ const ps = (function () {
 
   let appState = {
     curVidIndex: 0,
+    loadedIndex: 0,
   }
   
   let fishVid = document.querySelector(".transform-sequence.t4");
@@ -107,21 +108,38 @@ const ps = (function () {
       .addLabel("end");
   };
 
-  showVideoFrame = function(videoFrame,doDraw = true){
-    
+  getFramePath = function(videoFrame,vidPath){
     const frameNumber = videoFrame > 9 ? videoFrame : `0${videoFrame}`;
-    const curImagePath = `${curPath}${frameNumber}.jpg`;
+    return `${vidPath}${frameNumber}.jpg`;
+  }
+
+  showVideoFrame = function(videoFrame,doDraw = true){
+    curImagePath = getFramePath(videoFrame,curPath);
     const curImage = new Image();
     curImage.src=curImagePath;
     if (doDraw){
       curContext.drawImage(curImage, 0, 0);
+    } else {
+      return curImage;
     }
   }
 
   preloadVideo = function(){
+    const videoFrames = [];
+    const preloadConfig = sceneConfig.videos[appState.loadedIndex];
+    const preloadPath = `${sceneConfig.videoBasePath}/${preloadConfig.directory}/frames/${preloadConfig.directory}`; 
     for (let i=0; i<curConfig.frames;i++){
-      showVideoFrame(i,false);
+      videoFrames.push(getFramePath(i,preloadPath));
     }
+    const imgLoader = imagesLoaded( videoFrames, ()=>{
+      console.log('vid loaded',appState.loadedIndex);
+      if (appState.loadedIndex < sceneConfig.videos.length-1){
+        appState.loadedIndex++;
+        preloadVideo();
+      } else {
+        console.log('all loaded');
+      }
+    });
   }
 
   initVideo = function(){
