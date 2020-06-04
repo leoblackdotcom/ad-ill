@@ -2,11 +2,26 @@ const ps = (function () {
   //const counter = 0;
   const screenDims = {};
   let tl;
+  let curCanvas; //for drawing image frames
   let sceneConfig = {
+    nativeWidth: 1679,
+    nativeHeight: 1119,
     transform: {
       sceneDuration: 4,
     },
+    videoBasePath: 'assets/videos',
+    videos: [
+      {
+        directory: 'fish',
+        frames: 53, //ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 [filename].mp4
+        selector: '.transform-sequence.t4'
+      }
+    ]
   };
+
+  let appState = {
+    curVidIndex: 0,
+  }
 
   getScreenDims = function () {
     screenDims.width = window.innerWidth;
@@ -61,18 +76,42 @@ const ps = (function () {
         ".transform-masks-panel-container",
         {
           translateY: "100vh",
+          onUpdate: (self)=>{
+            console.log(self.progress());
+          }
         },
         "masksPanelIn"
       )
       .from( ".transform-copy-p.p4", { autoAlpha: 0, onComplete: () => {
-        document.querySelector(".transform-sequence.t4").play();
+        //document.querySelector(".transform-sequence.t4").play();
       }, }, "l4" )
       .to(".transform-masks-panel-container", { translateY: "-150vh" }, "masksPanelOut")
       .addLabel("end");
   };
 
+  initVideo = function(){
+    
+    curCanvas = document.querySelector(sceneConfig.videos[appState.curVidIndex].selector);
+
+    const configRef = sceneConfig.videos[appState.curVidIndex];
+
+    curPath = `${sceneConfig.videoBasePath}/${configRef.directory}/frames/${configRef.directory}`; 
+
+    curCanvas.width = sceneConfig.nativeWidth;
+    curCanvas.height = sceneConfig.nativeHeight;
+    const context = curCanvas.getContext('2d');
+
+    
+    const curImagePath = `${curPath}01.jpg`;
+    const curImage = new Image();
+    curImage.src=curImagePath;
+    context.drawImage(curImage, 0, 0);
+
+  }
+
   init = function () {
     getScreenDims();
+    initVideo();
     initTimeline();
   };
 
