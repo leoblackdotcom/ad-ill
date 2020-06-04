@@ -17,6 +17,8 @@ const ps = (function () {
         selector: '.transform-sequence.t4',
         scrollStart: .76,
         scrollEnd: .84,
+        duration: 3.637, //ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 input.mp4
+        fps: 30,
       }
     ]
   };
@@ -24,6 +26,8 @@ const ps = (function () {
   let appState = {
     curVidIndex: 0,
   }
+  
+  let fishVid = document.querySelector(".transform-sequence.t4");
 
   getScreenDims = function () {
     screenDims.width = window.innerWidth;
@@ -34,7 +38,10 @@ const ps = (function () {
     let curLabel = tl.currentLabel();
     if (curLabel === 'masksPanelIn'){
       const labelProgress = tl.getTweensOf('.transform-masks-panel-container')[0].progress();
-      console.log(labelProgress);
+      const vidDuration = sceneConfig.videos[0].duration;
+      const vidTime = labelProgress * vidDuration;
+      console.log(labelProgress,vidTime,fishVid);
+      fishVid.currentTime = vidTime;
     }
     //console.log(tl.currentLabel())
     //console.log(self.getTweensOf('.transform-masks-panel-container').progress())
@@ -90,6 +97,7 @@ const ps = (function () {
         "masksPanelIn"
       )
       .from( ".transform-copy-p.p4", { autoAlpha: 0, onComplete: () => {
+        
         //document.querySelector(".transform-sequence.t4").play();
       }, }, "l4" )
       .to(".transform-masks-panel-container", { translateY: "-150vh" }, "masksPanelOut")
@@ -122,7 +130,7 @@ const ps = (function () {
 
   init = function () {
     getScreenDims();
-    initVideo();
+    //initVideo();
     initTimeline();
   };
 
