@@ -14,14 +14,14 @@ const ps = (function () {
   };
 
   onScrollUpdate = (self) => {
-    console.log(
+    /*console.log(
       "progress:",
       self.progress.toFixed(3),
       "direction:",
       self.direction,
       "velocity",
       self.getVelocity()
-    );
+    );*/
   };
 
   initTimeline = function () {
@@ -47,14 +47,25 @@ const ps = (function () {
       .from(".transform-copy-p.p1", { autoAlpha: 0 }, "l1")
       .from(".transform-panel", { translateY: "50vh" }, "panelIn")
       .from(".transform-copy-p.p2", { autoAlpha: 0 }, "l2")
-      .to(".transform-panel", { translateY: "-150vh", delay: 1 }, "panelOut")
+      .from(".transform-sequence.t2", { autoAlpha: 0 }, "t2")
+      .to(".transform-panel", { translateY: "-150vh" }, "panelOut")
       .from(".transform-copy-p.p3", { autoAlpha: 0 }, "l3")
       .from(".transform-tools-container", { translateY: "100vh" }, "l3")
-      .to(
-        ".transform-tools-container",
-        { translateY: "-200vh", delay: 1 },
-        "toolsOut"
+      .from(".transform-sequence.t3", { autoAlpha: 0 }, "t3")
+      .from(".transform-sequence.t4", { autoAlpha: 0 }, "toolsOut")
+      .to(".transform-tools-container", { translateY: "-200vh" }, "toolsOut")
+      .from(
+        ".transform-masks-panel",
+        {
+          translateY: "100vh",
+          onComplete: () => {
+            document.querySelector(".transform-sequence.t4").play();
+          },
+        },
+        "masksPanelIn"
       )
+      .from( ".transform-copy-p.p4", { autoAlpha: 0, }, "l4" )
+      .to(".transform-masks-panel", { translateY: "-150vh", delay: 1 }, "masksPanelOut")
       .addLabel("end");
   };
 

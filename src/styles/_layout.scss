@@ -53,6 +53,16 @@
   background: transparent;
 }
 
+.sequence-container {
+  .transform {
+    &-sequence {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
 #section-transform {
   .transform {
     &-container {
@@ -83,13 +93,21 @@
     //   top: 100vh;
     // }
     &-panel {
-      width: 30.5vw;
+      width: 474px;
       margin-left: 75px;
     }
     &-tools-container {
       position: absolute;
       top: 11vh;
       right: 7vw;
+    }
+    &-masks-panel-container {
+      position: absolute;
+      top: 63vh;
+      left: 30vw;
+    }
+    &-masks-panel {
+      width: 449px;
     }
   }
 }

@@ -110,6 +110,12 @@ img {
   background: transparent;
 }
 
+.sequence-container .transform-sequence {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 #section-transform .transform-container {
   position: relative;
   width: 100%;
@@ -132,13 +138,21 @@ img {
   width: 520px;
 }
 #section-transform .transform-panel {
-  width: 30.5vw;
+  width: 474px;
   margin-left: 75px;
 }
 #section-transform .transform-tools-container {
   position: absolute;
   top: 11vh;
   right: 7vw;
+}
+#section-transform .transform-masks-panel-container {
+  position: absolute;
+  top: 63vh;
+  left: 30vw;
+}
+#section-transform .transform-masks-panel {
+  width: 449px;
 }
 
 .intro-container {
