@@ -3,6 +3,13 @@
   top: 0;
 }
 
+.null {
+  position: absolute;
+  visibility: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .scroll-sequence {
   width: 100%;
   position: absolute;
