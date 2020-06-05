@@ -3,3 +3,7 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin adobeClean(){
+  font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

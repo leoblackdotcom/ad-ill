@@ -39,7 +39,7 @@ a {
 body {
   margin: 0;
   background-color: $color--bg;
-  font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  @include adobeClean;
   color: $color--body;
 }
 

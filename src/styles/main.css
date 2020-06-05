@@ -196,10 +196,71 @@ p {
   position: relative;
   z-index: 10;
 }
-.intro-image {
+.intro-video {
   width: 100%;
   height: 100vh;
   object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.intro-content-container {
+  position: absolute;
+  z-index: 10;
+  width: 33vw;
+  top: 12vh;
+  left: 9vw;
+}
+.intro-ps-logo {
+  width: 4.875vw;
+}
+.intro-title {
+  font-weight: normal;
+  font-size: 6.75rem;
+  line-height: 1em;
+  letter-spacing: -0.2px;
+  margin-top: 4.5vh;
+}
+.intro-p {
+  font-size: 2rem;
+  letter-spacing: -0.2px;
+  font-weight: 300;
+  margin-top: 20px;
+}
+.intro-buttons {
+  margin-top: 7vh;
+  display: flex;
+}
+.intro-button {
+  height: 44px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 22px;
+}
+.intro-button.buy {
+  background-color: #1473E6;
+  border-color: #1473E6;
+  margin-left: 20px;
+}
+.intro-subtext {
+  margin-top: 20px;
+  font-size: 1.5625rem;
+  font-weight: 300;
+}
+
+.header-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
 }
 
 /*# sourceMappingURL=main.css.map */
