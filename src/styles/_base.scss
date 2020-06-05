@@ -41,6 +41,7 @@ body {
   background-color: $color--bg;
   @include adobeClean;
   color: $color--body;
+  overflow-x: hidden;
 }
 
 h1,

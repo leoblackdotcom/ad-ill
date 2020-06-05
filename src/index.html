@@ -45,59 +45,71 @@
                     type="video/mp4"
                   />
                 </video>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
-      <section id="section-intro" class="intro-container">
-        <video
-          class="intro-video"
-          preload="metadata"
-          loop
-          muted
-          poster="assets/images/intro/intro-poster.jpg"
-        >
-          <source
-            src="assets/videos/intro/intro.webm"
-            type="video/webm"
-          />
-          <source
-            src="assets/videos/intro/intro.mp4"
-            type="video/mp4"
-          />
-        </video>
-        <div class="header-container">
-          <img src="assets/images/header.jpg" alt="Adobe Header" class="header-image">
-        </div>
-        <div class="intro-content-container">
-          <img src="assets/images/intro/ps-logo.png" alt="Photoshop Logo" class="intro-ps-logo">
-          <h1 class="intro-title">Make.<br/>Believe.<br/>Photoshop.</h1>
-          <p class="intro-p">From photo editing and compositing to digital painting, animation, and graphic design — whatever you can imagine, you can create it in Photoshop. </p>
-          <div class="intro-buttons">
-            <button class="intro-button trial">Free Trial</button>
-            <button class="intro-button buy">Buy Now</button>
+      <section id="section-intro">
+        <div class="intro-container">
+          <video
+            class="intro-video"
+            preload="metadata"
+            loop
+            muted
+            poster="assets/images/intro/intro-poster.jpg"
+            autoplay
+          >
+            <source src="assets/videos/intro/intro.webm" type="video/webm" />
+            <source src="assets/videos/intro/intro.mp4" type="video/mp4" />
+          </video>
+          <div class="header-container">
+            <img
+              src="assets/images/header.jpg"
+              alt="Adobe Header"
+              class="header-image"
+            />
           </div>
-          <p class="intro-subtext">Starting at $20.99/mo</p>
+          <div class="intro-content-container">
+            <img
+              src="assets/images/intro/ps-logo.png"
+              alt="Photoshop Logo"
+              class="intro-ps-logo"
+            />
+            <h1 class="intro-title">Make.<br />Believe.<br />Photoshop.</h1>
+            <p class="intro-p">
+              From photo editing and compositing to digital painting, animation,
+              and graphic design — whatever you can imagine, you can create it
+              in Photoshop.
+            </p>
+            <div class="intro-buttons">
+              <button class="intro-button trial">Free Trial</button>
+              <button class="intro-button buy">Buy Now</button>
+            </div>
+            <p class="intro-subtext">Starting at $20.99/mo</p>
+          </div>
         </div>
       </section>
       <section id="section-transform" class="section">
         <div class="transform-container">
           <div class="transform-title-container">
-            <h1 class="transform-title section-title">
+            <h2 class="transform-title section-title">
               Transform photos into fantasy
-            </h1>
+            </h2>
             <div class="transform-copy-container">
-              <p class="transform-copy-p p1">
+              <p class="section-intro transform-copy-p p1">
                 Combine photos, graphics, effects, and typography to create what
                 your camera can’t capture.
               </p>
               <ul class="transform-feature-list">
-                <li class="transform-feature p2">Create with unlimited layers</li>
+                <li class="transform-feature p2">
+                  Create with unlimited layers
+                </li>
                 <li class="transform-feature p3">Easy automatic selections</li>
                 <li class="transform-feature p4">Show and hide with masks</li>
-                <li class="transform-feature p5">Merge and remix with blend modes</li>
+                <li class="transform-feature p5">
+                  Merge and remix with blend modes
+                </li>
               </ul>
             </div>
             <div class="transform-panel-container">
@@ -131,12 +143,37 @@
           </div>
         </div>
       </section>
-      <section id="section-brushes" class="brush-container">
-        <img
-          src="assets/images/transform/brushes.jpg"
-          alt="temp brushes"
-          class="intro-image"
-        />
+      <section id="section-brushes">
+        <div class="brushes-container">
+          <video
+            class="brushes-video"
+            preload="metadata"
+            muted
+            loop
+            poster="assets/images/brushes/brushes-poster.jpg"
+          >
+            <source
+              src="assets/videos/brushes/brushes-vid.webm"
+              type="video/webm"
+            />
+            <source
+              src="assets/videos/brushes/brushes-vid.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="brushes-content-container">
+            <h2 class="section-title brushes-title">
+              A thousand brushes<br />with greatness.
+            </h2>
+            <p class="section-intro brushes-intro">
+              Paint and draw with thousands of custom brushes or create your own
+              — Photoshop puts the world’s largest collection at your fingertips
+            </p>
+            <div class="brushes-button-container">
+              <button class="brushes-button">Get started with brushes</button>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
     <script src="scripts/libs/gsap/gsap.min.js"></script>

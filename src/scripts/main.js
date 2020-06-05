@@ -1,12 +1,17 @@
+gsap.registerPlugin(ScrollTrigger);
+
 const ps = (function () {
+  const self = this;
   //const counter = 0;
-  const screenDims = {};
   let tl, tl2;
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let sceneConfig = {
     nativeWidth: 1679,
     nativeHeight: 1119,
     scenes: {
+      intro: {
+        //
+      },
       transform: {
         sceneDuration: 7,
       },
@@ -32,14 +37,19 @@ const ps = (function () {
     curVidIndex: 0,
     loadedIndex: 0,
     curSceneIndex: 0,
+    screenDims: {},
   }
   
   let fishVid = document.querySelector(".transform-sequence.t4");
 
   getScreenDims = function () {
-    screenDims.width = window.innerWidth;
-    screenDims.height = window.innerHeight;
+    appState.screenDims.width = window.innerWidth;
+    appState.screenDims.height = window.innerHeight;
   };
+
+  addListeners = function(){
+    //
+  }
 
   onScrollUpdate = (self) => {
     console.log(
@@ -52,22 +62,55 @@ const ps = (function () {
     );
   };
 
-  onBrushesEnter = function(){
-    appState.curSceneIndex++;
+  resetVideo = function($video){
+    $video.pause();
+    $video.currentTime = 0;
   }
 
-  initTimeline = function () {
+  playVideo = function($video){
+    $video.play();
+  }
+
+  onTransformEnter = function(){
+    appState.curSceneIndex = 1;
+    resetVideo(document.querySelector('.intro-video'));
+  }
+
+  onTransformLeaveBack = function(){
+    appState.curSceneIndex = 0;
+    resetVideo(document.querySelector('.transform-sequence.t4'));
+    playVideo(document.querySelector('.intro-video'));
+  }
+
+  onBrushesEnter = function(){
+    appState.curSceneIndex = 2;
+    playVideo(document.querySelector('.brushes-video'));
+  }
+
+  onBrushesLeaveBack = function(){
+    appState.curSceneIndex = 1;
+    resetVideo(document.querySelector('.brushes-video'));
+  }
+
+  initTimelines = function(){
+    initTimelineTransform();
+    initTimelineBrushes();
+  }
+
+  initTimelineTransform = function () {
     tl = gsap.timeline({
       // yes, we can add it to an entire timeline!
       scrollTrigger: {
         trigger: "#section-transform",
-        pin: true, // pin the trigger element while active?
+        pin: '.transform-container', // pin the trigger element while active?
         start: "top top", // when the top of the trigger hits the top of the viewport
         //endTrigger: "#section-brushes",
-        end: `+=${sceneConfig.scenes.transform.sceneDuration * screenDims.height}`, // end after scrolling this distance
+        end: `+=${sceneConfig.scenes.transform.sceneDuration * appState.screenDims.height}`, // end after scrolling this distance
         //end: `top top`, // end after scrolling this distance
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         //onUpdate: onScrollUpdate,
+        onEnter: onTransformEnter,
+        onLeaveBack: onTransformLeaveBack,
       },
     });
     
@@ -113,22 +156,31 @@ const ps = (function () {
         document.querySelector('.transform-sequence.t4').currentTime = sceneConfig.videos[appState.curVidIndex].duration; //set fish video to the end
       }}, "spacer4")
       .addLabel("end");
-
-      tl2 = gsap.timeline({
-        // yes, we can add it to an entire timeline!
-        scrollTrigger: {
-          trigger: "#section-brushes",
-          pin: true, // pin the trigger element while active?
-          start: "top top", // when the top of the trigger hits the top of the viewport
-          //endTrigger: "#section-brushes",
-          end: `+=${sceneConfig.scenes.brushes.sceneDuration * screenDims.height}`, // end after scrolling this distance
-          //end: `top top`, // end after scrolling this distance
-          scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
-          //onUpdate: onScrollUpdate,
-          onEnter: onBrushesEnter
-        },
-      });
   };
+
+  initTimelineBrushes = function(){
+    tl2 = gsap.timeline({
+      // yes, we can add it to an entire timeline!
+      scrollTrigger: {
+        trigger: "#section-brushes",
+        pin: '.brushes-container', // pin the trigger element while active?
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        //endTrigger: "#section-brushes",
+        end: `+=${sceneConfig.scenes.brushes.sceneDuration * appState.screenDims.height}`, // end after scrolling this distance
+        //end: `top top`, // end after scrolling this distance
+        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        //onUpdate: onScrollUpdate,
+        onEnter: onBrushesEnter,
+        onLeaveBack: onBrushesLeaveBack
+      },
+    });
+
+    tl2.from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
+      .from(".brushes-intro", { autoAlpha: 0, translateY: 20 }, "brushesIntroIn")
+      .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn")
+      .to('.null',{opacity: 0}, "spacer3")
+      .addLabel("end");
+  }
 
   mapValue = function(value, low1, high1, low2, high2) {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
@@ -136,7 +188,8 @@ const ps = (function () {
 
   init = function () {
     getScreenDims();
-    initTimeline();
+    addListeners();
+    initTimelines();
   };
 
   return {

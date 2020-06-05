@@ -38,6 +38,7 @@ body {
   background-color: black;
   font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
+  overflow-x: hidden;
 }
 
 h1,
@@ -63,6 +64,18 @@ ul {
 
 p {
   margin: 0;
+}
+
+.section-title {
+  font-size: 5.5rem;
+  line-height: 5.0625rem;
+  letter-spacing: -0.2px;
+}
+
+.section-intro {
+  font-size: 2rem;
+  line-height: 2.25rem;
+  font-weight: 300;
 }
 
 .sticky {
@@ -133,6 +146,78 @@ p {
   left: 0;
 }
 
+#section-intro .intro-container {
+  position: relative;
+  z-index: 10;
+}
+#section-intro .intro-video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+#section-intro .intro-content-container {
+  position: absolute;
+  z-index: 10;
+  width: 33vw;
+  top: 12vh;
+  left: 9vw;
+}
+#section-intro .intro-ps-logo {
+  width: 4.875vw;
+}
+#section-intro .intro-title {
+  font-weight: normal;
+  font-size: 6.75rem;
+  line-height: 1em;
+  letter-spacing: -0.2px;
+  margin-top: 4.5vh;
+}
+#section-intro .intro-p {
+  font-size: 2rem;
+  letter-spacing: -0.2px;
+  font-weight: 300;
+  margin-top: 20px;
+}
+#section-intro .intro-buttons {
+  margin-top: 7vh;
+  display: flex;
+}
+#section-intro .intro-button {
+  height: 44px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.25rem;
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 22px;
+}
+#section-intro .intro-button.buy {
+  background-color: #1473E6;
+  border-color: #1473E6;
+  margin-left: 20px;
+}
+#section-intro .intro-subtext {
+  margin-top: 20px;
+  font-size: 1.5625rem;
+  font-weight: 300;
+}
+
+.header-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+#section-transform {
+  min-height: 100vh;
+}
 #section-transform .transform-container {
   position: relative;
   width: 100%;
@@ -143,16 +228,8 @@ p {
   top: 24.5vh;
   left: 10vw;
 }
-#section-transform .transform-title {
-  font-size: 5.5rem;
-  line-height: 81px;
-  letter-spacing: -0.2px;
-}
 #section-transform .transform-copy-p {
   color: #e7e7e7;
-  font-size: 2rem;
-  line-height: 36px;
-  font-weight: 300;
   margin-top: 1.8vh;
 }
 #section-transform .transform-feature-list {
@@ -191,76 +268,35 @@ p {
   z-index: 20;
   position: relative;
 }
-
-.intro-container {
-  position: relative;
-  z-index: 10;
-}
-.intro-video {
+#section-brushes .brushes-video {
   width: 100%;
   height: 100vh;
   object-fit: cover;
+}
+#section-brushes .brushes-content-container {
   position: absolute;
-  left: 0;
-  top: 0;
+  top: 56vh;
+  left: 9.35vw;
 }
-.intro-content-container {
-  position: absolute;
-  z-index: 10;
-  width: 33vw;
-  top: 12vh;
-  left: 9vw;
-}
-.intro-ps-logo {
-  width: 4.875vw;
-}
-.intro-title {
-  font-weight: normal;
-  font-size: 6.75rem;
-  line-height: 1em;
-  letter-spacing: -0.2px;
-  margin-top: 4.5vh;
-}
-.intro-p {
-  font-size: 2rem;
-  letter-spacing: -0.2px;
-  font-weight: 300;
+#section-brushes .brushes-intro {
   margin-top: 20px;
 }
-.intro-buttons {
-  margin-top: 7vh;
-  display: flex;
+#section-brushes .brushes-button-container {
+  margin-top: 40px;
 }
-.intro-button {
-  height: 44px;
-  padding: 0 30px;
+#section-brushes .brushes-button {
+  border: 1px solid #505050;
+  color: white;
+  border-radius: 16px;
+  height: 32px;
+  background-color: #505050;
+  padding: 0 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
-  font-size: 1.25rem;
-  background-color: transparent;
-  color: white;
-  border: 1px solid white;
-  border-radius: 22px;
-}
-.intro-button.buy {
-  background-color: #1473E6;
-  border-color: #1473E6;
-  margin-left: 20px;
-}
-.intro-subtext {
-  margin-top: 20px;
-  font-size: 1.5625rem;
-  font-weight: 300;
-}
-
-.header-container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
+  font-size: 0.875rem;
 }
 
 /*# sourceMappingURL=main.css.map */
