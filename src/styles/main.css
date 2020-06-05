@@ -19,11 +19,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
-  color: white;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -33,6 +28,11 @@ html {
     scroll-behavior: auto;
   }
 }
+a {
+  text-decoration: none;
+  color: white;
+}
+
 body {
   margin: 0;
   background-color: black;
@@ -55,9 +55,26 @@ img {
   height: auto;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
 .sticky {
   position: sticky !important;
   top: 0;
+}
+
+.null {
+  position: absolute;
+  visibility: hidden;
+  z-index: -1;
+  pointer-events: none;
 }
 
 .scroll-sequence {
@@ -100,7 +117,7 @@ img {
 
 .canvas {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -127,32 +144,52 @@ img {
   left: 10vw;
 }
 #section-transform .transform-title {
-  font-size: 88px;
+  font-size: 5.5rem;
   line-height: 81px;
   letter-spacing: -0.2px;
 }
 #section-transform .transform-copy-p {
   color: #e7e7e7;
-  font-size: 25px;
-  line-height: 32px;
-  width: 520px;
+  font-size: 2rem;
+  line-height: 36px;
+  font-weight: 300;
+  margin-top: 1.8vh;
+}
+#section-transform .transform-feature-list {
+  margin-top: 3.6vh;
+}
+#section-transform .transform-feature {
+  font-size: 1.375rem;
+  font-weight: bold;
 }
 #section-transform .transform-panel {
-  width: 474px;
-  margin-left: 75px;
+  width: 18.75vw;
+  left: 19vw;
+  top: 0;
+  position: absolute;
 }
 #section-transform .transform-tools-container {
   position: absolute;
-  top: 11vh;
-  right: 7vw;
+  top: 16.35vh;
+  right: 9.375vw;
+  width: 3.5vw;
 }
 #section-transform .transform-masks-panel-container {
   position: absolute;
-  top: 63vh;
-  left: 30vw;
+  top: 52.3vh;
+  left: 40.5vw;
+  width: 20vw;
 }
-#section-transform .transform-masks-panel {
-  width: 449px;
+#section-transform .transform-blend-panel-container {
+  position: absolute;
+  top: 63vh;
+  left: 60.875vw;
+  width: 18.75vw;
+}
+
+#section-brushes {
+  z-index: 20;
+  position: relative;
 }
 
 .intro-container {

@@ -21,19 +21,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  text-decoration: none;
-  color: $color--link;
-}
-
 html {
-  //scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 @media screen and (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
+}
+
+a {
+  text-decoration: none;
+  color: $color--link;
 }
 
 body {
@@ -56,4 +56,14 @@ h6 {
 img {
   width: 100%;
   height: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
 }

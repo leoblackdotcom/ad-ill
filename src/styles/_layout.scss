@@ -50,7 +50,7 @@
 
 .canvas {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   object-fit: cover;
   object-position: 50% 50%;
 }
@@ -83,40 +83,54 @@
       left: 10vw;
     }
     &-title {
-      font-size: 88px;
+      font-size: 5.5rem;
       line-height: 81px;
       letter-spacing: -0.2px;
     }
     &-copy-p {
       color: $color--gray-lt;
-      font-size: 25px;
-      line-height: 32px;
-      width: 520px;
+      font-size: 2rem;
+      line-height: 36px;
+      font-weight: 300;
+      margin-top: 1.8vh;
     }
-    // &-panel-container {
-    //   position: absolute;
-    //   width: 100%;
-    //   height: 100vh;
-    //   top: 100vh;
-    // }
+    &-feature-list {
+      margin-top: 3.6vh;
+    }
+    &-feature {
+      font-size: 1.375rem;
+      font-weight: bold;
+    }
     &-panel {
-      width: 474px;
-      margin-left: 75px;
+      width: 18.75vw;
+      left: 19vw;
+      top: 0;
+      position: absolute;
     }
     &-tools-container {
       position: absolute;
-      top: 11vh;
-      right: 7vw;
+      top: 16.35vh;
+      right: 9.375vw;
+      width: 3.5vw;
     }
     &-masks-panel-container {
       position: absolute;
-      top: 63vh;
-      left: 30vw;
+      top: 52.3vh;
+      left: 40.5vw;
+      width: 20vw;
     }
-    &-masks-panel {
-      width: 449px;
+    &-blend-panel-container {
+      position: absolute;
+      top: 63vh;
+      left: 60.875vw;
+      width: 18.75vw;
     }
   }
+}
+
+#section-brushes {
+  z-index: 20;
+  position: relative; 
 }
 
 .intro {
