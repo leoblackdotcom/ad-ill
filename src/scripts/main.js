@@ -36,27 +36,14 @@ const ps = (function () {
   };
 
   onScrollUpdate = (self) => {
-    let curLabel = tl.currentLabel();
-    if (curLabel === 'masksPanelIn'){
-      const labelProgress = tl.getTweensOf('.transform-masks-panel-container')[0].progress().toFixed(3);
-      const vidDuration = curConfig.duration;
-      const vidFrames = curConfig.duration;
-      const vidTime = labelProgress * curConfig.duration;
-      const vidFrame = Math.ceil(labelProgress * curConfig.frames);
-      console.log(labelProgress,vidFrame);
-      //fishVid.currentTime = vidTime;
-      showVideoFrame(vidFrame);
-    }
-    //console.log(tl.currentLabel())
-    //console.log(self.getTweensOf('.transform-masks-panel-container').progress())
-    // console.log(
-    //   "progress:",
-    //   self.progress.toFixed(3),
-    //   "direction:",
-    //   self.direction,
-    //   "velocity",
-    //   self.getVelocity(),
-    // );
+    console.log(
+      "progress:",
+      self.progress.toFixed(3),
+      "direction:",
+      self.direction,
+      "velocity",
+      self.getVelocity(),
+    );
   };
 
   initTimeline = function () {
@@ -74,7 +61,7 @@ const ps = (function () {
           delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
           ease: "power1.inOut", // the ease of the snap animation ("power3" by default)
         },
-        onUpdate: onScrollUpdate,
+        //onUpdate: onScrollUpdate,
       },
     });
     
@@ -89,6 +76,8 @@ const ps = (function () {
       .from(".transform-copy-p.p3", { autoAlpha: 0 }, "l3")
       .from(".transform-tools-container", { translateY: "100vh" }, "l3")
       .from(".transform-sequence.t3", { autoAlpha: 0 }, "l3")
+      .to(".transform-sequence.t2", { autoAlpha: 0 }, "l3")
+      .to(".transform-sequence.t1", { autoAlpha: 0 }, "l3")
       .to('.null',{opacity: 1}, "spacer")
       .to(".transform-tools-container", { translateY: "-200vh" }, "toolsOut")
       .to(".transform-sequence.t3", { autoAlpha: 0 }, "t4")
@@ -100,10 +89,12 @@ const ps = (function () {
         },
         "masksPanelIn"
       )
-      .from( ".transform-copy-p.p4", { autoAlpha: 0, onComplete: () => {
-        
-        //document.querySelector(".transform-sequence.t4").play();
-      }, }, "l4" )
+      .from( ".transform-copy-p.p4", { autoAlpha: 0, onUpdate: function(){
+        const labelProgress = this.progress();
+        const vidFrame = Math.ceil(labelProgress * curConfig.frames);
+        console.log(labelProgress,vidFrame);
+        showVideoFrame(vidFrame);
+      }}, "l4" )
       .to(".transform-masks-panel-container", { translateY: "-150vh" }, "masksPanelOut")
       .addLabel("end");
   };
@@ -137,7 +128,7 @@ const ps = (function () {
         appState.loadedIndex++;
         preloadVideo();
       } else {
-        console.log('all loaded');
+        console.log('all loaded',appState);
       }
     });
   }
