@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ps = (function () {
   const self = this;
   //const counter = 0;
-  let tl, tl2;
+  let tlTransform, tlBrushes, tlRetouch;
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let sceneConfig = {
     nativeWidth: 1679,
@@ -16,6 +16,9 @@ const ps = (function () {
         sceneDuration: 7,
       },
       brushes: {
+        sceneDuration: 3,
+      },
+      retouch: {
         sceneDuration: 3,
       }
     },
@@ -92,13 +95,24 @@ const ps = (function () {
     resetVideo(document.querySelector('.brushes-video'));
   }
 
+  onRetouchEnter = function(){
+    appState.curSceneIndex = 2;
+    resetVideo(document.querySelector('.brushes-video'));
+  }
+
+  onRetouchLeaveBack = function(){
+    appState.curSceneIndex = 3;
+    playVideo(document.querySelector('.brushes-video'));
+  }
+
   initTimelines = function(){
     initTimelineTransform();
     initTimelineBrushes();
+    initTimelineRetouch();
   }
 
   initTimelineTransform = function () {
-    tl = gsap.timeline({
+    tlTransform = gsap.timeline({
       // yes, we can add it to an entire timeline!
       scrollTrigger: {
         trigger: "#section-transform",
@@ -114,7 +128,7 @@ const ps = (function () {
       },
     });
     
-    tl.from(".transform-title", { autoAlpha: 0, translateY: 20 }, "start")
+    tlTransform.from(".transform-title", { autoAlpha: 0, translateY: 20 }, "start")
       //.from(".transform-sequence-01", { autoAlpha: 0 }, "start")
       .from(".transform-copy-p", { autoAlpha: 0 }, "l1")
       .from(".transform-panel-container", { translateY: "10vh", autoAlpha: 0 }, "panelIn")
@@ -159,7 +173,7 @@ const ps = (function () {
   };
 
   initTimelineBrushes = function(){
-    tl2 = gsap.timeline({
+    tlBrushes = gsap.timeline({
       // yes, we can add it to an entire timeline!
       scrollTrigger: {
         trigger: "#section-brushes",
@@ -175,10 +189,37 @@ const ps = (function () {
       },
     });
 
-    tl2.from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
+    tlBrushes.from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(".brushes-intro", { autoAlpha: 0, translateY: 20 }, "brushesIntroIn")
       .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn")
       .to('.null',{opacity: 0}, "spacer3")
+      .addLabel("end");
+  }
+
+  initTimelineRetouch = function(){
+    tlRetouch = gsap.timeline({
+      // yes, we can add it to an entire timeline!
+      scrollTrigger: {
+        trigger: "#section-retouch",
+        pin: '.retouch-container', // pin the trigger element while active?
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        //endTrigger: "#section-brushes",
+        end: `+=${sceneConfig.scenes.retouch.sceneDuration * appState.screenDims.height}`, // end after scrolling this distance
+        //end: `top top`, // end after scrolling this distance
+        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        //onUpdate: onScrollUpdate,
+        onEnter: onRetouchEnter,
+        onLeaveBack: onRetouchLeaveBack
+      },
+    });
+
+    tlRetouch.to(".retouch-2", { width: '50%' }, "sliderIn")
+      .from(".retouch-title-line.l1", { autoAlpha: 0, translateY: 20 }, "sliderIn")
+      .from(".retouch-title-line.l2", { autoAlpha: 0, translateY: 20 }, "remixIn")
+      .from(".retouch-title-line.l3", { autoAlpha: 0, translateY: 20 }, "reimagineIn")
+      .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
+      .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
+      .to('.null',{opacity: 1}, "spacer1")
       .addLabel("end");
   }
 
