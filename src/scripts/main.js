@@ -46,6 +46,10 @@ const ps = (function () {
     );
   };
 
+  onFish = function(){
+    console.log('fish');
+  }
+
   initTimeline = function () {
     tl = gsap.timeline({
       // yes, we can add it to an entire timeline!
@@ -78,10 +82,12 @@ const ps = (function () {
       .from(".transform-sequence.t3", { autoAlpha: 0 }, "l3")
       .to(".transform-sequence.t2", { autoAlpha: 0 }, "l3")
       .to(".transform-sequence.t1", { autoAlpha: 0 }, "l3")
-      .to('.null',{opacity: 1}, "spacer")
+      .to('.null',{opacity: 1}, "spacer2")
       .to(".transform-tools-container", { translateY: "-200vh" }, "toolsOut")
       .to(".transform-sequence.t3", { autoAlpha: 0 }, "t4")
-      .from(".transform-sequence.t4", { autoAlpha: 0}, "t4")
+      .from(".transform-sequence.t4", { autoAlpha: 0, onStart: function(){
+        document.querySelector('.transform-sequence.t4').currentTime = 0;
+      }}, "t4")
       .from(
         ".transform-masks-panel-container",
         {
@@ -89,59 +95,14 @@ const ps = (function () {
         },
         "masksPanelIn"
       )
-      .from( ".transform-copy-p.p4", { autoAlpha: 0, onUpdate: function(){
-        const labelProgress = this.progress();
-        const vidFrame = Math.ceil(labelProgress * curConfig.frames);
-        console.log(labelProgress,vidFrame);
-        showVideoFrame(vidFrame);
-      }}, "l4" )
+      .from( ".transform-copy-p.p4", { autoAlpha: 0, onStart: function(){
+        document.querySelector('.transform-sequence.t4').play();
+      } }, "l4" )
+      .to('.null',{opacity: 0}, "spacer3")
       .to(".transform-masks-panel-container", { translateY: "-150vh" }, "masksPanelOut")
+
       .addLabel("end");
   };
-
-  getFramePath = function(videoFrame,vidPath){
-    const frameNumber = videoFrame > 9 ? videoFrame : `0${videoFrame}`;
-    return `${vidPath}${frameNumber}.jpg`;
-  }
-
-  showVideoFrame = function(videoFrame,doDraw = true){
-    curImagePath = getFramePath(videoFrame,curPath);
-    const curImage = new Image();
-    curImage.src=curImagePath;
-    if (doDraw){
-      curContext.drawImage(curImage, 0, 0);
-    } else {
-      return curImage;
-    }
-  }
-
-  preloadVideo = function(){
-    const videoFrames = [];
-    const preloadConfig = sceneConfig.videos[appState.loadedIndex];
-    const preloadPath = `${sceneConfig.videoBasePath}/${preloadConfig.directory}/frames/${preloadConfig.directory}`; 
-    for (let i=0; i<curConfig.frames;i++){
-      videoFrames.push(getFramePath(i,preloadPath));
-    }
-    const imgLoader = imagesLoaded( videoFrames, ()=>{
-      console.log('vid loaded',appState.loadedIndex);
-      if (appState.loadedIndex < sceneConfig.videos.length-1){
-        appState.loadedIndex++;
-        preloadVideo();
-      } else {
-        console.log('all loaded',appState);
-      }
-    });
-  }
-
-  initVideo = function(){
-    curConfig = sceneConfig.videos[appState.curVidIndex];
-    curPath = `${sceneConfig.videoBasePath}/${curConfig.directory}/frames/${curConfig.directory}`; 
-    curCanvas = document.querySelector(sceneConfig.videos[appState.curVidIndex].selector);
-    curCanvas.width = sceneConfig.nativeWidth;
-    curCanvas.height = sceneConfig.nativeHeight;
-    curContext = curCanvas.getContext('2d');
-    showVideoFrame(0);
-  }
 
   mapValue = function(value, low1, high1, low2, high2) {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
@@ -149,8 +110,6 @@ const ps = (function () {
 
   init = function () {
     getScreenDims();
-    initVideo();
-    preloadVideo();
     initTimeline();
   };
 
