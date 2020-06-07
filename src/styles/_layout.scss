@@ -220,18 +220,24 @@
 #section-brushes {
   z-index: 20;
   .brushes {
-    &-video {
+    &-container {
       width: 100%;
       height: 100vh;
+    }
+    &-video {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
     &-content-container {
       position: absolute;
       top: 56vh;
       left: 9.35vw;
+      width: 43vw;
     }
     &-intro {
       margin-top: 20px;
+      width: 31vw;
     }
     &-button-container {
       margin-top: 40px;
@@ -246,7 +252,34 @@
 
 #section-retouch {
   z-index: 30;
+  &.slide {
+    .retouch-slide-handle-container {
+      visibility: visible;
+      opacity: 1;
+    }
+    .retouch-slide-handle {
+      border: 10px solid rgba(white,1);
+    }
+  }
   .retouch {
+    &-slide-handle-container {
+      transition: opacity 300ms linear;
+      //visibility: hidden;
+      //opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(50%,-50%);
+      z-index: 10;
+    }
+    &-slide-handle {
+      width: 50px;
+      height: 50px;
+      border: 0px solid rgba(white,0);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: border 300ms linear;
+    }
     &-slider-container {
       width: 100%;
       height: 100vh;
@@ -262,7 +295,7 @@
       &.retouch-2 {
         z-index: 10;
         width: 0%;
-        
+
       }
     }
     &-slider-image {
