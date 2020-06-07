@@ -367,6 +367,9 @@ section {
   top: 0;
   left: 0;
 }
+#section-retouch .retouch-slider-image.retouch-image-2 {
+  transform-origin: 50% 0%;
+}
 #section-retouch .retouch-title-line {
   display: block;
 }
@@ -387,6 +390,61 @@ section {
 #section-retouch .retouch-button {
   margin-top: 40px;
   pointer-events: all;
+}
+#section-retouch .retouch-tools-container {
+  position: absolute;
+  left: 38vw;
+  top: 22vh;
+  width: 3.5vw;
+  z-index: 10;
+}
+#section-retouch .retouch-brushes-container {
+  left: 41.5vw;
+  top: 45vh;
+  width: 17.4vw;
+  position: absolute;
+  z-index: 20;
+}
+#section-retouch .retouch-masks-container {
+  left: 23.7vw;
+  top: 40.6vh;
+  width: 23.5vw;
+  position: absolute;
+  z-index: 30;
+}
+#section-retouch .retouch-tools-container-2 {
+  position: absolute;
+  left: 15.2vw;
+  top: 39vh;
+  width: 7vw;
+  z-index: 40;
+}
+#section-retouch .retouch-pen-tools-container {
+  position: absolute;
+  left: 22.2vw;
+  top: 50vh;
+  width: 21.8vw;
+  z-index: 50;
+}
+#section-retouch .retouch-pen-options-container {
+  position: absolute;
+  left: 36.3vw;
+  top: 5vh;
+  width: 77.75vw;
+  z-index: 60;
+}
+
+#section-ipad {
+  z-index: 40;
+}
+#section-ipad .ipad-container {
+  width: 100%;
+  height: 100vh;
+}
+#section-ipad .ipad-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /*# sourceMappingURL=main.css.map */

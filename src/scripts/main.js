@@ -20,8 +20,11 @@ const ps = (function () {
         sceneDuration: 3,
       },
       retouch: {
-        sceneDuration: 3,
+        sceneDuration: 7,
         sliderCompletePercent: 0.9, //above this value trigger a complete state for slider
+      },
+      ipad: {
+        sceneDuration: 3,
       },
     },
     videoBasePath: "assets/videos",
@@ -142,6 +145,16 @@ const ps = (function () {
     playVideo(document.querySelector(".brushes-video"));
   };
 
+  oniPadEnter = function () {
+    appState.curSceneIndex = 4;
+    playVideo(document.querySelector(".ipad-video"));
+  };
+
+  oniPadLeaveBack = function () {
+    appState.curSceneIndex = 3;
+    resetVideo(document.querySelector(".ipad-video"));
+  };
+
   onSliderIn = function () {
     $retouch.classList.toggle("slide", true);
   };
@@ -193,6 +206,7 @@ const ps = (function () {
     initTimelineTransform();
     initTimelineBrushes();
     initTimelineRetouch();
+    initTimelineiPad();
   };
 
   initTimelineTransform = function () {
@@ -319,7 +333,6 @@ const ps = (function () {
 
   initTimelineBrushes = function () {
     tlBrushes = gsap.timeline({
-      // yes, we can add it to an entire timeline!
       scrollTrigger: {
         trigger: "#section-brushes",
         pin: ".brushes-container", // pin the trigger element while active?
@@ -384,13 +397,105 @@ const ps = (function () {
         onComplete: onSliderOut
       }, "remixIn")
       .from(
+        ".retouch-tools-container",
+        { autoAlpha: 0, translateY: 20 },
+        "retouchToolsIn"
+      )
+      .from(
+        ".retouch-brushes-container",
+        { autoAlpha: 0, translateY: -20 },
+        "retouchToolsIn"
+      )
+      .to(".null", { opacity: 0, duration: 1 }, "spacer2")
+      .to(
+        ".retouch-tools-container",
+        { autoAlpha: 0, translateY: -20 },
+        "retouchToolsOut"
+      )
+      .to(
+        ".retouch-brushes-container",
+        { autoAlpha: 0, translateY: 20 },
+        "retouchToolsOut"
+      )
+      .from(
+        ".retouch-masks-container",
+        { autoAlpha: 0, translateY: 20 },
+        "retouchMasksIn"
+      )
+      .to(".null", { opacity: 1, duration: 1 }, "spacer3")
+      .to(
+        ".retouch-masks-container",
+        { autoAlpha: 0, translateY: -20 },
+        "retouchMasksOut"
+      )
+      .from(
+        ".retouch-tools-container-2",
+        { autoAlpha: 0, translateY: 20 },
+        "retouchTools2In"
+      )
+      .to(".null", { opacity: 0 }, "spacer4")
+      .from(
+        ".retouch-pen-tools-container",
+        { autoAlpha: 0 },
+        "retouchPenToolsIn"
+      )
+      .to(
+        ".retouch-image-2",
+        { scale: 1.5 },
+        "retouchPenToolsIn"
+      )
+      .from(
+        ".retouch-pen-options-container",
+        { autoAlpha: 0, translateY: -20 },
+        "retouchPenOptionsIn"
+      )
+      .to(
+        ".retouch-tools-container-2",
+        { autoAlpha: 0, translateY: -20 },
+        "retouchPenToolsOut"
+      )
+      .to(
+        ".retouch-pen-tools-container",
+        { autoAlpha: 0 },
+        "retouchPenToolsOut"
+      )
+      .to(".null", { opacity: 1, duration: 1 }, "spacer5") //placeholder for path tool
+      .from(
         ".retouch-title-line.l3",
         { autoAlpha: 0, translateY: 20 },
         "reimagineIn"
       )
+      .to(
+        ".retouch-image-2",
+        { scale: 1 },
+        "retouchImageBack"
+      )
+      .to(
+        ".retouch-pen-options-container",
+        { autoAlpha: 0, translateY: 20 },
+        "retouchImageBack"
+      )
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
+      .to(".null", { opacity: 0 }, "spacer6")
       .addLabel("end");
+  };
+
+  initTimelineiPad = function () {
+    tliPad = gsap.timeline({
+      // yes, we can add it to an entire timeline!
+      scrollTrigger: {
+        trigger: "#section-ipad",
+        pin: ".ipad-container", // pin the trigger element while active?
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        end: `+=${
+          sceneConfig.scenes.ipad.sceneDuration * appState.screenDims.height
+        }`, // end after scrolling this distance
+        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        onEnter: oniPadEnter,
+        onLeaveBack: oniPadLeaveBack,
+      },
+    });
   };
 
   mapValue = function (value, low1, high1, low2, high2) {

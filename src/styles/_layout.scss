@@ -252,7 +252,7 @@
 
 #section-retouch {
   z-index: 30;
-  &.slide {
+  &.slide { //this class present when you can slide the image slider
     .retouch-slide-handle-container {
       visibility: visible;
       opacity: 1;
@@ -264,8 +264,6 @@
   .retouch {
     &-slide-handle-container {
       transition: opacity 300ms linear;
-      //visibility: hidden;
-      //opacity: 0;
       position: absolute;
       left: 0;
       top: 50%;
@@ -305,6 +303,9 @@
       position: absolute;
       top: 0;
       left: 0;
+      &.retouch-image-2 {
+        transform-origin: 50% 0%;
+      }
     }
     &-title-line {
       display: block;
@@ -327,6 +328,62 @@
       margin-top: 40px;
       pointer-events: all;
     }
+    &-tools-container {
+      position: absolute;
+      left: 38vw;
+      top: 22vh;
+      width: 3.5vw;
+      z-index: 10;
+    }
+    &-brushes-container {
+      left: 41.5vw;
+      top: 45vh;
+      width: 17.4vw;
+      position: absolute;
+      z-index: 20;
+    }
+    &-masks-container {
+      left: 23.7vw;
+      top: 40.6vh;
+      width: 23.5vw;
+      position: absolute;
+      z-index: 30;
+    }
+    &-tools-container-2 {
+      position: absolute;
+      left: 15.2vw;
+      top: 39vh;
+      width: 7vw;
+      z-index: 40;
+    }
+    &-pen-tools-container {
+      position: absolute;
+      left: 22.2vw;
+      top: 50vh;
+      width: 21.8vw;
+      z-index: 50;
+    }
+    &-pen-options-container {
+      position: absolute;
+      left: 36.3vw;
+      top: 5vh;
+      width: 77.75vw;
+      z-index: 60;
+    }
   }
 }
 
+#section-ipad {
+  z-index: 40;
+  .ipad {
+    &-container {
+      width: 100%;
+      height: 100vh;
+    }
+    &-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
