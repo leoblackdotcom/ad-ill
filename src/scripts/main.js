@@ -20,7 +20,7 @@ const ps = (function () {
         sceneDuration: 3,
       },
       retouch: {
-        sceneDuration: 7,
+        sceneDuration: 10,
         sliderCompletePercent: 0.9, //above this value trigger a complete state for slider
       },
       ipad: {
@@ -397,7 +397,7 @@ const ps = (function () {
         { autoAlpha: 0, translateY: 20 },
         "sliderIn"
         )
-      .to(".null", { opacity: 1, duration: 1, onComplete: checkSliderInteraction }, "spacer1")
+      .to(".null", { opacity: 1, duration: 3, onComplete: checkSliderInteraction }, "spacer1")
       .from(
         ".retouch-title-line.l2",
         { autoAlpha: 0, translateY: 20 },
@@ -411,15 +411,15 @@ const ps = (function () {
       }, "remixIn")
       .from(
         ".retouch-tools-container",
-        { autoAlpha: 0, translateY: 20 },
+        { autoAlpha: 0, translateY: 20, duration: 1 },
         "retouchToolsIn"
       )
       .from(
         ".retouch-brushes-container",
-        { autoAlpha: 0, translateY: -20 },
+        { autoAlpha: 0, translateY: -20, duration: 1 },
         "retouchToolsIn"
       )
-      .to(".null", { opacity: 0, duration: 1 }, "spacer2")
+      .to(".null", { opacity: 0, duration: 2 }, "spacer2")
       .to(
         ".retouch-tools-container",
         { autoAlpha: 0, translateY: -20 },
@@ -491,7 +491,7 @@ const ps = (function () {
       )
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
-      .to(".null", { opacity: 0 }, "spacer6")
+      .to(".null", { opacity: 0, duration: 2 }, "spacer7")
       .addLabel("end");
   };
 

@@ -13,6 +13,9 @@ $header-height: 0px; //if we use a fixed header
 $design-width: 1677px;
 $design-height: 1105px;
 
+//breakpoints
+$bp-laptop: 1440px;
+
 //easing
 $ease-in-sine: cubic-bezier(0.47, 0, 0.745, 0.715);
 $ease-out-sine: cubic-bezier(0.39, 0.575, 0.565, 1);

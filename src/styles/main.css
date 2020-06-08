@@ -75,11 +75,23 @@ section {
   line-height: 5.0625rem;
   letter-spacing: -0.2px;
 }
+@media (max-width: 1440px) {
+  .section-title {
+    font-size: 5rem;
+    line-height: 4.5rem;
+  }
+}
 
 .section-intro {
   font-size: 2rem;
   line-height: 2.25rem;
   font-weight: 300;
+}
+@media (max-width: 1440px) {
+  .section-intro {
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
 }
 
 .sticky {
@@ -194,11 +206,21 @@ section {
   letter-spacing: -0.2px;
   margin-top: 4.5vh;
 }
+@media (max-width: 1440px) {
+  #section-intro .intro-title {
+    font-size: 5rem;
+  }
+}
 #section-intro .intro-p {
   font-size: 2rem;
   letter-spacing: -0.2px;
   font-weight: 300;
   margin-top: 20px;
+}
+@media (max-width: 1440px) {
+  #section-intro .intro-p {
+    font-size: 1.5rem;
+  }
 }
 #section-intro .intro-buttons {
   margin-top: 7vh;
@@ -228,6 +250,11 @@ section {
   font-size: 1.5625rem;
   font-weight: 300;
 }
+@media (max-width: 1440px) {
+  #section-intro .intro-subtext {
+    font-size: 1.17rem;
+  }
+}
 
 .header-container {
   position: absolute;
@@ -253,6 +280,12 @@ section {
 #section-transform .transform-copy-p {
   color: #e7e7e7;
   margin-top: 1.8vh;
+  width: 26vw;
+}
+@media (max-width: 1440px) {
+  #section-transform .transform-copy-p {
+    width: 30vw;
+  }
 }
 #section-transform .transform-feature-list {
   margin-top: 3.6vh;
@@ -300,7 +333,7 @@ section {
 }
 #section-brushes .brushes-content-container {
   position: absolute;
-  top: 56vh;
+  bottom: 6.8vh;
   left: 9.35vw;
   width: 43vw;
 }
@@ -453,9 +486,19 @@ section {
   left: 9.7vw;
   width: 35.5vw;
 }
+@media (max-width: 1440px) {
+  #section-ipad .ipad-content-container {
+    width: 45vw;
+  }
+}
 #section-ipad .ipad-intro {
   margin-top: 11vh;
   width: 25.5vw;
+}
+@media (max-width: 1440px) {
+  #section-ipad .ipad-intro {
+    width: 30vw;
+  }
 }
 #section-ipad .ipad-button-container {
   margin-top: 4.55vh;
