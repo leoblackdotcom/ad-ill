@@ -287,7 +287,6 @@ const ps = (function () {
         { translateY: "-10vh", autoAlpha: 0 },
         "toolsOut"
       )
-
       .from(
         ".transform-sequence.t4",
         {
@@ -308,6 +307,12 @@ const ps = (function () {
         },
         "t3Out"
       )
+      .to(".null", { scale: 0, duration: 2, onUpdate: function(){
+        const thisProgress = this.progress();
+        const currentTime = sceneConfig.videos.fishMaskVid.duration*thisProgress;
+        //console.log($fishMaskVid,currentTime);
+        //$fishMaskVid.currentTime = currentTime;
+      } }, "spacer4")
       .from(
         ".transform-masks-panel-container",
         {
@@ -317,7 +322,7 @@ const ps = (function () {
         "masksPanelIn"
       )
       .from(".transform-feature.p4", { autoAlpha: 0 }, "l4")
-      .to(".null", { opacity: 0 }, "spacer3")
+      .to(".null", { opacity: 0 }, "spacer5")
       .to(
         ".transform-masks-panel-container",
         { translateY: "-10vh", autoAlpha: 0 },
@@ -335,6 +340,7 @@ const ps = (function () {
       )
       .from(".transform-feature.p5", { autoAlpha: 0 }, "l5")
       .from(".transform-sequence.t5", { autoAlpha: 0 }, "l5")
+      .to(".null", { scale: .5, duration: 1 }, "spacer3")
       .to(
         ".transform-blend-panel-container",
         { translateY: "-10vh", autoAlpha: 0 },
@@ -356,7 +362,7 @@ const ps = (function () {
               sceneConfig.videos.fishMaskVid.duration; //set fish video to the end
           },
         },
-        "spacer4"
+        "spacer6"
       )
       .addLabel("end");
   };
