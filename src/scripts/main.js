@@ -65,7 +65,12 @@ const ps = (function () {
 
   addListeners = function () {
     addSliderDownListener();
+    addUnloadListener();
   };
+
+  addUnloadListener = function(){
+    window.addEventListener('beforeunload',onBeforeUnload);
+  }
 
   addMouseListeners = function () {
     document.addEventListener("mousemove", handleMouseMove);
@@ -520,6 +525,14 @@ const ps = (function () {
       .addLabel("end");
 
   };
+
+  onBeforeUnload = function(e){
+    e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+    document.getElementsByTagName("body")[0].style.display = "none";
+    window.scrollTo(0, 0);
+  }
 
   initTimelineWhatsNew = function () {
     tlWhatsNew = gsap.timeline({
