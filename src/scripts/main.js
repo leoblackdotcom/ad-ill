@@ -61,6 +61,8 @@ const ps = (function () {
     $retouch = document.querySelector('#section-retouch');
     $slider = document.querySelector(".retouch-slide-handle-container");
     $slide = document.querySelector('.retouch-2');
+    $body = document.getElementsByTagName("body")[0];
+    $body.classList.toggle('loading',true);
   };
 
   addListeners = function () {
@@ -526,11 +528,11 @@ const ps = (function () {
 
   };
 
-  onBeforeUnload = function(e){
+  onBeforeUnload = function(e){ //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
     e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
     // Chrome requires returnValue to be set
     e.returnValue = '';
-    document.getElementsByTagName("body")[0].style.display = "none";
+    $body.style.display = "none";
     window.scrollTo(0, 0);
   }
 
@@ -552,6 +554,15 @@ const ps = (function () {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   };
 
+  onReady = function(){
+    setTimeout(()=>{ //MH - temp: set some minimum time that the loader displays - may want to remove if loading is guaranteed to take a few seconds or more
+      gsap.to(".loader-inner", { opacity: 0, duration: .3, onComplete: function(){
+        console.log('ready');
+        $body.classList.toggle('loading',false);
+      } });
+    },1000);
+  }
+
   init = function () {
     getScreenDims();
     addDomReferences();
@@ -562,6 +573,7 @@ const ps = (function () {
 
   return {
     init: init,
+    onReady: onReady,
   };
 })();
 
@@ -569,3 +581,7 @@ const ps = (function () {
 document.addEventListener('DOMContentLoaded', (event) => {
   ps.init();
 });
+
+window.onload = function(){ //MH temp: wait for all assets to load before allowing scrolling
+  ps.onReady();
+}
