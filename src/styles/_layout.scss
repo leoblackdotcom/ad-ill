@@ -116,22 +116,18 @@
     }
     &-title {
       font-weight: normal;
-      font-size: 6.75rem;
+      //font-size: 6.75rem;
+      font-size: 5rem;
       line-height: 1em;
       letter-spacing: -.2px;
       margin-top: 4.5vh;
-      @include breakpoint(laptop){
-        font-size: 5rem;
-      }
     }
     &-p {
-      font-size: 2rem;
+      //font-size: 2rem;
+      font-size: 1.5rem;
       letter-spacing: -.2px;
       font-weight: 300;
       margin-top: 20px;
-      @include breakpoint(laptop){
-        font-size: 1.5rem;
-      }
     }
     &-buttons {
       margin-top: 7vh;
@@ -158,11 +154,10 @@
     }
     &-subtext {
       margin-top: 20px;
-      font-size: 1.5625rem;
+      //font-size: 1.5625rem;
+      font-size: 1.17rem;
       font-weight: 300;
-      @include breakpoint(laptop){
-        font-size: 1.17rem;
-      }
+
     }
   }
 }
@@ -194,10 +189,8 @@
     &-copy-p {
       color: $color--gray-lt;
       margin-top: 1.8vh;
-      width: 26vw;
-      @include breakpoint(laptop){
-        width: 30vw;
-      }
+      //width: 26vw;
+      width: 30vw;
     }
     &-feature-list {
       margin-top: 3.6vh;
@@ -405,17 +398,13 @@
       position: absolute;
       top: 11.8vh;
       left: 9.7vw;
-      width: 35.5vw;
-      @include breakpoint(laptop){
-        width: 45vw;
-      }
+      //width: 35.5vw;
+      width: 45vw;
     }
     &-intro {
       margin-top: 11vh;
-      width: 25.5vw;
-      @include breakpoint(laptop){
-        width: 30vw;
-      }
+      //width: 25.5vw;
+      width: 30vw;
     }
     &-button-container {
       margin-top: 4.55vh;

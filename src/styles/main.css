@@ -192,26 +192,16 @@ section {
 }
 #section-intro .intro-title {
   font-weight: normal;
-  font-size: 6.75rem;
+  font-size: 5rem;
   line-height: 1em;
   letter-spacing: -0.2px;
   margin-top: 4.5vh;
 }
-@media (max-width: 1440px) {
-  #section-intro .intro-title {
-    font-size: 5rem;
-  }
-}
 #section-intro .intro-p {
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: -0.2px;
   font-weight: 300;
   margin-top: 20px;
-}
-@media (max-width: 1440px) {
-  #section-intro .intro-p {
-    font-size: 1.5rem;
-  }
 }
 #section-intro .intro-buttons {
   margin-top: 7vh;
@@ -238,13 +228,8 @@ section {
 }
 #section-intro .intro-subtext {
   margin-top: 20px;
-  font-size: 1.5625rem;
+  font-size: 1.17rem;
   font-weight: 300;
-}
-@media (max-width: 1440px) {
-  #section-intro .intro-subtext {
-    font-size: 1.17rem;
-  }
 }
 
 .header-container {
@@ -271,12 +256,7 @@ section {
 #section-transform .transform-copy-p {
   color: #e7e7e7;
   margin-top: 1.8vh;
-  width: 26vw;
-}
-@media (max-width: 1440px) {
-  #section-transform .transform-copy-p {
-    width: 30vw;
-  }
+  width: 30vw;
 }
 #section-transform .transform-feature-list {
   margin-top: 3.6vh;
@@ -475,21 +455,11 @@ section {
   position: absolute;
   top: 11.8vh;
   left: 9.7vw;
-  width: 35.5vw;
-}
-@media (max-width: 1440px) {
-  #section-ipad .ipad-content-container {
-    width: 45vw;
-  }
+  width: 45vw;
 }
 #section-ipad .ipad-intro {
   margin-top: 11vh;
-  width: 25.5vw;
-}
-@media (max-width: 1440px) {
-  #section-ipad .ipad-intro {
-    width: 30vw;
-  }
+  width: 30vw;
 }
 #section-ipad .ipad-button-container {
   margin-top: 4.55vh;
