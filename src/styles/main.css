@@ -40,6 +40,12 @@ body {
   color: white;
   overflow-x: hidden;
 }
+body.loading {
+  overflow: hidden;
+}
+body.loading .loader-container {
+  display: flex;
+}
 
 h1,
 h2,
@@ -75,11 +81,23 @@ section {
   line-height: 5.0625rem;
   letter-spacing: -0.2px;
 }
+@media (max-width: 1440px) {
+  .section-title {
+    font-size: 5rem;
+    line-height: 4.5rem;
+  }
+}
 
 .section-intro {
   font-size: 2rem;
   line-height: 2.25rem;
   font-weight: 300;
+}
+@media (max-width: 1440px) {
+  .section-intro {
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
 }
 
 .sticky {
@@ -146,8 +164,8 @@ section {
 
 .canvas-wrapper {
   position: absolute;
-  width: 1677px;
-  height: 1105px;
+  width: 100%;
+  height: 100%;
 }
 
 .canvas {
@@ -194,11 +212,21 @@ section {
   letter-spacing: -0.2px;
   margin-top: 4.5vh;
 }
+@media (max-width: 1440px) {
+  #section-intro .intro-title {
+    font-size: 5rem;
+  }
+}
 #section-intro .intro-p {
   font-size: 2rem;
   letter-spacing: -0.2px;
   font-weight: 300;
   margin-top: 20px;
+}
+@media (max-width: 1440px) {
+  #section-intro .intro-p {
+    font-size: 1.5rem;
+  }
 }
 #section-intro .intro-buttons {
   margin-top: 7vh;
@@ -228,6 +256,11 @@ section {
   font-size: 1.5625rem;
   font-weight: 300;
 }
+@media (max-width: 1440px) {
+  #section-intro .intro-subtext {
+    font-size: 1.17rem;
+  }
+}
 
 .header-container {
   position: absolute;
@@ -253,6 +286,12 @@ section {
 #section-transform .transform-copy-p {
   color: #e7e7e7;
   margin-top: 1.8vh;
+  width: 26vw;
+}
+@media (max-width: 1440px) {
+  #section-transform .transform-copy-p {
+    width: 30vw;
+  }
 }
 #section-transform .transform-feature-list {
   margin-top: 3.6vh;
@@ -300,7 +339,7 @@ section {
 }
 #section-brushes .brushes-content-container {
   position: absolute;
-  top: 56vh;
+  bottom: 6.8vh;
   left: 9.35vw;
   width: 43vw;
 }
@@ -453,9 +492,19 @@ section {
   left: 9.7vw;
   width: 35.5vw;
 }
+@media (max-width: 1440px) {
+  #section-ipad .ipad-content-container {
+    width: 45vw;
+  }
+}
 #section-ipad .ipad-intro {
   margin-top: 11vh;
   width: 25.5vw;
+}
+@media (max-width: 1440px) {
+  #section-ipad .ipad-intro {
+    width: 30vw;
+  }
 }
 #section-ipad .ipad-button-container {
   margin-top: 4.55vh;
@@ -477,6 +526,70 @@ section {
 }
 #section-whatsnew .whatsnew-container-inner {
   width: 86vw;
+}
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 999;
+  display: none;
+}
+.loader-inner {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  transition: opacity 300ms linear;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: sk-bounce 2s infinite ease-in-out;
+  animation: sk-bounce 2s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1s;
+  animation-delay: -1s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+  }
+}
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

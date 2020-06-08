@@ -42,6 +42,12 @@ body {
   @include adobeClean;
   color: $color--body;
   overflow-x: hidden;
+  &.loading {
+    overflow: hidden;
+    .loader-container {
+      display: flex;
+    }
+  }
 }
 
 h1,

@@ -64,8 +64,10 @@
 .canvas-wrapper {
   position: absolute;
   //z-index: //each canvas should have an inline incrementing z-index
-  width: $design-width; //fullscreen design width
-  height: $design-height; //fullscreen design height
+  //width: $design-width; //fullscreen design width
+  //height: $design-height; //fullscreen design height
+  width: 100%;
+  height: 100%;
 }
 
 .canvas {
@@ -118,12 +120,18 @@
       line-height: 1em;
       letter-spacing: -.2px;
       margin-top: 4.5vh;
+      @include breakpoint(laptop){
+        font-size: 5rem;
+      }
     }
     &-p {
       font-size: 2rem;
       letter-spacing: -.2px;
       font-weight: 300;
       margin-top: 20px;
+      @include breakpoint(laptop){
+        font-size: 1.5rem;
+      }
     }
     &-buttons {
       margin-top: 7vh;
@@ -152,6 +160,9 @@
       margin-top: 20px;
       font-size: 1.5625rem;
       font-weight: 300;
+      @include breakpoint(laptop){
+        font-size: 1.17rem;
+      }
     }
   }
 }
@@ -183,6 +194,10 @@
     &-copy-p {
       color: $color--gray-lt;
       margin-top: 1.8vh;
+      width: 26vw;
+      @include breakpoint(laptop){
+        width: 30vw;
+      }
     }
     &-feature-list {
       margin-top: 3.6vh;
@@ -232,7 +247,7 @@
     }
     &-content-container {
       position: absolute;
-      top: 56vh;
+      bottom: 6.8vh;
       left: 9.35vw;
       width: 43vw;
     }
@@ -391,10 +406,16 @@
       top: 11.8vh;
       left: 9.7vw;
       width: 35.5vw;
+      @include breakpoint(laptop){
+        width: 45vw;
+      }
     }
     &-intro {
       margin-top: 11vh;
       width: 25.5vw;
+      @include breakpoint(laptop){
+        width: 30vw;
+      }
     }
     &-button-container {
       margin-top: 4.55vh;
@@ -421,5 +442,72 @@
     &-container-inner {
       width: 86vw;
     }
+  }
+}
+
+
+
+//https://tobiasahlin.com/spinkit/
+
+.loader {
+  &-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 999;
+    display: none;
+  }
+  &-inner {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: opacity 300ms linear;
+    @include flexCenter();
+  }
+}
+
+
+.spinner {
+  width: 40px;
+  height: 40px;
+
+  position: relative;
+  margin: 100px auto;
+}
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #333;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
   }
 }

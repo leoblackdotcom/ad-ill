@@ -20,7 +20,7 @@ const ps = (function () {
         sceneDuration: 3,
       },
       retouch: {
-        sceneDuration: 7,
+        sceneDuration: 10,
         sliderCompletePercent: 0.9, //above this value trigger a complete state for slider
       },
       ipad: {
@@ -28,22 +28,20 @@ const ps = (function () {
       },
     },
     videoBasePath: "assets/videos",
-    videos: [
-      {
+    videos: {
+      fishMaskVid: {
         directory: "fish",
         frames: 53, //ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 [filename].mp4
         selector: ".transform-sequence.t4",
         scrollStart: 0.76,
         scrollEnd: 0.84,
         duration: 3.637, //ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 input.mp4
-        fps: 30,
+        fps: 29.97,
       },
-    ],
+    },
   };
 
   let appState = {
-    curVidIndex: 0,
-    loadedIndex: 0,
     curSceneIndex: 0,
     screenDims: {},
     isDragging: false, //when mouse is down
@@ -61,11 +59,23 @@ const ps = (function () {
     $retouch = document.querySelector('#section-retouch');
     $slider = document.querySelector(".retouch-slide-handle-container");
     $slide = document.querySelector('.retouch-2');
+    $body = document.getElementsByTagName("body")[0];
+    $fishMaskVid = document.querySelector('.transform-sequence.t4');
   };
 
   addListeners = function () {
+    addVideoPlaybackListeners();
     addSliderDownListener();
+    addUnloadListener();
   };
+  
+  addVideoPlaybackListeners = function(){
+    $fishMaskVid.addEventListener("ended",onTransformMaskVideoEnded)
+  }
+
+  addUnloadListener = function(){
+    window.addEventListener('beforeunload',onBeforeUnload);
+  }
 
   addMouseListeners = function () {
     document.addEventListener("mousemove", handleMouseMove);
@@ -118,6 +128,10 @@ const ps = (function () {
     $video.play();
   };
 
+  onTransformMaskVideoEnded = function(){
+    //gsap.to(".transform-sequence.t5", { autoAlpha: 1, duration: 0.3 });
+  }
+
   onTransformEnter = function () {
     appState.curSceneIndex = 1;
     resetVideo(document.querySelector(".intro-video"));
@@ -125,6 +139,7 @@ const ps = (function () {
 
   onTransformLeaveBack = function () {
     appState.curSceneIndex = 0;
+    
     resetVideo(document.querySelector(".transform-sequence.t4"));
     playVideo(document.querySelector(".intro-video"));
   };
@@ -319,6 +334,7 @@ const ps = (function () {
         "blendPanelIn"
       )
       .from(".transform-feature.p5", { autoAlpha: 0 }, "l5")
+      .from(".transform-sequence.t5", { autoAlpha: 0 }, "l5")
       .to(
         ".transform-blend-panel-container",
         { translateY: "-10vh", autoAlpha: 0 },
@@ -335,8 +351,9 @@ const ps = (function () {
           opacity: 1,
           duration: 3,
           onComplete: function () {
+            document.querySelector('.transform-sequence.t5').style.opacity = "1";
             document.querySelector(".transform-sequence.t4").currentTime =
-              sceneConfig.videos[appState.curVidIndex].duration; //set fish video to the end
+              sceneConfig.videos.fishMaskVid.duration; //set fish video to the end
           },
         },
         "spacer4"
@@ -358,7 +375,7 @@ const ps = (function () {
     });
 
     tlBrushes
-      .to(".null", { scale: 0, duration: 2 }, "spacer1")
+      .to(".null", { scale: 1, duration: 2 }, "spacer1")
       .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(
         ".brushes-intro",
@@ -397,7 +414,7 @@ const ps = (function () {
         { autoAlpha: 0, translateY: 20 },
         "sliderIn"
         )
-      .to(".null", { opacity: 1, duration: 1, onComplete: checkSliderInteraction }, "spacer1")
+      .to(".null", { opacity: 1, duration: 3, onComplete: checkSliderInteraction }, "spacer1")
       .from(
         ".retouch-title-line.l2",
         { autoAlpha: 0, translateY: 20 },
@@ -411,15 +428,15 @@ const ps = (function () {
       }, "remixIn")
       .from(
         ".retouch-tools-container",
-        { autoAlpha: 0, translateY: 20 },
+        { autoAlpha: 0, translateY: 20, duration: 1 },
         "retouchToolsIn"
       )
       .from(
         ".retouch-brushes-container",
-        { autoAlpha: 0, translateY: -20 },
+        { autoAlpha: 0, translateY: -20, duration: 1 },
         "retouchToolsIn"
       )
-      .to(".null", { opacity: 0, duration: 1 }, "spacer2")
+      .to(".null", { opacity: 0, duration: 2 }, "spacer2")
       .to(
         ".retouch-tools-container",
         { autoAlpha: 0, translateY: -20 },
@@ -491,7 +508,7 @@ const ps = (function () {
       )
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
-      .to(".null", { opacity: 0 }, "spacer6")
+      .to(".null", { opacity: 0, duration: 2 }, "spacer7")
       .addLabel("end");
   };
 
@@ -521,6 +538,14 @@ const ps = (function () {
 
   };
 
+  onBeforeUnload = function(e){ //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
+    e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+    // Chrome requires returnValue to be set
+    e.returnValue = '';
+    $body.style.display = "none";
+    window.scrollTo(0, 0);
+  }
+
   initTimelineWhatsNew = function () {
     tlWhatsNew = gsap.timeline({
       // yes, we can add it to an entire timeline!
@@ -539,7 +564,21 @@ const ps = (function () {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   };
 
+  onReady = function(){
+    setTimeout(()=>{ //MH - temp: set some minimum time that the loader displays - may want to remove if loading is guaranteed to take a few seconds or more
+      gsap.to(".loader-inner", { opacity: 0, duration: .3, onComplete: function(){
+        console.log('ready');
+        $body.classList.toggle('loading',false);
+      } });
+    },1000);
+  }
+
+  toggleAssetLoading = function(isLoading = true){
+    document.getElementsByTagName("body")[0].classList.toggle('loading',isLoading);
+  }
+
   init = function () {
+    toggleAssetLoading(true);
     getScreenDims();
     addDomReferences();
     addListeners();
@@ -549,6 +588,7 @@ const ps = (function () {
 
   return {
     init: init,
+    onReady: onReady,
   };
 })();
 
@@ -556,3 +596,7 @@ const ps = (function () {
 document.addEventListener('DOMContentLoaded', (event) => {
   ps.init();
 });
+
+window.onload = function(){ //MH temp: wait for all assets to load before allowing scrolling
+  ps.onReady();
+}

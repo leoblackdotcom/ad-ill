@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="https://use.typekit.net/opx6jbj.css?v=18">
   </head>
-  <body>
+  <body class="loading">
     <main id="main" class="main">
       <div class="null"></div>
       <div class="scroll-sequence">
@@ -47,6 +47,11 @@
                     type="video/mp4"
                   />
                 </video>
+                <img
+                  class="canvas transform-sequence t5"
+                  src="assets/images/transform/fish-blend.png"
+                  alt="transform"
+                />
               </div>
             </div>
           </div>
@@ -280,6 +285,16 @@
         </div>
       </section>
     </main>
+
+    <div class="loader-container">
+      <div class="loader-inner">
+        <div class="spinner">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+      </div>
+    </div>
+
     <script src="scripts/libs/gsap/gsap.min.js"></script>
     <script src="scripts/libs/gsap/CSSRulePlugin.min.js"></script>
     <script src="scripts/libs/gsap/ScrollTrigger.min.js"></script>

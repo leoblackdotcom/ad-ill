@@ -7,3 +7,16 @@
 @mixin adobeClean(){
   font-family: "AdobeClean", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+
+@mixin breakpoint($point) {
+  @if $point == laptop {
+    @media (max-width: $bp-laptop) {
+      @content;
+    }
+  }
+  @if $point == gt_laptop {
+    @media (min-width: $bp-laptop + 1px) {
+      @content;
+    }
+  }
+}
