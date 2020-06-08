@@ -6,7 +6,9 @@
     <title>Photoshop Reimagine</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/main.css?v=<?php echo filemtime('styles/main.css'); ?>" />
+
+    <link rel="stylesheet" href="https://use.typekit.net/opx6jbj.css?v=18">
   </head>
   <body class="loading">
     <main id="main" class="main">
@@ -299,8 +301,8 @@
     <script src="scripts/libs/gsap/EasePack.min.js"></script>
     <script src="scripts/libs/imagesloaded.pkgd.min.js"></script>
     
-    <script src="scripts/main.js"></script>
-    <script src="scripts/whatsnew.js"></script>
+    <script src="scripts/main.js?v=<?php echo filemtime('scripts/main.js'); ?>"></script>
+    <script src="scripts/whatsnew.js?v=<?php echo filemtime('scripts/whatsnew.js'); ?>"></script>
     
   </body>
 </html>
