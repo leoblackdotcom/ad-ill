@@ -34,19 +34,9 @@
                   src="assets/images/transform/03.gif"
                   alt="transform"
                 />
-                <video
-                  class="canvas transform-sequence t4"
-                  poster="assets/images/transform/02.jpg"
-                >
-                  <source
-                    src="assets/videos/fish/fish-forward.webm"
-                    type="video/webm"
-                  />
-                  <source
-                    src="assets/videos/fish/fish-forward.mp4"
-                    type="video/mp4"
-                  />
-                </video>
+                <div
+                  class="transform-sequence t4 canvid"
+                ></div>
                 <img
                   class="canvas transform-sequence t5"
                   src="assets/images/transform/fish-blend.png"
@@ -300,6 +290,7 @@
     <script src="scripts/libs/gsap/ScrollTrigger.min.js"></script>
     <script src="scripts/libs/gsap/EasePack.min.js"></script>
     <script src="scripts/libs/imagesloaded.pkgd.min.js"></script>
+    <script src="scripts/libs/canvid.min.js"></script>
     
     <script src="scripts/main.js?v=<?php echo filemtime('scripts/main.js'); ?>"></script>
     <script src="scripts/whatsnew.js?v=<?php echo filemtime('scripts/whatsnew.js'); ?>"></script>

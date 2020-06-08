@@ -3,7 +3,9 @@ gsap.registerPlugin(ScrollTrigger);
 const ps = (function () {
   const self = this;
   //const counter = 0;
-  let tlTransform, tlBrushes, tlRetouch;
+  let tlTransform, tlBrushes, tlRetouch, tlWhatsNew; //gsap timelines
+  let canvidTransform;
+
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let $retouch, $slider, $slide; //dom references
   let sceneConfig = {
@@ -48,43 +50,36 @@ const ps = (function () {
     slideComplete: false, //when retouch slider has reached its final state
   };
 
-  let fishVid = document.querySelector(".transform-sequence.t4");
-
   getScreenDims = function () {
     appState.screenDims.width = window.innerWidth;
     appState.screenDims.height = window.innerHeight;
   };
 
   addDomReferences = function () {
-    $retouch = document.querySelector('#section-retouch');
+    $retouch = document.querySelector("#section-retouch");
     $slider = document.querySelector(".retouch-slide-handle-container");
-    $slide = document.querySelector('.retouch-2');
+    $slide = document.querySelector(".retouch-2");
     $body = document.getElementsByTagName("body")[0];
-    $fishMaskVid = document.querySelector('.transform-sequence.t4');
+    $fishMaskVid = document.querySelector(".transform-sequence.t4");
   };
 
   addListeners = function () {
-    addVideoPlaybackListeners();
     addSliderDownListener();
     addUnloadListener();
   };
-  
-  addVideoPlaybackListeners = function(){
-    $fishMaskVid.addEventListener("ended",onTransformMaskVideoEnded)
-  }
 
-  addUnloadListener = function(){
-    window.addEventListener('beforeunload',onBeforeUnload);
-  }
+  addUnloadListener = function () {
+    window.addEventListener("beforeunload", onBeforeUnload);
+  };
 
   addMouseListeners = function () {
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  initSubmodules = function(){
+  initSubmodules = function () {
     ps.whatsNewModule.init();
-  }
+  };
 
   removeMouseListeners = function () {
     document.removeEventListener("mousemove", handleMouseMove);
@@ -102,7 +97,11 @@ const ps = (function () {
     if (appState.isDragging) {
       setSliderPos(e.clientX);
       appState.isDragging = false;
-      if (e.clientX > sceneConfig.scenes.retouch.sliderCompletePercent* appState.screenDims.width){
+      if (
+        e.clientX >
+        sceneConfig.scenes.retouch.sliderCompletePercent *
+          appState.screenDims.width
+      ) {
         animateSliderComplete();
       }
     }
@@ -128,9 +127,9 @@ const ps = (function () {
     $video.play();
   };
 
-  onTransformMaskVideoEnded = function(){
+  onTransformMaskVideoEnded = function () {
     //gsap.to(".transform-sequence.t5", { autoAlpha: 1, duration: 0.3 });
-  }
+  };
 
   onTransformEnter = function () {
     appState.curSceneIndex = 1;
@@ -139,8 +138,8 @@ const ps = (function () {
 
   onTransformLeaveBack = function () {
     appState.curSceneIndex = 0;
-    
-    resetVideo(document.querySelector(".transform-sequence.t4"));
+
+    //resetVideo(document.querySelector(".transform-sequence.t4"));
     playVideo(document.querySelector(".intro-video"));
   };
 
@@ -185,31 +184,34 @@ const ps = (function () {
     addMouseListeners();
   };
 
-  addSliderDownListener = function(){
+  addSliderDownListener = function () {
     document
       .querySelector(".retouch-slide-handle-container")
       .addEventListener("mousedown", onSliderDown);
-  }
+  };
 
-  removeSliderDownListener = function(){
+  removeSliderDownListener = function () {
     document
       .querySelector(".retouch-slide-handle-container")
       .removeEventListener("mousedown", onSliderDown);
-  }
+  };
 
-  checkSliderInteraction = function(){
-    if (!appState.isDragging && !appState.slideComplete){
+  checkSliderInteraction = function () {
+    if (!appState.isDragging && !appState.slideComplete) {
       animateSliderComplete();
     }
-  }
+  };
 
-  animateSliderComplete = function(){
+  animateSliderComplete = function () {
     //removeSliderDownListener();
     appState.slideComplete = true;
-    $retouch.classList.toggle('slide',false);
+    $retouch.classList.toggle("slide", false);
     gsap.to(".retouch-2", { width: appState.screenDims.width, duration: 0.5 });
-    gsap.to(".retouch-slide-handle-container", { translateX: appState.screenDims.width, duration: 0.5 });
-  }
+    gsap.to(".retouch-slide-handle-container", {
+      translateX: appState.screenDims.width,
+      duration: 0.5,
+    });
+  };
 
   oniPadEnter = function () {
     appState.curSceneIndex = 4;
@@ -228,6 +230,26 @@ const ps = (function () {
   onWhatsNewLeaveBack = function () {
     appState.curSceneIndex = 4;
     playVideo(document.querySelector(".ipad-video"));
+  };
+
+  initVideos = function () {
+    canvidTransform = canvid({
+      selector: ".transform-sequence.t4",
+      width: sceneConfig.nativeWidth,
+      height: sceneConfig.nativeHeight,
+      videos: {
+        clip1: {
+          src: "assets/images/transform/sequence-transform-1280.jpg",
+          frames: 53,
+          cols: 6,
+          loops: 1,
+        },
+      },
+      loaded: function () {
+        canvidTransform.play("clip1");
+        canvidTransform.pause();
+      },
+    });
   };
 
   initTimelines = function () {
@@ -292,7 +314,7 @@ const ps = (function () {
         {
           autoAlpha: 0,
           onStart: function () {
-            document.querySelector(".transform-sequence.t4").currentTime = 0;
+            canvidTransform.setCurrentFrame(0); //make sure our video is at the start
           },
         },
         "t4"
@@ -301,18 +323,23 @@ const ps = (function () {
         ".transform-sequence.t3",
         {
           autoAlpha: 0,
-          onComplete: function () {
-            document.querySelector(".transform-sequence.t4").play();
-          },
         },
         "t3Out"
       )
-      .to(".null", { scale: 0, duration: 2, onUpdate: function(){
-        const thisProgress = this.progress();
-        const currentTime = sceneConfig.videos.fishMaskVid.duration*thisProgress;
-        //console.log($fishMaskVid,currentTime);
-        //$fishMaskVid.currentTime = currentTime;
-      } }, "spacer4")
+      .to(
+        ".null",
+        {
+          scale: 0,
+          duration: 2,
+          onUpdate: function () {
+            const thisProgress = this.progress();
+            const currentFrame =
+              Math.ceil(sceneConfig.videos.fishMaskVid.frames * thisProgress);
+              canvidTransform.setCurrentFrame(currentFrame); //make sure our video is at the end
+          },
+        },
+        "spacer4"
+      )
       .from(
         ".transform-masks-panel-container",
         {
@@ -340,7 +367,7 @@ const ps = (function () {
       )
       .from(".transform-feature.p5", { autoAlpha: 0 }, "l5")
       .from(".transform-sequence.t5", { autoAlpha: 0 }, "l5")
-      .to(".null", { scale: .5, duration: 1 }, "spacer3")
+      .to(".null", { scale: 0.5, duration: 1 }, "spacer3")
       .to(
         ".transform-blend-panel-container",
         { translateY: "-10vh", autoAlpha: 0 },
@@ -357,9 +384,7 @@ const ps = (function () {
           opacity: 1,
           duration: 3,
           onComplete: function () {
-            document.querySelector('.transform-sequence.t5').style.opacity = "1";
-            document.querySelector(".transform-sequence.t4").currentTime =
-              sceneConfig.videos.fishMaskVid.duration; //set fish video to the end
+            canvidTransform.setCurrentFrame(sceneConfig.videos.fishMaskVid.frames);
           },
         },
         "spacer6"
@@ -400,8 +425,7 @@ const ps = (function () {
         pin: ".retouch-container", // pin the trigger element while active?
         start: "top top", // when the top of the trigger hits the top of the viewport
         end: `+=${
-          sceneConfig.scenes.retouch.sceneDuration *
-          appState.screenDims.height
+          sceneConfig.scenes.retouch.sceneDuration * appState.screenDims.height
         }`,
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onRetouchEnter,
@@ -410,28 +434,43 @@ const ps = (function () {
     });
 
     tlRetouch
-      .to(".retouch-2", { width: `${appState.screenDims.width/2}px`, 
-        onUpdate: function(){
-          $slider.style.transform = `translateX(${$slide.style.width})`
+      .to(
+        ".retouch-2",
+        {
+          width: `${appState.screenDims.width / 2}px`,
+          onUpdate: function () {
+            $slider.style.transform = `translateX(${$slide.style.width})`;
+          },
+          onComplete: onSliderIn,
         },
-        onComplete: onSliderIn }, "sliderIn")
+        "sliderIn"
+      )
       .from(
         ".retouch-title-line.l1",
         { autoAlpha: 0, translateY: 20 },
         "sliderIn"
-        )
-      .to(".null", { opacity: 1, duration: 3, onComplete: checkSliderInteraction }, "spacer1")
+      )
+      .to(
+        ".null",
+        { opacity: 1, duration: 3, onComplete: checkSliderInteraction },
+        "spacer1"
+      )
       .from(
         ".retouch-title-line.l2",
         { autoAlpha: 0, translateY: 20 },
         "remixIn"
       )
-      .to(".retouch-2", { width: `${appState.screenDims.width}px`,
-        onUpdate: function(){
-          $slider.style.transform = `translateX(${$slide.style.width})`
+      .to(
+        ".retouch-2",
+        {
+          width: `${appState.screenDims.width}px`,
+          onUpdate: function () {
+            $slider.style.transform = `translateX(${$slide.style.width})`;
+          },
+          onComplete: onSliderOut,
         },
-        onComplete: onSliderOut
-      }, "remixIn")
+        "remixIn"
+      )
       .from(
         ".retouch-tools-container",
         { autoAlpha: 0, translateY: 20, duration: 1 },
@@ -475,17 +514,13 @@ const ps = (function () {
         { autoAlpha: 0 },
         "retouchPenToolsIn"
       )
-      .to(
-        ".retouch-image-2",
-        { scale: 1.5 },
-        "retouchPenToolsIn"
-      )
+      .to(".retouch-image-2", { scale: 1.5 }, "retouchPenToolsIn")
       .from(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: -20 },
         "retouchPenOptionsIn"
       )
-      .to(".null", { opacity: 1, duration: 1 }, "spacer5") //placeholder for path 
+      .to(".null", { opacity: 1, duration: 1 }, "spacer5") //placeholder for path
       .to(
         ".retouch-tools-container-2",
         { autoAlpha: 0, translateY: -20 },
@@ -502,11 +537,7 @@ const ps = (function () {
         { autoAlpha: 0, translateY: 20 },
         "reimagineIn"
       )
-      .to(
-        ".retouch-image-2",
-        { scale: 1 },
-        "retouchImageBack"
-      )
+      .to(".retouch-image-2", { scale: 1 }, "retouchImageBack")
       .to(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: 20 },
@@ -533,24 +564,20 @@ const ps = (function () {
 
     tliPad
       .from(".ipad-title", { autoAlpha: 0, translateY: 20 }, "start")
-      .from(
-        ".ipad-intro",
-        { autoAlpha: 0, translateY: 20 },
-        "ipadIntroIn"
-      )
+      .from(".ipad-intro", { autoAlpha: 0, translateY: 20 }, "ipadIntroIn")
       .from(".ipad-button-container", { autoAlpha: 0 }, "ipadButtonIn")
       .to(".null", { opacity: 1 }, "spacer1")
       .addLabel("end");
-
   };
 
-  onBeforeUnload = function(e){ //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
+  onBeforeUnload = function (e) {
+    //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
     e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
     // Chrome requires returnValue to be set
-    e.returnValue = '';
+    e.returnValue = "";
     $body.style.display = "none";
     window.scrollTo(0, 0);
-  }
+  };
 
   initTimelineWhatsNew = function () {
     tlWhatsNew = gsap.timeline({
@@ -570,24 +597,32 @@ const ps = (function () {
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   };
 
-  onReady = function(){
-    setTimeout(()=>{ //MH - temp: set some minimum time that the loader displays - may want to remove if loading is guaranteed to take a few seconds or more
-      gsap.to(".loader-inner", { opacity: 0, duration: .3, onComplete: function(){
-        console.log('ready');
-        $body.classList.toggle('loading',false);
-      } });
-    },1000);
-  }
+  onReady = function () {
+    setTimeout(() => {
+      //MH - temp: set some minimum time that the loader displays - may want to remove if loading is guaranteed to take a few seconds or more
+      gsap.to(".loader-inner", {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: function () {
+          console.log("ready");
+          $body.classList.toggle("loading", false);
+        },
+      });
+    }, 1000);
+  };
 
-  toggleAssetLoading = function(isLoading = true){
-    document.getElementsByTagName("body")[0].classList.toggle('loading',isLoading);
-  }
+  toggleAssetLoading = function (isLoading = true) {
+    document
+      .getElementsByTagName("body")[0]
+      .classList.toggle("loading", isLoading);
+  };
 
   init = function () {
     toggleAssetLoading(true);
     getScreenDims();
     addDomReferences();
     addListeners();
+    initVideos();
     initTimelines();
     initSubmodules();
   };
@@ -598,11 +633,11 @@ const ps = (function () {
   };
 })();
 
-
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
   ps.init();
 });
 
-window.onload = function(){ //MH temp: wait for all assets to load before allowing scrolling
+window.onload = function () {
+  //MH temp: wait for all assets to load before allowing scrolling
   ps.onReady();
-}
+};
