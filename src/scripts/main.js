@@ -7,7 +7,7 @@ const ps = (function () {
   let canvidTransform;
 
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
-  let $retouch, $slider, $slide; //dom references
+  let $retouch, $slide; //dom references
   let sceneConfig = {
     nativeWidth: 1679,
     nativeHeight: 1119,
@@ -46,8 +46,6 @@ const ps = (function () {
   let appState = {
     curSceneIndex: 0,
     screenDims: {},
-    isDragging: false, //when mouse is down
-    slideComplete: false, //when retouch slider has reached its final state
   };
 
   getScreenDims = function () {
@@ -57,14 +55,12 @@ const ps = (function () {
 
   addDomReferences = function () {
     $retouch = document.querySelector("#section-retouch");
-    $slider = document.querySelector(".retouch-slide-handle-container");
     $slide = document.querySelector(".retouch-2");
     $body = document.getElementsByTagName("body")[0];
     $fishMaskVid = document.querySelector(".transform-sequence.t4");
   };
 
   addListeners = function () {
-    addSliderDownListener();
     addUnloadListener();
   };
 
@@ -72,39 +68,8 @@ const ps = (function () {
     window.addEventListener("beforeunload", onBeforeUnload);
   };
 
-  addMouseListeners = function () {
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  };
-
   initSubmodules = function () {
     ps.whatsNewModule.init();
-  };
-
-  removeMouseListeners = function () {
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
-  };
-
-  handleMouseMove = function (e) {
-    if (appState.isDragging) {
-      setSliderPos(e.clientX);
-    }
-  };
-
-  handleMouseUp = function (e) {
-    removeMouseListeners();
-    if (appState.isDragging) {
-      setSliderPos(e.clientX);
-      appState.isDragging = false;
-      if (
-        e.clientX >
-        sceneConfig.scenes.retouch.sliderCompletePercent *
-          appState.screenDims.width
-      ) {
-        animateSliderComplete();
-      }
-    }
   };
 
   onScrollUpdate = (self) => {
@@ -161,56 +126,6 @@ const ps = (function () {
   onRetouchLeaveBack = function () {
     appState.curSceneIndex = 3;
     playVideo(document.querySelector(".brushes-video"));
-  };
-
-  onSliderIn = function () {
-    $retouch.classList.toggle("slide", true);
-  };
-
-  onSliderOut = function () {
-    $retouch.classList.toggle("slide", false);
-    appState.slideComplete = false;
-  };
-
-  setSliderPos = function (curX) {
-    $slider.style.transform = `translateX(${curX}px)`;
-    $slide.style.width = `${curX}px`;
-  };
-
-  onSliderDown = function (e) {
-    const curX = e.clientX;
-    appState.isDragging = true;
-    setSliderPos(curX);
-    addMouseListeners();
-  };
-
-  addSliderDownListener = function () {
-    document
-      .querySelector(".retouch-slide-handle-container")
-      .addEventListener("mousedown", onSliderDown);
-  };
-
-  removeSliderDownListener = function () {
-    document
-      .querySelector(".retouch-slide-handle-container")
-      .removeEventListener("mousedown", onSliderDown);
-  };
-
-  checkSliderInteraction = function () {
-    if (!appState.isDragging && !appState.slideComplete) {
-      animateSliderComplete();
-    }
-  };
-
-  animateSliderComplete = function () {
-    //removeSliderDownListener();
-    appState.slideComplete = true;
-    $retouch.classList.toggle("slide", false);
-    gsap.to(".retouch-2", { width: appState.screenDims.width, duration: 0.5 });
-    gsap.to(".retouch-slide-handle-container", {
-      translateX: appState.screenDims.width,
-      duration: 0.5,
-    });
   };
 
   oniPadEnter = function () {
@@ -437,11 +352,7 @@ const ps = (function () {
       .to(
         ".retouch-2",
         {
-          width: `${appState.screenDims.width / 2}px`,
-          onUpdate: function () {
-            $slider.style.transform = `translateX(${$slide.style.width})`;
-          },
-          onComplete: onSliderIn,
+          width: `${appState.screenDims.width}px`,
         },
         "sliderIn"
       )
@@ -452,23 +363,12 @@ const ps = (function () {
       )
       .to(
         ".null",
-        { opacity: 1, duration: 3, onComplete: checkSliderInteraction },
+        { opacity: 1, duration: 3 },
         "spacer1"
       )
       .from(
         ".retouch-title-line.l2",
         { autoAlpha: 0, translateY: 20 },
-        "remixIn"
-      )
-      .to(
-        ".retouch-2",
-        {
-          width: `${appState.screenDims.width}px`,
-          onUpdate: function () {
-            $slider.style.transform = `translateX(${$slide.style.width})`;
-          },
-          onComplete: onSliderOut,
-        },
         "remixIn"
       )
       .from(

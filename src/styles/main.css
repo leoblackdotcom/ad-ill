@@ -334,29 +334,6 @@ section {
 #section-retouch {
   z-index: 30;
 }
-#section-retouch.slide .retouch-slide-handle-container {
-  visibility: visible;
-  opacity: 1;
-}
-#section-retouch.slide .retouch-slide-handle {
-  border: 10px solid white;
-}
-#section-retouch .retouch-slide-handle-container {
-  transition: opacity 300ms linear;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translate(50%, -50%);
-  z-index: 10;
-}
-#section-retouch .retouch-slide-handle {
-  width: 50px;
-  height: 50px;
-  border: 0px solid rgba(255, 255, 255, 0);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: border 300ms linear;
-}
 #section-retouch .retouch-slider-container {
   width: 100%;
   height: 100vh;
