@@ -8,6 +8,7 @@
   visibility: hidden;
   z-index: -1;
   pointer-events: none;
+  height: 0;
 }
 
 .button {
@@ -384,6 +385,41 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    &-content-container {
+      position: absolute;
+      top: 11.8vh;
+      left: 9.7vw;
+      width: 35.5vw;
+    }
+    &-intro {
+      margin-top: 11vh;
+      width: 25.5vw;
+    }
+    &-button-container {
+      margin-top: 4.55vh;
+      display: flex;
+      align-items: center;
+    }
+    &-app-store-logo {
+      width: 120px;
+    }
+    &-learn-more-link {
+      color: $color--button-active;
+      margin-left: 25px;
+    }
+  }
+}
+
+#section-whatsnew {
+  .whatsnew {
+    &-container {
+      display: flex;
+      justify-content: center;
+      background-color: $color--white;
+    }
+    &-container-inner {
+      width: 86vw;
     }
   }
 }

@@ -92,6 +92,7 @@ section {
   visibility: hidden;
   z-index: -1;
   pointer-events: none;
+  height: 0;
 }
 
 .button-sm {
@@ -445,6 +446,37 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+#section-ipad .ipad-content-container {
+  position: absolute;
+  top: 11.8vh;
+  left: 9.7vw;
+  width: 35.5vw;
+}
+#section-ipad .ipad-intro {
+  margin-top: 11vh;
+  width: 25.5vw;
+}
+#section-ipad .ipad-button-container {
+  margin-top: 4.55vh;
+  display: flex;
+  align-items: center;
+}
+#section-ipad .ipad-app-store-logo {
+  width: 120px;
+}
+#section-ipad .ipad-learn-more-link {
+  color: #1473E6;
+  margin-left: 25px;
+}
+
+#section-whatsnew .whatsnew-container {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+#section-whatsnew .whatsnew-container-inner {
+  width: 86vw;
 }
 
 /*# sourceMappingURL=main.css.map */

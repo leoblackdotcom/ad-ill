@@ -72,6 +72,10 @@ const ps = (function () {
     document.addEventListener("mouseup", handleMouseUp);
   };
 
+  initSubmodules = function(){
+    ps.whatsNewModule.init();
+  }
+
   removeMouseListeners = function () {
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
@@ -145,16 +149,6 @@ const ps = (function () {
     playVideo(document.querySelector(".brushes-video"));
   };
 
-  oniPadEnter = function () {
-    appState.curSceneIndex = 4;
-    playVideo(document.querySelector(".ipad-video"));
-  };
-
-  oniPadLeaveBack = function () {
-    appState.curSceneIndex = 3;
-    resetVideo(document.querySelector(".ipad-video"));
-  };
-
   onSliderIn = function () {
     $retouch.classList.toggle("slide", true);
   };
@@ -202,11 +196,31 @@ const ps = (function () {
     gsap.to(".retouch-slide-handle-container", { translateX: appState.screenDims.width, duration: 0.5 });
   }
 
+  oniPadEnter = function () {
+    appState.curSceneIndex = 4;
+    playVideo(document.querySelector(".ipad-video"));
+  };
+
+  oniPadLeaveBack = function () {
+    appState.curSceneIndex = 3;
+    resetVideo(document.querySelector(".ipad-video"));
+  };
+
+  onWhatsNewEnter = function () {
+    appState.curSceneIndex = 5;
+  };
+
+  onWhatsNewLeaveBack = function () {
+    appState.curSceneIndex = 4;
+    playVideo(document.querySelector(".ipad-video"));
+  };
+
   initTimelines = function () {
     initTimelineTransform();
     initTimelineBrushes();
     initTimelineRetouch();
     initTimelineiPad();
+    initTimelineWhatsNew();
   };
 
   initTimelineTransform = function () {
@@ -219,7 +233,6 @@ const ps = (function () {
           sceneConfig.scenes.transform.sceneDuration *
           appState.screenDims.height
         }`, // end after scrolling this distance
-        //end: `top top`, // end after scrolling this distance
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         //onUpdate: onScrollUpdate,
         onEnter: onTransformEnter,
@@ -337,9 +350,7 @@ const ps = (function () {
         trigger: "#section-brushes",
         pin: ".brushes-container", // pin the trigger element while active?
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: `+=${
-          sceneConfig.scenes.brushes.sceneDuration * appState.screenDims.height
-        }`, // end after scrolling this distance
+        anticipatePin: 1, //triggers the pin slightly early due to fact that pinning seems to happen a bit after top of this section disappears before it is re-pinned to top
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
         onLeaveBack: onBrushesLeaveBack,
@@ -347,6 +358,7 @@ const ps = (function () {
     });
 
     tlBrushes
+      .to(".null", { scale: 0, duration: 2 }, "spacer1")
       .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(
         ".brushes-intro",
@@ -354,7 +366,7 @@ const ps = (function () {
         "brushesIntroIn"
       )
       .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn")
-      .to(".null", { opacity: 0 }, "spacer3")
+      .to(".null", { opacity: 0, duration: 5 }, "spacer2")
       .addLabel("end");
   };
 
@@ -365,8 +377,9 @@ const ps = (function () {
         pin: ".retouch-container", // pin the trigger element while active?
         start: "top top", // when the top of the trigger hits the top of the viewport
         end: `+=${
-          sceneConfig.scenes.retouch.sceneDuration * appState.screenDims.height
-        }`, // end after scrolling this distance
+          sceneConfig.scenes.retouch.sceneDuration *
+          appState.screenDims.height
+        }`,
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onRetouchEnter,
         onLeaveBack: onRetouchLeaveBack,
@@ -449,6 +462,7 @@ const ps = (function () {
         { autoAlpha: 0, translateY: -20 },
         "retouchPenOptionsIn"
       )
+      .to(".null", { opacity: 1, duration: 1 }, "spacer5") //placeholder for path 
       .to(
         ".retouch-tools-container-2",
         { autoAlpha: 0, translateY: -20 },
@@ -459,7 +473,7 @@ const ps = (function () {
         { autoAlpha: 0 },
         "retouchPenToolsOut"
       )
-      .to(".null", { opacity: 1, duration: 1 }, "spacer5") //placeholder for path tool
+      .to(".null", { opacity: 0, duration: 1 }, "spacer6") //placeholder for path tool
       .from(
         ".retouch-title-line.l3",
         { autoAlpha: 0, translateY: 20 },
@@ -488,12 +502,35 @@ const ps = (function () {
         trigger: "#section-ipad",
         pin: ".ipad-container", // pin the trigger element while active?
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: `+=${
-          sceneConfig.scenes.ipad.sceneDuration * appState.screenDims.height
-        }`, // end after scrolling this distance
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: oniPadEnter,
         onLeaveBack: oniPadLeaveBack,
+      },
+    });
+
+    tliPad
+      .from(".ipad-title", { autoAlpha: 0, translateY: 20 }, "start")
+      .from(
+        ".ipad-intro",
+        { autoAlpha: 0, translateY: 20 },
+        "ipadIntroIn"
+      )
+      .from(".ipad-button-container", { autoAlpha: 0 }, "ipadButtonIn")
+      .to(".null", { opacity: 1 }, "spacer1")
+      .addLabel("end");
+
+  };
+
+  initTimelineWhatsNew = function () {
+    tlWhatsNew = gsap.timeline({
+      // yes, we can add it to an entire timeline!
+      scrollTrigger: {
+        trigger: "#section-whatsnew",
+        pin: false, // pin the trigger element while active?
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        onEnter: onWhatsNewEnter,
+        onLeaveBack: onWhatsNewLeaveBack,
       },
     });
   };
@@ -507,6 +544,7 @@ const ps = (function () {
     addDomReferences();
     addListeners();
     initTimelines();
+    initSubmodules();
   };
 
   return {
@@ -514,4 +552,7 @@ const ps = (function () {
   };
 })();
 
-ps.init();
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  ps.init();
+});
