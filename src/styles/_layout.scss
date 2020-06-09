@@ -76,7 +76,7 @@
 
 .canvid {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   canvas {
     width: 100%;
     height: 100%;
@@ -185,6 +185,14 @@
 #section-transform {
   min-height: 100vh;
   .transform {
+    &-sequence-container {
+      @include absFull;
+      .canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
     &-container {
       position: relative;
       width: 100%;

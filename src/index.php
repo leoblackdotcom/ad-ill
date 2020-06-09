@@ -13,40 +13,6 @@
   <body class="loading">
     <main id="main" class="main">
       <div class="null"></div>
-      <div class="scroll-sequence">
-        <div class="sequence-container">
-          <div class="image-sequence">
-            <div class="canvas-container">
-              <div class="canvas-wrapper">
-                <!--<canvas></canvas>-->
-                <img
-                  class="canvas transform-sequence t1"
-                  src="assets/images/transform/01.jpg"
-                  alt="transform"
-                />
-                <img
-                  class="canvas transform-sequence t2"
-                  src="assets/images/transform/02.jpg"
-                  alt="transform"
-                />
-                <img
-                  class="canvas transform-sequence t3"
-                  src="assets/images/transform/03.gif"
-                  alt="transform"
-                />
-                <div
-                  class="transform-sequence t4 canvid"
-                ></div>
-                <img
-                  class="canvas transform-sequence t5"
-                  src="assets/images/transform/fish-blend.png"
-                  alt="transform"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <section id="section-intro">
         <div class="intro-container">
           <video
@@ -89,9 +55,34 @@
       </section>
       <section id="section-transform" class="section">
         <div class="transform-container">
+          <div class="transform-sequence-container">
+            <img
+              class="canvas transform-sequence t1"
+              src="assets/images/transform/01.jpg"
+              alt="transform"
+            />
+            <img
+              class="canvas transform-sequence t2"
+              src="assets/images/transform/02.jpg"
+              alt="transform"
+            />
+            <img
+              class="canvas transform-sequence t3"
+              src="assets/images/transform/03.gif"
+              alt="transform"
+            />
+            <div
+              class="transform-sequence t4 canvid"
+            ></div>
+            <img
+              class="canvas transform-sequence t5"
+              src="assets/images/transform/fish-blend.png"
+              alt="transform"
+            />
+          </div>
           <div class="transform-title-container">
             <h2 class="transform-title section-title">
-              Transform photos into fantasy
+              Transform photos into fantasy.
             </h2>
             <div class="transform-copy-container">
               <p class="section-intro transform-copy-p p1">
@@ -102,11 +93,9 @@
                 <li class="transform-feature p2">
                   Create with unlimited layers
                 </li>
-                <li class="transform-feature p3">Easy automatic selections</li>
+                <li class="transform-feature p3">Select fine details in just a click.</li>
                 <li class="transform-feature p4">Show and hide with masks</li>
-                <li class="transform-feature p5">
-                  Merge and remix with blend modes
-                </li>
+                <li class="transform-feature p5">Merge and remix with blend modes</li>
               </ul>
             </div>
             <div class="transform-panel-container">
@@ -140,13 +129,13 @@
           </div>
         </div>
       </section>
+      <div class="spacer" style="height: 100vh"></div>
       <section id="section-brushes">
         <div class="brushes-container">
           <video
             class="brushes-video"
             preload="metadata"
             muted
-            loop
             poster="assets/images/brushes/brushes-poster.jpg"
           >
             <source
@@ -251,7 +240,7 @@
           </video>
           <div class="ipad-content-container">
             <h2 class="section-title ipad-title">
-              Powerful meets portable
+              Powerful meets portable.
             </h2>
             <p class="section-intro ipad-intro">
               The creative power of Photoshop is now on your iPad. Open full-size PSDs, create sophisticated composites, retouch images, and control brushes with your finger or Apple Pencil. 

@@ -205,12 +205,7 @@ const ps = (function () {
         trigger: "#section-transform",
         pin: ".transform-container", // pin the trigger element while active?
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: `+=${
-          sceneConfig.scenes.transform.sceneDuration *
-          appState.screenDims.height
-        }`, // end after scrolling this distance
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
-        //onUpdate: onScrollUpdate,
         onEnter: onTransformEnter,
         onLeaveBack: onTransformLeaveBack,
       },
