@@ -230,10 +230,8 @@
           <video
             class="ipad-video"
             preload
-            loop
             muted
             poster="assets/images/ipad/ipad-poster.jpg"
-            autoplay
           >
             <source src="assets/videos/ipad/ipad.webm" type="video/webm" />
             <source src="assets/videos/ipad/ipad.mp4" type="video/mp4" />

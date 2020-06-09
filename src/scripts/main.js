@@ -3,11 +3,11 @@ gsap.registerPlugin(ScrollTrigger);
 const ps = (function () {
   const self = this;
   //const counter = 0;
-  let tlTransform, tlBrushes, tlRetouch, tlWhatsNew; //gsap timelines
+  let tlTransform, tlBrushes, tlBrushesContent, tlRetouch, tlWhatsNew, tliPadContent; //gsap timelines
   let canvidTransform, canvidRetouch;
 
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
-  let $retouch, $slide; //dom references
+  let $retouch, $slide, $body, $fishMaskVid, $retouchSequence, $brushesVideo, $ipadVideo; //dom references
   let sceneConfig = {
     nativeWidth: 1679,
     nativeHeight: 1119,
@@ -62,11 +62,19 @@ const ps = (function () {
     $body = document.getElementsByTagName("body")[0];
     $fishMaskVid = document.querySelector(".transform-sequence.t4");
     $retouchSequence = document.querySelector(".retouch-sequence");
+    $brushesVideo = document.querySelector('.brushes-video');
+    $ipadVideo = document.querySelector('.ipad-video');
   };
 
   addListeners = function () {
     addUnloadListener();
+    addVideoListeners();
   };
+
+  addVideoListeners = function(){
+    $brushesVideo.addEventListener('ended',onBrushesVideoEnded);
+    $ipadVideo.addEventListener('ended',oniPadVideoEnded);
+  }
 
   addUnloadListener = function () {
     window.addEventListener("beforeunload", onBeforeUnload);
@@ -122,6 +130,10 @@ const ps = (function () {
     resetVideo(document.querySelector(".brushes-video"));
   };
 
+  onBrushesVideoEnded = function(){
+    tlBrushesContent.play();
+  }
+
   onRetouchEnter = function () {
     appState.curSceneIndex = 2;
     resetVideo(document.querySelector(".brushes-video"));
@@ -142,6 +154,10 @@ const ps = (function () {
     resetVideo(document.querySelector(".ipad-video"));
   };
 
+  oniPadVideoEnded = function(){
+    tliPadContent.play();
+  }
+
   onWhatsNewEnter = function () {
     appState.curSceneIndex = 5;
   };
@@ -151,7 +167,7 @@ const ps = (function () {
     playVideo(document.querySelector(".ipad-video"));
   };
 
-  initVideos = function () {
+  initCanvid = function () {
     canvidTransform = canvid({
       selector: sceneConfig.videos.fishMaskVid.selector,
       width: sceneConfig.nativeWidth,
@@ -194,8 +210,10 @@ const ps = (function () {
   initTimelines = function () {
     initTimelineTransform();
     initTimelineBrushes();
+    initTimelineBrushesContent();
     initTimelineRetouch();
     initTimelineiPad();
+    initTimelineiPadContent();
     initTimelineWhatsNew();
   };
 
@@ -326,6 +344,32 @@ const ps = (function () {
       .addLabel("end");
   };
 
+  initTimelineBrushesContent = function(){
+    tlBrushesContent = gsap.timeline({
+      paused: true,
+    });
+
+    tlBrushesContent
+      .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
+      .from(
+        ".brushes-intro",
+        { autoAlpha: 0, translateY: 20 },
+        "brushesIntroIn"
+      )
+      .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn");
+
+  }
+
+  initTimelineiPadContent = function(){
+    tliPadContent = gsap.timeline({
+      paused: true,
+    });
+
+    tliPadContent.from(".ipad-title", { autoAlpha: 0, translateY: 20 }, "start")
+      .from(".ipad-intro", { autoAlpha: 0, translateY: 20 }, "ipadIntroIn")
+      .from(".ipad-button-container", { autoAlpha: 0 }, "ipadButtonIn");
+  }
+
   initTimelineBrushes = function () {
     tlBrushes = gsap.timeline({
       scrollTrigger: {
@@ -340,14 +384,14 @@ const ps = (function () {
     });
 
     tlBrushes
-      .to(".null", { scale: 1, duration: 2 }, "spacer1")
-      .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
-      .from(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: 20 },
-        "brushesIntroIn"
-      )
-      .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn")
+      .to(".null", { scale: 1, duration: 5 }, "spacer1")
+      // .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
+      // .from(
+      //   ".brushes-intro",
+      //   { autoAlpha: 0, translateY: 20 },
+      //   "brushesIntroIn"
+      // )
+      // .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn")
       .to(".null", { opacity: 0, duration: 5 }, "spacer2")
       .addLabel("end");
   };
@@ -382,7 +426,7 @@ const ps = (function () {
       )
       .to(
         ".null",
-        { opacity: 1, duration: 3 },
+        { opacity: 1, duration: 1 },
         "spacer1"
       )
       .from(
@@ -456,16 +500,17 @@ const ps = (function () {
         { autoAlpha: 0 },
         "spacer2+=4.6"
       )
-      .from(
-        ".retouch-title-line.l3",
-        { autoAlpha: 0, translateY: 20 },
-        "spacer2+=4.6"
-      )
+
       .to(".retouch-sequence", { scale: 1 }, "spacer2+=4.9")
       .to(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: 20 },
         "spacer2+=4.9"
+      )
+      .from(
+        ".retouch-title-line.l3",
+        { autoAlpha: 0, translateY: 20 },
+        "reimagineIn"
       )
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
@@ -487,10 +532,8 @@ const ps = (function () {
     });
 
     tliPad
-      .from(".ipad-title", { autoAlpha: 0, translateY: 20 }, "start")
-      .from(".ipad-intro", { autoAlpha: 0, translateY: 20 }, "ipadIntroIn")
-      .from(".ipad-button-container", { autoAlpha: 0 }, "ipadButtonIn")
-      .to(".null", { opacity: 0 }, "spacer1")
+      .to(".null", { opacity: 0, duration: 2 }, "spacer1")
+      .to(".null", { scale: .5, duration: 2 }, "spacer2")
       .addLabel("end");
   };
 
@@ -546,7 +589,7 @@ const ps = (function () {
     getScreenDims();
     addDomReferences();
     addListeners();
-    initVideos();
+    initCanvid();
     initTimelines();
     initSubmodules();
   };
