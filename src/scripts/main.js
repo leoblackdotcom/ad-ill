@@ -4,7 +4,7 @@ const ps = (function () {
   const self = this;
   //const counter = 0;
   let tlTransform, tlBrushes, tlRetouch, tlWhatsNew; //gsap timelines
-  let canvidTransform;
+  let canvidTransform, canvidRetouch;
 
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let $retouch, $slide; //dom references
@@ -35,11 +35,14 @@ const ps = (function () {
         directory: "fish",
         frames: 53, //ffprobe -v error -select_streams v:0 -show_entries stream=nb_frames -of default=nokey=1:noprint_wrappers=1 [filename].mp4
         selector: ".transform-sequence.t4",
-        scrollStart: 0.76,
-        scrollEnd: 0.84,
         duration: 3.637, //ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 input.mp4
-        fps: 29.97,
+        sequence: "assets/images/transform/sequence-transform.jpg"
       },
+      retouch: {
+        frames: 103,
+        selector: '.retouch-sequence',
+        sequence: 'assets/images/retouch/sequence-retouch.jpg'
+      }
     },
   };
 
@@ -58,6 +61,7 @@ const ps = (function () {
     $slide = document.querySelector(".retouch-2");
     $body = document.getElementsByTagName("body")[0];
     $fishMaskVid = document.querySelector(".transform-sequence.t4");
+    $retouchSequence = document.querySelector(".retouch-sequence");
   };
 
   addListeners = function () {
@@ -149,13 +153,13 @@ const ps = (function () {
 
   initVideos = function () {
     canvidTransform = canvid({
-      selector: ".transform-sequence.t4",
+      selector: sceneConfig.videos.fishMaskVid.selector,
       width: sceneConfig.nativeWidth,
       height: sceneConfig.nativeHeight,
       videos: {
         clip1: {
-          src: "assets/images/transform/sequence-transform-1280.jpg",
-          frames: 53,
+          src: sceneConfig.videos.fishMaskVid.sequence,
+          frames: sceneConfig.videos.fishMaskVid.frames,
           cols: 6,
           loops: 1,
         },
@@ -165,6 +169,26 @@ const ps = (function () {
         canvidTransform.pause();
       },
     });
+
+    canvidRetouch = canvid({
+      selector: sceneConfig.videos.retouch.selector,
+      width: sceneConfig.nativeWidth,
+      height: sceneConfig.nativeHeight,
+      videos: {
+        clip1: {
+          src: sceneConfig.videos.retouch.sequence,
+          frames: sceneConfig.videos.retouch.frames,
+          cols: 6,
+          loops: 1,
+        },
+      },
+      loaded: function () {
+        console.log(canvidRetouch);
+        canvidRetouch.play("clip1"); //necessary to initialize frame by frame playback
+        canvidRetouch.pause();
+      },
+    });
+
   };
 
   initTimelines = function () {
@@ -250,7 +274,7 @@ const ps = (function () {
             const thisProgress = this.progress();
             const currentFrame =
               Math.ceil(sceneConfig.videos.fishMaskVid.frames * thisProgress);
-              canvidTransform.setCurrentFrame(currentFrame); //make sure our video is at the end
+              canvidTransform.setCurrentFrame(currentFrame); 
           },
         },
         "spacer4"
@@ -299,7 +323,7 @@ const ps = (function () {
           opacity: 1,
           duration: 3,
           onComplete: function () {
-            canvidTransform.setCurrentFrame(sceneConfig.videos.fishMaskVid.frames);
+            canvidTransform.setCurrentFrame(sceneConfig.videos.fishMaskVid.frames); //make sure our video is at the end
           },
         },
         "spacer6"
@@ -368,7 +392,9 @@ const ps = (function () {
       )
       .from(
         ".retouch-title-line.l2",
-        { autoAlpha: 0, translateY: 20 },
+        { autoAlpha: 0, translateY: 20, onComplete: function(){
+          canvidRetouch.setCurrentFrame(0);
+        } },
         "remixIn"
       )
       .from(
@@ -381,71 +407,74 @@ const ps = (function () {
         { autoAlpha: 0, translateY: -20, duration: 1 },
         "retouchToolsIn"
       )
-      .to(".null", { opacity: 0, duration: 2 }, "spacer2")
+      .to(".null", { opacity: 0, duration: 5,
+        onUpdate: function () {
+          const thisProgress = this.progress();
+          const currentFrame =
+            Math.ceil(sceneConfig.videos.retouch.frames * thisProgress);
+            canvidRetouch.setCurrentFrame(currentFrame);
+        }, 
+      }, "spacer2")
       .to(
         ".retouch-tools-container",
         { autoAlpha: 0, translateY: -20 },
-        "retouchToolsOut"
+        "spacer2+=1.45"
       )
       .to(
         ".retouch-brushes-container",
         { autoAlpha: 0, translateY: 20 },
-        "retouchToolsOut"
+        "spacer2+=1.45"
       )
       .from(
         ".retouch-masks-container",
         { autoAlpha: 0, translateY: 20 },
-        "retouchMasksIn"
+        "spacer2+=1.7"
       )
-      .to(".null", { opacity: 1, duration: 1 }, "spacer3")
       .to(
         ".retouch-masks-container",
         { autoAlpha: 0, translateY: -20 },
-        "retouchMasksOut"
+        "spacer2+=3.65"
       )
       .from(
         ".retouch-tools-container-2",
         { autoAlpha: 0, translateY: 20 },
-        "retouchTools2In"
+        "spacer2+=3.75"
       )
-      .to(".null", { opacity: 0 }, "spacer4")
       .from(
         ".retouch-pen-tools-container",
         { autoAlpha: 0 },
-        "retouchPenToolsIn"
+        "spacer2+=3.75"
       )
-      .to(".retouch-image-2", { scale: 1.5 }, "retouchPenToolsIn")
+      .to(".retouch-sequence", { scale: 1.25 }, "spacer2+=3.9")
       .from(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: -20 },
-        "retouchPenOptionsIn"
+        "spacer2+=3.85"
       )
-      .to(".null", { opacity: 1, duration: 1 }, "spacer5") //placeholder for path
       .to(
         ".retouch-tools-container-2",
         { autoAlpha: 0, translateY: -20 },
-        "retouchPenToolsOut"
+        "spacer2+=4.6"
       )
       .to(
         ".retouch-pen-tools-container",
         { autoAlpha: 0 },
-        "retouchPenToolsOut"
+        "spacer2+=4.6"
       )
-      .to(".null", { opacity: 0, duration: 1 }, "spacer6") //placeholder for path tool
       .from(
         ".retouch-title-line.l3",
         { autoAlpha: 0, translateY: 20 },
-        "reimagineIn"
+        "spacer2+=4.6"
       )
-      .to(".retouch-image-2", { scale: 1 }, "retouchImageBack")
+      .to(".retouch-sequence", { scale: 1 }, "spacer2+=4.9")
       .to(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: 20 },
-        "retouchImageBack"
+        "spacer2+=4.9"
       )
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
-      .to(".null", { opacity: 0, duration: 2 }, "spacer7")
+      .to(".null", { opacity: 1, duration: 2 }, "spacer7")
       .addLabel("end");
   };
 
@@ -466,7 +495,7 @@ const ps = (function () {
       .from(".ipad-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(".ipad-intro", { autoAlpha: 0, translateY: 20 }, "ipadIntroIn")
       .from(".ipad-button-container", { autoAlpha: 0 }, "ipadButtonIn")
-      .to(".null", { opacity: 1 }, "spacer1")
+      .to(".null", { opacity: 0 }, "spacer1")
       .addLabel("end");
   };
 

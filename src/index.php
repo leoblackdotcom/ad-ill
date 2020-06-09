@@ -179,12 +179,10 @@
               <img src="assets/images/retouch/retouch-1.jpg" alt="Retouch Before Image" class="retouch-slider-image retouch-image-1"/>
             </div>
             <div class="retouch-slider-image-container retouch-2">
-              <img src="assets/images/retouch/retouch-2.jpg" alt="Retouch After Image" class="retouch-slider-image retouch-image-2"/>
-            </div>
-            <div class="retouch-slide-handle-container">
-              <div class="retouch-slide-handle"></div>
+            <div class="retouch-sequence canvid"></div>
             </div>
           </div>
+          
           <div class="retouch-content-container">
             <h2 class="retouch-title section-title">
               <span class="retouch-title-line l1">Retouch.</span>
