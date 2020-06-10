@@ -183,7 +183,7 @@
           </div>
           <div class="retouch-tools-container">
             <img
-              src="assets/images/transform/transform-tools.jpg"
+              src="assets/images/retouch/retouch-tools-brush-active.jpg"
               alt="Retouch Tools"
               class="retouch-tools"
             />
@@ -204,7 +204,7 @@
           </div>
           <div class="retouch-tools-container-2">
             <img
-              src="assets/images/transform/transform-tools.jpg"
+              src="assets/images/retouch/retouch-tools-pen-active.jpg"
               alt="Retouch Tools Zoomed In"
               class="retouch-tools-2"
             />
