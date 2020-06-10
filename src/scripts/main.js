@@ -6,6 +6,8 @@ const ps = (function () {
   let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
   let canvidTransform, canvidRetouch;
 
+  let retouchImg, retouchContext, $retouchCanvas;
+
   let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let $retouch, $slide, $body, $fishMaskVid, $retouchSequence, $brushesVideo, $ipadVideo; //dom references
   let sceneConfig = {
@@ -41,7 +43,10 @@ const ps = (function () {
       retouch: {
         frames: 103,
         selector: '.retouch-sequence',
-        sequence: 'assets/images/retouch/sequence-retouch.jpg'
+        sequence: 'assets/images/retouch/sequence-retouch.jpg',
+        framesPath: 'assets/images/retouch/frames2/retouch-edit',
+        width: 1280, //size of images for canvas
+        height: 843,
       }
     },
   };
@@ -64,6 +69,7 @@ const ps = (function () {
     $retouchSequence = document.querySelector(".retouch-sequence");
     $brushesVideo = document.querySelector('.brushes-video');
     $ipadVideo = document.querySelector('.ipad-video');
+    $retouchCanvas = document.querySelector('.retouch-canvas');
   };
 
   addListeners = function () {
@@ -200,25 +206,36 @@ const ps = (function () {
       },
     });
 
-    canvidRetouch = canvid({
-      selector: sceneConfig.videos.retouch.selector,
-      width: sceneConfig.nativeWidth,
-      height: sceneConfig.nativeHeight,
-      videos: {
-        clip1: {
-          src: sceneConfig.videos.retouch.sequence,
-          frames: sceneConfig.videos.retouch.frames,
-          cols: 6,
-          loops: 1,
-        },
-      },
-      loaded: function () {
-        canvidRetouch.play("clip1"); //necessary to initialize frame by frame playback
-        canvidRetouch.pause();
-      },
-    });
+    const vidConfig = sceneConfig.videos.retouch;
+    $retouchCanvas.width = vidConfig.width;
+    $retouchCanvas.height = vidConfig.height;
+    retouchContext = $retouchCanvas.getContext('2d');
+    retouchImg = new Image();
+    retouchImg.src = getCurrentImagePath(vidConfig.framesPath,0);
+    retouchImg.onload = function(){
+      retouchContext.drawImage(retouchImg, 0, 0);
+    }
+
+    preloadFrames(vidConfig);
 
   };
+
+  preloadFrames = function(vidConfig){
+    for (let i = 1; i < vidConfig.frames; i++) {
+      const img = new Image();
+      const imgSrc = getCurrentImagePath(vidConfig.framesPath,i);
+      img.src = imgSrc
+    }
+  }
+
+  getCurrentImagePath = function(framesPath, frame, extension='.jpg',pad=3){
+    return `${framesPath}${frame.toString().padStart(pad,'0')}${extension}`;
+  }
+
+  drawImageToCanvas = function(thisContext,thisPath,thisImage){
+    thisImage.src = thisPath;
+    thisContext.drawImage(thisImage, 0, 0);
+  }
 
   initTimelines = function () {
     initTimelineTransform();
@@ -446,7 +463,7 @@ const ps = (function () {
       .from(
         ".retouch-title-line.l2",
         { autoAlpha: 0, translateY: 20, onComplete: function(){
-          canvidRetouch.setCurrentFrame(0);
+          drawImageToCanvas(retouchContext,getCurrentImagePath(sceneConfig.videos.retouch.framesPath,0),retouchImg);
         } },
         "remixIn"
       )
@@ -463,9 +480,12 @@ const ps = (function () {
       .to(".null", { opacity: 0, duration: 5,
         onUpdate: function () {
           const thisProgress = this.progress();
-          const currentFrame =
-            Math.ceil(sceneConfig.videos.retouch.frames * thisProgress);
-            canvidRetouch.setCurrentFrame(currentFrame);
+          const vidConfig = sceneConfig.videos.retouch;
+          const currentFrame = 
+            Math.ceil(vidConfig.frames * thisProgress);
+            //canvidRetouch.setCurrentFrame(currentFrame);
+          const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
+          drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
         }, 
       }, "spacer2")
       .to(

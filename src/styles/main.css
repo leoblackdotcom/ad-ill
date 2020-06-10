@@ -382,6 +382,7 @@ section {
   top: 0;
   width: 100vw;
   height: 100vh;
+  transform-origin: top right;
 }
 #section-retouch .retouch-sequence canvas {
   width: 100%;

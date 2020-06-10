@@ -168,7 +168,9 @@
               <img src="assets/images/retouch/retouch-1.jpg" alt="Retouch Before Image" class="retouch-slider-image retouch-image-1"/>
             </div>
             <div class="retouch-slider-image-container retouch-2">
-            <div class="retouch-sequence canvid"></div>
+            <div class="retouch-sequence canvid">
+              <canvas class="retouch-canvas"></canvas>
+            </div>
             </div>
           </div>
           
