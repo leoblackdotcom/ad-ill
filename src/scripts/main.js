@@ -2,13 +2,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ps = (function () {
   const self = this;
-  //const counter = 0;
   let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
 
   let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
 
-  let curCanvas, curContext, curConfig, curPath; //for drawing image frames
   let $retouch, $slide, $body, $retouchSequence, $transformSequence, $brushesVideo, $ipadVideo; //dom references
   let sceneConfig = {
     nativeWidth: 1679,
@@ -36,18 +34,18 @@ const ps = (function () {
         frames: 72,
         selector: ".transform-sequence.t4",
         framesPath: 'assets/images/transform/frames/transform-v2',
-        width: 1280,
+        width: 1280, //native size of images for canvas
         height: 853,
-        pad: 2,
+        pad: 2, //leading 0s in sequence filenames
       },
       retouch: {
         frames: 129,
         selector: '.retouch-sequence',
         sequence: 'assets/images/retouch/sequence-retouch.jpg',
         framesPath: 'assets/images/retouch/frames/retouch',
-        width: 1280, //size of images for canvas
+        width: 1280, 
         height: 843,
-        pad: 3, //leading 0s in sequence filenames
+        pad: 3,
       }
     },
   };
@@ -288,7 +286,6 @@ const ps = (function () {
           const vidConfig = sceneConfig.videos.transform;
           const currentFrame = 
             Math.ceil(vidConfig.frames * thisProgress);
-            //canvidRetouch.setCurrentFrame(currentFrame);
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
         }, 
@@ -297,21 +294,12 @@ const ps = (function () {
       .fromTo('.transform-canvas',{translateY: -100}, {translateY: 100, duration: 7}, 'spacer')
       .from(".transform-title", { autoAlpha: 0, translateY: 20, onStart: function(){
       } }, "spacer")
-      .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1, onComplete: function(){
-          console.log('complete');
-      }}, "spacer")
-      //.from(".transform-sequence-01", { autoAlpha: 0 }, "start")
+      .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1}, "spacer")
       .from(".transform-copy-p", { autoAlpha: 0 }, "spacer")
-      .from(
-        ".transform-panel-container",
-        { translateY: "10vh", autoAlpha: 0 },
-        "spacer+=.25"
-      )
       .from(".transform-feature.p2", { autoAlpha: 0 }, "spacer+=.25")
       .from(".transform-feature.p3", { autoAlpha: 0 }, "spacer+=2")
       .from(".transform-feature.p4", { autoAlpha: 0 }, "spacer+=3")
       .from(".transform-feature.p5", { autoAlpha: 0 }, "spacer+=4")
-      //.to('.brushes-container', {translateY: -appState.screenDims.height},'spacer+=5')
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer+=6")
       .to(".transform-sequence", { autoAlpha: 0 }, "spacer+=6")
       .addLabel("end");
@@ -321,8 +309,8 @@ const ps = (function () {
     tlBrushes = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-brushes",
-        pin: ".brushes-container", // pin the trigger element while active?
-        start: "top 100%", // when the top of the trigger hits the top of the viewport
+        pin: ".brushes-container",
+        start: "top 100%", // when the top of the trigger hits the top of the viewport + 100% browser height
         anticipatePin: 1, //triggers the pin slightly early due to fact that pinning seems to happen a bit after top of this section disappears before it is re-pinned to top
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
@@ -333,7 +321,6 @@ const ps = (function () {
     tlBrushes
       .from(".brushes-video", { autoAlpha: 0, duration: 2 }, "spacer1")
       .to(".null", { scale: 1, duration: 5 }, "spacer1")
-      //.to('.brushes-container',{translateY: 0},'spacer1')
       .to(".null", { opacity: 0, duration: 5, onStart: onBrushesLeaveForward }, "spacer2")
       .addLabel("end");
   };
@@ -379,12 +366,12 @@ const ps = (function () {
     tlRetouch = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-retouch",
-        pin: ".retouch-container", // pin the trigger element while active?
-        start: "top top+=100%", // when the top of the trigger hits the top of the viewport
+        pin: ".retouch-container",
+        start: "top top+=100%", 
         end: `+=${
           sceneConfig.scenes.retouch.sceneDuration * appState.screenDims.height
         }`,
-        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        scrub: true,
         onEnter: onRetouchEnter,
         onLeave: onRetouchLeave,
         onLeaveBack: onRetouchLeaveBack,
@@ -452,7 +439,6 @@ const ps = (function () {
           const vidConfig = sceneConfig.videos.retouch;
           const currentFrame = 
             Math.ceil(vidConfig.frames * thisProgress);
-            //canvidRetouch.setCurrentFrame(currentFrame);
           const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
           drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
         }, 
@@ -538,12 +524,11 @@ const ps = (function () {
 
   initTimelineiPad = function () {
     tliPad = gsap.timeline({
-      // yes, we can add it to an entire timeline!
       scrollTrigger: {
         trigger: "#section-ipad",
-        pin: ".ipad-container", // pin the trigger element while active?
-        start: "top top", // when the top of the trigger hits the top of the viewport
-        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        pin: ".ipad-container",
+        start: "top top",
+        scrub: true,
         onEnter: oniPadEnter,
         onLeaveBack: oniPadLeaveBack,
       },
@@ -574,12 +559,11 @@ const ps = (function () {
 
   initTimelineWhatsNew = function () {
     tlWhatsNew = gsap.timeline({
-      // yes, we can add it to an entire timeline!
       scrollTrigger: {
         trigger: "#section-whatsnew",
-        pin: false, // pin the trigger element while active?
-        start: "top top", // when the top of the trigger hits the top of the viewport
-        scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
+        pin: false,
+        start: "top top",
+        scrub: true,
         onEnter: onWhatsNewEnter,
         onLeaveBack: onWhatsNewLeaveBack,
       },
@@ -595,13 +579,13 @@ const ps = (function () {
     window.scrollTo(0, 0);
   };
 
-  mapValue = function (value, low1, high1, low2, high2) {
+  mapValue = function (value, low1, high1, low2, high2) { //take a value between a high and low range and convert it to a value between another high and low range
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   };
 
   onReady = function () {
     setTimeout(() => {
-      //MH - temp: set some minimum time that the loader displays - may want to remove if loading is guaranteed to take a few seconds or more
+      //MH - set some minimum time that the loader displays - may want to remove if loading is guaranteed to take a few seconds or more
       gsap.to(".loader-inner", {
         opacity: 0,
         duration: 0.3,
@@ -639,6 +623,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 
 window.onload = function () {
-  //MH temp: wait for all assets to load before allowing scrolling
+  //MH wait for all initial assets to load before allowing scrolling (not counting scrolling video frames - may want to wait for those too)
   ps.onReady();
 };

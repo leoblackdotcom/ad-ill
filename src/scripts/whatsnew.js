@@ -1,5 +1,8 @@
 ps.whatsNewModule = (function() {
   let experience, category;
+
+  let tlCards; //gsap timeline for card anims
+  const cardWatchingThreshold = .25; //above this percentage scroll value through the section, we won't watch for the card transitions
   
   // Updates the currently displayed articles based on the experience and category select menus
   function changeArticles() {
@@ -45,28 +48,47 @@ ps.whatsNewModule = (function() {
     // Set the selected category to the first option in the dropdown
     document.getElementById('category-filter').value = currentCategories[0].value;
   }
+
+  function onCardsUpdate(thisTrigger){
+    const thisDirection = thisTrigger.direction;
+    const thisProgress = thisTrigger.progress;
+    if (thisProgress < cardWatchingThreshold){
+      cardWatcher(thisDirection);
+    }
+  }
   
-  function cardWatcher(e) {
+  function cardWatcher(thisDirection) {
+    console.log('watch');
     // Get all cards which are currently transformed and the current window height
-    let cards = document.querySelectorAll('.wn-cards__card--hide');
+    const isForward = thisDirection === 1 ? true : false;
+    let cards = isForward ? document.querySelectorAll('.wn-cards__card--hide') : document.querySelectorAll(".wn-cards__card:not(.wn-cards__card--hide)");
     let windowHeight = window.innerHeight;
     
-    // If there are no more hidden cards, remove the scroll listener
-    if(cards.length === 0) {
-      document.removeEventListener('scroll', cardWatcher);
-    }
-    
-    cards.forEach(function(card) {
+    cards.forEach(function(card, index) {
       let offset = card.getBoundingClientRect().top;
       let height = card.offsetHeight;
       
       // Cards are transformed 25% down by default, so if the top offset minus the window height is
-      //  less than 25% of the height, we should show the card.
-      let toShow = (offset - windowHeight - (height * .25) < 0);
+      //  less than 25% of the height, we should show the card
       
-      if(toShow) {
-        card.classList.remove('wn-cards__card--hide');
+      let toChange = isForward ? 
+        (offset - windowHeight - (height * .25) < 0) : 
+        (offset - windowHeight - (height * .25) > -(windowHeight/2));
+      
+      if(toChange) {
+        card.classList.toggle('wn-cards__card--hide', isForward ? false : true);
       }
+    });
+  }
+
+  function initCardTimeline(){
+    tlCards = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section-whatsnew",
+        start: "top bottom", 
+        scrub: true, 
+        onUpdate: onCardsUpdate
+      },
     });
   }
 
@@ -87,7 +109,7 @@ ps.whatsNewModule = (function() {
     }, false);
     
     // Watch scroll for when to transition cards in the What's New section
-    document.addEventListener('scroll', cardWatcher);
+    initCardTimeline();
   }
 
   return {
