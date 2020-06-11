@@ -648,6 +648,11 @@ section {
 .wn-cards__card {
   break-inside: avoid;
   padding-bottom: 60px;
+  transform: translateY(0);
+  transition: transform 1.5s ease;
+}
+.wn-cards__card--hide {
+  transform: translateY(25%);
 }
 
 .wn-grid {
