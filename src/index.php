@@ -20,6 +20,7 @@
               preload="metadata"
               muted
               poster="assets/images/brushes/brushes-poster.jpg"
+              playsinline
             >
               <source
                 src="assets/videos/brushes/brushes-vid.webm"

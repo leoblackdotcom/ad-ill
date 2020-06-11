@@ -55,6 +55,7 @@ const ps = (function () {
   let appState = {
     curSceneIndex: 0,
     screenDims: {},
+    introHasPlayed: false,
   };
 
   getScreenDims = function () {
@@ -119,8 +120,14 @@ const ps = (function () {
   };
 
   onTransformEnter = function () {
+    const $introVideo = document.querySelector('.intro-video');
+    const isVideoPlaying = checkIfVideoPlaying($introVideo);
+    if (!isVideoPlaying && !appState.introHasPlayed){
+      appState.introHasPlayed = true;
+      $introVideo.play();
+    }
     appState.curSceneIndex = 1;
-    resetVideo(document.querySelector(".intro-video"));
+    //resetVideo(document.querySelector(".intro-video"));
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
@@ -347,6 +354,10 @@ const ps = (function () {
       )
       .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn");
 
+  }
+
+  checkIfVideoPlaying = (video)=>{
+    return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
   }
 
   initTimelineBrushesContentOut = function(){
