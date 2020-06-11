@@ -68,6 +68,7 @@ const ps = (function () {
     $body = document.getElementsByTagName("body")[0];
     $transformSequence = document.querySelector(".transform-sequence.t4");
     $retouchSequence = document.querySelector(".retouch-sequence");
+    $retouchContentContainer = document.querySelector('.retouch-content-container');
     $brushesVideo = document.querySelector('.brushes-video');
     $ipadVideo = document.querySelector('.ipad-video');
     $retouchCanvas = document.querySelector('.retouch-canvas');
@@ -153,6 +154,17 @@ const ps = (function () {
     resetVideo(document.querySelector(".brushes-video"));
   };
 
+  onRetouchUpdate = function(){
+    const curProgress = tlRetouch.progress();
+    console.log(curProgress);
+    const translateYVal = mapValue(curProgress,0,1,-100,100);
+    $retouchContentContainer.style.transform = `translateY(${-translateYVal}px)`;
+  }
+
+  onRetouchLeave = function(){
+    gsap.from(".ipad-video", { scale: 1.2, duration: 2 })
+  }
+
   onRetouchLeaveBack = function () {
     gsap.to('.brushes-video',{
       opacity: 1,
@@ -164,12 +176,14 @@ const ps = (function () {
   oniPadEnter = function () {
     appState.curSceneIndex = 4;
     playVideo(document.querySelector(".ipad-video"));
+    gsap.to(".ipad-video", { scale: 1, duration: 2 })
   };
 
   oniPadLeaveBack = function () {
     appState.curSceneIndex = 3;
     resetVideo(document.querySelector(".ipad-video"));
     resetTimeline(tliPadContent);
+    gsap.to(".ipad-video", { scale: 1.2, duration: 2 })
   };
 
   oniPadLeaveForward = function(){
@@ -362,12 +376,21 @@ const ps = (function () {
         }`,
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onRetouchEnter,
+        onLeave: onRetouchLeave,
         onLeaveBack: onRetouchLeaveBack,
+        onUpdate: onRetouchUpdate,
       },
     });
 
     tlRetouch
-    .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
+      .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
+      .from(
+        ".retouch-1",
+        {
+          scale: 1.2,
+        },
+        "retouchIn"
+      )
       .to(
         ".retouch-2",
         {
