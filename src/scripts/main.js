@@ -428,12 +428,22 @@ const ps = (function () {
       )
       .from(
         ".retouch-tools-container",
-        { autoAlpha: 0, translateY: 20, duration: 1 },
+        { translateY: 20, duration: 1 },
+        "retouchToolsIn"
+      )
+      .from(
+        ".retouch-tools",
+        { autoAlpha: 0, duration: 1 },
         "retouchToolsIn"
       )
       .from(
         ".retouch-brushes-container",
-        { autoAlpha: 0, translateY: -20, duration: 1 },
+        { translateY: -20, duration: 1 },
+        "retouchToolsIn"
+      )
+      .from(
+        ".retouch-brushes",
+        { autoAlpha: 0, duration: 1 },
         "retouchToolsIn"
       )
       .to(".null", { opacity: 0, duration: 5,
@@ -449,52 +459,69 @@ const ps = (function () {
       }, "spacer2")
       .to(
         ".retouch-tools-container",
-        { autoAlpha: 0, translateY: -20 },
-        "spacer2+=1.45"
+        { translateY: -40, duration: 2 },
+        "spacer2"
       )
       .to(
         ".retouch-brushes-container",
-        { autoAlpha: 0, translateY: 20 },
+        { translateY: 40, duration: 2 },
+        "spacer2"
+      )
+      .to(
+        ".retouch-tools",
+        { autoAlpha: 0},
         "spacer2+=1.45"
       )
-      .from(
-        ".retouch-masks-container",
-        { autoAlpha: 0, translateY: 20 },
-        "spacer2+=1.7"
-      )
       .to(
-        ".retouch-masks-container",
-        { autoAlpha: 0, translateY: -20 },
-        "spacer2+=3.65"
+        ".retouch-brushes",
+        { autoAlpha: 0 },
+        "spacer2+=1.45"
       )
+      
       .from(
         ".retouch-tools-container-2",
         { autoAlpha: 0, translateY: 20 },
-        "spacer2+=3.75"
+        "spacer2+=1.75"
       )
       .from(
         ".retouch-pen-tools-container",
-        { autoAlpha: 0 },
-        "spacer2+=3.75"
+        { autoAlpha: 0, translateY: -20, duration: .5 },
+        "spacer2+=1.75"
+      )
+      .to(
+        ".retouch-tools-2",
+        { translateY: -60, duration: 3 },
+        "spacer2+=2.25"
+      )
+      .to(
+        ".retouch-pen-tools",
+        { translateY: 60, duration: 3 },
+        "spacer2+=2.25"
       )
       .from(
         ".retouch-pen-options-container",
-        { autoAlpha: 0, translateY: -20 },
-        "spacer2+=3.85"
+        { autoAlpha: 0 },
+        "spacer2+=1.85"
+      )
+      .fromTo(
+        ".retouch-pen-options",
+        { translateX: 60 },
+        { translateX: -60, duration: 3 },
+        "spacer2+=1.85"
       )
       .to(
         ".retouch-tools-container-2",
-        { autoAlpha: 0, translateY: -20 },
+        { autoAlpha: 0, duration: .5 },
         "spacer2+=4.6"
       )
       .to(
         ".retouch-pen-tools-container",
-        { autoAlpha: 0 },
+        { autoAlpha: 0, duration: .5 },
         "spacer2+=4.6"
       )
       .to(
         ".retouch-pen-options-container",
-        { autoAlpha: 0, translateY: 20 },
+        { autoAlpha: 0 },
         "spacer2+=4.9"
       )
       .from(

@@ -79,13 +79,6 @@
               class="retouch-tools"
             />
           </div>
-          <div class="retouch-masks-container">
-            <img
-              src="assets/images/retouch/retouch-masks.jpg"
-              alt="Retouch Masks"
-              class="retouch-masks"
-            />
-          </div>
           <div class="retouch-tools-container-2">
             <img
               src="assets/images/retouch/retouch-tools-pen-active.jpg"
