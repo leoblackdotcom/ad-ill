@@ -222,34 +222,34 @@
               <h3 class="section-title section-title--sm wn-cards__headline">The creative world runs on Photoshop.</h3>
               
               <div class="wn-cards__grid">
-                <div class="wn-cards__card">
+                <div class="wn-cards__card wn-cards__card--hide">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card1.jpg" />
                   <h4 class="wn-cards__subhead">What's New</h4>
                   <p class="wn-cards__copy">Object selection tool</p>
                 </div>
-                <div class="wn-cards__card">
+                <div class="wn-cards__card wn-cards__card--hide">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card4.jpg" />
                   <h4 class="wn-cards__subhead">Lady Gaga X Adobe</h4>
                   <p class="wn-cards__copy">Discover your Chromatica</p>
                 </div>
                 
-                <div class="wn-cards__card">
+                <div class="wn-cards__card wn-cards__card--hide">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card2.jpg" />
                   <h4 class="wn-cards__subhead">Adobe Live</h4>
                   <p class="wn-cards__copy">Compositing in Photoshop</p>
                 </div>
-                <div class="wn-cards__card">
+                <div class="wn-cards__card wn-cards__card--hide">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card5.jpg" />
                   <h4 class="wn-cards__subhead">Inspiration</h4>
                   <p class="wn-cards__copy">Maryanne Nguyen</p>
                 </div>
                 
-                <div class="wn-cards__card">
+                <div class="wn-cards__card wn-cards__card--hide">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card3.jpg" />
                   <h4 class="wn-cards__subhead">Creative Challenge</h4>
                   <p class="wn-cards__copy">Play with fire</p>
                 </div>
-                <div class="wn-cards__card">
+                <div class="wn-cards__card wn-cards__card--hide">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card6.jpg" />
                   <h4 class="wn-cards__subhead">Font Giveaway</h4>
                   <p class="wn-cards__copy">Kraken Slab</p>

@@ -51,7 +51,7 @@ ps.whatsNewModule = (function() {
     changeArticles();
     
     // Watch input change for select menus
-    document.addEventListener('input', function (e) {
+    document.addEventListener('input', function(e) {
     	// Only run on experience and category select inputs
     	if(e.target.id === 'experience-filter') {
         // If the experience changes, we have to update the categories first
@@ -61,6 +61,21 @@ ps.whatsNewModule = (function() {
         changeArticles();
       }
     }, false);
+    
+    document.addEventListener('scroll', function(e) {
+      let cards = document.querySelectorAll('.wn-cards__card--hide');
+      let windowHeight = window.innerHeight;
+      
+      cards.forEach(function(card) {
+        let offset = card.getBoundingClientRect().top;
+        let height = card.offsetHeight;
+        let toShow = (offset - windowHeight - (height * .25) < 0);
+        
+        if(toShow) {
+          card.classList.remove('wn-cards__card--hide');
+        }
+      });
+    });
   }
 
   return {
