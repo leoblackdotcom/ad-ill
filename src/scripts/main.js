@@ -132,7 +132,6 @@ const ps = (function () {
   onBrushesEnter = function () {
     appState.curSceneIndex = 2;
     playVideo(document.querySelector(".brushes-video"));
-    document.querySelector('.fixed-section-brushes');
   };
 
   onBrushesLeaveBack = function () {
@@ -147,9 +146,6 @@ const ps = (function () {
 
   onBrushesLeaveForward = function(){
     tlBrushesContentOut.restart();
-      gsap.to('.brushes-video',{
-        opacity: 0,
-      });
   }
 
   onRetouchEnter = function () {
@@ -328,6 +324,7 @@ const ps = (function () {
     });
 
     tlBrushesContent
+    
       .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(
         ".brushes-intro",
@@ -359,7 +356,7 @@ const ps = (function () {
       scrollTrigger: {
         trigger: "#section-retouch",
         pin: ".retouch-container", // pin the trigger element while active?
-        start: "top top", // when the top of the trigger hits the top of the viewport
+        start: "top top+=100%", // when the top of the trigger hits the top of the viewport
         end: `+=${
           sceneConfig.scenes.retouch.sceneDuration * appState.screenDims.height
         }`,
@@ -370,6 +367,7 @@ const ps = (function () {
     });
 
     tlRetouch
+    .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
       .to(
         ".retouch-2",
         {

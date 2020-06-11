@@ -15,32 +15,96 @@
       <div class="null"></div>
       <section class="fixed-section-container">
         <div class="fixed-section brushes">
-        <video
-            class="brushes-video"
-            preload="metadata"
-            muted
-            poster="assets/images/brushes/brushes-poster.jpg"
-          >
-            <source
-              src="assets/videos/brushes/brushes-vid.webm"
-              type="video/webm"
-            />
-            <source
-              src="assets/videos/brushes/brushes-vid.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div class="brushes-content-container">
-            <h2 class="section-title brushes-title">
-              A thousand brushes<br />with greatness.
-            </h2>
-            <p class="section-intro brushes-intro">
-              Paint and draw with thousands of custom brushes or create your own
-              — Photoshop puts the world’s largest collection at your fingertips
-            </p>
-            <div class="brushes-button-container">
-              <button class="brushes-button button-sm">Get started with brushes</button>
+          <video
+              class="brushes-video"
+              preload="metadata"
+              muted
+              poster="assets/images/brushes/brushes-poster.jpg"
+            >
+              <source
+                src="assets/videos/brushes/brushes-vid.webm"
+                type="video/webm"
+              />
+              <source
+                src="assets/videos/brushes/brushes-vid.mp4"
+                type="video/mp4"
+              />
+            </video>
+            <div class="brushes-content-container">
+              <h2 class="section-title brushes-title">
+                A thousand brushes<br />with greatness.
+              </h2>
+              <p class="section-intro brushes-intro">
+                Paint and draw with thousands of custom brushes or create your own
+                — Photoshop puts the world’s largest collection at your fingertips
+              </p>
+              <div class="brushes-button-container">
+                <button class="brushes-button button-sm">Get started with brushes</button>
+              </div>
             </div>
+        </div>
+        <div class="fixed-section retouch">
+        <div class="retouch-slider-container">
+            <div class="retouch-slider-image-container retouch-1">
+              <img src="assets/images/retouch/retouch-1.jpg" alt="Retouch Before Image" class="retouch-slider-image retouch-image-1"/>
+            </div>
+            <div class="retouch-slider-image-container retouch-2">
+            <div class="retouch-sequence canvid">
+              <canvas class="retouch-canvas"></canvas>
+            </div>
+            </div>
+          </div>
+          
+          <div class="retouch-content-container">
+            <h2 class="retouch-title section-title">
+              <span class="retouch-title-line l1">Retouch.</span>
+              <span class="retouch-title-line l2">Remix.</span>
+              <span class="retouch-title-line l3">Reimagine.</span>
+            </h2>
+            <p class="section-intro retouch-intro">Make portraits pop and expressions more expressive. Remove objects, retouch, remix, and recolor. With powerful editing and effects tools, you can turn imagery into artistry.</p>
+            <button class="button-sm button-lt retouch-button">Try it yourself</button>
+          </div>
+          <div class="retouch-tools-container">
+            <img
+              src="assets/images/retouch/retouch-tools-brush-active.jpg"
+              alt="Retouch Tools"
+              class="retouch-tools"
+            />
+          </div>
+          <div class="retouch-brushes-container">
+            <img
+              src="assets/images/retouch/retouch-brushes.jpg"
+              alt="Retouch Brushes"
+              class="retouch-tools"
+            />
+          </div>
+          <div class="retouch-masks-container">
+            <img
+              src="assets/images/retouch/retouch-masks.jpg"
+              alt="Retouch Masks"
+              class="retouch-masks"
+            />
+          </div>
+          <div class="retouch-tools-container-2">
+            <img
+              src="assets/images/retouch/retouch-tools-pen-active.jpg"
+              alt="Retouch Tools Zoomed In"
+              class="retouch-tools-2"
+            />
+          </div>
+          <div class="retouch-pen-tools-container">
+            <img
+              src="assets/images/retouch/retouch-pen-tools.jpg"
+              alt="Retouch Pen Tools"
+              class="retouch-pen-tools"
+            />
+          </div>
+          <div class="retouch-pen-options-container">
+            <img
+              src="assets/images/retouch/retouch-pen-options.jpg"
+              alt="Retouch Pen options"
+              class="retouch-pen-options"
+            />
           </div>
         </div>
       </section>
@@ -121,68 +185,7 @@
       </section>
       <section id="section-retouch">
         <div class="retouch-container">
-          <div class="retouch-slider-container">
-            <div class="retouch-slider-image-container retouch-1">
-              <img src="assets/images/retouch/retouch-1.jpg" alt="Retouch Before Image" class="retouch-slider-image retouch-image-1"/>
-            </div>
-            <div class="retouch-slider-image-container retouch-2">
-            <div class="retouch-sequence canvid">
-              <canvas class="retouch-canvas"></canvas>
-            </div>
-            </div>
-          </div>
           
-          <div class="retouch-content-container">
-            <h2 class="retouch-title section-title">
-              <span class="retouch-title-line l1">Retouch.</span>
-              <span class="retouch-title-line l2">Remix.</span>
-              <span class="retouch-title-line l3">Reimagine.</span>
-            </h2>
-            <p class="section-intro retouch-intro">Make portraits pop and expressions more expressive. Remove objects, retouch, remix, and recolor. With powerful editing and effects tools, you can turn imagery into artistry.</p>
-            <button class="button-sm button-lt retouch-button">Try it yourself</button>
-          </div>
-          <div class="retouch-tools-container">
-            <img
-              src="assets/images/retouch/retouch-tools-brush-active.jpg"
-              alt="Retouch Tools"
-              class="retouch-tools"
-            />
-          </div>
-          <div class="retouch-brushes-container">
-            <img
-              src="assets/images/retouch/retouch-brushes.jpg"
-              alt="Retouch Brushes"
-              class="retouch-tools"
-            />
-          </div>
-          <div class="retouch-masks-container">
-            <img
-              src="assets/images/retouch/retouch-masks.jpg"
-              alt="Retouch Masks"
-              class="retouch-masks"
-            />
-          </div>
-          <div class="retouch-tools-container-2">
-            <img
-              src="assets/images/retouch/retouch-tools-pen-active.jpg"
-              alt="Retouch Tools Zoomed In"
-              class="retouch-tools-2"
-            />
-          </div>
-          <div class="retouch-pen-tools-container">
-            <img
-              src="assets/images/retouch/retouch-pen-tools.jpg"
-              alt="Retouch Pen Tools"
-              class="retouch-pen-tools"
-            />
-          </div>
-          <div class="retouch-pen-options-container">
-            <img
-              src="assets/images/retouch/retouch-pen-options.jpg"
-              alt="Retouch Pen options"
-              class="retouch-pen-options"
-            />
-          </div>
         </div>
       </section>
       <section id="section-ipad">

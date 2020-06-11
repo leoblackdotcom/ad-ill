@@ -41,6 +41,117 @@
         }
       }
     }
+    &.retouch {
+      z-index: 2;
+      .retouch {
+        &-slider-container {
+          width: 100%;
+          height: 100vh;
+          position: relative;
+        }
+        &-slider-image-container {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          overflow: hidden;
+          &.retouch-2 {
+            z-index: 10;
+            width: 0%;
+    
+          }
+        }
+        &-slider-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top right;
+          position: absolute;
+          top: 0;
+          left: 0;
+          &.retouch-image-2 {
+            transform-origin: top right;
+          }
+        }
+        &-sequence {
+          position: absolute;
+          z-index: 10;
+          left: 0;
+          top: 0;
+          width: 100vw;
+          height: 100vh;
+          transform-origin: top right;
+          canvas {
+            @include coverFull();
+            object-position: top right;
+          }
+        }
+        &-title-line {
+          display: block;
+        }
+        &-intro {
+          margin-top: 20px;
+          width: 23vw;
+        }
+        &-content-container {
+          position: absolute;
+          top: 18vh;
+          left: 8.7vw;
+          z-index: 10;
+          pointer-events: none;
+          * { 
+            user-select: none;
+          }
+        }
+        &-button {
+          margin-top: 40px;
+          pointer-events: all;
+        }
+        &-tools-container {
+          position: absolute;
+          left: 38vw;
+          top: 22vh;
+          width: 3.5vw;
+          z-index: 10;
+        }
+        &-brushes-container {
+          left: 41.5vw;
+          top: 45vh;
+          width: 17.4vw;
+          position: absolute;
+          z-index: 20;
+        }
+        &-masks-container {
+          left: 23.7vw;
+          top: 40.6vh;
+          width: 23.5vw;
+          position: absolute;
+          z-index: 30;
+        }
+        &-tools-container-2 {
+          position: absolute;
+          left: 15.2vw;
+          top: 39vh;
+          width: 7vw;
+          z-index: 40;
+        }
+        &-pen-tools-container {
+          position: absolute;
+          left: 22.2vw;
+          top: 50vh;
+          width: 21.8vw;
+          z-index: 50;
+        }
+        &-pen-options-container {
+          position: absolute;
+          left: 36.3vw;
+          top: 0vh;
+          width: 77.75vw;
+          z-index: 60;
+        }
+      }
+    }
   }
 }
 
@@ -301,114 +412,6 @@
 
 #section-retouch {
   z-index: 30;
-  .retouch {
-    &-slider-container {
-      width: 100%;
-      height: 100vh;
-      position: relative;
-    }
-    &-slider-image-container {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      overflow: hidden;
-      &.retouch-2 {
-        z-index: 10;
-        width: 0%;
-
-      }
-    }
-    &-slider-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top right;
-      position: absolute;
-      top: 0;
-      left: 0;
-      &.retouch-image-2 {
-        transform-origin: top right;
-      }
-    }
-    &-sequence {
-      position: absolute;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      transform-origin: top right;
-      canvas {
-        @include coverFull();
-        object-position: top right;
-      }
-    }
-    &-title-line {
-      display: block;
-    }
-    &-intro {
-      margin-top: 20px;
-      width: 23vw;
-    }
-    &-content-container {
-      position: absolute;
-      top: 18vh;
-      left: 8.7vw;
-      z-index: 10;
-      pointer-events: none;
-      * { 
-        user-select: none;
-      }
-    }
-    &-button {
-      margin-top: 40px;
-      pointer-events: all;
-    }
-    &-tools-container {
-      position: absolute;
-      left: 38vw;
-      top: 22vh;
-      width: 3.5vw;
-      z-index: 10;
-    }
-    &-brushes-container {
-      left: 41.5vw;
-      top: 45vh;
-      width: 17.4vw;
-      position: absolute;
-      z-index: 20;
-    }
-    &-masks-container {
-      left: 23.7vw;
-      top: 40.6vh;
-      width: 23.5vw;
-      position: absolute;
-      z-index: 30;
-    }
-    &-tools-container-2 {
-      position: absolute;
-      left: 15.2vw;
-      top: 39vh;
-      width: 7vw;
-      z-index: 40;
-    }
-    &-pen-tools-container {
-      position: absolute;
-      left: 22.2vw;
-      top: 50vh;
-      width: 21.8vw;
-      z-index: 50;
-    }
-    &-pen-options-container {
-      position: absolute;
-      left: 36.3vw;
-      top: 0vh;
-      width: 77.75vw;
-      z-index: 60;
-    }
-  }
 }
 
 #section-ipad {
