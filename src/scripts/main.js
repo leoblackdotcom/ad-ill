@@ -41,7 +41,7 @@ const ps = (function () {
         pad: 2,
       },
       retouch: {
-        frames: 91,
+        frames: 129,
         selector: '.retouch-sequence',
         sequence: 'assets/images/retouch/sequence-retouch.jpg',
         framesPath: 'assets/images/retouch/frames/retouch',
@@ -441,6 +441,7 @@ const ps = (function () {
           const vidConfig = sceneConfig.videos.retouch;
           const currentFrame = 
             Math.ceil(vidConfig.frames * thisProgress);
+            console.log(currentFrame);
             //canvidRetouch.setCurrentFrame(currentFrame);
           const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
           drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
