@@ -13,6 +13,37 @@
   <body class="loading">
     <main id="main" class="main">
       <div class="null"></div>
+      <section class="fixed-section-container">
+        <div class="fixed-section brushes">
+        <video
+            class="brushes-video"
+            preload="metadata"
+            muted
+            poster="assets/images/brushes/brushes-poster.jpg"
+          >
+            <source
+              src="assets/videos/brushes/brushes-vid.webm"
+              type="video/webm"
+            />
+            <source
+              src="assets/videos/brushes/brushes-vid.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <div class="brushes-content-container">
+            <h2 class="section-title brushes-title">
+              A thousand brushes<br />with greatness.
+            </h2>
+            <p class="section-intro brushes-intro">
+              Paint and draw with thousands of custom brushes or create your own
+              — Photoshop puts the world’s largest collection at your fingertips
+            </p>
+            <div class="brushes-button-container">
+              <button class="brushes-button button-sm">Get started with brushes</button>
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="section-intro">
         <div class="intro-container" style="position: fixed; top: 0; width: 100%;">
           <video
@@ -85,33 +116,7 @@
       </section>
       <section id="section-brushes">
         <div class="brushes-container">
-          <video
-            class="brushes-video"
-            preload="metadata"
-            muted
-            poster="assets/images/brushes/brushes-poster.jpg"
-          >
-            <source
-              src="assets/videos/brushes/brushes-vid.webm"
-              type="video/webm"
-            />
-            <source
-              src="assets/videos/brushes/brushes-vid.mp4"
-              type="video/mp4"
-            />
-          </video>
-          <div class="brushes-content-container">
-            <h2 class="section-title brushes-title">
-              A thousand brushes<br />with greatness.
-            </h2>
-            <p class="section-intro brushes-intro">
-              Paint and draw with thousands of custom brushes or create your own
-              — Photoshop puts the world’s largest collection at your fingertips
-            </p>
-            <div class="brushes-button-container">
-              <button class="brushes-button button-sm">Get started with brushes</button>
-            </div>
-          </div>
+          <div class="spacer" style="height: 100vh;"></div>
         </div>
       </section>
       <section id="section-retouch">

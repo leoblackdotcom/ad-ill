@@ -1,3 +1,49 @@
+.fixed {
+  &-section-container {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+  }
+  &-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    &.brushes {
+      z-index: 1;
+
+      .brushes {
+        &-video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        &-content-container {
+          position: absolute;
+          bottom: 6.8vh;
+          left: 9.35vw;
+          width: 43vw;
+        }
+        &-intro {
+          margin-top: 20px;
+          width: 31vw;
+        }
+        &-button-container {
+          margin-top: 40px;
+        }
+        &-button {
+          border: 1px solid $color--gray-dk;
+          color: $color--white;
+          background-color: $color--gray-dk;
+        }
+      }
+    }
+  }
+}
+
 .sticky {
   position: sticky !important;
   top: 0;
@@ -249,29 +295,6 @@
     &-container {
       width: 100%;
       height: 100vh;
-    }
-    &-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    &-content-container {
-      position: absolute;
-      bottom: 6.8vh;
-      left: 9.35vw;
-      width: 43vw;
-    }
-    &-intro {
-      margin-top: 20px;
-      width: 31vw;
-    }
-    &-button-container {
-      margin-top: 40px;
-    }
-    &-button {
-      border: 1px solid $color--gray-dk;
-      color: $color--white;
-      background-color: $color--gray-dk;
     }
   }
 }

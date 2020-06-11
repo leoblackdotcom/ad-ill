@@ -132,6 +132,7 @@ const ps = (function () {
   onBrushesEnter = function () {
     appState.curSceneIndex = 2;
     playVideo(document.querySelector(".brushes-video"));
+    document.querySelector('.fixed-section-brushes');
   };
 
   onBrushesLeaveBack = function () {
@@ -146,6 +147,9 @@ const ps = (function () {
 
   onBrushesLeaveForward = function(){
     tlBrushesContentOut.restart();
+      gsap.to('.brushes-video',{
+        opacity: 0,
+      });
   }
 
   onRetouchEnter = function () {
@@ -154,6 +158,9 @@ const ps = (function () {
   };
 
   onRetouchLeaveBack = function () {
+    gsap.to('.brushes-video',{
+      opacity: 1,
+    });
     appState.curSceneIndex = 3;
     playVideo(document.querySelector(".brushes-video"));
   };
@@ -271,6 +278,7 @@ const ps = (function () {
         }, 
       }, "spacer")
       .fromTo('.transform-title-container',{translateY: 180}, {translateY: 0, duration: 7}, 'spacer')
+      .fromTo('.transform-canvas',{translateY: -100}, {translateY: 100, duration: 7}, 'spacer')
       .from(".transform-title", { autoAlpha: 0, translateY: 20, onStart: function(){
       } }, "spacer")
       .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1, onComplete: function(){
@@ -298,7 +306,7 @@ const ps = (function () {
       scrollTrigger: {
         trigger: "#section-brushes",
         pin: ".brushes-container", // pin the trigger element while active?
-        start: "top top", // when the top of the trigger hits the top of the viewport
+        start: "top 100%", // when the top of the trigger hits the top of the viewport
         anticipatePin: 1, //triggers the pin slightly early due to fact that pinning seems to happen a bit after top of this section disappears before it is re-pinned to top
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
@@ -307,8 +315,9 @@ const ps = (function () {
     });
 
     tlBrushes
+      .from(".brushes-video", { autoAlpha: 0, duration: 2 }, "spacer1")
       .to(".null", { scale: 1, duration: 5 }, "spacer1")
-      .to('.brushes-container',{translateY: 0},'spacer1')
+      //.to('.brushes-container',{translateY: 0},'spacer1')
       .to(".null", { opacity: 0, duration: 5, onStart: onBrushesLeaveForward }, "spacer2")
       .addLabel("end");
   };

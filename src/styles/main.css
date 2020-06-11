@@ -85,6 +85,47 @@ section {
   }
 }
 
+.fixed-section-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.fixed-section {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.fixed-section.brushes {
+  z-index: 1;
+}
+.fixed-section.brushes .brushes-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fixed-section.brushes .brushes-content-container {
+  position: absolute;
+  bottom: 6.8vh;
+  left: 9.35vw;
+  width: 43vw;
+}
+.fixed-section.brushes .brushes-intro {
+  margin-top: 20px;
+  width: 31vw;
+}
+.fixed-section.brushes .brushes-button-container {
+  margin-top: 40px;
+}
+.fixed-section.brushes .brushes-button {
+  border: 1px solid #505050;
+  color: white;
+  background-color: #505050;
+}
+
 .sticky {
   position: sticky !important;
   top: 0;
@@ -318,29 +359,6 @@ section {
 #section-brushes .brushes-container {
   width: 100%;
   height: 100vh;
-}
-#section-brushes .brushes-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-#section-brushes .brushes-content-container {
-  position: absolute;
-  bottom: 6.8vh;
-  left: 9.35vw;
-  width: 43vw;
-}
-#section-brushes .brushes-intro {
-  margin-top: 20px;
-  width: 31vw;
-}
-#section-brushes .brushes-button-container {
-  margin-top: 40px;
-}
-#section-brushes .brushes-button {
-  border: 1px solid #505050;
-  color: white;
-  background-color: #505050;
 }
 
 #section-retouch {
