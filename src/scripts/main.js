@@ -41,10 +41,10 @@ const ps = (function () {
         pad: 2,
       },
       retouch: {
-        frames: 103,
+        frames: 91,
         selector: '.retouch-sequence',
         sequence: 'assets/images/retouch/sequence-retouch.jpg',
-        framesPath: 'assets/images/retouch/frames2/retouch-edit',
+        framesPath: 'assets/images/retouch/frames/retouch',
         width: 1280, //size of images for canvas
         height: 843,
         pad: 3, //leading 0s in sequence filenames
@@ -163,7 +163,6 @@ const ps = (function () {
 
   onRetouchUpdate = function(){
     const curProgress = tlRetouch.progress();
-    console.log(curProgress);
     const translateYVal = mapValue(curProgress,0,1,-100,100);
     $retouchContentContainer.style.transform = `translateY(${-translateYVal}px)`;
   }
@@ -477,7 +476,6 @@ const ps = (function () {
         { autoAlpha: 0 },
         "spacer2+=3.75"
       )
-      .to(".retouch-sequence", { scale: 1.25 }, "spacer2+=3.9")
       .from(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: -20 },
@@ -493,8 +491,6 @@ const ps = (function () {
         { autoAlpha: 0 },
         "spacer2+=4.6"
       )
-
-      .to(".retouch-sequence", { scale: 1 }, "spacer2+=4.9")
       .to(
         ".retouch-pen-options-container",
         { autoAlpha: 0, translateY: 20 },
