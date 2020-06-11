@@ -14,7 +14,7 @@
     <main id="main" class="main">
       <div class="null"></div>
       <section id="section-intro">
-        <div class="intro-container">
+        <div class="intro-container" style="position: fixed; top: 0; width: 100%;">
           <video
             class="intro-video"
             preload="metadata"
@@ -56,29 +56,11 @@
       <section id="section-transform" class="section">
         <div class="transform-container">
           <div class="transform-sequence-container">
-            <img
-              class="canvas transform-sequence t1"
-              src="assets/images/transform/01.jpg"
-              alt="transform"
-            />
-            <img
-              class="canvas transform-sequence t2"
-              src="assets/images/transform/02.jpg"
-              alt="transform"
-            />
-            <img
-              class="canvas transform-sequence t3"
-              src="assets/images/transform/03.gif"
-              alt="transform"
-            />
             <div
               class="transform-sequence t4 canvid"
-            ></div>
-            <img
-              class="canvas transform-sequence t5"
-              src="assets/images/transform/fish-blend.png"
-              alt="transform"
-            />
+            >
+              <canvas class="transform-canvas"></canvis>
+            </div>
           </div>
           <div class="transform-title-container">
             <h2 class="transform-title section-title">
@@ -98,38 +80,9 @@
                 <li class="transform-feature p5">Merge and remix with blend modes</li>
               </ul>
             </div>
-            <div class="transform-panel-container">
-              <img
-                src="assets/images/transform/transform-panel.jpg"
-                alt="Transform Panel"
-                class="transform-panel"
-              />
-            </div>
-          </div>
-          <div class="transform-tools-container">
-            <img
-              src="assets/images/transform/transform-tools.jpg"
-              alt="Transform Tools"
-              class="transform-tools"
-            />
-          </div>
-          <div class="transform-masks-panel-container">
-            <img
-              src="assets/images/transform/masks-panel.jpg"
-              alt="Masks Panel"
-              class="transform-masks-panel"
-            />
-          </div>
-          <div class="transform-blend-panel-container">
-            <img
-              src="assets/images/transform/blend-panel.jpg"
-              alt="Blend Panel"
-              class="transform-blend-panel"
-            />
           </div>
         </div>
       </section>
-      <div class="spacer" style="height: 100vh"></div>
       <section id="section-brushes">
         <div class="brushes-container">
           <video
