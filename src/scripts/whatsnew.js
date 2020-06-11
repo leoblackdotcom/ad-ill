@@ -45,6 +45,30 @@ ps.whatsNewModule = (function() {
     // Set the selected category to the first option in the dropdown
     document.getElementById('category-filter').value = currentCategories[0].value;
   }
+  
+  function cardWatcher(e) {
+    // Get all cards which are currently transformed and the current window height
+    let cards = document.querySelectorAll('.wn-cards__card--hide');
+    let windowHeight = window.innerHeight;
+    
+    // If there are no more hidden cards, remove the scroll listener
+    if(cards.length === 0) {
+      document.removeEventListener('scroll', cardWatcher);
+    }
+    
+    cards.forEach(function(card) {
+      let offset = card.getBoundingClientRect().top;
+      let height = card.offsetHeight;
+      
+      // Cards are transformed 25% down by default, so if the top offset minus the window height is
+      //  less than 25% of the height, we should show the card.
+      let toShow = (offset - windowHeight - (height * .25) < 0);
+      
+      if(toShow) {
+        card.classList.remove('wn-cards__card--hide');
+      }
+    });
+  }
 
   function init(){ //called from main.js
     // Update article on init
@@ -62,20 +86,8 @@ ps.whatsNewModule = (function() {
       }
     }, false);
     
-    document.addEventListener('scroll', function(e) {
-      let cards = document.querySelectorAll('.wn-cards__card--hide');
-      let windowHeight = window.innerHeight;
-      
-      cards.forEach(function(card) {
-        let offset = card.getBoundingClientRect().top;
-        let height = card.offsetHeight;
-        let toShow = (offset - windowHeight - (height * .25) < 0);
-        
-        if(toShow) {
-          card.classList.remove('wn-cards__card--hide');
-        }
-      });
-    });
+    // Watch scroll for when to transition cards in the What's New section
+    document.addEventListener('scroll', cardWatcher);
   }
 
   return {
