@@ -76,7 +76,7 @@
             <img
               src="assets/images/retouch/retouch-brushes.jpg"
               alt="Retouch Brushes"
-              class="retouch-tools"
+              class="retouch-brushes"
             />
           </div>
           <div class="retouch-tools-container-2">
