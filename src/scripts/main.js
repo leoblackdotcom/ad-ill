@@ -394,6 +394,7 @@ const ps = (function () {
 
     tlRetouch
       .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
+      .to('.brushes-content-container',{translateY: -100, duration: 2},'retouchIn')
       .from(
         ".retouch-1",
         {
@@ -441,7 +442,6 @@ const ps = (function () {
           const vidConfig = sceneConfig.videos.retouch;
           const currentFrame = 
             Math.ceil(vidConfig.frames * thisProgress);
-            console.log(currentFrame);
             //canvidRetouch.setCurrentFrame(currentFrame);
           const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
           drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
@@ -505,6 +505,7 @@ const ps = (function () {
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
       .to(".null", { opacity: 1, duration: 2 }, "spacer7")
+      .to(".retouch-content-container", { opacity: 0, duration: 1 }, "spacer7+=1")
       .addLabel("end");
   };
 
