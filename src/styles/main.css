@@ -124,6 +124,157 @@ section {
   color: #ffffff;
 }
 
+.fixed-section-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.fixed-section {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.fixed-section.brushes {
+  z-index: 1;
+}
+.fixed-section.brushes .brushes-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.fixed-section.brushes .brushes-content-container {
+  position: absolute;
+  bottom: 6.8vh;
+  left: 9.35vw;
+  width: 43vw;
+}
+.fixed-section.brushes .brushes-intro {
+  margin-top: 20px;
+  width: 31vw;
+}
+.fixed-section.brushes .brushes-button-container {
+  margin-top: 40px;
+}
+.fixed-section.brushes .brushes-button {
+  border: 1px solid #505050;
+  color: white;
+  background-color: #505050;
+}
+.fixed-section.retouch {
+  z-index: 2;
+}
+.fixed-section.retouch .retouch-slider-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+.fixed-section.retouch .retouch-slider-image-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.fixed-section.retouch .retouch-slider-image-container.retouch-2 {
+  z-index: 10;
+  width: 0%;
+}
+.fixed-section.retouch .retouch-slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top right;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.fixed-section.retouch .retouch-slider-image.retouch-image-2 {
+  transform-origin: top right;
+}
+.fixed-section.retouch .retouch-sequence {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  transform-origin: top right;
+}
+.fixed-section.retouch .retouch-sequence canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top right;
+}
+.fixed-section.retouch .retouch-title-line {
+  display: block;
+}
+.fixed-section.retouch .retouch-intro {
+  margin-top: 20px;
+  width: 23vw;
+}
+.fixed-section.retouch .retouch-content-container {
+  position: absolute;
+  top: 18vh;
+  left: 8.7vw;
+  z-index: 10;
+  pointer-events: none;
+}
+.fixed-section.retouch .retouch-content-container * {
+  user-select: none;
+}
+.fixed-section.retouch .retouch-button {
+  margin-top: 40px;
+  pointer-events: all;
+}
+.fixed-section.retouch .retouch-tools-container {
+  position: absolute;
+  left: 38vw;
+  top: 22vh;
+  width: 3.5vw;
+  z-index: 10;
+}
+.fixed-section.retouch .retouch-brushes-container {
+  left: 41.5vw;
+  top: 45vh;
+  width: 17.4vw;
+  position: absolute;
+  z-index: 20;
+}
+.fixed-section.retouch .retouch-masks-container {
+  left: 23.7vw;
+  top: 40.6vh;
+  width: 23.5vw;
+  position: absolute;
+  z-index: 30;
+}
+.fixed-section.retouch .retouch-tools-container-2 {
+  position: absolute;
+  left: 15.2vw;
+  top: 39vh;
+  width: 7vw;
+  z-index: 40;
+}
+.fixed-section.retouch .retouch-pen-tools-container {
+  position: absolute;
+  left: 22.2vw;
+  top: 50vh;
+  width: 21.8vw;
+  z-index: 50;
+}
+.fixed-section.retouch .retouch-pen-options-container {
+  position: absolute;
+  left: 36.3vw;
+  top: 0vh;
+  width: 77.75vw;
+  z-index: 60;
+}
+
 .sticky {
   position: sticky !important;
   top: 0;
@@ -201,7 +352,7 @@ section {
 
 .canvid {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 .canvid canvas {
   width: 100%;
@@ -292,6 +443,18 @@ section {
 #section-transform {
   min-height: 100vh;
 }
+#section-transform .transform-sequence-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#section-transform .transform-sequence-container .canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 #section-transform .transform-container {
   position: relative;
   width: 100%;
@@ -346,138 +509,9 @@ section {
   width: 100%;
   height: 100vh;
 }
-#section-brushes .brushes-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-#section-brushes .brushes-content-container {
-  position: absolute;
-  bottom: 6.8vh;
-  left: 9.35vw;
-  width: 43vw;
-}
-#section-brushes .brushes-intro {
-  margin-top: 20px;
-  width: 31vw;
-}
-#section-brushes .brushes-button-container {
-  margin-top: 40px;
-}
-#section-brushes .brushes-button {
-  border: 1px solid #505050;
-  color: white;
-  background-color: #505050;
-}
 
 #section-retouch {
   z-index: 30;
-}
-#section-retouch .retouch-slider-container {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-#section-retouch .retouch-slider-image-container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-}
-#section-retouch .retouch-slider-image-container.retouch-2 {
-  z-index: 10;
-  width: 0%;
-}
-#section-retouch .retouch-slider-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top right;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-#section-retouch .retouch-slider-image.retouch-image-2 {
-  transform-origin: top right;
-}
-#section-retouch .retouch-sequence {
-  position: absolute;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-}
-#section-retouch .retouch-sequence canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top right;
-}
-#section-retouch .retouch-title-line {
-  display: block;
-}
-#section-retouch .retouch-intro {
-  margin-top: 20px;
-  width: 23vw;
-}
-#section-retouch .retouch-content-container {
-  position: absolute;
-  top: 18vh;
-  left: 8.7vw;
-  z-index: 10;
-  pointer-events: none;
-}
-#section-retouch .retouch-content-container * {
-  user-select: none;
-}
-#section-retouch .retouch-button {
-  margin-top: 40px;
-  pointer-events: all;
-}
-#section-retouch .retouch-tools-container {
-  position: absolute;
-  left: 38vw;
-  top: 22vh;
-  width: 3.5vw;
-  z-index: 10;
-}
-#section-retouch .retouch-brushes-container {
-  left: 41.5vw;
-  top: 45vh;
-  width: 17.4vw;
-  position: absolute;
-  z-index: 20;
-}
-#section-retouch .retouch-masks-container {
-  left: 23.7vw;
-  top: 40.6vh;
-  width: 23.5vw;
-  position: absolute;
-  z-index: 30;
-}
-#section-retouch .retouch-tools-container-2 {
-  position: absolute;
-  left: 15.2vw;
-  top: 39vh;
-  width: 7vw;
-  z-index: 40;
-}
-#section-retouch .retouch-pen-tools-container {
-  position: absolute;
-  left: 22.2vw;
-  top: 50vh;
-  width: 21.8vw;
-  z-index: 50;
-}
-#section-retouch .retouch-pen-options-container {
-  position: absolute;
-  left: 36.3vw;
-  top: 0vh;
-  width: 77.75vw;
-  z-index: 60;
 }
 
 #section-ipad {
