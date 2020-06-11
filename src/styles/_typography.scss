@@ -6,6 +6,14 @@
     font-size: 5rem;
     line-height: 4.5rem;
   }
+  
+  &--sm {
+    color: black;
+    font-size: 2.8rem;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-align: center;
+  }
 }
 
 .section-intro {
@@ -15,5 +23,40 @@
   @include breakpoint(laptop){
     font-size: 1.8rem;
     line-height: 2rem;
+  }
+}
+
+.btn-ctnr {
+  text-align: center;
+}
+
+.btn, .adobe-button {
+  border: solid 2px black;
+  border-radius: 1.5rem;
+  color: black;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 700; 
+  line-height: 2rem;
+  padding: 0 1.5rem;
+  transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+  transition-timing-function: ease;
+  
+  &:hover {
+    background-color: #d6d6d6;
+    border-color: #d6d6d6;
+    color: #323232;
+  }
+  
+  &--is-raised {
+    background-color: #1473e6;
+    color: #ffffff;
+    border-color: #1473e6;
+    
+    &:hover {
+      background-color: #005abe;
+      border-color: #005abe;
+      color: #ffffff;
+    }
   }
 }
