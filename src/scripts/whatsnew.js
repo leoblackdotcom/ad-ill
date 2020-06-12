@@ -58,7 +58,6 @@ ps.whatsNewModule = (function() {
   }
   
   function cardWatcher(thisDirection) {
-    console.log('watch');
     // Get all cards which are currently transformed and the current window height
     const isForward = thisDirection === 1 ? true : false;
     let cards = isForward ? document.querySelectorAll('.wn-cards__card--hide') : document.querySelectorAll(".wn-cards__card:not(.wn-cards__card--hide)");

@@ -62,15 +62,9 @@ section {
 }
 
 .section-title {
-  font-size: 5.5rem;
-  line-height: 5.0625rem;
+  font-size: 4.375rem;
+  line-height: 4.0625rem;
   letter-spacing: -0.2px;
-}
-@media (max-width: 1440px) {
-  .section-title {
-    font-size: 5rem;
-    line-height: 4.5rem;
-  }
 }
 .section-title--sm {
   color: black;
@@ -305,6 +299,16 @@ section {
   background-color: transparent;
 }
 
+.section-gradient {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+
 .scroll-sequence {
   width: 100%;
   position: absolute;
@@ -379,6 +383,9 @@ section {
   width: 100%;
   height: 100vh;
   object-fit: cover;
+}
+#section-intro .intro-video-gradient {
+  z-index: 5;
 }
 #section-intro .intro-content-container {
   position: absolute;
@@ -460,22 +467,28 @@ section {
   width: 100%;
 }
 #section-transform .transform-title-container {
-  width: 630px;
+  width: 500px;
+  height: 140px;
+  overflow: visible;
   position: absolute;
-  top: 24.5vh;
+  top: 37.45vh;
   left: 10vw;
+}
+#section-transform .transform-rotating-titles-container {
+  position: relative;
+}
+#section-transform .transform-rotating-title:not(:first-child) {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #section-transform .transform-copy-p {
   color: #e7e7e7;
-  margin-top: 1.8vh;
+  margin-top: 2.2vh;
   width: 30vw;
 }
-#section-transform .transform-feature-list {
-  margin-top: 3.6vh;
-}
-#section-transform .transform-feature {
-  font-size: 1.375rem;
-  font-weight: bold;
+#section-transform .transform-button {
+  margin-top: 2.9vh;
 }
 #section-transform .transform-panel {
   width: 18.75vw;

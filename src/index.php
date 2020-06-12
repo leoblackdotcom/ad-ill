@@ -7,7 +7,7 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles/main.css?v=<?php echo filemtime('styles/main.css'); ?>" />
-
+    <link rel="icon" href="assets/images/adobe.png"/>
     <link rel="stylesheet" href="https://use.typekit.net/opx6jbj.css?v=18">
   </head>
   <body class="loading">
@@ -115,6 +115,7 @@
             <source src="assets/videos/intro/intro.webm" type="video/webm" />
             <source src="assets/videos/intro/intro.mp4" type="video/mp4" />
           </video>
+          <div class="intro-video-gradient section-gradient"></div>
           <div class="header-container">
             <img
               src="assets/images/header.jpg"
@@ -148,26 +149,23 @@
             <div
               class="transform-sequence t4 canvid"
             >
-              <canvas class="transform-canvas"></canvis>
+              <canvas class="transform-canvas"></canvas>
             </div>
           </div>
           <div class="transform-title-container">
-            <h2 class="transform-title section-title">
-              Transform photos into fantasy.
-            </h2>
+            
+            <div class="transform-rotating-titles-container inactive">
+              <h2 class="transform-rotating-title section-title rt1">Create what your camera can’t capture.</h2>
+              <h2 class="transform-rotating-title section-title rt2">Make quick, automatic selections.</h2>
+              <h2 class="transform-rotating-title section-title rt3">Show and hide with masks.</h2>
+              <h2 class="transform-rotating-title section-title rt4">Use unlimited layers.</h2>
+              <h2 class="transform-rotating-title section-title rt5">Transform photos into fantasy.</h2>
+            </div>
             <div class="transform-copy-container">
               <p class="section-intro transform-copy-p p1">
-                Combine photos, graphics, effects, and typography to create what
-                your camera can’t capture.
+                Combine photos, graphics, effects, and typography to create any image you can imagine.
               </p>
-              <ul class="transform-feature-list">
-                <li class="transform-feature p2">
-                  Create with unlimited layers
-                </li>
-                <li class="transform-feature p3">Select fine details in just a click.</li>
-                <li class="transform-feature p4">Show and hide with masks</li>
-                <li class="transform-feature p5">Merge and remix with blend modes</li>
-              </ul>
+              <button class="transform-button button-sm button-lt">Try it yourself</button>
             </div>
           </div>
         </div>

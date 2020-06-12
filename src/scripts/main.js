@@ -7,7 +7,7 @@ const ps = (function () {
   let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
 
-  let $retouch, $slide, $body, $retouchSequence, $transformSequence, $brushesVideo, $ipadVideo; //dom references
+  let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo; //dom references
   let sceneConfig = {
     nativeWidth: 1679,
     nativeHeight: 1119,
@@ -68,6 +68,7 @@ const ps = (function () {
     $transformSequence = document.querySelector(".transform-sequence.t4");
     $retouchSequence = document.querySelector(".retouch-sequence");
     $retouchContentContainer = document.querySelector('.retouch-content-container');
+    $introVideo = document.querySelector('.intro-video');
     $brushesVideo = document.querySelector('.brushes-video');
     $ipadVideo = document.querySelector('.ipad-video');
     $retouchCanvas = document.querySelector('.retouch-canvas');
@@ -118,31 +119,29 @@ const ps = (function () {
   };
 
   onTransformEnter = function () {
-    const $introVideo = document.querySelector('.intro-video');
     const isVideoPlaying = checkIfVideoPlaying($introVideo);
     if (!isVideoPlaying && !appState.introHasPlayed){
       appState.introHasPlayed = true;
       $introVideo.play();
     }
     appState.curSceneIndex = 1;
-    //resetVideo(document.querySelector(".intro-video"));
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
   onTransformLeaveBack = function () {
     appState.curSceneIndex = 0;
-    playVideo(document.querySelector(".intro-video"));
+    playVideo($introVideo);
   };
 
   onBrushesEnter = function () {
     appState.curSceneIndex = 2;
-    playVideo(document.querySelector(".brushes-video"));
+    playVideo($brushesVideo);
   };
 
   onBrushesLeaveBack = function () {
     appState.curSceneIndex = 1;
-    resetVideo(document.querySelector(".brushes-video"));
+    resetVideo($brushesVideo);
     resetTimeline(tlBrushesContent);
   };
 
@@ -156,7 +155,7 @@ const ps = (function () {
 
   onRetouchEnter = function () {
     appState.curSceneIndex = 2;
-    resetVideo(document.querySelector(".brushes-video"));
+    resetVideo($brushesVideo);
   };
 
   onRetouchUpdate = function(){
@@ -174,18 +173,18 @@ const ps = (function () {
       opacity: 1,
     });
     appState.curSceneIndex = 3;
-    playVideo(document.querySelector(".brushes-video"));
+    playVideo($brushesVideo);
   };
 
   oniPadEnter = function () {
     appState.curSceneIndex = 4;
-    playVideo(document.querySelector(".ipad-video"));
+    playVideo($ipadVideo);
     gsap.to(".ipad-video", { scale: 1, duration: 2 })
   };
 
   oniPadLeaveBack = function () {
     appState.curSceneIndex = 3;
-    resetVideo(document.querySelector(".ipad-video"));
+    resetVideo($ipadVideo);
     resetTimeline(tliPadContent);
     gsap.to(".ipad-video", { scale: 1.2, duration: 2 })
   };
@@ -204,7 +203,7 @@ const ps = (function () {
 
   onWhatsNewLeaveBack = function () {
     appState.curSceneIndex = 4;
-    playVideo(document.querySelector(".ipad-video"));
+    playVideo($ipadVideo);
   };
 
   initCanvas = function () {
@@ -264,6 +263,9 @@ const ps = (function () {
   };
 
   initTimelineTransform = function () {
+
+    introTitleTranslateY = '10vh';
+
     tlTransform = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-transform",
@@ -291,17 +293,24 @@ const ps = (function () {
         }, 
       }, "spacer")
       .fromTo('.transform-title-container',{translateY: 180}, {translateY: 0, duration: 7}, 'spacer')
-      .fromTo('.transform-canvas',{translateY: -100}, {translateY: 100, duration: 7}, 'spacer')
-      .from(".transform-title", { autoAlpha: 0, translateY: 20, onStart: function(){
-      } }, "spacer")
-      .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1}, "spacer")
+      .fromTo('.transform-canvas',{translateY: -100}, {translateY: 0, duration: 7}, 'spacer')
+      .from(".transform-rotating-title.rt1", { autoAlpha: 0, translateY: introTitleTranslateY}, "spacer")
+      .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1, onComplete: function(){
+        resetVideo($introVideo);
+      }}, "spacer")
       .from(".transform-copy-p", { autoAlpha: 0 }, "spacer")
-      .from(".transform-feature.p2", { autoAlpha: 0 }, "spacer+=.25")
-      .from(".transform-feature.p3", { autoAlpha: 0 }, "spacer+=2")
-      .from(".transform-feature.p4", { autoAlpha: 0 }, "spacer+=3")
-      .from(".transform-feature.p5", { autoAlpha: 0 }, "spacer+=4")
-      .to(".transform-title-container", { autoAlpha: 0 }, "spacer+=6")
-      .to(".transform-sequence", { autoAlpha: 0 }, "spacer+=6")
+      .to(".transform-rotating-title.rt1", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=1.25")
+      .from(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=1.25")
+      .to(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=3")
+      .from(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=3")
+      .to(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=4")
+      .from(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=4")
+      .to(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=5")
+      .from(".transform-rotating-title.rt5", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=5")
+      .to(".null", { opacity: 0.5, duration: 3},'spacer2')
+      .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
+      .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")
+      .to(".transform-sequence", { autoAlpha: 0,durtaion: 1 }, "spacer2+=2")
       .addLabel("end");
   };
 
