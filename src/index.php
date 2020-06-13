@@ -147,7 +147,7 @@
         <div class="transform-container">
           <div class="transform-sequence-container">
             <div
-              class="transform-sequence t4 canvid"
+              class="transform-sequence t4"
             >
               <canvas class="transform-canvas"></canvas>
             </div>
@@ -155,7 +155,7 @@
           <div class="transform-title-container">
             
             <div class="transform-rotating-titles-container inactive">
-              <h2 class="transform-rotating-title section-title rt1">Create what your camera can’t capture.</h2>
+              <h2 class="transform-rotating-title section-title rt1">Create what<br/>your camera<br/>can’t capture.</h2>
               <h2 class="transform-rotating-title section-title rt2">Make quick, automatic selections.</h2>
               <h2 class="transform-rotating-title section-title rt3">Show and hide with masks.</h2>
               <h2 class="transform-rotating-title section-title rt4">Use unlimited layers.</h2>

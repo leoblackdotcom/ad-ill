@@ -31,11 +31,11 @@ const ps = (function () {
     videoBasePath: "assets/videos",
     videos: {
       transform: {
-        frames: 72,
+        frames: 83,
         selector: ".transform-sequence.t4",
-        framesPath: 'assets/images/transform/frames/transform-v2',
+        framesPath: 'assets/images/transform/frames/transform3-',
         width: 1280, //native size of images for canvas
-        height: 853,
+        height: 991,
         pad: 2, //leading 0s in sequence filenames
       },
       retouch: {
@@ -282,14 +282,16 @@ const ps = (function () {
 
     tlTransform
       //.from(".transform-sequence.t4", { autoAlpha: 0 }, "start")
-      .to(".null", { opacity: 0, duration: 5,
+      .to(".null", { opacity: 0, duration: 6,
         onUpdate: function () {
           const thisProgress = this.progress();
+          
           const vidConfig = sceneConfig.videos.transform;
           const currentFrame = 
             Math.ceil(vidConfig.frames * thisProgress);
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
+            console.log(currentFrame,thisProgress);
         }, 
       }, "spacer")
       .fromTo('.transform-title-container',{translateY: 180}, {translateY: 0, duration: 7}, 'spacer')
@@ -299,14 +301,14 @@ const ps = (function () {
         resetVideo($introVideo);
       }}, "spacer")
       .from(".transform-copy-p", { autoAlpha: 0 }, "spacer")
-      .to(".transform-rotating-title.rt1", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=1.25")
-      .from(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=1.25")
-      .to(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=3")
-      .from(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=3")
-      .to(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=4")
-      .from(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=4")
-      .to(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=5")
-      .from(".transform-rotating-title.rt5", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=5")
+      .to(".transform-rotating-title.rt1", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=1")
+      .from(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=1")
+      .to(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=2.75")
+      .from(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=2.75")
+      .to(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=4.4")
+      .from(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=4.4")
+      .to(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=6")
+      .from(".transform-rotating-title.rt5", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=6")
       .to(".null", { opacity: 0.5, duration: 3},'spacer2')
       .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")

@@ -462,13 +462,15 @@ section {
   left: 0;
   top: 0;
 }
+#section-transform .transform-sequence {
+  text-align: right;
+}
 #section-transform .transform-container {
   position: relative;
   width: 100%;
 }
 #section-transform .transform-title-container {
   width: 500px;
-  height: 140px;
   overflow: visible;
   position: absolute;
   top: 37.45vh;
@@ -476,6 +478,7 @@ section {
 }
 #section-transform .transform-rotating-titles-container {
   position: relative;
+  height: 140px;
 }
 #section-transform .transform-rotating-title:not(:first-child) {
   position: absolute;
