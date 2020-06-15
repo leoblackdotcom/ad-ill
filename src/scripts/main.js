@@ -152,7 +152,7 @@ const ps = (function () {
 
   onRetouchUpdate = function(){
     const curProgress = tlRetouch.progress();
-    const translateYVal = mapValue(curProgress,0,1,-100,100);
+    const translateYVal = mapValue(curProgress,0,1,-200,0);
     $retouchContentContainer.style.transform = `translateY(${-translateYVal}px)`;
   }
 
