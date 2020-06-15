@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ps = (function () {
   const self = this;
-  let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
+  let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad; //gsap timelines
 
   let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
@@ -53,7 +53,6 @@ const ps = (function () {
   let appState = {
     curSceneIndex: 0,
     screenDims: {},
-    introHasPlayed: false,
   };
 
   getScreenDims = function () {
@@ -106,18 +105,30 @@ const ps = (function () {
     $video.play();
   };
 
-  onTransformEnter = function () {
+  conditionallyPlayIntro = function(){
     const isVideoPlaying = checkIfVideoPlaying($introVideo);
-    if (!isVideoPlaying && !appState.introHasPlayed){
-      appState.introHasPlayed = true;
+    if (!isVideoPlaying){
       $introVideo.play();
     }
+  }
+
+  onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
+    conditionallyPlayIntro();
     appState.curSceneIndex = 1;
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
-  onTransformLeaveBack = function () {
+  onTransformUpdate = function({progress,direction}){
+    if (tlTransform){
+      if (direction === -1 && progress < .02){
+        conditionallyPlayIntro(); //play intro video if we're at the top (within threshold, often we dont ever hit exact 0 point) and if the video is not already playing
+      }
+    }
+  }
+
+  onTransformLeaveBack = function () { //never fires because fixed top
+    console.log('transform leave back');
     appState.curSceneIndex = 0;
     playVideo($introVideo);
   };
@@ -154,7 +165,6 @@ const ps = (function () {
       opacity: 1,
     });
     appState.curSceneIndex = 3;
-    playVideo($brushesVideo);
   };
 
   oniPadEnter = function () {
@@ -171,11 +181,11 @@ const ps = (function () {
   };
 
   oniPadLeaveForward = function(){
-    //tliPadContentOut.restart();
+    //
   }
 
   oniPadVideoEnded = function(){
-    //tliPadContent.restart();
+    //
   }
 
   onWhatsNewEnter = function () {
@@ -252,7 +262,8 @@ const ps = (function () {
         start: "top top", // when the top of the trigger hits the top of the viewport
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onTransformEnter,
-        onLeaveBack: onTransformLeaveBack,
+        onUpdate: onTransformUpdate,
+        //onLeaveBack: onTransformLeaveBack,
         end: `+=${
           sceneConfig.scenes.transform.sceneDuration * appState.screenDims.height
         }`,
@@ -329,41 +340,8 @@ const ps = (function () {
       .addLabel("end");
   };
 
-  initTimelineBrushesContent = function(){
-    tlBrushesContent = gsap.timeline({
-      paused: true,
-    });
-
-    tlBrushesContent
-    
-      .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
-      .from(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: 20 },
-        "brushesIntroIn"
-      )
-      .from(".brushes-button-container", { autoAlpha: 0 }, "brushesButtonIn");
-
-  }
-
   checkIfVideoPlaying = (video)=>{
     return !!(video.currentTime > 0 && !video.paused && !video.ended && video.readyState > 2);
-  }
-
-  initTimelineBrushesContentOut = function(){
-    tlBrushesContentOut = gsap.timeline({
-      paused: true,
-    });
-
-    tlBrushesContentOut
-      .to(".brushes-title", { autoAlpha: 0, translateY: -20 }, "brushesContentOut")
-      .to(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: -20, delay: .1 },
-        "brushesContentOut"
-      )
-      .to(".brushes-button-container", { autoAlpha: 0, delay: .2 }, "brushesContentOut");
-
   }
 
   initTimelineRetouch = function () {
@@ -428,16 +406,6 @@ const ps = (function () {
           drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
         }, 
       }, "spacer2")
-      .to(
-        ".retouch-tools",
-        { autoAlpha: 0},
-        "spacer2+=1.45"
-      )
-      .to(
-        ".retouch-brushes",
-        { autoAlpha: 0 },
-        "spacer2+=1.45"
-      )
       .from(
         ".retouch-title-line.l3",
         { autoAlpha: 0, translateY: 20 },

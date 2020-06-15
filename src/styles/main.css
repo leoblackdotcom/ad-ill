@@ -462,24 +462,6 @@ section {
   top: 0;
   position: absolute;
 }
-#section-transform .transform-tools-container {
-  position: absolute;
-  top: 16.35vh;
-  right: 9.375vw;
-  width: 3.5vw;
-}
-#section-transform .transform-masks-panel-container {
-  position: absolute;
-  top: 52.3vh;
-  left: 40.5vw;
-  width: 20vw;
-}
-#section-transform .transform-blend-panel-container {
-  position: absolute;
-  top: 63vh;
-  left: 60.875vw;
-  width: 18.75vw;
-}
 
 #section-brushes {
   z-index: 20;
