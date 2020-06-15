@@ -2,7 +2,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ps = (function () {
   const self = this;
-  let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad; //gsap timelines
+  let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
+
+  let tlBrushesTrigger;
 
   let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
@@ -19,7 +21,7 @@ const ps = (function () {
         sceneDuration: 15,
       },
       brushes: {
-        sceneDuration: 15,
+        sceneDuration: 5,
       },
       retouch: {
         sceneDuration: 10,
@@ -53,6 +55,7 @@ const ps = (function () {
   let appState = {
     curSceneIndex: 0,
     screenDims: {},
+    scrollDirection: 0,
   };
 
   getScreenDims = function () {
@@ -119,13 +122,26 @@ const ps = (function () {
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
+  onTransformEnterBack = function(){ //fires before brushesLeaveBack
+    tlBrushesContentOut.restart();
+  }
+
   onBrushesEnter = function () {
     appState.curSceneIndex = 2;
     playVideo($brushesVideo);
   };
 
+  onBrushesVideoIn = function(){
+    tlBrushesContent.restart();
+  }
+
+  onBrushesLeave = function(){
+    tlBrushesContentOut.play();
+  }
+
   onBrushesLeaveBack = function () {
     appState.curSceneIndex = 1;
+    resetTimeline(tlBrushes);
     resetVideo($brushesVideo);
   };
 
@@ -135,6 +151,10 @@ const ps = (function () {
   onRetouchEnter = function () {
     appState.curSceneIndex = 2;
   };
+
+  onRetouchEnterBack = function(){
+    resetTimeline(tliPadContent);
+  }
 
   onRetouchUpdate = function(){
     const curProgress = tlRetouch.progress();
@@ -150,25 +170,27 @@ const ps = (function () {
     gsap.to('.brushes-video',{
       opacity: 1,
     });
+    tlBrushesContent.restart();
     appState.curSceneIndex = 3;
   };
 
   oniPadEnter = function () {
     appState.curSceneIndex = 4;
     playVideo($ipadVideo);
+    tliPadContent.restart();
     gsap.to(".ipad-video", { scale: 1, duration: 2 })
   };
+
+  onTriggerIpadContentOut = function(){
+    tliPadContentOut.restart();
+  }
 
   oniPadLeaveBack = function () {
     appState.curSceneIndex = 3;
     resetVideo($ipadVideo);
-    gsap.to(".ipad-video", { scale: 1.2, duration: 2 })
-    //resetTimeline(tliPadContent);
+    gsap.to(".ipad-video", { scale: 1.2, duration: 2 });
+    tliPadContentOut.restart();
   };
-
-  oniPadLeaveForward = function(){
-    //
-  }
 
   oniPadVideoEnded = function(){
     //
@@ -181,6 +203,7 @@ const ps = (function () {
   onWhatsNewLeaveBack = function () {
     appState.curSceneIndex = 4;
     playVideo($ipadVideo);
+    tliPadContent.restart();
   };
 
   initCanvas = function () {
@@ -230,10 +253,12 @@ const ps = (function () {
   initTimelines = function () {
     initTimelineTransform();
     initTimelineBrushes();
+    initTimelineBrushesContent();
+    initTimelineBrushesContentOut();
     initTimelineRetouch();
     initTimelineiPad();
-    //initTimelineiPadContent();
-    //initTimelineiPadContentOut();
+    initTimelineiPadContent();
+    initTimelineiPadContentOut();
     initTimelineWhatsNew();
   };
 
@@ -248,6 +273,7 @@ const ps = (function () {
         start: "top top", // when the top of the trigger hits the top of the viewport
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onTransformEnter,
+        onEnterBack: onTransformEnterBack,
         end: `+=${
           sceneConfig.scenes.transform.sceneDuration * appState.screenDims.height
         }`,
@@ -286,9 +312,42 @@ const ps = (function () {
       .addLabel("end");
   };
 
+  initTimelineBrushesContent = function(){
+    tlBrushesContent = gsap.timeline({
+      paused: true,
+    });
+
+    tlBrushesContent
+    
+      .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
+      .from(
+        ".brushes-intro",
+        { autoAlpha: 0, translateY: 20 },
+        "start+=.5"
+      )
+      .from(".brushes-button-container", { autoAlpha: 0 }, "start+=1")
+      .addLabel("end");
+  }
+
+  initTimelineBrushesContentOut = function(){
+    tlBrushesContentOut = gsap.timeline({
+      paused: true,
+    });
+
+    tlBrushesContentOut
+      .to(".brushes-title", { autoAlpha: 0, translateY: -20 }, "brushesContentOut")
+      .to(
+        ".brushes-intro",
+        { autoAlpha: 0, translateY: -20},
+        "brushesContentOut+=.5"
+      )
+      .to(".brushes-button-container", { autoAlpha: 0 }, "brushesContentOut+=1")
+      .addLabel("end");
+  }
+
   initTimelineBrushes = function () {
-    tlBrushes = gsap.timeline({
-      scrollTrigger: {
+    tlBrushesTrigger = ScrollTrigger.create(
+      {
         trigger: "#section-brushes",
         pin: ".brushes-container",
         start: "top 100%", // when the top of the trigger hits the top of the viewport + 100% browser height
@@ -296,29 +355,18 @@ const ps = (function () {
         anticipatePin: 1, //triggers the pin slightly early due to fact that pinning seems to happen a bit after top of this section disappears before it is re-pinned to top
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
+        onLeave: onBrushesLeave,
         onLeaveBack: onBrushesLeaveBack,
-      },
+      }
+    )
+    tlBrushes = gsap.timeline({
+      scrollTrigger: tlBrushesTrigger,
+      paused: true,
     });
 
     tlBrushes
-      .from(".brushes-video", { autoAlpha: 0, duration: 2 }, "spacer1")
-      .to(".null", { scale: 1, duration: 2.5 }, "spacer1")
-      .fromTo('.brushes-content-container',{translateY: 80}, {translateY: -80, duration: 8}, 'textin')
-      .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "textin")
-      .from(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: 20 },
-        "textin+=.5"
-        )
-      .from(".brushes-button-container", { autoAlpha: 0 }, "textin+=1")
-      .to(".null", { opacity: 0, duration: 5 }, "textin+=1")
-      .to(".brushes-title", { autoAlpha: 0, translateY: -20 }, "textin+=6.5")
-      .to(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: -20, delay: .1 },
-        "textin+=7"
-      )
-      .to(".brushes-button-container", { autoAlpha: 0, delay: .2 }, "textin+=7.5")
+      .from(".brushes-video", { autoAlpha: 0, duration: 2, onComplete: onBrushesVideoIn }, "spacer1")
+      .to(".null", { opacity: 0, duration: 2 }, "spacer2")
       .addLabel("end");
   };
 
@@ -337,6 +385,7 @@ const ps = (function () {
         }`,
         scrub: true,
         onEnter: onRetouchEnter,
+        onEnterBack: onRetouchEnterBack,
         onLeave: onRetouchLeave,
         onLeaveBack: onRetouchLeaveBack,
         onUpdate: onRetouchUpdate,
@@ -400,6 +449,26 @@ const ps = (function () {
       .addLabel("end");
   };
 
+  initTimelineiPadContent = function(){
+    tliPadContent = gsap.timeline({
+      paused: true,
+    });
+
+    tliPadContent
+      .from(".ipad-title", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start")
+      .from(".ipad-intro", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start+=.5")
+      .from(".ipad-button-container", { autoAlpha: 0, duration: 1.5 }, "start+=1")
+      .addLabel("end");
+  }
+
+  initTimelineiPadContentOut = function(){
+    tliPadContentOut = gsap.timeline({paused: true})
+      .to(".ipad-title", { autoAlpha: 0, translateY: -20, duration: 1 }, "ipadTitleOut")
+      .to(".ipad-intro", { autoAlpha: 0, translateY: -40, duration: 1 }, "ipadTitleOut+=.5")
+      .to(".ipad-button-container", { autoAlpha: 0, duration: 1 }, "ipadTitleOut+=1")
+      .addLabel("end");
+  }
+
   initTimelineiPad = function () {
     tliPad = gsap.timeline({
       scrollTrigger: {
@@ -416,14 +485,8 @@ const ps = (function () {
     });
 
     tliPad
-      .to(".null", { opacity: 0, duration: 2 }, "spacer1")
-      .from(".ipad-title", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start")
-      .from(".ipad-intro", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start+=.5")
-      .from(".ipad-button-container", { autoAlpha: 0, duration: 1.5 }, "start+=1")
-      .to(".null", { scale: .5, duration: 2, }, "spacer2")
-      .to(".ipad-title", { autoAlpha: 0, translateY: -20, duration: 1.5 }, "ipadTitleOut")
-      .to(".ipad-intro", { autoAlpha: 0, translateY: -40, duration: 1.5 }, "ipadTitleOut+=.5")
-      .to(".ipad-button-container", { autoAlpha: 0, duration: 1.5 }, "ipadTitleOut+=1")
+      .to(".null", { opacity: 0, duration: 2, onComplete: onTriggerIpadContentOut }, "spacer1")
+      .to(".null", { scale: .5, duration: 2 }, "spacer2")
       .addLabel("end");
   };
 
