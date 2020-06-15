@@ -132,7 +132,7 @@
             <div class="transform-rotating-titles-container inactive">
               <h2 class="transform-rotating-title section-title rt1">Create what<br/>your camera<br/>can’t capture.</h2>
               <h2 class="transform-rotating-title section-title rt2">Make quick, automatic selections.</h2>
-              <h2 class="transform-rotating-title section-title rt3">Show and hide with masks.</h2>
+              <h2 class="transform-rotating-title section-title rt3">Show and hide<br/>with masks.</h2>
               <h2 class="transform-rotating-title section-title rt4">Use unlimited layers.</h2>
               <h2 class="transform-rotating-title section-title rt5">Transform photos into fantasy.</h2>
             </div>
@@ -222,10 +222,6 @@
                   <h4 class="wn-cards__subhead">Font Giveaway</h4>
                   <p class="wn-cards__copy">Kraken Slab</p>
                 </div>
-              </div>
-              
-              <div class="btn-ctnr">
-                <a href="#" class="btn">More</a>
               </div>
             </div>
             

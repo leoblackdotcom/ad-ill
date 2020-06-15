@@ -119,20 +119,6 @@ const ps = (function () {
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
-  onTransformUpdate = function({progress,direction}){
-    if (tlTransform){
-      if (direction === -1 && progress < .02){
-        conditionallyPlayIntro(); //play intro video if we're at the top (within threshold, often we dont ever hit exact 0 point) and if the video is not already playing
-      }
-    }
-  }
-
-  onTransformLeaveBack = function () { //never fires because fixed top
-    console.log('transform leave back');
-    appState.curSceneIndex = 0;
-    playVideo($introVideo);
-  };
-
   onBrushesEnter = function () {
     appState.curSceneIndex = 2;
     playVideo($brushesVideo);
@@ -262,8 +248,6 @@ const ps = (function () {
         start: "top top", // when the top of the trigger hits the top of the viewport
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onTransformEnter,
-        onUpdate: onTransformUpdate,
-        //onLeaveBack: onTransformLeaveBack,
         end: `+=${
           sceneConfig.scenes.transform.sceneDuration * appState.screenDims.height
         }`,
@@ -282,9 +266,7 @@ const ps = (function () {
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
         }, 
       }, "spacer")
-      .fromTo('.transform-title-container',{translateY: 180}, {translateY: 0, duration: 7}, 'spacer')
-      .fromTo('.transform-canvas',{translateY: -100}, {translateY: 0, duration: 7}, 'spacer')
-      .from(".transform-rotating-title.rt1", { autoAlpha: 0, translateY: introTitleTranslateY}, "spacer")
+      .from(".transform-rotating-title.rt1", { autoAlpha: 0}, "spacer+=.5")
       .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1, onComplete: function(){
         resetVideo($introVideo);
       }}, "spacer")

@@ -237,6 +237,8 @@
     &-container {
       position: relative;
       z-index: 10;
+      height: 100vh;
+      overflow: hidden;
     }
     &-video {
       width: 100%;
@@ -257,7 +259,6 @@
       width: 4.875vw;
     }
     &-title {
-      font-weight: normal;
       //font-size: 6.75rem;
       font-size: 5rem;
       line-height: 1em;
@@ -334,7 +335,7 @@
       width: 100%;
     }
     &-title-container {
-      width: 500px;
+      width: 45vw;
       overflow: visible;
       position: absolute;
       top: 37.45vh;
