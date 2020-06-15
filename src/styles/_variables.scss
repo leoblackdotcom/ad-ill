@@ -8,6 +8,8 @@ $color--body: $color--white;
 $color--link: $color--body;
 $color--button-active: #1473E6;
 
+$gradient-shade-dark: linear-gradient(to right, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 30%,rgba(0,0,0,0) 100%);
+
 //layout
 $header-height: 0px; //if we use a fixed header
 $design-width: 1677px;

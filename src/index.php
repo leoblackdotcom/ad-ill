@@ -32,15 +32,17 @@
               />
             </video>
             <div class="brushes-content-container">
-              <h2 class="section-title brushes-title">
-                A thousand brushes<br />with greatness.
-              </h2>
-              <p class="section-intro brushes-intro">
-                Paint and draw with thousands of custom brushes or create your own
-                — Photoshop puts the world’s largest collection at your fingertips
-              </p>
-              <div class="brushes-button-container">
-                <button class="brushes-button button-sm">Get started with brushes</button>
+              <div class="brushes-content-inner">
+                <h2 class="section-title brushes-title">
+                  A thousand brushes<br />with greatness.
+                </h2>
+                <p class="section-intro brushes-intro">
+                  Paint and draw with thousands of custom brushes or create your own
+                  — Photoshop puts the world’s largest collection at your fingertips
+                </p>
+                <div class="brushes-button-container">
+                  <button class="brushes-button button-sm button-">Get started with brushes</button>
+                </div>
               </div>
             </div>
         </div>
@@ -65,34 +67,7 @@
             <p class="section-intro retouch-intro">Make portraits pop and expressions more expressive. Remove objects, retouch, remix, and recolor. With powerful editing and effects tools, you can turn imagery into artistry.</p>
             <button class="button-sm button-lt retouch-button">Try it yourself</button>
           </div>
-          <div class="retouch-tools-container">
-            <img
-              src="assets/images/retouch/retouch-tools-brush-active.jpg"
-              alt="Retouch Tools"
-              class="retouch-tools"
-            />
-          </div>
-          <div class="retouch-brushes-container">
-            <img
-              src="assets/images/retouch/retouch-brushes.jpg"
-              alt="Retouch Brushes"
-              class="retouch-brushes"
-            />
-          </div>
-          <div class="retouch-tools-container-2">
-            <img
-              src="assets/images/retouch/retouch-tools-pen-active.jpg"
-              alt="Retouch Tools Zoomed In"
-              class="retouch-tools-2"
-            />
-          </div>
-          <div class="retouch-pen-tools-container">
-            <img
-              src="assets/images/retouch/retouch-pen-tools.jpg"
-              alt="Retouch Pen Tools"
-              class="retouch-pen-tools"
-            />
-          </div>
+          
           <div class="retouch-pen-options-container">
             <img
               src="assets/images/retouch/retouch-pen-options.jpg"
@@ -191,17 +166,19 @@
             <source src="assets/videos/ipad/ipad.mp4" type="video/mp4" />
           </video>
           <div class="ipad-content-container">
-            <h2 class="section-title ipad-title">
-              Powerful meets portable.
-            </h2>
-            <p class="section-intro ipad-intro">
-              The creative power of Photoshop is now on your iPad. Open full-size PSDs, create sophisticated composites, retouch images, and control brushes with your finger or Apple Pencil. 
-            </p>
-            <div class="ipad-button-container">
-              <a href="#" class="ipad-app-store-link">
-                <img src="assets/images/ipad/app-store-logo.png" alt="Download Photoshop for the iPad" class="ipad-app-store-logo">
-              </a>
-              <a href="#" class="ipad-learn-more-link">Learn More</a>
+            <div class="ipad-content">
+              <h2 class="section-title ipad-title">
+                Powerful meets portable.
+              </h2>
+              <p class="section-intro ipad-intro">
+                The creative power of Photoshop is now on your iPad. Open full-size PSDs, create sophisticated composites, retouch images, and control brushes with your finger or Apple Pencil. 
+              </p>
+              <div class="ipad-button-container">
+                <a href="#" class="ipad-app-store-link">
+                  <img src="assets/images/ipad/app-store-logo.png" alt="Download Photoshop for the iPad" class="ipad-app-store-logo">
+                </a>
+                <a href="#" class="ipad-learn-more-link">Learn More</a>
+              </div>
             </div>
           </div>
         </div>
@@ -224,7 +201,7 @@
                   <p class="wn-cards__copy">Discover your Chromatica</p>
                 </div>
                 
-                <div class="wn-cards__card wn-cards__card--hide">
+                <div class="wn-cards__card wn-cards__card--hide delay1">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card2.jpg" />
                   <h4 class="wn-cards__subhead">Adobe Live</h4>
                   <p class="wn-cards__copy">Compositing in Photoshop</p>
@@ -235,7 +212,7 @@
                   <p class="wn-cards__copy">Maryanne Nguyen</p>
                 </div>
                 
-                <div class="wn-cards__card wn-cards__card--hide">
+                <div class="wn-cards__card wn-cards__card--hide delay2">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card3.jpg" />
                   <h4 class="wn-cards__subhead">Creative Challenge</h4>
                   <p class="wn-cards__copy">Play with fire</p>

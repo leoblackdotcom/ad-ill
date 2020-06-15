@@ -37,7 +37,12 @@ body:not(.loading){
 		padding-bottom: 60px;
 		transform: translateY(0);
 		transition: transform 1.5s ease;
-		
+		&.delay1{
+			transition-delay: .25s;
+		}
+		&.delay2{
+			transition-delay: .5s;
+		}
 		
 	}
 }
@@ -85,7 +90,9 @@ body:not(.loading){
 	&__actions {
 		text-align: center;
 	}
-	
+	&__filters {
+		margin-top: 50px;
+	}
 	&__filter {
 		display: -webkit-inline-box;
     display: inline-flex;

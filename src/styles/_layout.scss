@@ -23,9 +23,14 @@
         }
         &-content-container {
           position: absolute;
-          bottom: 6.8vh;
-          left: 9.35vw;
-          width: 43vw;
+          bottom: 0;
+          left: 0;
+          width: 53vw;
+          padding: 5vw;
+        }
+        &-content-inner {
+          color: black;
+          position: relative;
         }
         &-intro {
           margin-top: 20px;
@@ -36,8 +41,8 @@
         }
         &-button {
           border: 1px solid $color--gray-dk;
-          color: $color--white;
-          background-color: $color--gray-dk;
+          color: $color--gray-dk;
+          background-color: transparent;
         }
       }
     }
@@ -107,48 +112,6 @@
         &-button {
           margin-top: 40px;
           pointer-events: all;
-        }
-        &-tools-container {
-          position: absolute;
-          left: 38vw;
-          top: 22vh;
-          width: 3.5vw;
-          z-index: 10;
-        }
-        &-brushes-container {
-          left: 41.5vw;
-          top: 45vh;
-          width: 17.4vw;
-          position: absolute;
-          z-index: 20;
-        }
-        &-masks-container {
-          left: 23.7vw;
-          top: 40.6vh;
-          width: 23.5vw;
-          position: absolute;
-          z-index: 30;
-        }
-        &-tools-container-2 {
-          position: absolute;
-          left: 15.2vw;
-          top: 39vh;
-          width: 7vw;
-          z-index: 40;
-        }
-        &-pen-tools-container {
-          position: absolute;
-          left: 22.2vw;
-          top: 50vh;
-          width: 21.8vw;
-          z-index: 50;
-        }
-        &-pen-options-container {
-          position: absolute;
-          left: 36.3vw;
-          top: 0vh;
-          width: 77.75vw;
-          z-index: 60;
         }
       }
     }
@@ -452,15 +415,20 @@
     }
     &-content-container {
       position: absolute;
-      top: 11.8vh;
-      left: 9.7vw;
-      //width: 35.5vw;
-      width: 45vw;
+      top: 0;
+      left: 0;
+      height: 100%;
+      padding-left: 9.7vw;
+      width: 42vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $gradient-shade-dark;
     }
     &-intro {
       margin-top: 11vh;
       //width: 25.5vw;
-      width: 30vw;
+      max-width: 30vw;
     }
     &-button-container {
       margin-top: 4.55vh;
@@ -471,7 +439,8 @@
       width: 120px;
     }
     &-learn-more-link {
-      color: $color--button-active;
+      color: $color--white;
+      text-decoration: underline;
       margin-left: 25px;
     }
   }

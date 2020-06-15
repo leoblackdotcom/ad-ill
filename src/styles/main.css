@@ -142,9 +142,14 @@ section {
 }
 .fixed-section.brushes .brushes-content-container {
   position: absolute;
-  bottom: 6.8vh;
-  left: 9.35vw;
-  width: 43vw;
+  bottom: 0;
+  left: 0;
+  width: 53vw;
+  padding: 5vw;
+}
+.fixed-section.brushes .brushes-content-inner {
+  color: black;
+  position: relative;
 }
 .fixed-section.brushes .brushes-intro {
   margin-top: 20px;
@@ -155,8 +160,8 @@ section {
 }
 .fixed-section.brushes .brushes-button {
   border: 1px solid #505050;
-  color: white;
-  background-color: #505050;
+  color: #505050;
+  background-color: transparent;
 }
 .fixed-section.retouch {
   z-index: 2;
@@ -225,48 +230,6 @@ section {
 .fixed-section.retouch .retouch-button {
   margin-top: 40px;
   pointer-events: all;
-}
-.fixed-section.retouch .retouch-tools-container {
-  position: absolute;
-  left: 38vw;
-  top: 22vh;
-  width: 3.5vw;
-  z-index: 10;
-}
-.fixed-section.retouch .retouch-brushes-container {
-  left: 41.5vw;
-  top: 45vh;
-  width: 17.4vw;
-  position: absolute;
-  z-index: 20;
-}
-.fixed-section.retouch .retouch-masks-container {
-  left: 23.7vw;
-  top: 40.6vh;
-  width: 23.5vw;
-  position: absolute;
-  z-index: 30;
-}
-.fixed-section.retouch .retouch-tools-container-2 {
-  position: absolute;
-  left: 15.2vw;
-  top: 39vh;
-  width: 7vw;
-  z-index: 40;
-}
-.fixed-section.retouch .retouch-pen-tools-container {
-  position: absolute;
-  left: 22.2vw;
-  top: 50vh;
-  width: 21.8vw;
-  z-index: 50;
-}
-.fixed-section.retouch .retouch-pen-options-container {
-  position: absolute;
-  left: 36.3vw;
-  top: 0vh;
-  width: 77.75vw;
-  z-index: 60;
 }
 
 .sticky {
@@ -545,13 +508,19 @@ section {
 }
 #section-ipad .ipad-content-container {
   position: absolute;
-  top: 11.8vh;
-  left: 9.7vw;
-  width: 45vw;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding-left: 9.7vw;
+  width: 42vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
 }
 #section-ipad .ipad-intro {
   margin-top: 11vh;
-  width: 30vw;
+  max-width: 30vw;
 }
 #section-ipad .ipad-button-container {
   margin-top: 4.55vh;
@@ -562,7 +531,8 @@ section {
   width: 120px;
 }
 #section-ipad .ipad-learn-more-link {
-  color: #1473E6;
+  color: white;
+  text-decoration: underline;
   margin-left: 25px;
 }
 
@@ -672,6 +642,12 @@ body:not(.loading) .wn-cards__card--hide {
   transform: translateY(0);
   transition: transform 1.5s ease;
 }
+.wn-cards__card.delay1 {
+  transition-delay: 0.25s;
+}
+.wn-cards__card.delay2 {
+  transition-delay: 0.5s;
+}
 
 .wn-grid {
   color: black;
@@ -714,6 +690,9 @@ body:not(.loading) .wn-cards__card--hide {
 }
 .adobe-article-grid__actions {
   text-align: center;
+}
+.adobe-article-grid__filters {
+  margin-top: 50px;
 }
 .adobe-article-grid__filter {
   display: -webkit-inline-box;

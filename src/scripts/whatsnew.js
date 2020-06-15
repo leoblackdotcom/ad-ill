@@ -60,6 +60,7 @@ ps.whatsNewModule = (function() {
   function cardWatcher(thisDirection) {
     // Get all cards which are currently transformed and the current window height
     const isForward = thisDirection === 1 ? true : false;
+    const offsetThreshold = .25; //percentage at which we show the card
     let cards = isForward ? document.querySelectorAll('.wn-cards__card--hide') : document.querySelectorAll(".wn-cards__card:not(.wn-cards__card--hide)");
     let windowHeight = window.innerHeight;
     
@@ -71,8 +72,8 @@ ps.whatsNewModule = (function() {
       //  less than 25% of the height, we should show the card
       
       let toChange = isForward ? 
-        (offset - windowHeight - (height * .25) < 0) : 
-        (offset - windowHeight - (height * .25) > -(windowHeight/2));
+        (offset - windowHeight - (height * offsetThreshold) < 0) : 
+        (offset - windowHeight - (height * offsetThreshold) > -(windowHeight/2));
       
       if(toChange) {
         card.classList.toggle('wn-cards__card--hide', isForward ? false : true);

@@ -19,13 +19,13 @@ const ps = (function () {
         sceneDuration: 15,
       },
       brushes: {
-        sceneDuration: 3,
+        sceneDuration: 15,
       },
       retouch: {
         sceneDuration: 10,
       },
       ipad: {
-        sceneDuration: 3,
+        sceneDuration: 7,
       },
     },
     videoBasePath: "assets/videos",
@@ -93,18 +93,6 @@ const ps = (function () {
     ps.whatsNewModule.init();
   };
 
-  /*
-  onScrollUpdate = (self) => {
-    console.log(
-      "progress:",
-      self.progress.toFixed(3),
-      "direction:",
-      self.direction,
-      "velocity",
-      self.getVelocity()
-    );
-  };*/
-
   resetTimeline = function(timelineRef){
     timelineRef.progress(0).pause();
   }
@@ -142,20 +130,13 @@ const ps = (function () {
   onBrushesLeaveBack = function () {
     appState.curSceneIndex = 1;
     resetVideo($brushesVideo);
-    resetTimeline(tlBrushesContent);
   };
 
   onBrushesVideoEnded = function(){
-    tlBrushesContent.restart();
-  }
-
-  onBrushesLeaveForward = function(){
-    tlBrushesContentOut.restart();
   }
 
   onRetouchEnter = function () {
     appState.curSceneIndex = 2;
-    resetVideo($brushesVideo);
   };
 
   onRetouchUpdate = function(){
@@ -165,7 +146,7 @@ const ps = (function () {
   }
 
   onRetouchLeave = function(){
-    gsap.from(".ipad-video", { scale: 1.2, duration: 2 })
+    gsap.from(".ipad-video", { scale: 1.2, duration: 2 });
   }
 
   onRetouchLeaveBack = function () {
@@ -185,16 +166,16 @@ const ps = (function () {
   oniPadLeaveBack = function () {
     appState.curSceneIndex = 3;
     resetVideo($ipadVideo);
-    resetTimeline(tliPadContent);
     gsap.to(".ipad-video", { scale: 1.2, duration: 2 })
+    //resetTimeline(tliPadContent);
   };
 
   oniPadLeaveForward = function(){
-    tliPadContentOut.restart();
+    //tliPadContentOut.restart();
   }
 
   oniPadVideoEnded = function(){
-    tliPadContent.restart();
+    //tliPadContent.restart();
   }
 
   onWhatsNewEnter = function () {
@@ -253,12 +234,10 @@ const ps = (function () {
   initTimelines = function () {
     initTimelineTransform();
     initTimelineBrushes();
-    initTimelineBrushesContent();
-    initTimelineBrushesContentOut();
     initTimelineRetouch();
     initTimelineiPad();
-    initTimelineiPadContent();
-    initTimelineiPadContentOut();
+    //initTimelineiPadContent();
+    //initTimelineiPadContentOut();
     initTimelineWhatsNew();
   };
 
@@ -281,8 +260,7 @@ const ps = (function () {
     });
 
     tlTransform
-      //.from(".transform-sequence.t4", { autoAlpha: 0 }, "start")
-      .to(".null", { opacity: 0, duration: 6,
+      .to(".null", { opacity: 0, duration: 7,
         onUpdate: function () {
           const thisProgress = this.progress();
           
@@ -291,7 +269,6 @@ const ps = (function () {
             Math.ceil(vidConfig.frames * thisProgress);
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
-            console.log(currentFrame,thisProgress);
         }, 
       }, "spacer")
       .fromTo('.transform-title-container',{translateY: 180}, {translateY: 0, duration: 7}, 'spacer')
@@ -301,18 +278,18 @@ const ps = (function () {
         resetVideo($introVideo);
       }}, "spacer")
       .from(".transform-copy-p", { autoAlpha: 0 }, "spacer")
-      .to(".transform-rotating-title.rt1", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=1")
-      .from(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=1")
-      .to(".transform-rotating-title.rt2", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=2.75")
-      .from(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=2.75")
-      .to(".transform-rotating-title.rt3", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=4.4")
-      .from(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=4.4")
-      .to(".transform-rotating-title.rt4", { autoAlpha: 0, duration: .3, translateY: `-${introTitleTranslateY}`, ease: "power2.out" }, "spacer+=6")
-      .from(".transform-rotating-title.rt5", { autoAlpha: 0, duration: .3, translateY: `${introTitleTranslateY}`, ease: "power2.in" }, "spacer+=6")
+      .to(".transform-rotating-title.rt1", { autoAlpha: 0, ease: "none" }, "spacer+=1")
+      .from(".transform-rotating-title.rt2", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=1")
+      .to(".transform-rotating-title.rt2", { autoAlpha: 0, ease: "none" }, "spacer+=2.75")
+      .from(".transform-rotating-title.rt3", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=2.75")
+      .to(".transform-rotating-title.rt3", { autoAlpha: 0, ease: "none" }, "spacer+=4.4")
+      .from(".transform-rotating-title.rt4", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=4.4")
+      .to(".transform-rotating-title.rt4", { autoAlpha: 0, ease: "none" }, "spacer+=6.5")
+      .from(".transform-rotating-title.rt5", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=6.5")
       .to(".null", { opacity: 0.5, duration: 3},'spacer2')
       .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")
-      .to(".transform-sequence", { autoAlpha: 0,durtaion: 1 }, "spacer2+=2")
+      .to(".transform-sequence", { autoAlpha: 0,duration: 1 }, "spacer2+=2")
       .addLabel("end");
   };
 
@@ -322,6 +299,7 @@ const ps = (function () {
         trigger: "#section-brushes",
         pin: ".brushes-container",
         start: "top 100%", // when the top of the trigger hits the top of the viewport + 100% browser height
+        end: `+=${sceneConfig.scenes.brushes.sceneDuration * appState.screenDims.height}`,
         anticipatePin: 1, //triggers the pin slightly early due to fact that pinning seems to happen a bit after top of this section disappears before it is re-pinned to top
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
@@ -331,8 +309,23 @@ const ps = (function () {
 
     tlBrushes
       .from(".brushes-video", { autoAlpha: 0, duration: 2 }, "spacer1")
-      .to(".null", { scale: 1, duration: 5 }, "spacer1")
-      .to(".null", { opacity: 0, duration: 5, onStart: onBrushesLeaveForward }, "spacer2")
+      .to(".null", { scale: 1, duration: 2.5 }, "spacer1")
+      .fromTo('.brushes-content-container',{translateY: 80}, {translateY: -80, duration: 8}, 'textin')
+      .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "textin")
+      .from(
+        ".brushes-intro",
+        { autoAlpha: 0, translateY: 20 },
+        "textin+=.5"
+        )
+      .from(".brushes-button-container", { autoAlpha: 0 }, "textin+=1")
+      .to(".null", { opacity: 0, duration: 5 }, "textin+=1")
+      .to(".brushes-title", { autoAlpha: 0, translateY: -20 }, "textin+=6.5")
+      .to(
+        ".brushes-intro",
+        { autoAlpha: 0, translateY: -20, delay: .1 },
+        "textin+=7"
+      )
+      .to(".brushes-button-container", { autoAlpha: 0, delay: .2 }, "textin+=7.5")
       .addLabel("end");
   };
 
@@ -424,26 +417,7 @@ const ps = (function () {
         } },
         "remixIn"
       )
-      .from(
-        ".retouch-tools-container",
-        { translateY: 20, duration: 1 },
-        "retouchToolsIn"
-      )
-      .from(
-        ".retouch-tools",
-        { autoAlpha: 0, duration: 1 },
-        "retouchToolsIn"
-      )
-      .from(
-        ".retouch-brushes-container",
-        { translateY: -20, duration: 1 },
-        "retouchToolsIn"
-      )
-      .from(
-        ".retouch-brushes",
-        { autoAlpha: 0, duration: 1 },
-        "retouchToolsIn"
-      )
+    
       .to(".null", { opacity: 0, duration: 5,
         onUpdate: function () {
           const thisProgress = this.progress();
@@ -455,16 +429,6 @@ const ps = (function () {
         }, 
       }, "spacer2")
       .to(
-        ".retouch-tools-container",
-        { translateY: -40, duration: 2 },
-        "spacer2"
-      )
-      .to(
-        ".retouch-brushes-container",
-        { translateY: 40, duration: 2 },
-        "spacer2"
-      )
-      .to(
         ".retouch-tools",
         { autoAlpha: 0},
         "spacer2+=1.45"
@@ -474,57 +438,10 @@ const ps = (function () {
         { autoAlpha: 0 },
         "spacer2+=1.45"
       )
-      
-      .from(
-        ".retouch-tools-container-2",
-        { autoAlpha: 0, translateY: 20 },
-        "spacer2+=1.75"
-      )
-      .from(
-        ".retouch-pen-tools-container",
-        { autoAlpha: 0, translateY: -20, duration: .5 },
-        "spacer2+=1.75"
-      )
-      .to(
-        ".retouch-tools-2",
-        { translateY: -60, duration: 3 },
-        "spacer2+=2.25"
-      )
-      .to(
-        ".retouch-pen-tools",
-        { translateY: 60, duration: 3 },
-        "spacer2+=2.25"
-      )
-      .from(
-        ".retouch-pen-options-container",
-        { autoAlpha: 0 },
-        "spacer2+=1.85"
-      )
-      .fromTo(
-        ".retouch-pen-options",
-        { translateX: 60 },
-        { translateX: -60, duration: 3 },
-        "spacer2+=1.85"
-      )
-      .to(
-        ".retouch-tools-container-2",
-        { autoAlpha: 0, duration: .5 },
-        "spacer2+=4.6"
-      )
-      .to(
-        ".retouch-pen-tools-container",
-        { autoAlpha: 0, duration: .5 },
-        "spacer2+=4.6"
-      )
-      .to(
-        ".retouch-pen-options-container",
-        { autoAlpha: 0 },
-        "spacer2+=4.9"
-      )
       .from(
         ".retouch-title-line.l3",
         { autoAlpha: 0, translateY: 20 },
-        "reimagineIn"
+        "spacer2+=5.1"
       )
       .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
       .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
@@ -542,31 +459,24 @@ const ps = (function () {
         scrub: true,
         onEnter: oniPadEnter,
         onLeaveBack: oniPadLeaveBack,
+        end: `+=${
+          sceneConfig.scenes.ipad.sceneDuration * appState.screenDims.height
+        }`,
       },
     });
 
     tliPad
       .to(".null", { opacity: 0, duration: 2 }, "spacer1")
-      .to(".null", { scale: .5, duration: 2, onStart: oniPadLeaveForward}, "spacer2")
+      .from(".ipad-title", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start")
+      .from(".ipad-intro", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start+=.5")
+      .from(".ipad-button-container", { autoAlpha: 0, duration: 1.5 }, "start+=1")
+      .to(".null", { scale: .5, duration: 2, }, "spacer2")
+      .to(".ipad-title", { autoAlpha: 0, translateY: -20, duration: 1.5 }, "ipadTitleOut")
+      .to(".ipad-intro", { autoAlpha: 0, translateY: -40, duration: 1.5 }, "ipadTitleOut+=.5")
+      .to(".ipad-button-container", { autoAlpha: 0, duration: 1.5 }, "ipadTitleOut+=1")
       .addLabel("end");
   };
 
-  initTimelineiPadContent = function(){
-    tliPadContent = gsap.timeline({
-      paused: true,
-    });
-
-    tliPadContent.from(".ipad-title", { autoAlpha: 0, translateY: 20 }, "start")
-      .from(".ipad-intro", { autoAlpha: 0, translateY: 20 }, "ipadIntroIn")
-      .from(".ipad-button-container", { autoAlpha: 0 }, "ipadButtonIn");
-  }
-
-  initTimelineiPadContentOut = function(){
-    tliPadContentOut = gsap.timeline({paused: true})
-      .to(".ipad-title", { autoAlpha: 0, translateY: -20 }, "ipadTitleOut")
-      .to(".ipad-intro", { autoAlpha: 0, translateY: -20, delay: .1 }, "ipadTitleOut")
-      .to(".ipad-button-container", { autoAlpha: 0, delay: .2 }, "ipadTitleOut");
-  }
 
   initTimelineWhatsNew = function () {
     tlWhatsNew = gsap.timeline({
