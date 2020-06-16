@@ -190,7 +190,7 @@
               <h3 class="section-title section-title--sm wn-cards__headline">The creative world runs on Photoshop.</h3>
               
               <div class="wn-cards__grid">
-                <div class="wn-cards__card wn-cards__card--hide">
+                <div class="wn-cards__card wn-cards__card--hide stagger--1">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card1.jpg" />
                   <h4 class="wn-cards__subhead">What's New</h4>
                   <p class="wn-cards__copy">Object selection tool</p>
@@ -212,7 +212,7 @@
                   <p class="wn-cards__copy">Maryanne Nguyen</p>
                 </div>
                 
-                <div class="wn-cards__card wn-cards__card--hide delay2">
+                <div class="wn-cards__card wn-cards__card--hide delay2 stagger--2">
                   <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card3.jpg" />
                   <h4 class="wn-cards__subhead">Creative Challenge</h4>
                   <p class="wn-cards__copy">Play with fire</p>

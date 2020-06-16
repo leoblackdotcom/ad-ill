@@ -1,5 +1,6 @@
 body:not(.loading){
 	.wn-cards__card--hide {
+		opacity: 0;
 		transform: translateY(25%);
 	}
 }
@@ -34,16 +35,28 @@ body:not(.loading){
 	
 	&__card {
 		break-inside: avoid;
+		opacity: 1;
 		padding-bottom: 60px;
 		transform: translateY(0);
-		transition: transform 1.5s ease;
+		transition: transform 1.5s ease, opacity 1.5s ease;
+		
 		&.delay1{
 			transition-delay: .25s;
 		}
+		
 		&.delay2{
 			transition-delay: .5s;
 		}
 		
+		&.stagger--1 {
+			display: inline-block;
+			margin-top: 150px;
+		}
+		
+		&.stagger--2 {
+			display: inline-block;
+			margin-top: 75px;
+		}
 	}
 }
 
