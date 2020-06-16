@@ -4,8 +4,6 @@ const ps = (function () {
   const self = this;
   let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
 
-  let tlBrushesTrigger;
-
   let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
 
@@ -129,10 +127,11 @@ const ps = (function () {
   onBrushesEnter = function () {
     appState.curSceneIndex = 2;
     playVideo($brushesVideo);
+    tlBrushesContent.restart();
   };
 
   onBrushesVideoIn = function(){
-    tlBrushesContent.restart();
+    //tlBrushesContent.restart();
   }
 
   onBrushesLeave = function(){
@@ -158,8 +157,8 @@ const ps = (function () {
 
   onRetouchUpdate = function(){
     const curProgress = tlRetouch.progress();
-    const translateYVal = mapValue(curProgress,0,1,-200,0);
-    $retouchContentContainer.style.transform = `translateY(${-translateYVal}px)`;
+    const translateYVal = mapValue(curProgress,0,1,-18,0);
+    $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
   }
 
   onRetouchLeave = function(){
@@ -293,7 +292,7 @@ const ps = (function () {
         }, 
       }, "spacer")
       .from(".transform-rotating-title.rt1", { autoAlpha: 0}, "spacer+=.5")
-      .to('.intro-container',{ translateY: -appState.screenDims.height, duration: 1, onComplete: function(){
+      .to('.intro-container',{ translateY: '-100vh', duration: 1, onComplete: function(){
         resetVideo($introVideo);
       }}, "spacer")
       .from(".transform-copy-p", { autoAlpha: 0 }, "spacer")
@@ -346,8 +345,9 @@ const ps = (function () {
   }
 
   initTimelineBrushes = function () {
-    tlBrushesTrigger = ScrollTrigger.create(
-      {
+      
+    tlBrushes = gsap.timeline({
+      scrollTrigger: {
         trigger: "#section-brushes",
         pin: ".brushes-container",
         start: "top 100%", // when the top of the trigger hits the top of the viewport + 100% browser height
@@ -357,10 +357,7 @@ const ps = (function () {
         onEnter: onBrushesEnter,
         onLeave: onBrushesLeave,
         onLeaveBack: onBrushesLeaveBack,
-      }
-    )
-    tlBrushes = gsap.timeline({
-      scrollTrigger: tlBrushesTrigger,
+      },
       paused: true,
     });
 
@@ -405,7 +402,7 @@ const ps = (function () {
       .to(
         ".retouch-2",
         {
-          width: `${appState.screenDims.width}px`,
+          width: `100vw`,
         },
         "sliderIn"
       )

@@ -39,6 +39,10 @@
     top: 0;
     width: 100%;
     height: 100%;
+    visibility: hidden;
+    &.active {
+      visibility: visible;
+    }
     &.brushes {
       z-index: 1;
 
@@ -197,8 +201,8 @@
 .sequence-container {
   position: absolute;
   top: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vw;
+  width: 100vh;
 }
 
 .image-sequence {
@@ -356,14 +360,15 @@
   .transform {
     &-sequence-container {
       @include absFull;
-      .canvas {
+      canvas {
         position: absolute;
         left: 0;
         top: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+        object-position: right center;
       }
-    }
-    &-sequence {
-      text-align: right;
     }
     &-container {
       position: relative;
