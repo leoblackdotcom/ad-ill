@@ -131,10 +131,10 @@
             
             <div class="transform-rotating-titles-container inactive">
               <h2 class="transform-rotating-title section-title rt1">Create what<br/>your camera<br/>can’t capture.</h2>
-              <h2 class="transform-rotating-title section-title rt2">Make quick, automatic selections.</h2>
+              <h2 class="transform-rotating-title section-title rt2">Make quick,<br/>automatic<br/>selections.</h2>
               <h2 class="transform-rotating-title section-title rt3">Show and hide<br/>with masks.</h2>
-              <h2 class="transform-rotating-title section-title rt4">Use unlimited layers.</h2>
-              <h2 class="transform-rotating-title section-title rt5">Transform photos into fantasy.</h2>
+              <h2 class="transform-rotating-title section-title rt4">Use unlimited<br/>layers.</h2>
+              <h2 class="transform-rotating-title section-title rt5">Transform photos<br/>into fantasy.</h2>
             </div>
             <div class="transform-copy-container">
               <p class="section-intro transform-copy-p p1">
@@ -484,6 +484,10 @@
           <div class="double-bounce2"></div>
         </div>
       </div>
+    </div>
+
+    <div class="screensize-container">
+      <h2 class="screensize-warning">You must view this on a desktop screensize of 1024px or greater</h2>
     </div>
 
     <script src="scripts/libs/gsap/gsap.min.js"></script>

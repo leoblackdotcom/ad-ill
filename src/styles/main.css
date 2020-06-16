@@ -31,6 +31,11 @@ body.loading {
 body.loading .loader-container {
   display: flex;
 }
+@media (max-width: 1023px) {
+  body {
+    overflow: hidden;
+  }
+}
 
 h1,
 h2,
@@ -66,6 +71,11 @@ section {
   line-height: 4.0625rem;
   letter-spacing: -0.2px;
 }
+@media (max-width: 1280px) {
+  .section-title {
+    font-size: 3.5rem;
+  }
+}
 .section-title--sm {
   color: black;
   font-size: 2.8rem;
@@ -82,6 +92,12 @@ section {
 @media (max-width: 1440px) {
   .section-intro {
     font-size: 1.8rem;
+    line-height: 2rem;
+  }
+}
+@media (max-width: 1280px) {
+  .section-intro {
+    font-size: 1.5rem;
     line-height: 2rem;
   }
 }
@@ -118,6 +134,33 @@ section {
   color: #ffffff;
 }
 
+.screensize-container {
+  position: fixed;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+@media (max-width: 1023px) {
+  .screensize-container {
+    display: flex;
+  }
+}
+.screensize-warning {
+  font-size: 4vw;
+  width: 60vw;
+  color: white;
+  font-weight: 900;
+  text-align: center;
+}
+
 .fixed-section-container {
   position: fixed;
   width: 100vw;
@@ -142,10 +185,10 @@ section {
 }
 .fixed-section.brushes .brushes-content-container {
   position: absolute;
-  bottom: 0;
+  bottom: 13.5vh;
   left: 0;
   width: 53vw;
-  padding: 5vw;
+  padding: 0 5vw;
 }
 .fixed-section.brushes .brushes-content-inner {
   color: black;
@@ -368,11 +411,21 @@ section {
   letter-spacing: -0.2px;
   margin-top: 4.5vh;
 }
+@media (max-width: 1280px) {
+  #section-intro .intro-title {
+    font-size: 4rem;
+  }
+}
 #section-intro .intro-p {
   font-size: 1.5rem;
   letter-spacing: -0.2px;
   font-weight: 300;
   margin-top: 20px;
+}
+@media (max-width: 1280px) {
+  #section-intro .intro-p {
+    font-size: 1.2rem;
+  }
 }
 #section-intro .intro-buttons {
   margin-top: 7vh;
@@ -391,6 +444,11 @@ section {
   color: white;
   border: 1px solid white;
   border-radius: 22px;
+}
+@media (max-width: 1280px) {
+  #section-intro .intro-button {
+    font-size: 1rem;
+  }
 }
 #section-intro .intro-button.buy {
   background-color: #1473E6;
@@ -502,11 +560,11 @@ section {
   background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0) 100%);
 }
 #section-ipad .ipad-intro {
-  margin-top: 11vh;
+  margin-top: 20px;
   max-width: 30vw;
 }
 #section-ipad .ipad-button-container {
-  margin-top: 4.55vh;
+  margin-top: 5vh;
   display: flex;
   align-items: center;
 }

@@ -31,6 +31,9 @@ body {
       display: flex;
     }
   }
+  @include breakpoint(laptop_xs){
+    overflow: hidden;
+  }
 }
 
 h1,

@@ -1,3 +1,30 @@
+.screensize {
+  &-container {
+    position: fixed;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(black,.9);
+    @include breakpoint(laptop_xs){
+      display: flex;
+    }
+  }
+  &-warning {
+    font-size: 4vw;
+    width: 60vw;
+    color: white;
+    font-weight: 900;
+    text-align: center;
+  }
+}
+
 .fixed {
   &-section-container {
     position: fixed;
@@ -23,10 +50,10 @@
         }
         &-content-container {
           position: absolute;
-          bottom: 0;
+          bottom: 13.5vh;
           left: 0;
           width: 53vw;
-          padding: 5vw;
+          padding: 0 5vw;
         }
         &-content-inner {
           color: black;
@@ -259,11 +286,13 @@
       width: 4.875vw;
     }
     &-title {
-      //font-size: 6.75rem;
       font-size: 5rem;
       line-height: 1em;
       letter-spacing: -.2px;
       margin-top: 4.5vh;
+      @include breakpoint(laptop_sm){
+        font-size: 4rem;
+      }
     }
     &-p {
       //font-size: 2rem;
@@ -271,6 +300,9 @@
       letter-spacing: -.2px;
       font-weight: 300;
       margin-top: 20px;
+      @include breakpoint(laptop_sm){
+        font-size: 1.2rem;
+      }
     }
     &-buttons {
       margin-top: 7vh;
@@ -289,6 +321,9 @@
       color: white;
       border: 1px solid white;
       border-radius: 22px;
+      @include breakpoint(laptop_sm){
+        font-size: 1rem;
+      }
       &.buy {
         background-color: $color--button-active;
         border-color: $color--button-active;
@@ -340,6 +375,9 @@
       position: absolute;
       top: 37.45vh;
       left: 10vw;
+      @include breakpoint($bp-laptop-sm){
+        font-size: 40rem;
+      }
     }
     &-rotating-titles-container {
       position: relative;
@@ -410,12 +448,12 @@
       background: $gradient-shade-dark;
     }
     &-intro {
-      margin-top: 11vh;
+      margin-top: 20px;
       //width: 25.5vw;
       max-width: 30vw;
     }
     &-button-container {
-      margin-top: 4.55vh;
+      margin-top: 5vh;
       display: flex;
       align-items: center;
     }

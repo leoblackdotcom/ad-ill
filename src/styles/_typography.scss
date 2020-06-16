@@ -2,6 +2,10 @@
   font-size: 4.375rem;
   line-height: 4.0625rem;
   letter-spacing: -0.2px;
+
+  @include breakpoint(laptop_sm){
+    font-size: 3.5rem;
+  }
   
   &--sm {
     color: black;
@@ -18,6 +22,10 @@
   font-weight: 300;
   @include breakpoint(laptop){
     font-size: 1.8rem;
+    line-height: 2rem;
+  }
+  @include breakpoint(laptop_sm){
+    font-size: 1.5rem;
     line-height: 2rem;
   }
 }
