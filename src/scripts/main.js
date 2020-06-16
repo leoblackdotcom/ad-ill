@@ -533,11 +533,18 @@ const ps = (function () {
       .classList.toggle("loading", isLoading);
   };
 
+  initStickyNav = function(){
+    const header = document.querySelector('.headroom');
+    const headroom = new Headroom(header);
+    headroom.init();
+  }
+
   init = function () {
     toggleAssetLoading(true);
     getScreenDims();
     addDomReferences();
     addListeners();
+    initStickyNav();
     initCanvas();
     initTimelines();
     initSubmodules();
