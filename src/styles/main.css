@@ -499,7 +499,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0) 100%);
 }
 #section-ipad .ipad-intro {
   margin-top: 11vh;
@@ -592,6 +592,7 @@ section {
   }
 }
 body:not(.loading) .wn-cards__card--hide {
+  opacity: 0;
   transform: translateY(25%);
 }
 
@@ -621,15 +622,24 @@ body:not(.loading) .wn-cards__card--hide {
 }
 .wn-cards__card {
   break-inside: avoid;
+  opacity: 1;
   padding-bottom: 60px;
   transform: translateY(0);
-  transition: transform 1.5s ease;
+  transition: transform 1.5s ease, opacity 1.5s ease;
 }
 .wn-cards__card.delay1 {
   transition-delay: 0.25s;
 }
 .wn-cards__card.delay2 {
   transition-delay: 0.5s;
+}
+.wn-cards__card.stagger--1 {
+  display: inline-block;
+  margin-top: 150px;
+}
+.wn-cards__card.stagger--2 {
+  display: inline-block;
+  margin-top: 75px;
 }
 
 .wn-grid {
@@ -729,12 +739,16 @@ body:not(.loading) .wn-cards__card--hide {
   height: 100%;
   position: relative;
 }
+.adobe-article-grid .adobe-article__background-container {
+  overflow: hidden;
+}
 .adobe-article-grid .adobe-article__background {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding-top: 100%;
   background-color: #d6d9e0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100%;
+  transition: transform 1.5s ease;
 }
 .adobe-article-grid .adobe-article__content {
   background-color: #ffffff;
@@ -762,6 +776,9 @@ body:not(.loading) .wn-cards__card--hide {
   font-weight: 400;
   letter-spacing: 0;
   margin: 0 0 10px;
+}
+.adobe-article-grid .adobe-article__link:active .adobe-article__background, .adobe-article-grid .adobe-article__link:focus .adobe-article__background, .adobe-article-grid .adobe-article__link:hover .adobe-article__background {
+  transform: scale(1.03);
 }
 .adobe-article-grid .adobe-article__link:active .adobe-article__title, .adobe-article-grid .adobe-article__link:focus .adobe-article__title, .adobe-article-grid .adobe-article__link:hover .adobe-article__title {
   text-decoration: underline;
