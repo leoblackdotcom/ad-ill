@@ -43,7 +43,12 @@
       @content;
     }
   }
-  
+  @if $point == short {
+    @media (max-height: $bp-short) {
+      @content;
+    }
+  }
+
 }
 
 @mixin responsive-font-sizing ($font-map) {
@@ -52,7 +57,7 @@
   // Set default font size to the first available value
   font-size: nth($values, 1);
   /* Loop through each value in the font mapping and create a media query for that value.
-   *  
+   *
    * This funtion creates a media query based on the current font-mq value from the font
    *  map. It then creates a new map that looks like (currentMQWidth: currentSize, nextMQWidth: nextSize)
    *  where nextMQ is the next available MQ in the font map.

@@ -43,7 +43,7 @@ const ps = (function () {
         selector: '.retouch-sequence',
         sequence: 'assets/images/retouch/sequence-retouch.jpg',
         framesPath: 'assets/images/retouch/frames/retouch',
-        width: 1280, 
+        width: 1280,
         height: 843,
         pad: 3,
       }
@@ -283,13 +283,13 @@ const ps = (function () {
       .to(".null", { opacity: 0, duration: 7,
         onUpdate: function () {
           const thisProgress = this.progress();
-          
+
           const vidConfig = sceneConfig.videos.transform;
-          const currentFrame = 
+          const currentFrame =
             Math.ceil(vidConfig.frames * thisProgress);
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
-        }, 
+        },
       }, "spacer")
       .from(".transform-rotating-title.rt1", { autoAlpha: 0}, "spacer+=.5")
       .to('.intro-container',{ translateY: '-100vh', duration: 1, onComplete: function(){
@@ -317,7 +317,7 @@ const ps = (function () {
     });
 
     tlBrushesContent
-    
+
       .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(
         ".brushes-intro",
@@ -345,7 +345,7 @@ const ps = (function () {
   }
 
   initTimelineBrushes = function () {
-      
+
     tlBrushes = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-brushes",
@@ -362,7 +362,7 @@ const ps = (function () {
     });
 
     tlBrushes
-      .from(".brushes-video", { autoAlpha: 0, duration: 2, onComplete: onBrushesVideoIn }, "spacer1")
+      .from(".brushes-video", { autoAlpha: 0, duration: 2 }, "spacer1")
       .to(".null", { opacity: 0, duration: 2 }, "spacer2")
       .addLabel("end");
   };
@@ -376,7 +376,7 @@ const ps = (function () {
       scrollTrigger: {
         trigger: "#section-retouch",
         pin: ".retouch-container",
-        start: "top top+=100%", 
+        start: "top top+=100%",
         end: `+=${
           sceneConfig.scenes.retouch.sceneDuration * appState.screenDims.height
         }`,
@@ -391,7 +391,7 @@ const ps = (function () {
 
     tlRetouch
       .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
-      .to('.brushes-content-container',{translateY: -100, duration: 2},'retouchIn')
+      //.to('.brushes-content-container',{translateY: -100, duration: 2},'retouchIn')
       .from(
         ".retouch-1",
         {
@@ -423,16 +423,16 @@ const ps = (function () {
         } },
         "remixIn"
       )
-    
+
       .to(".null", { opacity: 0, duration: 5,
         onUpdate: function () {
           const thisProgress = this.progress();
           const vidConfig = sceneConfig.videos.retouch;
-          const currentFrame = 
+          const currentFrame =
             Math.ceil(vidConfig.frames * thisProgress);
           const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
           drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
-        }, 
+        },
       }, "spacer2")
       .from(
         ".retouch-title-line.l3",

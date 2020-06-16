@@ -4,6 +4,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -24,7 +28,6 @@ body {
   background-color: $color--bg;
   @include adobeClean;
   color: $color--body;
-  overflow-x: hidden;
   &.loading {
     overflow: hidden;
     .loader-container {

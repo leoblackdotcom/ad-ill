@@ -2,8 +2,8 @@
   &-container {
     position: fixed;
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -32,6 +32,10 @@
     height: 100vh;
     top: 0;
     left: 0;
+    pointer-events: none;
+    button,a {
+      pointer-events: all;
+    }
   }
   &-section {
     position: absolute;
@@ -39,10 +43,7 @@
     top: 0;
     width: 100%;
     height: 100%;
-    visibility: hidden;
-    &.active {
-      visibility: visible;
-    }
+
     &.brushes {
       z-index: 1;
 
@@ -69,6 +70,9 @@
         }
         &-button-container {
           margin-top: 40px;
+          @include breakpoint(short){
+            margin-top: 20px;
+          }
         }
         &-button {
           border: 1px solid $color--gray-dk;
@@ -83,7 +87,9 @@
         &-slider-container {
           width: 100%;
           height: 100vh;
-          position: relative;
+          position: absolute;
+          top: 0;
+          left: 0;
         }
         &-slider-image-container {
           width: 100%;
@@ -95,7 +101,7 @@
           &.retouch-2 {
             z-index: 10;
             width: 0%;
-    
+
           }
         }
         &-slider-image {
@@ -127,22 +133,27 @@
           display: block;
         }
         &-intro {
-          margin-top: 20px;
+          margin-top: 2.25vh;
           width: 23vw;
-        }
-        &-content-container {
-          position: absolute;
-          top: 18vh;
-          left: 8.7vw;
-          z-index: 10;
-          pointer-events: none;
-          * { 
-            user-select: none;
+          @include breakpoint(short){
+            width: 26vw;
           }
         }
+        &-content-container {
+          position: relative;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          top: 0;
+          left: 0;
+          padding-left: 8.7vw;
+          height: 100%;
+          z-index: 10;
+        }
         &-button {
-          margin-top: 40px;
-          pointer-events: all;
+          align-self: flex-start;
+          margin-top: 2.25vh;
         }
       }
     }
@@ -167,7 +178,7 @@
     border-radius: 16px;
     height: 32px;
     padding: 0 16px;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     @include adobeClean();
@@ -235,16 +246,6 @@
   object-position: 50% 50%;
 }
 
-.canvid {
-  width: 100%;
-  height: 100vh;
-  canvas {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
 .section {
   position: relative;
   background: transparent;
@@ -288,6 +289,9 @@
     }
     &-ps-logo {
       width: 4.875vw;
+      @include breakpoint(short){
+        width: 3.5vw;
+      }
     }
     &-title {
       font-size: 5rem;
@@ -296,6 +300,10 @@
       margin-top: 4.5vh;
       @include breakpoint(laptop_sm){
         font-size: 4rem;
+      }
+      @include breakpoint(short){
+        font-size: 4rem;
+        margin-top: 3vh;
       }
     }
     &-p {
@@ -311,6 +319,9 @@
     &-buttons {
       margin-top: 7vh;
       display: flex;
+      @include breakpoint(short){
+        margin-top: 4vh;
+      }
     }
     &-button {
       height: 44px;
@@ -352,7 +363,7 @@
     width: 100%;
     z-index: 10;
   }
-  
+
 }
 
 #section-transform {
@@ -368,6 +379,7 @@
         height: 100vh;
         object-fit: contain;
         object-position: right center;
+        background-color: black;
       }
     }
     &-container {
@@ -409,7 +421,7 @@
       top: 0;
       position: absolute;
     }
-    
+
   }
 }
 
@@ -528,7 +540,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  
+
   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
   animation: sk-bounce 2.0s infinite ease-in-out;
 }
@@ -544,10 +556,10 @@
 }
 
 @keyframes sk-bounce {
-  0%, 100% { 
+  0%, 100% {
     transform: scale(0.0);
     -webkit-transform: scale(0.0);
-  } 50% { 
+  } 50% {
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }

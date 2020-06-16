@@ -4,6 +4,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -23,7 +27,6 @@ body {
   background-color: black;
   font-family: "adobe-clean", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: white;
-  overflow-x: hidden;
 }
 body.loading {
   overflow: hidden;
@@ -137,8 +140,8 @@ section {
 .screensize-container {
   position: fixed;
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   top: 0;
   left: 0;
   z-index: 1000;
@@ -167,6 +170,10 @@ section {
   height: 100vh;
   top: 0;
   left: 0;
+  pointer-events: none;
+}
+.fixed-section-container button, .fixed-section-container a {
+  pointer-events: all;
 }
 .fixed-section {
   position: absolute;
@@ -201,6 +208,11 @@ section {
 .fixed-section.brushes .brushes-button-container {
   margin-top: 40px;
 }
+@media (max-height: 700px) {
+  .fixed-section.brushes .brushes-button-container {
+    margin-top: 20px;
+  }
+}
 .fixed-section.brushes .brushes-button {
   border: 1px solid #505050;
   color: #505050;
@@ -212,7 +224,9 @@ section {
 .fixed-section.retouch .retouch-slider-container {
   width: 100%;
   height: 100vh;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .fixed-section.retouch .retouch-slider-image-container {
   width: 100%;
@@ -257,22 +271,29 @@ section {
   display: block;
 }
 .fixed-section.retouch .retouch-intro {
-  margin-top: 20px;
+  margin-top: 2.25vh;
   width: 23vw;
 }
-.fixed-section.retouch .retouch-content-container {
-  position: absolute;
-  top: 18vh;
-  left: 8.7vw;
-  z-index: 10;
-  pointer-events: none;
+@media (max-height: 700px) {
+  .fixed-section.retouch .retouch-intro {
+    width: 26vw;
+  }
 }
-.fixed-section.retouch .retouch-content-container * {
-  user-select: none;
+.fixed-section.retouch .retouch-content-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  padding-left: 8.7vw;
+  height: 100%;
+  z-index: 10;
 }
 .fixed-section.retouch .retouch-button {
-  margin-top: 40px;
-  pointer-events: all;
+  align-self: flex-start;
+  margin-top: 2.25vh;
 }
 
 .sticky {
@@ -292,7 +313,7 @@ section {
   border-radius: 16px;
   height: 32px;
   padding: 0 16px;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   font-family: "adobe-clean", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -360,16 +381,6 @@ section {
   object-position: 50% 50%;
 }
 
-.canvid {
-  width: 100%;
-  height: 100vh;
-}
-.canvid canvas {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .section {
   position: relative;
   background: transparent;
@@ -405,6 +416,11 @@ section {
 #section-intro .intro-ps-logo {
   width: 4.875vw;
 }
+@media (max-height: 700px) {
+  #section-intro .intro-ps-logo {
+    width: 3.5vw;
+  }
+}
 #section-intro .intro-title {
   font-size: 5rem;
   line-height: 1em;
@@ -414,6 +430,12 @@ section {
 @media (max-width: 1280px) {
   #section-intro .intro-title {
     font-size: 4rem;
+  }
+}
+@media (max-height: 700px) {
+  #section-intro .intro-title {
+    font-size: 4rem;
+    margin-top: 3vh;
   }
 }
 #section-intro .intro-p {
@@ -430,6 +452,11 @@ section {
 #section-intro .intro-buttons {
   margin-top: 7vh;
   display: flex;
+}
+@media (max-height: 700px) {
+  #section-intro .intro-buttons {
+    margin-top: 4vh;
+  }
 }
 #section-intro .intro-button {
   height: 44px;
@@ -487,6 +514,7 @@ section {
   height: 100vh;
   object-fit: contain;
   object-position: right center;
+  background-color: black;
 }
 #section-transform .transform-container {
   position: relative;
