@@ -6,6 +6,9 @@
 
 html,body {
   overflow-x: hidden;
+  @include breakpoint(laptop_xs){
+    overflow: hidden;
+  }
 }
 
 html {
@@ -33,9 +36,6 @@ body {
     .loader-container {
       display: flex;
     }
-  }
-  @include breakpoint(laptop_xs){
-    overflow: hidden;
   }
 }
 
