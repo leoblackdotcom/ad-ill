@@ -230,22 +230,22 @@
                 <h2 class="adobe-article-grid__title section-title section-title--sm">What do you want to do?</h2>
                 
                 <div class="adobe-article-grid__filters">
-                  <label class="adobe-article-grid__filter"><span>I am</span><select class="adobe-select" id="experience-filter"><option value="experienced">Experienced</option><option selected="" value="beginner">A Beginner</option></select></label>
+                  <label class="adobe-article-grid__filter"><span>I am</span><select class="adobe-select" id="experience-filter"><option value="experienced">experienced</option><option selected="" value="beginner">a beginner</option></select></label>
                   <label class="adobe-article-grid__filter"><span>and I want to</span>
                     <select class="adobe-select" id="category-filter">
                       <!-- Experienced -->                      
-                      <option class="filter--experienced" value="remove-objects">Remove objects from photos</option>
-                      <option class="filter--experienced" value="editing-techniques">Learn new photo editing techniques</option>
-                      <option class="filter--experienced" value="tips-shortcuts">Learn design tips and shortcuts</option>
-                      <option class="filter--experienced" value="adjust-colors">Adjust colors</option>
-                      <option class="filter--experienced" value="new-effects">Learn new effects</option>
+                      <option class="filter--experienced" value="remove-objects">remove objects from photos</option>
+                      <option class="filter--experienced" value="editing-techniques">learn new photo editing techniques</option>
+                      <option class="filter--experienced" value="tips-shortcuts">learn design tips and shortcuts</option>
+                      <option class="filter--experienced" value="adjust-colors">adjust colors</option>
+                      <option class="filter--experienced" value="new-effects">learn new effects</option>
                       
                       <!-- Beginner -->                      
-                      <option class="filter--beginner" selected="" value="get-started">Get started with Photoshop</option>
-                      <option class="filter--beginner" value="selections">Work with selections</option>
-                      <option class="filter--beginner" value="photography">Build my photography skills</option>
-                      <option class="filter--beginner" value="add-objects">Add objects and shapes to images</option>
-                      <option class="filter--beginner" value="layer-masks">Work with layer masks</option>
+                      <option class="filter--beginner" value="get-started">get started with Photoshop</option>
+                      <option class="filter--beginner" value="selections">work with selections</option>
+                      <option class="filter--beginner" value="photography">build my photography skills</option>
+                      <option class="filter--beginner" value="add-objects">add objects and shapes to images</option>
+                      <option class="filter--beginner" selected="" value="layer-masks">work with layer masks</option>
                     </select>
                   </label>
                 </div>
