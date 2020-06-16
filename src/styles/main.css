@@ -650,6 +650,11 @@ section {
   align-items: center;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0) 100%);
 }
+@media (max-width: 1440px) {
+  #section-ipad .ipad-content-container {
+    width: 50vw;
+  }
+}
 #section-ipad .ipad-intro {
   margin-top: 20px;
   max-width: 30vw;

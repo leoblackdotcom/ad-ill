@@ -511,6 +511,9 @@
       justify-content: center;
       align-items: center;
       background: $gradient-shade-dark;
+      @include breakpoint(laptop){
+        width: 50vw;
+      }
     }
     &-intro {
       margin-top: 20px;
