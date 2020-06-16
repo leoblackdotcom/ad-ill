@@ -91,7 +91,7 @@
             in Photoshop.
           </p>
           <div class="intro-buttons">
-            <button class="intro-button trial">Free Trial</button>
+            <button class="intro-button trial button-lt">Free Trial</button>
             <button class="intro-button buy">Buy Now</button>
           </div>
           <p class="intro-subtext">Starting at $20.99/mo</p>

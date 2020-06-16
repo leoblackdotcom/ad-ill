@@ -233,6 +233,12 @@ section {
   border: 1px solid #505050;
   color: #505050;
   background-color: transparent;
+  transition: all 300ms linear;
+}
+.fixed-section.brushes .brushes-button:hover {
+  background-color: #d6d6d6;
+  border-color: #d6d6d6;
+  color: #323232;
 }
 .fixed-section.retouch {
   z-index: 2;
@@ -342,6 +348,12 @@ section {
   border: 1px solid white;
   color: white;
   background-color: transparent;
+  transition: all 300ms linear;
+}
+.button-lt:hover {
+  background-color: #d6d6d6;
+  border-color: #d6d6d6;
+  color: #323232;
 }
 
 .section-gradient {
@@ -495,10 +507,23 @@ section {
     font-size: 1rem;
   }
 }
+#section-intro .intro-button.button-lt {
+  transition: all 300ms linear;
+}
+#section-intro .intro-button.button-lt:hover {
+  background-color: #d6d6d6;
+  border-color: #d6d6d6;
+  color: #323232;
+}
 #section-intro .intro-button.buy {
   background-color: #1473E6;
   border-color: #1473E6;
   margin-left: 20px;
+  transition: all 300ms linear;
+}
+#section-intro .intro-button.buy:hover {
+  background-color: #005abe;
+  border-color: #005abe;
 }
 #section-intro .intro-subtext {
   margin-top: 20px;
@@ -588,6 +613,7 @@ section {
 
 #section-brushes {
   z-index: 20;
+  pointer-events: none;
 }
 #section-brushes .brushes-container {
   width: 100%;
@@ -596,6 +622,7 @@ section {
 
 #section-retouch {
   z-index: 30;
+  pointer-events: none;
 }
 
 #section-ipad {
@@ -638,8 +665,10 @@ section {
 }
 #section-ipad .ipad-learn-more-link {
   color: white;
-  text-decoration: underline;
   margin-left: 25px;
+}
+#section-ipad .ipad-learn-more-link:hover {
+  text-decoration: underline;
 }
 
 #section-whatsnew .whatsnew-container {

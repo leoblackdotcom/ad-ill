@@ -4,6 +4,23 @@
   align-items: center;
 }
 
+@mixin buttonHoverLt {
+  transition: all 300ms linear;
+  &:hover {
+    background-color: $color-button-bg-active;
+    border-color: $color-button-bg-active;
+    color: $color-button-text-active;
+  }
+}
+
+@mixin buttonHoverBlue {
+  transition: all 300ms linear;
+  &:hover {
+    background-color: $color-button-bg-blue;
+    border-color: $color-button-bg-blue;
+  }
+}
+
 @mixin absFull {
   width: 100%;
   height: 100%;
