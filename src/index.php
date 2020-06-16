@@ -48,8 +48,10 @@
               class="retouch-slider-image retouch-image-1" />
           </div>
           <div class="retouch-slider-image-container retouch-2">
-            <div class="retouch-sequence canvid">
+            <div class="retouch-sequence">
               <canvas class="retouch-canvas"></canvas>
+              <img src="assets/images/retouch/retouch-2.jpg" alt="Retouch After Image"
+              class="retouch-slider-image retouch-image-2" />
             </div>
           </div>
         </div>

@@ -224,6 +224,7 @@ const ps = (function () {
     retouchContext = $retouchCanvas.getContext('2d');
     retouchImg = new Image();
     retouchImg.src = getCurrentImagePath(vidConfig.framesPath,0);
+    //retouchImg.src = "assets/images/retouch/retouch-2.jpg"
     retouchImg.onload = function(){
       retouchContext.drawImage(retouchImg, 0, 0);
     }
@@ -418,12 +419,14 @@ const ps = (function () {
       )
       .from(
         ".retouch-title-line.l2",
-        { autoAlpha: 0, translateY: 20, onComplete: function(){
-          drawImageToCanvas(retouchContext,getCurrentImagePath(sceneConfig.videos.retouch.framesPath,0),retouchImg);
-        } },
+        { autoAlpha: 0, translateY: 20},
         "remixIn"
       )
-
+      .to(
+        ".retouch-image-2",
+        { autoAlpha: 0, duration: .5 },
+        "retouch2Out"
+      )
       .to(".null", { opacity: 0, duration: 5,
         onUpdate: function () {
           const thisProgress = this.progress();

@@ -7,6 +7,11 @@
 html, body {
   overflow-x: hidden;
 }
+@media (max-width: 1023px) {
+  html, body {
+    overflow: hidden;
+  }
+}
 
 html {
   scroll-behavior: smooth;
@@ -33,11 +38,6 @@ body.loading {
 }
 body.loading .loader-container {
   display: flex;
-}
-@media (max-width: 1023px) {
-  body {
-    overflow: hidden;
-  }
 }
 
 h1,
@@ -250,7 +250,10 @@ section {
   left: 0;
 }
 .fixed-section.retouch .retouch-slider-image.retouch-image-2 {
+  width: 100vw;
+  height: 100vh;
   transform-origin: top right;
+  z-index: 20;
 }
 .fixed-section.retouch .retouch-sequence {
   position: absolute;
@@ -294,11 +297,6 @@ section {
 .fixed-section.retouch .retouch-button {
   align-self: flex-start;
   margin-top: 2.25vh;
-}
-
-.sticky {
-  position: sticky !important;
-  top: 0;
 }
 
 .null {

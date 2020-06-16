@@ -101,7 +101,6 @@
           &.retouch-2 {
             z-index: 10;
             width: 0%;
-
           }
         }
         &-slider-image {
@@ -113,7 +112,10 @@
           top: 0;
           left: 0;
           &.retouch-image-2 {
+            width: 100vw;
+            height: 100vh;
             transform-origin: top right;
+            z-index: 20;
           }
         }
         &-sequence {
