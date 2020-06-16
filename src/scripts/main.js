@@ -452,9 +452,9 @@ const ps = (function () {
     });
 
     tliPadContent
-      .from(".ipad-title", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start")
-      .from(".ipad-intro", { autoAlpha: 0, translateY: 20, duration: 1.5 }, "start+=.5")
-      .from(".ipad-button-container", { autoAlpha: 0, duration: 1.5 }, "start+=1")
+      .from(".ipad-title", { autoAlpha: 0, translateY: 20, duration: 1 }, "start")
+      .from(".ipad-intro", { autoAlpha: 0, translateY: 20, duration: 1 }, "start+=.5")
+      .from(".ipad-button-container", { autoAlpha: 0, duration: 1 }, "start+=1")
       .addLabel("end");
   }
 
