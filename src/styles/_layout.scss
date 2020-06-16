@@ -1,3 +1,16 @@
+.wc-o {
+  will-change: opacity;
+}
+.wc-t {
+  will-change: transform;
+}
+
+.wc-to {
+  will-change: transform, opacity;
+}
+
+
+
 .screensize {
   &-container {
     position: fixed;
@@ -52,6 +65,7 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
+          @include willchange(o);
         }
         &-content-container {
           position: absolute;
@@ -70,6 +84,7 @@
         }
         &-button-container {
           margin-top: 40px;
+          @include willchange(o);
           @include breakpoint(short){
             margin-top: 20px;
           }
@@ -83,6 +98,7 @@
     }
     &.retouch {
       z-index: 2;
+      @include willchange(o);
       .retouch {
         &-slider-container {
           width: 100%;
@@ -133,6 +149,7 @@
         }
         &-title-line {
           display: block;
+          @include willchange(to);
         }
         &-intro {
           margin-top: 2.25vh;
@@ -152,10 +169,12 @@
           padding-left: 8.7vw;
           height: 100%;
           z-index: 10;
+          @include willchange(t);
         }
         &-button {
           align-self: flex-start;
           margin-top: 2.25vh;
+          @include willchange(o);
         }
       }
     }
@@ -406,9 +425,15 @@
         font-size: 40rem;
       }
     }
+    &-copy-container {
+      @include willchange(o);
+    }
     &-rotating-titles-container {
       position: relative;
       height: 140px;
+    }
+    &-rotating-title {
+      @include willchange(o);
     }
     &-rotating-title:not(:first-child) {
       position: absolute;
@@ -483,6 +508,7 @@
       margin-top: 5vh;
       display: flex;
       align-items: center;
+      @include willchange(o);
     }
     &-app-store-logo {
       width: 120px;

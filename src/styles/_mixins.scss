@@ -22,6 +22,18 @@
   font-family: "adobe-clean", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+@mixin willchange($change){
+  @if ($change == o){
+    will-change: opacity;
+  }
+  @if ($change == t){
+    will-change: transform;
+  }
+  @if ($change == to){
+    will-change: opacity, transform;
+  }
+}
+
 @mixin breakpoint($point) {
   @if $point == laptop {
     @media (max-width: $bp-laptop) {

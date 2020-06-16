@@ -73,6 +73,7 @@ section {
   font-size: 4.375rem;
   line-height: 4.0625rem;
   letter-spacing: -0.2px;
+  will-change: opacity, transform;
 }
 @media (max-width: 1280px) {
   .section-title {
@@ -91,6 +92,7 @@ section {
   font-size: 2rem;
   line-height: 2.25rem;
   font-weight: 300;
+  will-change: opacity, transform;
 }
 @media (max-width: 1440px) {
   .section-intro {
@@ -135,6 +137,18 @@ section {
   background-color: #005abe;
   border-color: #005abe;
   color: #ffffff;
+}
+
+.wc-o {
+  will-change: opacity;
+}
+
+.wc-t {
+  will-change: transform;
+}
+
+.wc-to {
+  will-change: transform, opacity;
 }
 
 .screensize-container {
@@ -189,6 +203,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  will-change: opacity;
 }
 .fixed-section.brushes .brushes-content-container {
   position: absolute;
@@ -207,6 +222,7 @@ section {
 }
 .fixed-section.brushes .brushes-button-container {
   margin-top: 40px;
+  will-change: opacity;
 }
 @media (max-height: 700px) {
   .fixed-section.brushes .brushes-button-container {
@@ -220,6 +236,7 @@ section {
 }
 .fixed-section.retouch {
   z-index: 2;
+  will-change: opacity;
 }
 .fixed-section.retouch .retouch-slider-container {
   width: 100%;
@@ -272,6 +289,7 @@ section {
 }
 .fixed-section.retouch .retouch-title-line {
   display: block;
+  will-change: opacity, transform;
 }
 .fixed-section.retouch .retouch-intro {
   margin-top: 2.25vh;
@@ -293,10 +311,12 @@ section {
   padding-left: 8.7vw;
   height: 100%;
   z-index: 10;
+  will-change: transform;
 }
 .fixed-section.retouch .retouch-button {
   align-self: flex-start;
   margin-top: 2.25vh;
+  will-change: opacity;
 }
 
 .null {
@@ -536,9 +556,15 @@ section {
   top: 37.45vh;
   left: 10vw;
 }
+#section-transform .transform-copy-container {
+  will-change: opacity;
+}
 #section-transform .transform-rotating-titles-container {
   position: relative;
   height: 140px;
+}
+#section-transform .transform-rotating-title {
+  will-change: opacity;
 }
 #section-transform .transform-rotating-title:not(:first-child) {
   position: absolute;
@@ -605,6 +631,7 @@ section {
   margin-top: 5vh;
   display: flex;
   align-items: center;
+  will-change: opacity;
 }
 #section-ipad .ipad-app-store-logo {
   width: 120px;
