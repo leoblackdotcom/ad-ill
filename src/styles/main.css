@@ -869,7 +869,7 @@ body:not(.loading) .wn-cards__card--hide {
   z-index: 10;
   width: 35vw;
   top: 12vh;
-  left: 9vw;
+  left: 9.75vw;
 }
 #section-intro .intro-ps-logo {
   width: 4.875vw;
@@ -1015,8 +1015,8 @@ body:not(.loading) .wn-cards__card--hide {
   width: 45vw;
   overflow: visible;
   position: absolute;
-  top: 37.45vh;
-  left: 10vw;
+  top: 30.2vh;
+  left: 9.75vw;
 }
 #section-transform .transform-copy-container {
   will-change: opacity;
@@ -1063,9 +1063,8 @@ body:not(.loading) .wn-cards__card--hide {
 .fixed-section.brushes .brushes-content-container {
   position: absolute;
   bottom: 13.5vh;
-  left: 0;
+  left: 9.75vw;
   width: 53vw;
-  padding: 0 5vw;
 }
 .fixed-section.brushes .brushes-content-inner {
   color: black;
@@ -1174,8 +1173,7 @@ body:not(.loading) .wn-cards__card--hide {
   flex-direction: column;
   justify-content: center;
   top: 0;
-  left: 0;
-  padding-left: 8.7vw;
+  left: 9.75vw;
   height: 100%;
   z-index: 10;
   will-change: transform;
@@ -1204,7 +1202,7 @@ body:not(.loading) .wn-cards__card--hide {
   top: 0;
   left: 0;
   height: 100%;
-  padding-left: 9.7vw;
+  padding-left: 9.75vw;
   width: 42vw;
   display: flex;
   justify-content: center;

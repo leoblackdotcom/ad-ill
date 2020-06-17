@@ -32,7 +32,7 @@
             </h2>
             <p class="section-intro brushes-intro">
               Paint and draw with thousands of custom brushes or create your own
-              — Photoshop puts the world’s largest collection at your fingertips
+              — Photoshop puts the world’s largest collection at your fingertips.
             </p>
             <div class="brushes-button-container">
               <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"

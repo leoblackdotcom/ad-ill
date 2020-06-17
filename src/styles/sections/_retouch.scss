@@ -72,8 +72,7 @@
       flex-direction: column;
       justify-content: center;
       top: 0;
-      left: 0;
-      padding-left: 8.7vw;
+      left: $content-spacing-left;
       height: 100%;
       z-index: 10;
       @include willchange(t);
