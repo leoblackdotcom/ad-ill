@@ -107,11 +107,10 @@
         <div class="transform-title-container">
 
           <div class="transform-rotating-titles-container inactive">
-            <h2 class="transform-rotating-title section-title rt1">Create what<br />your camera<br />can’t capture.</h2>
-            <h2 class="transform-rotating-title section-title rt2">Make quick,<br />automatic<br />selections.</h2>
-            <h2 class="transform-rotating-title section-title rt3">Show and hide<br />with masks.</h2>
-            <h2 class="transform-rotating-title section-title rt4">Use unlimited<br />layers.</h2>
-            <h2 class="transform-rotating-title section-title rt5">Transform photos<br />into fantasy.</h2>
+            <h2 class="transform-rotating-title section-title">
+              <span class="transform-title-line rt1">Transform photos</span>
+              <span class="transform-title-line rt2">into flights of pure Imagination.</span>
+            </h2>
           </div>
           <div class="transform-copy-container">
             <p class="section-intro transform-copy-p p1">

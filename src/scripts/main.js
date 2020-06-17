@@ -334,19 +334,17 @@ const ps = (function () {
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
         },
       }, "spacer")
-      .from(".transform-rotating-title.rt1", { autoAlpha: 0}, "spacer+=.5")
+      .from(".transform-title-line.rt1", { autoAlpha: 0}, "spacer+=.5")
       .to('.intro-container',{ translateY: '-100vh', duration: 1, onComplete: function(){
         resetVideo($introVideo);
       }}, "spacer")
-      .from(".transform-copy-p", { autoAlpha: 0 }, "spacer")
-      .to(".transform-rotating-title.rt1", { autoAlpha: 0, ease: "none" }, "spacer+=1")
-      .from(".transform-rotating-title.rt2", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=1")
-      .to(".transform-rotating-title.rt2", { autoAlpha: 0, ease: "none" }, "spacer+=2.75")
-      .from(".transform-rotating-title.rt3", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=2.75")
-      .to(".transform-rotating-title.rt3", { autoAlpha: 0, ease: "none" }, "spacer+=4.4")
-      .from(".transform-rotating-title.rt4", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=4.4")
-      .to(".transform-rotating-title.rt4", { autoAlpha: 0, ease: "none" }, "spacer+=6.5")
-      .from(".transform-rotating-title.rt5", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=6.5")
+      .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none" }, "spacer+=3.5")
+      //.to(".null", { opacity: 0.5, duration: 4},'spacer+=2.75')
+      // .from(".transform-rotating-title.rt3", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=2.75")
+      // .to(".transform-rotating-title.rt3", { autoAlpha: 0, ease: "none" }, "spacer+=4.4")
+      // .from(".transform-rotating-title.rt4", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=4.4")
+      // .to(".transform-rotating-title.rt4", { autoAlpha: 0, ease: "none" }, "spacer+=6.5")
+      // .from(".transform-rotating-title.rt5", { autoAlpha: 0, delay: 0.5, ease: "none" }, "spacer+=6.5")
       .to(".null", { opacity: 0.5, duration: 3},'spacer2')
       .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")

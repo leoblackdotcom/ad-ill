@@ -43,17 +43,10 @@
     }
     &-rotating-titles-container {
       position: relative;
-      height: 140px;
     }
-    &-rotating-title {
+    &-title-line {
       @include willchange(o);
     }
-    &-rotating-title:not(:first-child) {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
     &-copy-p {
       color: $color--gray-lt;
       margin-top: 2.2vh;

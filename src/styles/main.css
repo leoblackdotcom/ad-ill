@@ -998,15 +998,9 @@ body:not(.loading) .wn-cards__card--hide {
 }
 #section-transform .transform-rotating-titles-container {
   position: relative;
-  height: 140px;
 }
-#section-transform .transform-rotating-title {
+#section-transform .transform-title-line {
   will-change: opacity;
-}
-#section-transform .transform-rotating-title:not(:first-child) {
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 #section-transform .transform-copy-p {
   color: #e7e7e7;
