@@ -78,7 +78,12 @@ const ps = (function () {
   addListeners = function () {
     addUnloadListener();
     addVideoListeners();
+    addResizeListeners();
   };
+
+  addResizeListeners = function(){
+    window.addEventListener('resize', onWindowResize);
+  }
 
   addVideoListeners = function(){
     $brushesVideo.addEventListener('ended',onBrushesVideoEnded);
@@ -92,6 +97,26 @@ const ps = (function () {
   initSubmodules = function () {
     ps.whatsNewModule.init();
   };
+
+  debounce = function(func, wait, immediate) { //https://davidwalsh.name/javascript-debounce-function
+    let timeout;
+    return function() {
+      const context = this, args = arguments;
+      const later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
+
+  onWindowResize = debounce(function() { //calls after x ms of no resize events firing
+    console.log('refresh');
+    ScrollTrigger.refresh(true); //safe refresh
+  }, 250);
 
   resetTimeline = function(timelineRef){
     timelineRef.progress(0).pause();

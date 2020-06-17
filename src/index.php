@@ -68,11 +68,6 @@
           <a href="https://helpx.adobe.com/photoshop/how-to/face-paint.html"
             class="button-sm button-lt retouch-button">Try it yourself</a>
         </div>
-
-        <div class="retouch-pen-options-container">
-          <img src="assets/images/retouch/retouch-pen-options.jpg" alt="Retouch Pen options"
-            class="retouch-pen-options" />
-        </div>
       </div>
     </section>
     <section id="section-intro">
