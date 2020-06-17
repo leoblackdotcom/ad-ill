@@ -25,9 +25,8 @@
         &-content-container {
           position: absolute;
           bottom: 13.5vh;
-          left: 0;
+          left: $content-spacing-left;
           width: 53vw;
-          padding: 0 5vw;
         }
         &-content-inner {
           color: black;

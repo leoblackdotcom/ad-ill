@@ -32,8 +32,8 @@
       width: 45vw;
       overflow: visible;
       position: absolute;
-      top: 37.45vh;
-      left: 10vw;
+      top: 30.2vh;
+      left: $content-spacing-left;
       @include breakpoint($bp-laptop-sm){
         font-size: 40rem;
       }
