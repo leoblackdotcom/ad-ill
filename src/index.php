@@ -72,14 +72,18 @@
     </section>
     <section id="section-intro">
       <div class="intro-container" style="position: fixed; top: 0; width: 100%;">
-        <video class="intro-video" preload="metadata" muted poster="assets/images/intro/intro-poster.jpg" autoplay>
+        <video class="intro-video" preload="metadata" muted poster="assets/images/intro/intro-poster.jpg">
           <source src="assets/videos/intro/intro.webm" type="video/webm" />
           <source src="assets/videos/intro/intro.mp4" type="video/mp4" />
         </video>
         <div class="intro-video-gradient section-gradient"></div>
         <div class="intro-content-container">
           <img src="assets/images/intro/ps-logo.png" alt="Photoshop Logo" class="intro-ps-logo" />
-          <h1 class="intro-title">Make.<br />Believe.<br />Photoshop.</h1>
+          <h1 class="intro-title">
+            <span class="intro-title-line l1">Make.</span>
+            <span class="intro-title-line l2">Believe.</span>
+            <span class="intro-title-line l3">Photoshop.</span>
+          </h1>
           <p class="intro-p">
             From photo editing and compositing to digital painting, animation,
             and graphic design — whatever you can imagine, you can create it

@@ -69,6 +69,10 @@ section {
   position: relative;
 }
 
+button, a {
+  cursor: pointer;
+}
+
 .section-title {
   font-size: 4.375rem;
   line-height: 4.0625rem;
@@ -845,7 +849,7 @@ body:not(.loading) .wn-cards__card--hide {
 #section-intro .intro-ps-logo {
   width: 4.875vw;
 }
-@media (max-height: 700px) {
+@media (max-height: 800px) {
   #section-intro .intro-ps-logo {
     width: 3.5vw;
   }
@@ -861,14 +865,17 @@ body:not(.loading) .wn-cards__card--hide {
     font-size: 4rem;
   }
 }
-@media (max-height: 700px) {
+@media (max-height: 800px) {
   #section-intro .intro-title {
     font-size: 4rem;
     margin-top: 3vh;
   }
 }
+#section-intro .intro-title-line {
+  display: block;
+}
 #section-intro .intro-p {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   letter-spacing: -0.2px;
   font-weight: 400;
   margin-top: 20px;
@@ -882,7 +889,7 @@ body:not(.loading) .wn-cards__card--hide {
   margin-top: 7vh;
   display: flex;
 }
-@media (max-height: 700px) {
+@media (max-height: 800px) {
   #section-intro .intro-buttons {
     margin-top: 4vh;
   }

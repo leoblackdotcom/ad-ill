@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ps = (function () {
   const self = this;
-  let tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
+  let tlIntro, tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
 
   let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
@@ -132,14 +132,18 @@ const ps = (function () {
   };
 
   conditionallyPlayIntro = function(){
+
     const isVideoPlaying = checkIfVideoPlaying($introVideo);
     if (!isVideoPlaying){
       $introVideo.play();
     }
   }
 
+  playIntroSequence = function(){
+    tlIntro.restart();
+  }
+
   onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
-    conditionallyPlayIntro();
     appState.curSceneIndex = 1;
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
@@ -276,6 +280,7 @@ const ps = (function () {
   }
 
   initTimelines = function () {
+    initTimelineIntro();
     initTimelineTransform();
     initTimelineBrushes();
     initTimelineBrushesContent();
@@ -287,9 +292,21 @@ const ps = (function () {
     initTimelineWhatsNew();
   };
 
-  initTimelineTransform = function () {
+  initTimelineIntro = function(){
+    tlIntro = gsap.timeline({
+      paused: true
+    });
+    tlIntro
+      .from(".intro-ps-logo", { autoAlpha: 0, scale: .9, duration: .5, ease: "back.out(1.1)"}, "titleIn")
+      .from(".intro-title-line.l1", { autoAlpha: 0, translateY: 20, duration: 1}, "titleIn")
+      .from(".intro-title-line.l2", { autoAlpha: 0, translateY: 20, duration: 1}, "titleIn+=.5")
+      .from(".intro-title-line.l3", { autoAlpha: 0, translateY: 20, duration: 1}, "titleIn+=1")
+      .from(".intro-p", { autoAlpha: 0}, "introBodyIn")
+      .from(".intro-buttons", { autoAlpha: 0, duration: .5}, "introBodyIn")
+      .from(".intro-subtext", { autoAlpha: 0, duration: .5}, "introBodyIn+=.25")
+  }
 
-    introTitleTranslateY = '10vh';
+  initTimelineTransform = function () {
 
     tlTransform = gsap.timeline({
       scrollTrigger: {
@@ -548,8 +565,12 @@ const ps = (function () {
       gsap.to(".loader-inner", {
         opacity: 0,
         duration: 0.3,
+        onStart: function(){
+          conditionallyPlayIntro();
+        },
         onComplete: function () {
           $body.classList.toggle("loading", false);
+          playIntroSequence();
         },
       });
     }, 1000);

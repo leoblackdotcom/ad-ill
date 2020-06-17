@@ -25,7 +25,7 @@
   font-weight: $fw-body;
   @include willchange(to);
   @include breakpoint(laptop){
-    font-size: 1.8rem;
+    font-size: $fs-body;
     line-height: 2rem;
   }
   @include breakpoint(laptop_sm){

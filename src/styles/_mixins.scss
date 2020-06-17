@@ -72,6 +72,11 @@
       @content;
     }
   }
+  @if $point == med_height {
+    @media (max-height: $bp-med-height) {
+      @content;
+    }
+  }
   @if $point == short {
     @media (max-height: $bp-short) {
       @content;
