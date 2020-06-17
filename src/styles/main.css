@@ -12,6 +12,11 @@ html, body {
     overflow: hidden;
   }
 }
+@media (max-height: 600px) {
+  html, body {
+    overflow: hidden;
+  }
+}
 
 html {
   scroll-behavior: smooth;
@@ -182,6 +187,23 @@ button, a {
   .screensize-container {
     display: flex;
   }
+  .screensize-container .width {
+    display: inline;
+  }
+  .screensize-container .height {
+    display: none;
+  }
+}
+@media (max-height: 600px) {
+  .screensize-container {
+    display: flex;
+  }
+  .screensize-container .width {
+    display: none;
+  }
+  .screensize-container .height {
+    display: inline;
+  }
 }
 .screensize-warning {
   font-size: 4vw;
@@ -189,6 +211,9 @@ button, a {
   color: white;
   font-weight: 800;
   text-align: center;
+}
+.screensize-warning-line {
+  display: none;
 }
 
 .fixed-section-container {
@@ -882,7 +907,7 @@ body:not(.loading) .wn-cards__card--hide {
 }
 @media (max-height: 800px) {
   #section-intro .intro-p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 }
 #section-intro .intro-buttons {
@@ -1001,11 +1026,11 @@ body:not(.loading) .wn-cards__card--hide {
 }
 #section-transform .transform-title-line {
   will-change: opacity;
+  display: block;
 }
 #section-transform .transform-copy-p {
   color: #e7e7e7;
   margin-top: 2.2vh;
-  width: 30vw;
 }
 #section-transform .transform-button {
   margin-top: 2.9vh;

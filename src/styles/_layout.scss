@@ -38,6 +38,21 @@
     background-color: rgba(black,.9);
     @include breakpoint(laptop_xs){
       display: flex;
+      .width {
+        display: inline;
+      }
+      .height {
+        display: none;
+      }
+    }
+    @include breakpoint(xshort){
+      display: flex;
+      .width {
+        display: none;
+      }
+      .height {
+        display: inline;
+      }
     }
   }
   &-warning {
@@ -46,6 +61,9 @@
     color: white;
     font-weight: $fw-headline;
     text-align: center;
+  }
+  &-warning-line {
+    display: none;
   }
 }
 

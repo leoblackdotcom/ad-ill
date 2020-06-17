@@ -82,6 +82,11 @@
       @content;
     }
   }
+  @if $point == xshort {
+    @media (max-height: $bp-xshort) {
+      @content;
+    }
+  }
 
 }
 //todo: remove if unused

@@ -46,12 +46,12 @@
     }
     &-title-line {
       @include willchange(o);
+      display: block;
     }
     &-copy-p {
       color: $color--gray-lt;
       margin-top: 2.2vh;
-      //width: 26vw;
-      width: 30vw;
+      //width: 30vw;
     }
     &-button {
       margin-top: 2.9vh;

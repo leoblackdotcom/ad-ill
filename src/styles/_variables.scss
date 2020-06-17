@@ -15,7 +15,8 @@ $gradient-shade-dark: linear-gradient(to right, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.
 
 //fonts
 $fs-body: 1.8rem;
-
+$fs-body-md: 1.5rem;
+$fs-body-short: 1.2rem;
 $fw-body: 400;
 $fw-headline: 800;
 
@@ -26,9 +27,13 @@ $design-width: 1677px;
 $design-height: 1105px;
 
 //breakpoints
+
+//width:
 $bp-laptop: 1440px;
 $bp-laptop-sm: 1280px;
 $bp-laptop-xs: 1023px;
+//height:
+$bp-xshort: 600px;
 $bp-short: 700px;
 $bp-med-height: 800px;
 

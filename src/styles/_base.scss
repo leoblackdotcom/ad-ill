@@ -9,6 +9,9 @@ html,body {
   @include breakpoint(laptop_xs){
     overflow: hidden;
   }
+  @include breakpoint(xshort){
+    overflow: hidden;
+  }
 }
 
 html {

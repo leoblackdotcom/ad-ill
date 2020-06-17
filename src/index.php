@@ -114,7 +114,10 @@
           </div>
           <div class="transform-copy-container">
             <p class="section-intro transform-copy-p p1">
-              Combine photos, graphics, effects, and typography to create any image you can imagine.
+            With one-click selections,<br/>
+            easy masking, and unlimited<br/>
+            layers, you can turn any<br/>
+            photo into fantasy.
             </p>
             <a href="https://create.adobe.com/2019/7/16/how_to_make_a_photo_.html"
               class="transform-button button-sm button-lt">Try it yourself</a>
@@ -1141,7 +1144,10 @@
   </div>
 
   <div class="screensize-container">
-    <h2 class="screensize-warning">You must view this on a desktop screensize of 1024px or greater</h2>
+    <h2 class="screensize-warning">
+      <span class="screensize-warning-line width">You must view this at a browser width of 1024px or greater</span>
+      <span class="screensize-warning-line height">You must view this on a browser height of 600px or greater</span>
+    </h2>
   </div>
 
   <script src="scripts/libs/gsap/gsap.min.js"></script>
