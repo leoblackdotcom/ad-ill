@@ -16,6 +16,10 @@ Watch for changes:
 
 From the `src/styles` directory: `sass --watch main.scss:main.css`
 
+optionally, compress and include sourcemaps:
+
+`sass --watch main.scss:main.css --style=compressed --sourcemap`
+
 `main.scss` imports all other relevant scss files in its compilation.
 
 **JS**

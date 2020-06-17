@@ -1,0 +1,74 @@
+.sequence-container { //mh - unused? restructure?
+  .transform {
+    &-sequence {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+}
+
+#section-transform {
+  min-height: 100vh;
+  .transform {
+    &-sequence-container {
+      @include absFull;
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+        object-position: right center;
+        background-color: black;
+      }
+    }
+    &-container {
+      position: relative;
+      width: 100%;
+    }
+    &-title-container {
+      width: 45vw;
+      overflow: visible;
+      position: absolute;
+      top: 37.45vh;
+      left: 10vw;
+      @include breakpoint($bp-laptop-sm){
+        font-size: 40rem;
+      }
+    }
+    &-copy-container {
+      @include willchange(o);
+    }
+    &-rotating-titles-container {
+      position: relative;
+      height: 140px;
+    }
+    &-rotating-title {
+      @include willchange(o);
+    }
+    &-rotating-title:not(:first-child) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &-copy-p {
+      color: $color--gray-lt;
+      margin-top: 2.2vh;
+      //width: 26vw;
+      width: 30vw;
+    }
+    &-button {
+      margin-top: 2.9vh;
+    }
+    &-panel {
+      width: 18.75vw;
+      left: 19vw;
+      top: 0;
+      position: absolute;
+    }
+
+  }
+}

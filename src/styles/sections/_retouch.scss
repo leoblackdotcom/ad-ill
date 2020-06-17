@@ -1,0 +1,93 @@
+#section-retouch {
+  z-index: 30;
+  pointer-events: none;
+}
+
+.fixed {
+
+  &-section {
+
+    &.retouch {
+      z-index: 2;
+      @include willchange(o);
+      .retouch {
+        &-slider-container {
+          width: 100%;
+          height: 100vh;
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+        &-slider-image-container {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          left: 0;
+          top: 0;
+          overflow: hidden;
+          &.retouch-2 {
+            z-index: 10;
+            width: 0%;
+          }
+        }
+        &-slider-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top right;
+          position: absolute;
+          top: 0;
+          left: 0;
+          &.retouch-image-2 {
+            width: 100vw;
+            height: 100vh;
+            transform-origin: top right;
+            z-index: 20;
+          }
+        }
+        &-sequence {
+          position: absolute;
+          z-index: 10;
+          left: 0;
+          top: 0;
+          width: 100vw;
+          height: 100vh;
+          transform-origin: top right;
+          canvas {
+            @include coverFull();
+            object-position: top right;
+          }
+        }
+        &-title-line {
+          display: block;
+          @include willchange(to);
+        }
+        &-intro {
+          margin-top: 2.25vh;
+          width: 23vw;
+          @include breakpoint(short){
+            width: 26vw;
+          }
+        }
+        &-content-container {
+          position: relative;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          top: 0;
+          left: 0;
+          padding-left: 8.7vw;
+          height: 100%;
+          z-index: 10;
+          @include willchange(t);
+        }
+        &-button {
+          align-self: flex-start;
+          margin-top: 2.25vh;
+          @include willchange(o);
+        }
+      }
+    }
+  }
+}

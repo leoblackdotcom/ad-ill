@@ -115,7 +115,7 @@ const ps = (function () {
 
   onWindowResize = debounce(function() { //calls after x ms of no resize events firing
     console.log('refresh');
-    ScrollTrigger.refresh(true); //safe refresh
+    ScrollTrigger.refresh(true); //safe refresh - waits at least one raf and up to 200ms for positions to recalculate (https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.refresh())
   }, 250);
 
   resetTimeline = function(timelineRef){
