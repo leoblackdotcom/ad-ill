@@ -377,12 +377,13 @@ body:not(.loading) .wn-cards__card--hide {
 .wn-cards__subhead {
   color: #001D26;
   font-size: 1.25rem;
+  font-weight: 300;
   margin: 20px 0 0 10px;
   text-transform: uppercase;
 }
 .wn-cards__copy {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-left: 10px;
 }
 .wn-cards__grid {
