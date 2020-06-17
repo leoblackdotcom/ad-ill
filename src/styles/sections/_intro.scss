@@ -42,10 +42,9 @@
       }
     }
     &-p {
-      //font-size: 2rem;
       font-size: 1.5rem;
       letter-spacing: -.2px;
-      font-weight: 300;
+      font-weight: $fw-body;
       margin-top: 20px;
       @include breakpoint(laptop_sm){
         font-size: 1.2rem;
@@ -86,9 +85,8 @@
     }
     &-subtext {
       margin-top: 20px;
-      //font-size: 1.5625rem;
       font-size: 1.17rem;
-      font-weight: 300;
+      font-weight: $fw-body;
 
     }
   }

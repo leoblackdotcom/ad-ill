@@ -44,7 +44,7 @@
     font-size: 4vw;
     width: 60vw;
     color: white;
-    font-weight: 900;
+    font-weight: $fw-headline;
     text-align: center;
   }
 }
@@ -117,7 +117,7 @@
   width: 100%;
   position: absolute;
   top: 0;
-  height: 100vh; //vh should be the sum total of all sequences
+  height: 100vh;
 }
 
 .sequence-container {
@@ -128,7 +128,6 @@
 }
 
 .image-sequence {
-  //position: sticky; //mh - not working?
   position: fixed;
   top: 0;
   width: 100%;
@@ -163,7 +162,7 @@
 }
 
 
-//https://tobiasahlin.com/spinkit/
+//loader taken from https://tobiasahlin.com/spinkit/
 
 .loader {
   &-container {
