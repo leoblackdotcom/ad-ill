@@ -842,14 +842,14 @@ body:not(.loading) .wn-cards__card--hide {
 #section-intro .intro-content-container {
   position: absolute;
   z-index: 10;
-  width: 33vw;
+  width: 35vw;
   top: 12vh;
   left: 9vw;
 }
 #section-intro .intro-ps-logo {
   width: 4.875vw;
 }
-@media (max-height: 800px) {
+@media (max-height: 700px) {
   #section-intro .intro-ps-logo {
     width: 3.5vw;
   }
@@ -860,12 +860,12 @@ body:not(.loading) .wn-cards__card--hide {
   letter-spacing: -0.2px;
   margin-top: 4.5vh;
 }
-@media (max-width: 1280px) {
+@media (max-height: 700px) {
   #section-intro .intro-title {
     font-size: 4rem;
   }
 }
-@media (max-height: 800px) {
+@media (max-height: 700px) {
   #section-intro .intro-title {
     font-size: 4rem;
     margin-top: 3vh;
@@ -880,7 +880,7 @@ body:not(.loading) .wn-cards__card--hide {
   font-weight: 400;
   margin-top: 20px;
 }
-@media (max-width: 1280px) {
+@media (max-height: 800px) {
   #section-intro .intro-p {
     font-size: 1.2rem;
   }
@@ -908,7 +908,7 @@ body:not(.loading) .wn-cards__card--hide {
   border: 1px solid white;
   border-radius: 22px;
 }
-@media (max-width: 1280px) {
+@media (max-height: 700px) {
   #section-intro .intro-button {
     font-size: 1rem;
   }

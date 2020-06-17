@@ -18,13 +18,13 @@
     &-content-container {
       position: absolute;
       z-index: 10;
-      width: 33vw;
+      width: 35vw;
       top: 12vh;
       left: 9vw;
     }
     &-ps-logo {
       width: 4.875vw;
-      @include breakpoint(med_height){
+      @include breakpoint(short){
         width: 3.5vw;
       }
     }
@@ -33,10 +33,10 @@
       line-height: 1em;
       letter-spacing: -.2px;
       margin-top: 4.5vh;
-      @include breakpoint(laptop_sm){
+      @include breakpoint(short){
         font-size: 4rem;
       }
-      @include breakpoint(med_height){
+      @include breakpoint(short){
         font-size: 4rem;
         margin-top: 3vh;
       }
@@ -49,7 +49,7 @@
       letter-spacing: -.2px;
       font-weight: $fw-body;
       margin-top: 20px;
-      @include breakpoint(laptop_sm){
+      @include breakpoint(med_height){
         font-size: 1.2rem;
       }
     }
@@ -73,7 +73,7 @@
       color: white;
       border: 1px solid white;
       border-radius: 22px;
-      @include breakpoint(laptop_sm){
+      @include breakpoint(short){
         font-size: 1rem;
       }
       &.button-lt {
