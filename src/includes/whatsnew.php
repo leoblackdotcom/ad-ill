@@ -13,7 +13,7 @@
             <h4 class="wn-cards__subhead">What's New</h4>
             <p class="wn-cards__copy">Object selection tool</p>
           </a>
-          <a href="#" class="wn-cards__card wn-cards__card--hide">
+          <a href="https://creativitytour.adobe.com/challenges/chromatica/" class="wn-cards__card wn-cards__card--hide">
             <div class="wn-cards__card-img-ctnr">
               <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card4.jpg" />
             </div>
@@ -21,14 +21,14 @@
             <p class="wn-cards__copy">Discover your Chromatica</p>
           </a>
           
-          <a href="#" class="wn-cards__card wn-cards__card--hide delay1">
+          <a href="https://www.behance.net/live/videos/6443/Animated-Gifs-with-Greta-Larkins" class="wn-cards__card wn-cards__card--hide delay1">
             <div class="wn-cards__card-img-ctnr">
               <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card2.jpg" />
             </div>
             <h4 class="wn-cards__subhead">Adobe Live</h4>
             <p class="wn-cards__copy">Animated Gifs with Greta Larkins</p>
           </a>
-          <a href="#" class="wn-cards__card wn-cards__card--hide">
+          <a href="https://www.behance.net/gallery/91327851/hold-on-tight" class="wn-cards__card wn-cards__card--hide">
             <div class="wn-cards__card-img-ctnr">
               <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card5.jpg" />
             </div>
@@ -36,14 +36,14 @@
             <p class="wn-cards__copy">Maryanne Nguyen</p>
           </a>
           
-          <a href="#" class="wn-cards__card wn-cards__card--hide delay2 stagger--2">
+          <a href="https://create.adobe.com/2019/1/23/tony_hawk_skate_jam_.html" class="wn-cards__card wn-cards__card--hide delay2 stagger--2">
             <div class="wn-cards__card-img-ctnr">
               <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card3.jpg" />
             </div>
             <h4 class="wn-cards__subhead">Creative Challenge</h4>
             <p class="wn-cards__copy">Tony Hawk Skate Jam Design Challenge</p>
           </a>
-          <a href="#" class="wn-cards__card wn-cards__card--hide">
+          <a href="https://create.adobe.com/2019/12/12/photoshop-collage-templates.html" class="wn-cards__card wn-cards__card--hide">
             <div class="wn-cards__card-img-ctnr">
               <img class="wn-cards__card-img" src="assets/images/whatsnew/wn-card6.jpg" />
             </div>
