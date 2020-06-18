@@ -868,7 +868,7 @@
                 <div class="wn-inc__item">
                   <img class="wn-inc__icon" src="assets/images/whatsnew/apps-icon.svg" alt="">
                   <div class="wn-inc__copy">
-                    <div class="wn-inc__subtitle">30+ apps</div>
+                    <div class="wn-inc__subtitle">Photoshop on desktop and iPad.</div>
                     <div class="wn-inc__desc">Explore your creativity with desktop and mobile apps including Photoshop,
                       InDesign, and Premiere Rush.</div>
                   </div>
