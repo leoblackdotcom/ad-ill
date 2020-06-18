@@ -161,6 +161,7 @@
         </div>
       </div>
     </section>
+
     <?php require_once('includes/whatsnew.php') ?>
   </main>
 
