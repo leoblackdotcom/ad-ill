@@ -1,0 +1,17 @@
+.feds-relativePosition {
+  position: relative;
+}
+
+
+
+@include breakpoint(med_height){
+  #gnav_2_2 {
+    display: none !important;
+  }
+  #feds-topnav {
+    background-color: transparent !important;
+  }
+  #gnav_2_1 {
+    background-color: white !important;
+  }
+}

@@ -115,7 +115,6 @@ const ps = (function () {
   };
 
   onWindowResize = debounce(function() { //calls after x ms of no resize events firing
-    console.log('refresh');
     ScrollTrigger.refresh(true); //safe refresh - waits at least one raf and up to 200ms for positions to recalculate (https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.refresh())
   }, 250);
 
@@ -542,8 +541,8 @@ const ps = (function () {
   onBeforeUnload = function (e) {
     //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
     e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-    // Chrome requires returnValue to be set
-    e.returnValue = "";
+    // Chrome requires returnValue to be set //MH - not sure that's true?
+    //e.returnValue = "";
     $body.style.display = "none";
     window.scrollTo(0, 0);
   };

@@ -1018,33 +1018,6 @@
                                                               id="gnav_242"
                                                               class="feds-navList-wrapper"
                                                             >
-                                                              <ul
-                                                                class="feds-navList"
-                                                                daa-lh="Students_and_Teachers"
-                                                              >
-                                                                <li
-                                                                  id="Globalnav.Creativity_Design.Right_Rail_Ad.Students_and_Teachers.Creativity_for_all_"
-                                                                  class="feds-navList-item"
-                                                                >
-                                                                  <div
-                                                                    id="gnav_244"
-                                                                    class="feds-imageWrapper"
-                                                                  >
-                                                                    <a
-                                                                      href="https://www.adobe.com/creativecloud.html"
-                                                                      title="Creativity for all."
-                                                                      class="feds-image-link"
-                                                                      daa-ll="Creativity_for_all_-1"
-                                                                    >
-                                                                      <img
-                                                                        data-feds-imgsrc="assets/images/nav/cc-promo.png"
-                                                                        alt="Make anything more creative with Creative Cloud"
-                                                                        class="feds-image"
-                                                                      />
-                                                                    </a>
-                                                                  </div>
-                                                                </li>
-                                                              </ul>
                                                             </div>
                                                           </li>
                                                         </ul>

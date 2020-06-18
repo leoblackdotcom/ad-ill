@@ -1,6 +1,6 @@
 ps.navModule = (function() {
 
-  let dropdownLinks;
+  let dropdownLinks, otherLinks;
   let openClass = 'feds-popup--open';
 
 
@@ -14,10 +14,19 @@ ps.navModule = (function() {
     $thisDropdown.classList.toggle(openClass,!isOpen);
   }
 
+  function onotherLinkClick(e){
+    e.preventDefault();
+  }
+
   function addNavListeners() {
+
     dropdownLinks = document.querySelectorAll('.feds-popup-trigger .feds-navLink');
     dropdownLinks.forEach((dropdownLink,index)=>{
       dropdownLink.addEventListener('click',onDropdownLinkClick);
+    })
+    otherLinks = document.querySelectorAll('a:not(.feds-navLink)');
+    otherLinks.forEach((otherLink,index)=>{
+      otherLink.addEventListener('click',onotherLinkClick);
     })
   }
 
