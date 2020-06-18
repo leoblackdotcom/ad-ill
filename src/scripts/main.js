@@ -96,6 +96,7 @@ const ps = (function () {
 
   initSubmodules = function () {
     ps.whatsNewModule.init();
+    ps.navModule.init();
   };
 
   debounce = function(func, wait, immediate) { //https://davidwalsh.name/javascript-debounce-function

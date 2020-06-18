@@ -1037,7 +1037,7 @@
                                                                       daa-ll="Creativity_for_all_-1"
                                                                     >
                                                                       <img
-                                                                        data-feds-imgsrc="https://cc-prod.scene7.com/is/image/CCProdAuthor/cc-promo?$png$&amp;jpegSize=100&amp;wid=260"
+                                                                        data-feds-imgsrc="assets/images/nav/cc-promo.png"
                                                                         alt="Make anything more creative with Creative Cloud"
                                                                         class="feds-image"
                                                                       />
