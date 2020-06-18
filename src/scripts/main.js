@@ -164,7 +164,7 @@ const ps = (function () {
   }
 
   onBrushesLeave = function(){
-    tlBrushesContentOut.play();
+    tlBrushesContentOut.restart();
   }
 
   onBrushesLeaveBack = function () {
@@ -426,7 +426,6 @@ const ps = (function () {
 
     tlRetouch
       .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
-      //.to('.brushes-content-container',{translateY: -100, duration: 2},'retouchIn')
       .from(
         ".retouch-1",
         {
