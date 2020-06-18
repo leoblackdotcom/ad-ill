@@ -33,7 +33,7 @@ const ps = (function () {
       transform: {
         frames: 83,
         selector: ".transform-sequence.t4",
-        framesPath: 'assets/images/transform/frames/transform4-',
+        framesPath: 'assets/images/transform/frames/transform5-',
         width: 1280, //native size of images for canvas
         height: 991,
         pad: 2, //leading 0s in sequence filenames
@@ -96,6 +96,7 @@ const ps = (function () {
 
   initSubmodules = function () {
     ps.whatsNewModule.init();
+    ps.navModule.init();
   };
 
   debounce = function(func, wait, immediate) { //https://davidwalsh.name/javascript-debounce-function
@@ -114,7 +115,6 @@ const ps = (function () {
   };
 
   onWindowResize = debounce(function() { //calls after x ms of no resize events firing
-    console.log('refresh');
     ScrollTrigger.refresh(true); //safe refresh - waits at least one raf and up to 200ms for positions to recalculate (https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.refresh())
   }, 250);
 
@@ -164,7 +164,7 @@ const ps = (function () {
   }
 
   onBrushesLeave = function(){
-    tlBrushesContentOut.play();
+    tlBrushesContentOut.restart();
   }
 
   onBrushesLeaveBack = function () {
@@ -426,7 +426,6 @@ const ps = (function () {
 
     tlRetouch
       .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
-      //.to('.brushes-content-container',{translateY: -100, duration: 2},'retouchIn')
       .from(
         ".retouch-1",
         {
@@ -541,8 +540,8 @@ const ps = (function () {
   onBeforeUnload = function (e) {
     //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
     e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-    // Chrome requires returnValue to be set
-    e.returnValue = "";
+    // Chrome requires returnValue to be set //MH - not sure that's true?
+    //e.returnValue = "";
     $body.style.display = "none";
     window.scrollTo(0, 0);
   };

@@ -7,6 +7,7 @@
   <title>Photoshop Reimagine</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/photoshop-localnav.css?v=<?php echo filemtime('styles/photoshop-localnav.css'); ?>" />
   <link rel="stylesheet" href="styles/main.css?v=<?php echo filemtime('styles/main.css'); ?>" />
   <link rel="icon" href="assets/images/adobe.png" />
   <link rel="stylesheet" href="https://use.typekit.net/opx6jbj.css?v=18">
@@ -14,7 +15,7 @@
 
 <body class="loading">
   <header class="header-container headroom">
-    <img src="assets/images/header.jpg" alt="Adobe Header" class="header-image" />
+    <?php require_once('includes/nav.php') ?>
   </header>
   <main id="main" class="main">
     <div class="null"></div>
@@ -160,6 +161,7 @@
         </div>
       </div>
     </section>
+<<<<<<< HEAD
     <section id="section-whatsnew">
       <div class="whatsnew-container">
         <div class="whatsnew-container-inner">
@@ -1135,6 +1137,9 @@
         </div>
       </div>
     </section>
+=======
+    <?php require_once('includes/whatsnew.php') ?>
+>>>>>>> 1ee3ebd3bae0dcf0f9e034afd1da30e65c53c581
   </main>
 
   <div class="loader-container">
@@ -1160,8 +1165,8 @@
   <script src="scripts/libs/imagesloaded.pkgd.min.js"></script>
   <script src="scripts/libs/headroom.min.js"></script>
   <script src="scripts/main.js?v=<?php echo filemtime('scripts/main.js'); ?>"></script>
+  <script src="scripts/nav.js?v=<?php echo filemtime('scripts/nav.js'); ?>"></script>
   <script src="scripts/whatsnew.js?v=<?php echo filemtime('scripts/whatsnew.js'); ?>"></script>
-
 </body>
 
 </html>
