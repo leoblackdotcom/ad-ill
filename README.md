@@ -21,7 +21,7 @@ From the `src/styles` directory: `sass --watch main.scss:main.css`
 
 optionally, compress and include sourcemaps:
 
-`sass --watch main.scss:main.css --style=compressed --sourcemap`
+`sass --watch main.scss:main.css --style=compressed --source-map`
 
 `main.scss` imports all other relevant scss files in its compilation.
 
