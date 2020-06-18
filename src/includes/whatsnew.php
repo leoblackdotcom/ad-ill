@@ -713,7 +713,7 @@
 
           <div class="wn-inc__items">
             <div class="wn-inc__item">
-              <img class="wn-inc__icon" src="assets/images/whatsnew/apps-icon.svg" alt="">
+              <img class="wn-inc__icon" src="assets/images/whatsnew/dt_ps_icon.svg" alt="Photoshop on iPad">
               <div class="wn-inc__copy">
                 <div class="wn-inc__subtitle">Photoshop on desktop and iPad.</div>
                 <div class="wn-inc__desc">Explore your creativity with desktop and mobile apps including Photoshop,
