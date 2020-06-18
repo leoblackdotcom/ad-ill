@@ -33,7 +33,7 @@ const ps = (function () {
       transform: {
         frames: 83,
         selector: ".transform-sequence.t4",
-        framesPath: 'assets/images/transform/frames/transform4-',
+        framesPath: 'assets/images/transform/frames/transform5-',
         width: 1280, //native size of images for canvas
         height: 991,
         pad: 2, //leading 0s in sequence filenames
