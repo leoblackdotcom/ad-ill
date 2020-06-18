@@ -891,7 +891,7 @@
                 style="background-image:url(https://photoshop.com/en/static/images/family-products/lightroom-cc-small.jpg)">
               </div>
               <div class="adobe-card__content"><img class="adobe-card__icon"
-                  src="https://photoshop.com/en/static/images/apps/lightroom-cc.svg" alt="Lightroom">
+                  src="assets/images/whatsnew/lr-logo.png" alt="Lightroom">
                 <div class="adobe-card__caption">
                   <div class="adobe-card__devices"><img class="adobe-card__device"
                       src="https://photoshop.com/en/static/images/device-desktop.png"
@@ -916,7 +916,7 @@
                 style="background-image:url(https://photoshop.com/en/static/images/family-products/ps-express-2-small.jpg)">
               </div>
               <div class="adobe-card__content"><img class="adobe-card__icon"
-                  src="https://photoshop.com/en/static/images/apps/photoshop-express.svg" alt="Photoshop Express">
+                  src="assets/images/whatsnew/pse-logo.png" alt="Photoshop Express">
                 <div class="adobe-card__caption">
                   <div class="adobe-card__devices"><img class="adobe-card__device"
                       src="https://photoshop.com/en/static/images/device-phone.png"
@@ -938,7 +938,7 @@
                 style="background-image:url(https://photoshop.com/en/static/images/family-products/ps-camera-small.jpg)">
               </div>
               <div class="adobe-card__content"><img class="adobe-card__icon"
-                  src="https://photoshop.com/en/static/images/apps/photoshop-camera.svg" alt="Photoshop Camera">
+                  src="assets/images/whatsnew/ps-logo.png" alt="Photoshop Camera">
                 <div class="adobe-card__caption">
                   <div class="adobe-card__devices"><img class="adobe-card__device"
                       src="https://photoshop.com/en/static/images/device-phone.png"
