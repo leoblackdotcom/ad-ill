@@ -11,13 +11,14 @@ body:not(.loading){
   max-width: 1440px;
   padding: 0 30px;
 
-  &__headline {
+  &__headline { //
     margin: 100px auto 0 auto;
   }
 
   &__section-intro {
     margin-bottom: 60px;
     text-align: center;
+
   }
 
   &__subhead {
