@@ -892,7 +892,7 @@
 
       <!-- Pulled from the Photoshop website -->
       <div class="wn-products">
-        <h3 class="section-title section-title--sm">Also part of the Photoshop family.</h3>
+        <h3 class="section-title section-title--sm">Explore the Photoshop family of apps.</h3>
 
         <div class="adobe-card-block__grid">
           <div class="adobe-card-block__grid-item">
