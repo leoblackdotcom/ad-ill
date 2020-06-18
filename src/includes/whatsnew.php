@@ -2,7 +2,9 @@
   <div class="whatsnew-container">
     <div class="whatsnew-container-inner">
       <div class="wn-cards">
-        <h3 class="section-title section-title--sm wn-cards__headline">The creative world runs on Photoshop.</h3>
+        <h3 class="section-title section-title--sm wn-cards__headline">Join the Photoshop community.</h3>
+        <p class="section-intro wn-cards__section-intro">Get started, get inspired, and get the latest updates.</p>
+
 
         <div class="wn-cards__grid">
           <div class="wn-cards__card wn-cards__card--hide stagger--1">
@@ -705,7 +707,7 @@
             <div class="wn-inc__item">
               <img class="wn-inc__icon" src="assets/images/whatsnew/apps-icon.svg" alt="">
               <div class="wn-inc__copy">
-                <div class="wn-inc__subtitle">30+ apps</div>
+                <div class="wn-inc__subtitle">Photoshop on desktop and iPad.</div>
                 <div class="wn-inc__desc">Explore your creativity with desktop and mobile apps including Photoshop,
                   InDesign, and Premiere Rush.</div>
               </div>

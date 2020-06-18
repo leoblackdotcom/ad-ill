@@ -33,7 +33,7 @@ const ps = (function () {
       transform: {
         frames: 83,
         selector: ".transform-sequence.t4",
-        framesPath: 'assets/images/transform/frames/transform4-',
+        framesPath: 'assets/images/transform/frames/transform5-',
         width: 1280, //native size of images for canvas
         height: 991,
         pad: 2, //leading 0s in sequence filenames
@@ -164,7 +164,7 @@ const ps = (function () {
   }
 
   onBrushesLeave = function(){
-    tlBrushesContentOut.play();
+    tlBrushesContentOut.restart();
   }
 
   onBrushesLeaveBack = function () {
@@ -426,7 +426,6 @@ const ps = (function () {
 
     tlRetouch
       .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
-      //.to('.brushes-content-container',{translateY: -100, duration: 2},'retouchIn')
       .from(
         ".retouch-1",
         {
