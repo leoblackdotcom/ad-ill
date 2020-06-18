@@ -12,7 +12,12 @@ body:not(.loading){
   padding: 0 30px;
 
   &__headline {
-    margin: 100px auto;
+    margin: 100px auto 0 auto;
+  }
+
+  &__section-intro {
+    margin-bottom: 60px;
+    text-align: center;
   }
 
   &__subhead {

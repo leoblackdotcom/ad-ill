@@ -401,7 +401,11 @@ body:not(.loading) .wn-cards__card--hide {
   padding: 0 30px;
 }
 .wn-cards__headline {
-  margin: 100px auto;
+  margin: 100px auto 0 auto;
+}
+.wn-cards__section-intro {
+  margin-bottom: 60px;
+  text-align: center;
 }
 .wn-cards__subhead {
   color: #001D26;
