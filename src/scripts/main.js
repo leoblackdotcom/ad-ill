@@ -160,11 +160,11 @@ const ps = (function () {
   };
 
   onBrushesVideoIn = function(){
-    //tlBrushesContent.restart();
+    //
   }
 
   onBrushesLeave = function(){
-    tlBrushesContentOut.restart();
+    //
   }
 
   onBrushesLeaveBack = function () {
@@ -177,6 +177,7 @@ const ps = (function () {
   }
 
   onRetouchEnter = function () {
+    tlBrushesContentOut.restart();
     appState.curSceneIndex = 2;
   };
 
