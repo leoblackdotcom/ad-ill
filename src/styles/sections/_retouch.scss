@@ -59,7 +59,6 @@
       @include willchange(to);
     }
     &-intro {
-      margin-top: 2.25vh;
       width: 23vw;
       @include breakpoint(short) {
         width: 26vw;
@@ -79,7 +78,7 @@
     }
     &-button {
       align-self: flex-start;
-      margin-top: 2.25vh;
+      margin-top: $buttons-margin-top;
       @include willchange(o);
     }
   }

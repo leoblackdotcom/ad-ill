@@ -1,6 +1,17 @@
 
 #section-intro {
   .intro {
+    &-scroll-container {
+      z-index: 500;
+      position: absolute;
+      bottom: 10vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    &-scroll-indicator {
+      width: 40px;
+    }
     &-container {
       position: relative;
       z-index: 10;
@@ -19,45 +30,44 @@
       position: absolute;
       z-index: 10;
       width: 35vw;
-      top: 12vh;
+      top: $nav-height;
       left: $content-spacing-left;
+      height: calc(100vh - #{$nav-height});
+      display: flex;
+      align-items: center;
     }
     &-ps-logo {
-      width: 4.875vw;
-      @include breakpoint(short){
-        width: 3.5vw;
+      width: 80px;
+      @include breakpoint(med_height){
+        width: 60px;
       }
     }
     &-title {
       font-size: 5rem;
-      line-height: 1em;
       letter-spacing: -.2px;
-      margin-top: 4.5vh;
+      line-height: 1em;
+      margin-top: 20px;
       @include breakpoint(short){
-        font-size: 4rem;
-      }
-      @include breakpoint(short){
-        font-size: 4rem;
-        margin-top: 3vh;
+        font-size: $fs-title;
       }
     }
     &-title-line {
       display: block;
     }
     &-p {
-      font-size: $fs-body;
+      font-size: 1.5rem;
       letter-spacing: -.2px;
       font-weight: $fw-body;
-      margin-top: 20px;
-      @include breakpoint(med_height){
-        font-size: $fs-body-md;
+      margin-top: $section-intro-margin-top;
+      @include breakpoint(short){
+        font-size: $fs-body;
       }
     }
     &-buttons {
-      margin-top: 7vh;
+      margin-top: $buttons-margin-top;
       display: flex;
       @include breakpoint(med_height){
-        margin-top: 4vh;
+        margin-top: 40px;
       }
     }
     &-button {
@@ -71,11 +81,8 @@
       font-size: 1.25rem;
       background-color: transparent;
       color: white;
-      border: 1px solid white;
+      border: 2px solid white;
       border-radius: 22px;
-      @include breakpoint(short){
-        font-size: 1rem;
-      }
       &.button-lt {
         @include buttonHoverLt;
       }
@@ -85,12 +92,20 @@
         margin-left: 20px;
         @include buttonHoverBlue;
       }
+      @include breakpoint(short){
+        font-size: .875rem;
+        padding: 0 16px;
+        height: 32px;
+        border-radius: 16px;
+      }
     }
     &-subtext {
       margin-top: 20px;
-      font-size: 1.17rem;
-      font-weight: $fw-body;
-
+      font-size: 1.5625rem;
+      font-weight: $fw-headline;
+      @include breakpoint(short){
+        font-size: $fs-body;
+      }
     }
   }
 }

@@ -33,11 +33,10 @@
           position: relative;
         }
         &-intro {
-          margin-top: 20px;
           width: 31vw;
         }
         &-button-container {
-          margin-top: 40px;
+          margin-top: $buttons-margin-top;
           @include willchange(o);
           @include breakpoint(short){
             margin-top: 20px;

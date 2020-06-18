@@ -1,14 +1,15 @@
 @import "mixins";
 
 .section-title {
-  font-size: 4.375rem;
-  line-height: 4.0625rem;
+  font-size: $fs-title;
   letter-spacing: -0.2px;
+  line-height: 1em;
   @include willchange(to);
 
+  /*
   @include breakpoint(laptop_sm){
-    font-size: 3.5rem;
-  }
+    font-size: $fs-title-sm;
+  }*/
 
   &--sm {
     color: black;
@@ -20,18 +21,18 @@
 }
 
 .section-intro {
-  font-size: 2rem;
-  line-height: 2.25rem;
+  font-size: $fs-body;
   font-weight: $fw-body;
+  line-height: $lh-body;
+  margin-top: $section-intro-margin-top;
   @include willchange(to);
+  /*
   @include breakpoint(laptop){
-    font-size: $fs-body;
-    line-height: 2rem;
+    font-size: $fs-body-md;
   }
   @include breakpoint(laptop_sm){
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
+    font-size: $fs-body-md;
+  }*/
 }
 
 .btn-ctnr {
