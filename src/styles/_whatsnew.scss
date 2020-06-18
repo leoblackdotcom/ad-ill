@@ -24,6 +24,7 @@ body:not(.loading){
   }
 
   &__copy {
+    color: #001D26;
     font-size: 1.25rem;
     font-weight: 700;
     margin-left: 10px;
@@ -32,6 +33,22 @@ body:not(.loading){
   &__grid {
     columns: auto 3;
     column-gap: 20px;
+  }
+  
+  &__card-img-ctnr {
+    border-radius: 13px;
+    display: block;
+    overflow: hidden;
+  }
+  
+  &__card-img-ctnr img {
+    display: block;
+    transform: scale(1);
+    transition: transform 1.5s ease;
+  }
+  
+  &__card-img-ctnr:hover img {
+    transform: scale(1.03);
   }
 
   &__card {
