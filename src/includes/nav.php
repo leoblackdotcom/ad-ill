@@ -223,7 +223,7 @@
                                                                 class="feds-navLink-image"
                                                               >
                                                                 <img
-                                                                  data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/creativecloud-app.svg"
+                                                                  src="assets/images/nav/externals/creativecloud-app.svg"
                                                                   alt=""
                                                                 />
                                                               </span>
@@ -267,7 +267,7 @@
                                                                 class="feds-navLink-image"
                                                               >
                                                                 <img
-                                                                  data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/photoshop.svg"
+                                                                  src="assets/images/nav/externals/photoshop.svg"
                                                                   alt=""
                                                                 />
                                                               </span>
@@ -308,7 +308,7 @@
                                                                 class="feds-navLink-image"
                                                               >
                                                                 <img
-                                                                  data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/lightroom-cc.svg"
+                                                                  src="assets/images/nav/externals/lightroom-cc.svg"
                                                                   alt=""
                                                                 />
                                                               </span>
@@ -350,7 +350,7 @@
                                                                 class="feds-navLink-image"
                                                               >
                                                                 <img
-                                                                  data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/illustrator.svg"
+                                                                  src="assets/images/nav/externals/illustrator.svg"
                                                                   alt=""
                                                                 />
                                                               </span>
@@ -391,7 +391,7 @@
                                                                 class="feds-navLink-image"
                                                               >
                                                                 <img
-                                                                  data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/premiere.svg"
+                                                                  src="assets/images/nav/externals/premiere.svg"
                                                                   alt=""
                                                                 />
                                                               </span>
@@ -433,7 +433,7 @@
                                                                 class="feds-navLink-image"
                                                               >
                                                                 <img
-                                                                  data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/acrobat-pro.svg"
+                                                                  src="assets/images/nav/externals/acrobat-pro.svg"
                                                                   alt=""
                                                                 />
                                                               </span>
@@ -1062,7 +1062,7 @@
                                                           class="feds-navLink-image"
                                                         >
                                                           <img
-                                                            data-feds-imgsrc="https://www.adobe.com/content/dam/cc/icons/home_icon.svg"
+                                                            src="assets/images/nav/externals/home_icon.svg"
                                                             alt=""
                                                           />
                                                         </span>
