@@ -15,7 +15,7 @@ ps.navModule = (function() {
   }
 
   function onotherLinkClick(e){
-    e.preventDefault();
+    e.preventDefault(); //prevent clicks in nav
   }
 
   function addNavListeners() {
@@ -24,10 +24,12 @@ ps.navModule = (function() {
     dropdownLinks.forEach((dropdownLink,index)=>{
       dropdownLink.addEventListener('click',onDropdownLinkClick);
     })
+    /*
     otherLinks = document.querySelectorAll('a:not(.feds-navLink)');
+
     otherLinks.forEach((otherLink,index)=>{
       otherLink.addEventListener('click',onotherLinkClick);
-    })
+    });*/
   }
 
   function init(){ //called from main.js

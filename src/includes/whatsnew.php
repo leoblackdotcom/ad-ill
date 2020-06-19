@@ -22,7 +22,7 @@
               <p class="wn-cards__copy">Discover your Chromatica</p>
             </a>
           </div>
-          
+
           <div class="wn-cards__col">
             <a href="https://www.behance.net/live/videos/6443/Animated-Gifs-with-Greta-Larkins" class="wn-cards__card wn-cards__card--hide delay1">
               <div class="wn-cards__card-img-ctnr">
@@ -39,7 +39,7 @@
               <p class="wn-cards__copy">Maryanne Nguyen</p>
             </a>
           </div>
-          
+
           <div class="wn-cards__col">
             <a href="https://create.adobe.com/2019/1/23/tony_hawk_skate_jam_.html" class="wn-cards__card wn-cards__card--hide delay2 stagger--2">
               <div class="wn-cards__card-img-ctnr">
@@ -716,8 +716,7 @@
               <img class="wn-inc__icon" src="assets/images/whatsnew/dt_ps_icon.svg" alt="Photoshop on iPad">
               <div class="wn-inc__copy">
                 <div class="wn-inc__subtitle">Photoshop on desktop and iPad.</div>
-                <div class="wn-inc__desc">Explore your creativity with desktop and mobile apps including Photoshop,
-                  InDesign, and Premiere Rush.</div>
+                <div class="wn-inc__desc">Create anywhere with full-size PSDs that automatically save across your devices.</div>
               </div>
             </div>
             <div class="wn-inc__item">

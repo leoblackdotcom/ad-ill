@@ -50,11 +50,9 @@
     }
     &-copy-p {
       color: $color--gray-lt;
-      margin-top: 2.2vh;
-      //width: 30vw;
     }
     &-button {
-      margin-top: 2.9vh;
+      margin-top: $buttons-margin-top;
     }
     &-panel {
       width: 18.75vw;

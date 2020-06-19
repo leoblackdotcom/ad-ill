@@ -14,11 +14,15 @@ $color-button-bg-blue: #005abe;
 $gradient-shade-dark: linear-gradient(to right, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 30%,rgba(0,0,0,0) 100%);
 
 //fonts
-$fs-body: 1.8rem;
-$fs-body-md: 1.5rem;
-$fs-body-short: 1.2rem;
-$fw-body: 400;
+$fs-title: 3.75rem;
+$fs-title-sm: 3rem;
 $fw-headline: 800;
+
+$fs-body: 1.25rem;
+$fs-body-md: 1.25rem;
+$fs-body-short: 1.25rem;
+$fw-body: 400;
+$lh-body: 1.625rem;
 
 
 //layout
@@ -26,6 +30,9 @@ $header-height: 0px; //if we use a fixed header
 $design-width: 1677px;
 $design-height: 1105px;
 $content-spacing-left: 9.75vw; //left align on all section content
+$nav-height: 98px; //adobe nav
+$section-intro-margin-top: 20px;
+$buttons-margin-top: 60px;
 
 //BREAKPOINTS:
 //width:

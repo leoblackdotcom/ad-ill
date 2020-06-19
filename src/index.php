@@ -79,22 +79,27 @@
         </video>
         <div class="intro-video-gradient section-gradient"></div>
         <div class="intro-content-container">
-          <img src="assets/images/intro/ps-logo.png" alt="Photoshop Logo" class="intro-ps-logo" />
-          <h1 class="intro-title">
-            <span class="intro-title-line l1">Make.</span>
-            <span class="intro-title-line l2">Believe.</span>
-            <span class="intro-title-line l3">Photoshop.</span>
-          </h1>
-          <p class="intro-p">
-            From photo editing and compositing to digital painting, animation,
-            and graphic design — whatever you can imagine, you can create it
-            in Photoshop.
-          </p>
-          <div class="intro-buttons">
-            <button class="intro-button trial button-lt">Free Trial</button>
-            <button class="intro-button buy">Buy Now</button>
+          <div class="intro-content-inner">
+            <img src="assets/images/intro/ps-logo.png" alt="Photoshop Logo" class="intro-ps-logo" />
+            <h1 class="intro-title">
+              <span class="intro-title-line l1">Make.</span>
+              <span class="intro-title-line l2">Believe.</span>
+              <span class="intro-title-line l3">Photoshop.</span>
+            </h1>
+            <p class="intro-p">
+              From photo editing and compositing to digital painting, animation,
+              and graphic design — whatever you can imagine, you can create it
+              in Photoshop.
+            </p>
+            <div class="intro-buttons">
+              <button class="intro-button trial button-lt">Free Trial</button>
+              <button class="intro-button buy">Buy Now</button>
+            </div>
+            <p class="intro-subtext">Starting at $20.99/mo</p>
           </div>
-          <p class="intro-subtext">Starting at $20.99/mo</p>
+        </div>
+        <div class="intro-scroll-container">
+          <img src="assets/images/intro/chevron-down.png" alt="Scroll Down" class="intro-scroll-indicator">
         </div>
       </div>
     </section>
@@ -110,7 +115,7 @@
           <div class="transform-rotating-titles-container inactive">
             <h2 class="transform-rotating-title section-title">
               <span class="transform-title-line rt1">Transform photos</span>
-              <span class="transform-title-line rt2">into flights of pure Imagination.</span>
+              <span class="transform-title-line rt2">into flights of pure imagination.</span>
             </h2>
           </div>
           <div class="transform-copy-container">
@@ -144,7 +149,7 @@
         <div class="ipad-content-container">
           <div class="ipad-content">
             <h2 class="section-title ipad-title">
-              Powerful meets portable.
+              Go where your<br/>imagination<br/>takes you.
             </h2>
             <p class="section-intro ipad-intro">
               The creative power of Photoshop is now on your iPad. Open full-size PSDs, create sophisticated composites,

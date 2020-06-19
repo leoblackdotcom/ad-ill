@@ -170,7 +170,7 @@ const ps = (function () {
   onBrushesLeaveBack = function () {
     appState.curSceneIndex = 1;
     resetTimeline(tlBrushes);
-    resetVideo($brushesVideo);
+    //resetVideo($brushesVideo);
   };
 
   onBrushesVideoEnded = function(){
@@ -337,7 +337,7 @@ const ps = (function () {
       }, "spacer")
       .from(".transform-title-line.rt1", { autoAlpha: 0}, "spacer+=.5")
       .to('.intro-container',{ translateY: '-100vh', duration: 1, onComplete: function(){
-        resetVideo($introVideo);
+        //resetVideo($introVideo);
       }}, "spacer")
       .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none" }, "spacer+=3.5")
       .to(".null", { opacity: 0.5, duration: 3},'spacer2')
