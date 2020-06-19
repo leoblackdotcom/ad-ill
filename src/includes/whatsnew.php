@@ -99,7 +99,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image:url(https://photoshop.com/en/static/images/articles/40.jpg)"></div>
+                      style="background-image:url(../assets/images/whatsnew/externals/40.jpg)"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -113,7 +113,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image:url(https://photoshop.com/en/static/images/articles/38.jpg)"></div>
+                      style="background-image:url(../assets/images/whatsnew/externals/38.jpg)"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -127,7 +127,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image:url(https://photoshop.com/en/static/images/articles/41.jpg)"></div>
+                      style="background-image:url(../assets/images/whatsnew/externals/41.jpg)"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -141,7 +141,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image:url(https://photoshop.com/en/static/images/articles/39.jpg)"></div>
+                      style="background-image:url(assets/images/whatsnew/externals/39.jpg)"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -157,7 +157,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/28.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/28.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -172,7 +172,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/29.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/29.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -187,7 +187,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/26.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/26.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -202,7 +202,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/27.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/27.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -219,7 +219,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/33.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/33.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -234,7 +234,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/30.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/30.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -249,7 +249,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/31.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/31.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -264,7 +264,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/32.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/32.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -281,7 +281,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/24.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/24.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -296,7 +296,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/25.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/25.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -311,7 +311,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/23.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/23.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -326,7 +326,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/22.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/22.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -343,7 +343,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/35.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/35.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -358,7 +358,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/37.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/37.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -373,7 +373,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/36.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/36.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -388,7 +388,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/34.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/34.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -405,7 +405,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/12.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/12.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -420,7 +420,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/10.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/10.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -435,7 +435,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/13.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/13.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -450,7 +450,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/11.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/11.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -467,7 +467,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/21.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/21.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -482,7 +482,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/20.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/20.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -497,7 +497,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/18.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/18.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -512,7 +512,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/19.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/19.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -529,7 +529,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/6.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/6.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -543,7 +543,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/8.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/8.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Video Tutorial</h4>
@@ -557,7 +557,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/7.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/7.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -571,7 +571,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/9.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/9.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -587,7 +587,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/3.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/3.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Video Tutorial</h4>
@@ -601,7 +601,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/4.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/4.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -615,7 +615,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/2.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/2.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -629,7 +629,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/5.jpg');"></div>
+                      style="background-image: url('../assets/images/whatsnew/externals/5.jpg');"></div>
                   </div>
                   <div class="adobe-article__content">
                     <h4 class="adobe-article__topline">Tutorial</h4>
@@ -645,7 +645,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/14.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/14.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -660,7 +660,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/16.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/16.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -675,7 +675,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/17.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/17.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -690,7 +690,7 @@
                   class="adobe-article__link">
                   <div class="adobe-article__background-container">
                     <div class="adobe-article__background"
-                      style="background-image: url('https://photoshop.com/en/static/images/articles/15.jpg');">
+                      style="background-image: url('../assets/images/whatsnew/externals/15.jpg');">
                     </div>
                   </div>
                   <div class="adobe-article__content">
@@ -897,16 +897,16 @@
           <div class="adobe-card-block__grid-item">
             <div class="adobe-card">
               <div class="adobe-card__background"
-                style="background-image:url(https://photoshop.com/en/static/images/family-products/lightroom-cc-small.jpg)">
+                style="background-image:url(assets/images/whatsnew/externals/lightroom-cc-small.jpg)">
               </div>
               <div class="adobe-card__content"><img class="adobe-card__icon"
                   src="assets/images/whatsnew/lr-logo.png" alt="Lightroom">
                 <div class="adobe-card__caption">
                   <div class="adobe-card__devices"><img class="adobe-card__device"
-                      src="https://photoshop.com/en/static/images/device-desktop.png"
+                      src="assets/images/whatsnew/externals/device-desktop.png"
                       alt="Lightroom for desktop"><img class="adobe-card__device"
-                      src="https://photoshop.com/en/static/images/device-web.png" alt="Lightroom for web"><img
-                      class="adobe-card__device" src="https://photoshop.com/en/static/images/device-phone.png"
+                      src="assets/images/whatsnew/externals/device-web.png" alt="Lightroom for web"><img
+                      class="adobe-card__device" src="assets/images/whatsnew/externals/device-phone.png"
                       alt="Lightroom for phone"></div>
                   <h3 class="adobe-card__title">Lightroom</h3>
                   <div class="adobe-auto-paragraph adobe-card__description">
@@ -922,13 +922,13 @@
           <div class="adobe-card-block__grid-item">
             <div class="adobe-card">
               <div class="adobe-card__background"
-                style="background-image:url(https://photoshop.com/en/static/images/family-products/ps-express-2-small.jpg)">
+                style="background-image:url(assets/images/whatsnew/externals/ps-express-2-small.jpg)">
               </div>
               <div class="adobe-card__content"><img class="adobe-card__icon"
                   src="assets/images/whatsnew/pse-logo.png" alt="Photoshop Express">
                 <div class="adobe-card__caption">
                   <div class="adobe-card__devices"><img class="adobe-card__device"
-                      src="https://photoshop.com/en/static/images/device-phone.png"
+                      src="assets/images/whatsnew/externals/device-phone.png"
                       alt="Photoshop Express for phone"></div>
                   <h3 class="adobe-card__title">Photoshop Express</h3>
                   <div class="adobe-auto-paragraph adobe-card__description">
@@ -944,13 +944,13 @@
           <div class="adobe-card-block__grid-item">
             <div class="adobe-card">
               <div class="adobe-card__background"
-                style="background-image:url(https://photoshop.com/en/static/images/family-products/ps-camera-small.jpg)">
+                style="background-image:url(assets/images/whatsnew/externals/ps-camera-small.jpg)">
               </div>
               <div class="adobe-card__content"><img class="adobe-card__icon"
                   src="assets/images/whatsnew/ps-logo.png" alt="Photoshop Camera">
                 <div class="adobe-card__caption">
                   <div class="adobe-card__devices"><img class="adobe-card__device"
-                      src="https://photoshop.com/en/static/images/device-phone.png"
+                      src="assets/images/whatsnew/externals/device-phone.png"
                       alt="Photoshop Camera for phone"></div>
                   <h3 class="adobe-card__title">Photoshop Camera</h3>
                   <div class="adobe-auto-paragraph adobe-card__description">
