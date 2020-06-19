@@ -1,65 +1,40 @@
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ps = (function () {
-  const self = this;
-  let tlIntro, tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; //gsap timelines
 
-  let retouchImg, retouchContext, $retouchCanvas;
+  //gsap timelines
+  let tlIntro, tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; 
+
+  //animated image sequences
+  let retouchImg, retouchContext, $retouchCanvas; 
   let transformImg, transformContext, $transformCanvas
 
-  let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo; //dom references
-  let sceneConfig = {
-    nativeWidth: 1679,
-    nativeHeight: 1119,
-    scenes: {
-      intro: {
-        //
-      },
-      transform: {
-        sceneDuration: 15,
-      },
-      brushes: {
-        sceneDuration: 5,
-      },
-      retouch: {
-        sceneDuration: 10,
-      },
-      ipad: {
-        sceneDuration: 7,
-      },
-    },
-    videoBasePath: "assets/videos",
-    videos: {
-      transform: {
-        frames: 83,
-        selector: ".transform-sequence.t4",
-        framesPath: 'assets/images/transform/frames/transform5-',
-        width: 1280, //native size of images for canvas
-        height: 991,
-        pad: 2, //leading 0s in sequence filenames
-      },
-      retouch: {
-        frames: 129,
-        selector: '.retouch-sequence',
-        sequence: 'assets/images/retouch/sequence-retouch.jpg',
-        framesPath: 'assets/images/retouch/frames/retouch',
-        width: 1280,
-        height: 843,
-        pad: 3,
-      }
-    },
-  };
+  //dom references
+  let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo; 
 
-  let appState = {
+
+  const appState = {
     curSceneIndex: 0,
     screenDims: {},
     scrollDirection: 0,
   };
 
-  getScreenDims = function () {
-    appState.screenDims.width = window.innerWidth;
-    appState.screenDims.height = window.innerHeight;
+  //INITIALIZATION
+
+  initSubmodules = function () {
+    ps.whatsNewModule.init();
+    ps.navModule.init();
   };
+
+  initStickyNav = function(){
+    const header = document.querySelector('.headroom');
+    const headerOptions = {
+      offset: 0, //px before header is first unpinned
+    }
+    const headroom = new Headroom(header, headerOptions);
+    headroom.init({});
+  }
 
   addDomReferences = function () {
     $retouch = document.querySelector("#section-retouch");
@@ -75,7 +50,7 @@ const ps = (function () {
     $transformCanvas = document.querySelector('.transform-canvas');
     $scrollDownLink = document.querySelector('.scroll-down-link');
   };
-
+  
   addListeners = function () {
     addUnloadListener();
     addVideoListeners();
@@ -100,29 +75,7 @@ const ps = (function () {
     $scrollDownLink.addEventListener('click',onScrollDownLinkClick);
   }
 
-  initSubmodules = function () {
-    ps.whatsNewModule.init();
-    ps.navModule.init();
-  };
-
-  debounce = function(func, wait, immediate) { //https://davidwalsh.name/javascript-debounce-function
-    let timeout;
-    return function() {
-      const context = this, args = arguments;
-      const later = function() {
-        timeout = null;
-        if (!immediate) func.apply(context, args);
-      };
-      const callNow = immediate && !timeout;
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-      if (callNow) func.apply(context, args);
-    };
-  };
-
-  onWindowResize = debounce(function() { //calls after x ms of no resize events firing
-    ScrollTrigger.refresh(true); //safe refresh - waits at least one raf and up to 200ms for positions to recalculate (https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.refresh())
-  }, 250);
+  //EVENT-RELATED
 
   resetTimeline = function(timelineRef){
     timelineRef.progress(0).pause();
@@ -149,105 +102,7 @@ const ps = (function () {
     tlIntro.restart();
   }
 
-  onScrollDownLinkClick = function(){
-    window.scroll({
-      top: appState.screenDims.height*2, 
-      left: 0, 
-      behavior: 'smooth'
-    });
-  }
-
-  onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
-    appState.curSceneIndex = 1;
-    const vidConfig = sceneConfig.videos.transform;
-    drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
-  };
-
-  onTransformEnterBack = function(){ //fires before brushesLeaveBack
-    tlBrushesContentOut.restart();
-  }
-
-  onBrushesEnter = function () {
-    appState.curSceneIndex = 2;
-    playVideo($brushesVideo);
-    tlBrushesContent.restart();
-  };
-
-  onBrushesVideoIn = function(){
-    //
-  }
-
-  onBrushesLeave = function(){
-    //
-  }
-
-  onBrushesLeaveBack = function () {
-    appState.curSceneIndex = 1;
-    resetTimeline(tlBrushes);
-    //resetVideo($brushesVideo);
-  };
-
-  onBrushesVideoEnded = function(){
-  }
-
-  onRetouchEnter = function () {
-    tlBrushesContentOut.restart();
-    appState.curSceneIndex = 2;
-  };
-
-  onRetouchEnterBack = function(){
-    resetTimeline(tliPadContent);
-  }
-
-  onRetouchUpdate = function(){
-    const curProgress = tlRetouch.progress();
-    const translateYVal = mapValue(curProgress,0,1,-18,0);
-    $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
-  }
-
-  onRetouchLeave = function(){
-    gsap.from(".ipad-video", { scale: 1.2, duration: 2 });
-  }
-
-  onRetouchLeaveBack = function () {
-    gsap.to('.brushes-video',{
-      opacity: 1,
-    });
-    tlBrushesContent.restart();
-    appState.curSceneIndex = 3;
-  };
-
-  oniPadEnter = function () {
-    appState.curSceneIndex = 4;
-    playVideo($ipadVideo);
-    tliPadContent.restart();
-    gsap.to(".ipad-video", { scale: 1, duration: 2 })
-  };
-
-  onTriggerIpadContentOut = function(){
-    tliPadContentOut.restart();
-  }
-
-  oniPadLeaveBack = function () {
-    appState.curSceneIndex = 3;
-    resetVideo($ipadVideo);
-    gsap.to(".ipad-video", { scale: 1.2, duration: 2 });
-    tliPadContentOut.restart();
-  };
-
-  oniPadVideoEnded = function(){
-    //
-  }
-
-  onWhatsNewEnter = function () {
-    appState.curSceneIndex = 5;
-  };
-
-  onWhatsNewLeaveBack = function () {
-    appState.curSceneIndex = 4;
-    playVideo($ipadVideo);
-    tliPadContent.restart();
-  };
+  //CANVAS ANIMATIONS
 
   initCanvas = function () {
     const transformConfig = sceneConfig.videos.transform;
@@ -268,7 +123,6 @@ const ps = (function () {
     retouchContext = $retouchCanvas.getContext('2d');
     retouchImg = new Image();
     retouchImg.src = getCurrentImagePath(vidConfig.framesPath,0);
-    //retouchImg.src = "assets/images/retouch/retouch-2.jpg"
     retouchImg.onload = function(){
       retouchContext.drawImage(retouchImg, 0, 0);
     }
@@ -293,6 +147,8 @@ const ps = (function () {
     thisImage.src = thisPath;
     thisContext.drawImage(thisImage, 0, 0);
   }
+
+  //TIMELINES
 
   initTimelines = function () {
     initTimelineIntro();
@@ -552,18 +408,147 @@ const ps = (function () {
     });
   };
 
-  onBeforeUnload = function (e) {
-    //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
-    e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
-    // Chrome requires returnValue to be set //MH - not sure that's true?
-    //e.returnValue = "";
-    $body.style.display = "none";
-    window.scrollTo(0, 0);
-  };
+  //HELPER FUNCTIONS
 
   mapValue = function (value, low1, high1, low2, high2) { //take a value between a high and low range and convert it to a value between another high and low range
     return low2 + ((high2 - low2) * (value - low1)) / (high1 - low1);
   };
+
+  toggleAssetLoading = function (isLoading = true) {
+    document
+      .getElementsByTagName("body")[0]
+      .classList.toggle("loading", isLoading);
+  };
+
+  getScreenDims = function () {
+    appState.screenDims.width = window.innerWidth;
+    appState.screenDims.height = window.innerHeight;
+  };
+
+
+  debounce = function(func, wait, immediate) { //https://davidwalsh.name/javascript-debounce-function
+    let timeout;
+    return function() {
+      const context = this, args = arguments;
+      const later = function() {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+      const callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if (callNow) func.apply(context, args);
+    };
+  };
+
+  //CALLBACKS
+
+  onWindowResize = debounce(function() { //calls after x ms of no resize events firing
+    getScreenDims();
+    ScrollTrigger.refresh(true); //safe refresh - waits at least one raf and up to 200ms for positions to recalculate (https://greensock.com/docs/v3/Plugins/ScrollTrigger/static.refresh())
+  }, 250);
+
+  onScrollDownLinkClick = function(){
+    window.scroll({
+      top: appState.screenDims.height*2, 
+      left: 0, 
+      behavior: 'smooth'
+    });
+  }
+
+  onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
+    appState.curSceneIndex = 1;
+    const vidConfig = sceneConfig.videos.transform;
+    drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
+  };
+
+  onTransformEnterBack = function(){ //fires before brushesLeaveBack
+    tlBrushesContentOut.restart();
+  }
+
+  onBrushesEnter = function () {
+    appState.curSceneIndex = 2;
+    playVideo($brushesVideo);
+    tlBrushesContent.restart();
+  };
+
+  onBrushesVideoIn = function(){
+    //
+  }
+
+  onBrushesLeave = function(){
+    //
+  }
+
+  onBrushesLeaveBack = function () {
+    appState.curSceneIndex = 1;
+    resetTimeline(tlBrushes);
+    //resetVideo($brushesVideo);
+  };
+
+  onBrushesVideoEnded = function(){
+  }
+
+  onRetouchEnter = function () {
+    tlBrushesContentOut.restart();
+    appState.curSceneIndex = 2;
+  };
+
+  onRetouchEnterBack = function(){
+    resetTimeline(tliPadContent);
+  }
+
+  onRetouchUpdate = function(){
+    const curProgress = tlRetouch.progress();
+    const translateYVal = mapValue(curProgress,0,1,-18,0);
+    $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
+  }
+
+  onRetouchLeave = function(){
+    gsap.from(".ipad-video", { scale: 1.2, duration: 2 });
+  }
+
+  onRetouchLeaveBack = function () {
+    gsap.to('.brushes-video',{
+      opacity: 1,
+    });
+    tlBrushesContent.restart();
+    appState.curSceneIndex = 3;
+  };
+
+  oniPadEnter = function () {
+    appState.curSceneIndex = 4;
+    playVideo($ipadVideo);
+    tliPadContent.restart();
+    gsap.to(".ipad-video", { scale: 1, duration: 2 })
+  };
+
+  onTriggerIpadContentOut = function(){
+    tliPadContentOut.restart();
+  }
+
+  oniPadLeaveBack = function () {
+    appState.curSceneIndex = 3;
+    resetVideo($ipadVideo);
+    gsap.to(".ipad-video", { scale: 1.2, duration: 2 });
+    tliPadContentOut.restart();
+  };
+
+  oniPadVideoEnded = function(){
+    //
+  }
+
+  onWhatsNewEnter = function () {
+    appState.curSceneIndex = 5;
+  };
+
+  onWhatsNewLeaveBack = function () {
+    appState.curSceneIndex = 4;
+    playVideo($ipadVideo);
+    tliPadContent.restart();
+  };
+
+  //INITIALIZATION
 
   onReady = function () {
     setTimeout(() => {
@@ -582,21 +567,6 @@ const ps = (function () {
     }, 1000);
   };
 
-  toggleAssetLoading = function (isLoading = true) {
-    document
-      .getElementsByTagName("body")[0]
-      .classList.toggle("loading", isLoading);
-  };
-
-  initStickyNav = function(){
-    const header = document.querySelector('.headroom');
-    const headerOptions = {
-      offset: 0, //px before header is first unpinned
-    }
-    const headroom = new Headroom(header, headerOptions);
-    headroom.init({});
-  }
-
   init = function () {
     toggleAssetLoading(true);
     getScreenDims();
@@ -606,6 +576,16 @@ const ps = (function () {
     initCanvas();
     initTimelines();
     initSubmodules();
+  };
+
+  //SHUTDOWN
+  onBeforeUnload = function (e) {
+    //http://sandbox-666666.webflow.io/on-page-refresh-start-from-top-of-page
+    e.preventDefault(); // If you prevent default behavior in Mozilla Firefox prompt will always be shown
+    // Chrome requires returnValue to be set //MH - not sure that's true?
+    //e.returnValue = "";
+    $body.style.display = "none";
+    window.scrollTo(0, 0);
   };
 
   return {

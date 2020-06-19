@@ -194,6 +194,7 @@
   <script src="scripts/libs/gsap/EasePack.min.js"></script>
   <script src="scripts/libs/imagesloaded.pkgd.min.js"></script>
   <script src="scripts/libs/headroom.min.js"></script>
+  <script src="scripts/sceneConfig.js"></script>
   <script src="scripts/main.js?v=<?php echo filemtime('scripts/main.js'); ?>"></script>
   <script src="scripts/nav.js?v=<?php echo filemtime('scripts/nav.js'); ?>"></script>
   <script src="scripts/whatsnew.js?v=<?php echo filemtime('scripts/whatsnew.js'); ?>"></script>
