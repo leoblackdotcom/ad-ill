@@ -99,7 +99,9 @@
           </div>
         </div>
         <div class="intro-scroll-container">
-          <img src="assets/images/intro/chevron-down.png" alt="Scroll Down" class="intro-scroll-indicator">
+          <a href="#" class="scroll-down-link">
+            <img src="assets/images/intro/chevron-down.png" alt="Scroll Down" class="intro-scroll-indicator">
+          </a>
         </div>
       </div>
     </section>

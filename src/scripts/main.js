@@ -73,12 +73,14 @@ const ps = (function () {
     $ipadVideo = document.querySelector('.ipad-video');
     $retouchCanvas = document.querySelector('.retouch-canvas');
     $transformCanvas = document.querySelector('.transform-canvas');
+    $scrollDownLink = document.querySelector('.scroll-down-link');
   };
 
   addListeners = function () {
     addUnloadListener();
     addVideoListeners();
     addResizeListeners();
+    addScrollDownListener();
   };
 
   addResizeListeners = function(){
@@ -93,6 +95,10 @@ const ps = (function () {
   addUnloadListener = function () {
     window.addEventListener("beforeunload", onBeforeUnload);
   };
+
+  addScrollDownListener = function(){
+    $scrollDownLink.addEventListener('click',onScrollDownLinkClick);
+  }
 
   initSubmodules = function () {
     ps.whatsNewModule.init();
@@ -141,6 +147,14 @@ const ps = (function () {
 
   playIntroSequence = function(){
     tlIntro.restart();
+  }
+
+  onScrollDownLinkClick = function(){
+    window.scroll({
+      top: appState.screenDims.height*2, 
+      left: 0, 
+      behavior: 'smooth'
+    });
   }
 
   onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
@@ -576,8 +590,11 @@ const ps = (function () {
 
   initStickyNav = function(){
     const header = document.querySelector('.headroom');
-    const headroom = new Headroom(header);
-    headroom.init();
+    const headerOptions = {
+      offset: 0, //px before header is first unpinned
+    }
+    const headroom = new Headroom(header, headerOptions);
+    headroom.init({});
   }
 
   init = function () {
