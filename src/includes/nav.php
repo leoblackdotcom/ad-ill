@@ -33,7 +33,7 @@
                                 >
                                   <span class="feds-logo-image">
                                     <img
-                                      src="https://www.adobe.com/content/dam/cc/icons/Adobe_Corporate_Horizontal_Red_HEX.svg"
+                                      src="assets/images/nav/externals/Adobe_Corporate_Horizontal_Red_HEX.svg"
                                       alt="Adobe1"
                                     />
                                   </span>
