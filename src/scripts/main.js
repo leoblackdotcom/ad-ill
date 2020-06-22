@@ -268,7 +268,8 @@ const ps = (function () {
     });
 
     tlBrushes
-      .from(".brushes-video", { autoAlpha: 0, duration: 2 }, "spacer1")
+      .to("#section-transform", { autoAlpha: 0, duration: 1 }, "spacer1")
+      .from(".brushes-video", { autoAlpha: 0, duration: 1 }, "spacer1")
       .to(".null", { opacity: 0, duration: 2 }, "spacer2")
       .addLabel("end");
   };
