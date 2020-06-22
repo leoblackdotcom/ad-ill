@@ -19,7 +19,7 @@
       padding-left: $content-spacing-left;
       width: 42vw;
       display: flex;
-      justify-content: center;
+      justify-content: left;
       align-items: center;
       background: $gradient-shade-dark;
       @include breakpoint(laptop){
