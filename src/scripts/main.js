@@ -4,14 +4,14 @@ gsap.registerPlugin(ScrollTrigger);
 const ps = (function () {
 
   //gsap timelines
-  let tlIntro, tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut; 
+  let tlIntro, tlTransform, tlBrushes, tlBrushesContent, tlBrushesContentOut, tlRetouch, tlWhatsNew, tliPad, tliPadContent, tliPadContentOut;
 
   //animated image sequences
-  let retouchImg, retouchContext, $retouchCanvas; 
+  let retouchImg, retouchContext, $retouchCanvas;
   let transformImg, transformContext, $transformCanvas
 
   //dom references
-  let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo; 
+  let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo;
 
 
   const appState = {
@@ -50,7 +50,7 @@ const ps = (function () {
     $transformCanvas = document.querySelector('.transform-canvas');
     $scrollDownLink = document.querySelector('.scroll-down-link');
   };
-  
+
   addListeners = function () {
     addUnloadListener();
     addVideoListeners();
@@ -210,7 +210,7 @@ const ps = (function () {
         //resetVideo($introVideo);
       }}, "spacer")
       .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none" }, "spacer+=3.5")
-      .to(".null", { opacity: 0.5, duration: 3},'spacer2')
+      .to(".null", { opacity: 0.5, duration: 1.5},'spacer2')
       .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")
       .to(".transform-sequence", { autoAlpha: 0,duration: 1 }, "spacer2+=2")
@@ -450,8 +450,8 @@ const ps = (function () {
 
   onScrollDownLinkClick = function(){
     window.scroll({
-      top: appState.screenDims.height*2, 
-      left: 0, 
+      top: appState.screenDims.height*2,
+      left: 0,
       behavior: 'smooth'
     });
   }
