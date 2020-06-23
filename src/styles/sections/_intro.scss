@@ -22,7 +22,7 @@
       width: 100%;
       height: calc(100vh - #{$nav-height});
       object-fit: cover;
-      object-position: top;
+      object-position: center;
       position: absolute;
       top: $nav-height;
       left: 0;
