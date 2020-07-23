@@ -188,10 +188,10 @@
     </h2>
   </div>
 
-  <script src="scripts/libs/gsap/gsap.min.js"></script>
-  <script src="scripts/libs/gsap/CSSRulePlugin.min.js"></script>
-  <script src="scripts/libs/gsap/ScrollTrigger.min.js"></script>
-  <script src="scripts/libs/gsap/EasePack.min.js"></script>
+  <script src="scripts/libs/gsap/gsap.min.js?v=2"></script>
+  <script src="scripts/libs/gsap/CSSRulePlugin.min.js?v=2"></script>
+  <script src="scripts/libs/gsap/ScrollTrigger.min.js?v=2"></script>
+  <script src="scripts/libs/gsap/EasePack.min.js?v=2"></script>
   <script src="scripts/libs/imagesloaded.pkgd.min.js"></script>
   <script src="scripts/libs/headroom.min.js"></script>
   <script src="scripts/sceneConfig.js"></script>
