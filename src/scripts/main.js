@@ -192,29 +192,61 @@ const ps = (function () {
         }`,
       },
     });
-
+    let progress = 0;
     tlTransform
       .to(".null", { opacity: 0, duration: 7,
-        onUpdate: function () {
+        onUpdate: function() {
           const thisProgress = this.progress();
-
-          const vidConfig = sceneConfig.videos.transform;
-          const currentFrame =
-            Math.ceil(vidConfig.frames * thisProgress);
+          if (thisProgress.toFixed(1) == 0.0) {
+            progress = 0;
+          }
+          if (progress !== 1) {
+            const vidConfig = sceneConfig.videos.transform;
+            const currentFrame = Math.ceil(vidConfig.frames * thisProgress);
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
+          }
         },
       }, "spacer")
-      .from(".transform-title-line.rt1", { autoAlpha: 0}, "spacer+=.5")
-      .to('.intro-container',{ translateY: '-100vh', duration: 1, onComplete: function(){
-        //resetVideo($introVideo);
-      }}, "spacer")
-      .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none" }, "spacer+=3.5")
-      .to(".null", { opacity: 0.5, duration: 1.5},'spacer2')
-      .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
+      .from(".transform-title-line.rt1", { autoAlpha: 0, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "spacer+=.5")
+      .to('.intro-container',{ translateY: '-100vh', duration: 1}, "spacer")
+      .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none", repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+    }, "spacer+=3.5")
+      .to(".null", { opacity: 0.5, duration: 1.5, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      },'spacer2')
+      .from(".transform-copy-container", { autoAlpha: 0, repeatRefresh: true,
+        onUpdate: function () {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")
-      .to(".transform-sequence", { autoAlpha: 0,duration: 1 }, "spacer2+=2")
-      .addLabel("end");
+      .to(".transform-sequence", { autoAlpha: 0,duration: 1,
+        onUpdate: function () {
+          const thisProgress = this.progress();
+          if (thisProgress === 1) {
+            progress = 1;
+          }
+        }
+      }, "spacer2+=2")
+      .addLabel("end")
   };
 
   initTimelineBrushesContent = function(){
@@ -223,7 +255,6 @@ const ps = (function () {
     });
 
     tlBrushesContent
-
       .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
       .from(
         ".brushes-intro",
@@ -262,15 +293,40 @@ const ps = (function () {
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
         onLeave: onBrushesLeave,
+        onEnterBack: onBrushesEnterBack,
         onLeaveBack: onBrushesLeaveBack,
       },
       paused: true,
     });
-
+    let progress = 0;
     tlBrushes
-      .to("#section-transform", { autoAlpha: 0, duration: 1 }, "spacer1")
-      .from(".brushes-video", { autoAlpha: 0, duration: 1 }, "spacer1")
-      .to(".null", { opacity: 0, duration: 2 }, "spacer2")
+      .to("#section-transform", { autoAlpha: 0, duration: 1, repeatRefresh: true,
+        onUpdate: function() {
+          if (this.progress() === 0 ) {
+            progress = 0;
+          }
+          if (progress === 1 ) {
+            this.progress(1, true);
+          }
+        }
+      }, "spacer1")
+      .from(".brushes-video", { autoAlpha: 0, duration: 1, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "spacer1")
+      .to(".null", { opacity: 0, duration: 2, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+          if (this.progress === 1) {
+            progress = 1;
+          }
+        }
+      }, "spacer2")
       .addLabel("end");
   };
 
@@ -279,6 +335,7 @@ const ps = (function () {
   }
 
   initTimelineRetouch = function () {
+    let progress = 0;
     tlRetouch = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-retouch",
@@ -292,65 +349,144 @@ const ps = (function () {
         onEnterBack: onRetouchEnterBack,
         onLeave: onRetouchLeave,
         onLeaveBack: onRetouchLeaveBack,
-        onUpdate: onRetouchUpdate,
+        onUpdate: function() {
+          if (progress === 0 ) {
+            const curProgress = tlRetouch.progress();
+            const translateYVal = mapValue(curProgress,0,1,-18,0);
+            $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
+          }
+        },
       },
     });
 
     tlRetouch
-      .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
-      .from(
-        ".retouch-1",
-        {
-          scale: 1.2,
-        },
-        "retouchIn"
-      )
+      .from(".fixed-section.retouch",
+        {autoAlpha: 0, duration: 2, repeatRefresh: true,
+          onUpdate: function() {
+            if (this.progress() === 0 ) {
+              progress = 0;
+            }
+            console.log(progress);
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          },
+        }, "retouchIn")
+      .from(".retouch-1",
+        {scale: 1.2, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "retouchIn")
       .to(
         ".retouch-2",
-        {
-          width: `100vw`,
-        },
-        "sliderIn"
+        {width: `100vw`, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "sliderIn"
       )
       .from(
         ".retouch-title-line.l1",
-        { autoAlpha: 0, translateY: 20 },
-        "sliderIn"
+        {autoAlpha: 0, translateY: 20, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "sliderIn"
       )
       .to(
         ".null",
-        { opacity: 1, duration: 1 },
+        { opacity: 1, duration: 1, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          } },
         "spacer1"
       )
       .from(
         ".retouch-title-line.l2",
-        { autoAlpha: 0, translateY: 20},
+        { autoAlpha: 0, translateY: 20, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }},
         "remixIn"
       )
       .to(
         ".retouch-image-2",
-        { autoAlpha: 0, duration: .5 },
+        { autoAlpha: 0, duration: .5, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          } },
         "retouch2Out"
       )
-      .to(".null", { opacity: 0, duration: 5,
+      .to(".null",
+      { opacity: 0, duration: 5, repeatRefresh: true,
         onUpdate: function () {
-          const thisProgress = this.progress();
-          const vidConfig = sceneConfig.videos.retouch;
-          const currentFrame =
-            Math.ceil(vidConfig.frames * thisProgress);
-          const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
-          drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
+          if (progress === 0 ) {
+            const thisProgress = this.progress();
+            const vidConfig = sceneConfig.videos.retouch;
+            const currentFrame =
+              Math.ceil(vidConfig.frames * thisProgress);
+            const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
+            drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
+          }
         },
       }, "spacer2")
-      .from(
-        ".retouch-title-line.l3",
-        { autoAlpha: 0, translateY: 20 },
-        "spacer2+=5.1"
+      .from(".retouch-title-line.l3",
+        {autoAlpha: 0, translateY: 20, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "spacer2+=5.1"
       )
-      .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
-      .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
-      .to(".null", { opacity: 1, duration: 2 }, "spacer7")
-      .to(".retouch-content-container", { opacity: 0, duration: 1 }, "retouchContentOut")
+      .from(".retouch-intro",
+        {autoAlpha: 0, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "retouchIntroIn")
+      .from(".retouch-button",
+        {autoAlpha: 0, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "retouchIntroButtonIn")
+      .to(".null",
+        {opacity: 1, duration: 2, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "spacer7")
+      .to(".retouch-content-container",
+        {opacity: 0, duration: 1, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(0, true);
+            }
+            if (this.progress() === 1) {
+              progress = 1;
+            }
+          },
+        }, "retouchContentOut")
       .addLabel("end");
   };
 
@@ -463,7 +599,9 @@ const ps = (function () {
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
-  onTransformEnterBack = function(){ //fires before brushesLeaveBack
+  onTransformEnterBack = function(self){ //fires before brushesLeaveBack
+    const scrollToY = self.end * 0.25; // SM - get 25% of height of the blade
+    window.scrollTo(0, scrollToY); // SM - reduce amount needed to scroll up
     tlBrushesContentOut.restart();
   }
 
@@ -481,6 +619,13 @@ const ps = (function () {
     //
   }
 
+  onBrushesEnterBack = function() {
+    const currentPosition = document.documentElement.scrollTop;
+    const scrollToY = currentPosition - (document.getElementById('section-brushes').offsetHeight * .2);
+    console.log(`${currentPosition} - ${scrollToY}`);
+    window.scrollTo(0, scrollToY);
+  }
+
   onBrushesLeaveBack = function () {
     appState.curSceneIndex = 1;
     resetTimeline(tlBrushes);
@@ -491,30 +636,37 @@ const ps = (function () {
   }
 
   onRetouchEnter = function () {
+    console.log('retouch enter');
     tlBrushesContentOut.restart();
-    appState.curSceneIndex = 2;
+    appState.curSceneIndex = 3;
   };
 
   onRetouchEnterBack = function(){
+    const currentPosition = document.documentElement.scrollTop;
+    const scrollToY = currentPosition - (document.getElementById('section-retouch').offsetHeight * .5);
+    // window.scrollTo(0, scrollToY);
     resetTimeline(tliPadContent);
   }
 
-  onRetouchUpdate = function(){
-    const curProgress = tlRetouch.progress();
-    const translateYVal = mapValue(curProgress,0,1,-18,0);
-    $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
-  }
+  // Moved this function inline onUpdate in the Retouch scrollTrigger to use the progress variable.
+  // onRetouchUpdate = function(){
+  //   const curProgress = tlRetouch.progress();
+  //   const translateYVal = mapValue(curProgress,0,1,-18,0);
+  //   $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
+  // }
 
   onRetouchLeave = function(){
+    console.log('retouch leave');
     gsap.from(".ipad-video", { scale: 1.2, duration: 2 });
   }
 
   onRetouchLeaveBack = function () {
+    console.log('retouch leave back');
     gsap.to('.brushes-video',{
       opacity: 1,
     });
     tlBrushesContent.restart();
-    appState.curSceneIndex = 3;
+    appState.curSceneIndex = 2;
   };
 
   oniPadEnter = function () {

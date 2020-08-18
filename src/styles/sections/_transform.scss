@@ -10,6 +10,7 @@
 
 #section-transform {
   min-height: 100vh;
+  top: 1px; // Added to create space to leave transform blade and return to trigger onStart
   .transform {
     &-sequence-container {
       @include absFull;
