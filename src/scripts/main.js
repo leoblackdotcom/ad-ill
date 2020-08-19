@@ -327,7 +327,6 @@ const ps = (function () {
       .from(".fixed-section.retouch",
         {autoAlpha: 0, duration: 2, repeatRefresh: true,
           onUpdate: function() {
-            console.log('from fixed-section');
             if (this.progress() === 0 ) {
               progress = 0;
             }
@@ -339,61 +338,50 @@ const ps = (function () {
       .from(".retouch-1",
         {scale: 1.2, repeatRefresh: true,
           onUpdate: function() {
-            console.log('from retouch-1');
             if (progress === 1) {
               this.progress(1, true);
             }
           }
         }, "retouchIn")
-      .to(
-        ".retouch-2",
+      .to(".retouch-2",
         {width: `100vw`, repeatRefresh: true,
           onUpdate: function() {
-            console.log('to retouch-2');
             if (progress === 1) {
               this.progress(1, true);
             }
           }
         }, "sliderIn"
       )
-      .from(
-        ".retouch-title-line.l1",
+      .from(".retouch-title-line.l1",
         {autoAlpha: 0, translateY: 20, repeatRefresh: true,
           onUpdate: function() {
-            console.log('from title l1');
             if (progress === 1) {
               this.progress(1, true);
             }
           }
         }, "sliderIn"
       )
-      .to(
-        ".null",
-        { opacity: 1, duration: 1, repeatRefresh: true,
+      .to(".null",
+        {opacity: 1, duration: 1, repeatRefresh: true,
           onUpdate: function() {
-            console.log('to null: ' + progress);
             if (progress === 1) {
               this.progress(1, true);
             }
           } },
         "spacer1"
       )
-      .from(
-        ".retouch-title-line.l2",
-        { autoAlpha: 0, translateY: 20, repeatRefresh: true,
+      .from(".retouch-title-line.l2",
+        {autoAlpha: 0, translateY: 20, repeatRefresh: true,
           onUpdate: function() {
-            console.log('from title l2');
             if (progress === 1) {
               this.progress(1, true);
             }
           }},
         "remixIn"
       )
-      .to(
-        ".retouch-image-2",
-        { autoAlpha: 0, duration: .5, repeatRefresh: true,
+      .to(".retouch-image-2",
+        {autoAlpha: 0, duration: .5, repeatRefresh: true,
           onUpdate: function() {
-            console.log('to retouch-image-2');
             if (progress === 1) {
               this.progress(1, true);
             }
@@ -404,13 +392,11 @@ const ps = (function () {
       .to(".null",
       { opacity: 0, duration: 5, repeatRefresh: true,
         onUpdate: function () {
-          console.log('null 2 images');
           const thisProgress = this.progress();
           const vidConfig = sceneConfig.videos.retouch;
           let currentFrame = Math.ceil(vidConfig.frames * thisProgress);
           const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
           if (progress !== 1 ) {
-              console.log('retouch frame: ' + currentFrame);
             drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
           }
         }
@@ -427,7 +413,6 @@ const ps = (function () {
       .from(".retouch-intro",
         {autoAlpha: 0, repeatRefresh: true,
         onUpdate: function() {
-          console.log('from retouch-intro');
           if (progress === 1) {
             this.progress(1, true);
           }
@@ -436,7 +421,6 @@ const ps = (function () {
       .from(".retouch-button",
         {autoAlpha: 0, repeatRefresh: true,
           onUpdate: function() {
-            console.log('from retouch-button');
             if (progress === 1) {
               this.progress(1, true);
             }
@@ -445,18 +429,17 @@ const ps = (function () {
       .to(".null",
         {opacity: 1, duration: 2, repeatRefresh: true,
           onUpdate: function() {
-            console.log('to null 3');
             if (progress === 1) {
-              this.progress(1, true);
+              this.progress(0, true);
             }
           }
         }, "spacer7")
       .to(".retouch-content-container",
         {opacity: 0, duration: 1, repeatRefresh: true,
           onUpdate: function() {
-            console.log('to retouch-content-container');
             const thisProgress = this.progress();
             if (progress === 1) {
+              // Show text container on scroll up
               this.progress(0, true);
             }
             if (thisProgress === 1) {
@@ -498,10 +481,9 @@ const ps = (function () {
         }`,
       },
     });
-
     tliPad
-      .to(".null", { opacity: 0, duration: 2, onComplete: onTriggerIpadContentOut }, "spacer1")
-      .to(".null", { scale: .5, duration: 2 }, "spacer2")
+      .to(".null", { opacity: 0, duration: 2, onComplete: onTriggerIpadContentOut}, "spacer1")
+      .to(".null", { scale: .5, duration: 2}, "spacer2")
       .addLabel("end");
   };
 
@@ -574,7 +556,7 @@ const ps = (function () {
   };
 
   onTransformEnterBack = function(){ //fires before brushesLeaveBack
-    const elemOffset = getOffsetTop(document.getElementById('section-transform')) + appState.screenDims.height;
+    const elemOffset = getOffsetTop(document.getElementById('section-transform')) + (1.5 * appState.screenDims.height);
     window.scrollTo(0, elemOffset); // SM - reduce amount needed to scroll up
     tlBrushesContentOut.restart();
   }
@@ -606,12 +588,12 @@ const ps = (function () {
   onBrushesVideoEnded = function(){
   }
 
-  onRetouchEnter = function () {
-    const elemOffset = getOffsetTop(document.getElementById('section-retouch'));
-    window.scrollTo(0, elemOffset + 10);
-    window.scrollTo(0, elemOffset);
-    tlBrushesContentOut.restart();
+  onRetouchEnter = function (self) {
     appState.curSceneIndex = 3;
+    const vidConfig = sceneConfig.videos.retouch;
+    const currentImagePath = getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad);
+    drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
+    tlBrushesContentOut.restart();
   };
 
   onRetouchEnterBack = function(){
@@ -637,6 +619,8 @@ const ps = (function () {
     });
     tlBrushesContent.restart();
     appState.curSceneIndex = 2;
+    // Reset all tweens to beginning state
+    tlRetouch.getChildren().forEach(child => child.progress(0));
   };
 
   oniPadEnter = function () {
