@@ -238,7 +238,7 @@ const ps = (function () {
         }
       }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")
-      .to(".transform-sequence", { duration: 1,
+      .to(".transform-sequence", { autoAlpha: 0, duration: 1,
         onUpdate: function () {
           const thisProgress = this.progress();
           if (thisProgress === 1) {
@@ -288,9 +288,9 @@ const ps = (function () {
     });
  
     tlBrushes
-      // .to("#section-transform", { autoAlpha: 0, duration: 1}, "spacer1")
+      .to("#section-transform", { autoAlpha: 0, duration: 1}, "spacer1")
       .from(".brushes-video", { autoAlpha: 0, duration: 1}, "spacer1")
-      .to(".null", { duration: 2}, "spacer2")
+      .to(".null", { opacity: 0, duration: 2}, "spacer2")
       .addLabel("end");
   };
 
@@ -325,7 +325,7 @@ const ps = (function () {
 
     tlRetouch
       .from(".fixed-section.retouch",
-        {top: '100vh', duration: 2, repeatRefresh: true,
+        { autoAlpha: 0, duration: 2, repeatRefresh: true,
           onUpdate: function() {
             if (this.progress() === 0 ) {
               progress = 0;
@@ -335,14 +335,14 @@ const ps = (function () {
             }
           },
         }, "retouchIn")
-      // .from(".retouch-1",
-      //   {scale: 1.2, repeatRefresh: true,
-      //     onUpdate: function() {
-      //       if (progress === 1) {
-      //         this.progress(1, true);
-      //       }
-      //     }
-      //   }, "retouchIn2")
+      .from(".retouch-1",
+        {scale: 1.2, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "retouchIn")
       .to(".retouch-2",
         {width: `100vw`, repeatRefresh: true,
           onUpdate: function() {
