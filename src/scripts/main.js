@@ -13,12 +13,17 @@ const ps = (function () {
   //dom references
   let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo;
 
-
   const appState = {
     curSceneIndex: 0,
     screenDims: {},
     scrollDirection: 0,
   };
+
+  const transformSection = {
+    animationComplete: false, // animation complete state
+    autoScrollDown: false, // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
+    autoScrollUp: false // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
+  }
 
   //INITIALIZATION
 
@@ -187,9 +192,27 @@ const ps = (function () {
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onTransformEnter,
         onEnterBack: onTransformEnterBack,
+        onLeave: onTransformLeave,
         end: `+=${
           sceneConfig.scenes.transform.sceneDuration * appState.screenDims.height
         }`,
+        onUpdate: (scroll) => {
+          if(scroll.direction === 1 && transformSection.animationComplete && transformSection.autoScrollDown && window.scrollY > getOffsetTop(document.getElementById('section-transform')) + appState.screenDims.height) {
+            // scroll direction down | animation has completed | user can scroll down to initiate auto scroll | checks to make sure its at the full start of the section 
+            transformSection.autoScrollDown = false; // prevent autoscroll down
+            transformSection.autoScrollUp = true; // enable autoscroll up
+            const offsetTop = getOffsetTop(document.getElementById('section-transform')) + document.getElementById('section-transform').offsetHeight - appState.screenDims.height;
+            window.scrollTo(0, offsetTop);
+          }
+            
+          if(scroll.direction === -1 && transformSection.animationComplete && transformSection.autoScrollUp) {
+            // scroll direction up | animation has completed | user can scroll up to initiate auto scroll
+            transformSection.autoScrollDown = true; // enable autoscroll down
+            transformSection.autoScrollUp = false; // prevent autoscroll up
+            const offsetTop = getOffsetTop(document.getElementById('section-transform')) + appState.screenDims.height;
+            window.scrollTo(0, offsetTop);
+          }
+        }
       },
     });
     let progress = 0;
@@ -203,6 +226,7 @@ const ps = (function () {
           if (progress !== 1) {
             const vidConfig = sceneConfig.videos.transform;
             const currentFrame = Math.ceil(vidConfig.frames * thisProgress);
+            if(currentFrame != sceneConfig.videos.transform.frames) transformSection.animationComplete = false;
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
           }
@@ -475,6 +499,7 @@ const ps = (function () {
         scrub: true,
         onEnter: oniPadEnter,
         onEnterBack: oniPadEnterBack,
+        onLeave: oniPadLeave,
         onLeaveBack: oniPadLeaveBack,
         end: `+=${
           sceneConfig.scenes.ipad.sceneDuration * appState.screenDims.height
@@ -482,7 +507,7 @@ const ps = (function () {
       },
     });
     tliPad
-      .to(".null", { opacity: 0, duration: 2, onComplete: onTriggerIpadContentOut}, "spacer1")
+      .to(".null", { opacity: 0, duration: 2}, "spacer1")
       .to(".null", { scale: .5, duration: 2}, "spacer2")
       .addLabel("end");
   };
@@ -550,15 +575,22 @@ const ps = (function () {
   }
 
   onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
+    transformSection.animationComplete = false;
     appState.curSceneIndex = 1;
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
   onTransformEnterBack = function(){ //fires before brushesLeaveBack
-    const elemOffset = getOffsetTop(document.getElementById('section-transform')) + (1.5 * appState.screenDims.height);
+    transformSection.autoScrollDown = true;
+    const elemOffset = getOffsetTop(document.getElementById('section-transform')) + (appState.screenDims.height);
     window.scrollTo(0, elemOffset); // SM - reduce amount needed to scroll up
     tlBrushesContentOut.restart();
+    gsap.from('.transform-title-container-animate', 3, { opacity: 0, y: 20});
+  }
+
+  onTransformLeave = () => {
+    transformSection.animationComplete = true;
   }
 
   onBrushesEnter = function () {
@@ -600,6 +632,8 @@ const ps = (function () {
     const elemOffset = getOffsetTop(document.getElementById('section-retouch'));
     window.scrollTo(0, elemOffset);
     resetTimeline(tliPadContent);
+    
+    gsap.from('.retouch-content-container-animate', 1, { opacity: 0, y: 20 });
   }
 
   // Moved this function to the inline onUpdate in the Retouch scrollTrigger to use the progress variable.
@@ -637,6 +671,10 @@ const ps = (function () {
   oniPadEnterBack = function () {
     const elemOffset = getOffsetTop(document.getElementById('section-ipad'));
     window.scrollTo(0, elemOffset);
+  }
+
+  oniPadLeave = function () {
+    tliPadContentOut.restart();
   }
 
   oniPadLeaveBack = function () {
