@@ -586,7 +586,10 @@ const ps = (function () {
     const elemOffset = getOffsetTop(document.getElementById('section-transform')) + (appState.screenDims.height);
     window.scrollTo(0, elemOffset); // SM - reduce amount needed to scroll up
     tlBrushesContentOut.restart();
-    gsap.from('.transform-title-container-animate', 3, { opacity: 0, y: 20});
+    gsap.from('.transform-animate-1', 1, { opacity: 0, y: 20, delay: 0.0 });
+    gsap.from('.transform-animate-2', 1, { opacity: 0, y: 20, delay: 0.3 });
+    gsap.from('.transform-animate-3', 1, { opacity: 0, y: 20, delay: 0.6 });
+    gsap.from('.transform-animate-4', 1, { opacity: 0, y: 20, delay: 0.9 });
   }
 
   onTransformLeave = () => {
@@ -632,8 +635,11 @@ const ps = (function () {
     const elemOffset = getOffsetTop(document.getElementById('section-retouch'));
     window.scrollTo(0, elemOffset);
     resetTimeline(tliPadContent);
-    
-    gsap.from('.retouch-content-container-animate', 1, { opacity: 0, y: 20 });
+    gsap.from('.retrouch-animate-1', 1, { opacity: 0, y: 20, delay: 0.0 });
+    gsap.from('.retrouch-animate-2', 1, { opacity: 0, y: 20, delay: 0.3 });
+    gsap.from('.retrouch-animate-3', 1, { opacity: 0, y: 20, delay: 0.6 });
+    gsap.from('.retrouch-animate-4', 1, { opacity: 0, y: 20, delay: 0.9 });
+    gsap.from('.retrouch-animate-5', 1, { opacity: 0, y: 20, delay: 1.2 });
   }
 
   // Moved this function to the inline onUpdate in the Retouch scrollTrigger to use the progress variable.
