@@ -6,33 +6,33 @@ const sceneConfig = {
       //
     },
     transform: {
-      sceneDuration: 15,
+      sceneDuration: 7,
     },
     brushes: {
-      sceneDuration: 5,
+      sceneDuration: 3,
     },
     retouch: {
-      sceneDuration: 10,
+      sceneDuration: 8,
     },
     ipad: {
-      sceneDuration: 7,
+      sceneDuration: 3,
     },
   },
   videoBasePath: "assets/videos",
   videos: {
     transform: {
-      frames: 83,
+      frames: 60,
       selector: ".transform-sequence.t4",
-      framesPath: 'assets/images/transform/frames/transform5-',
+      framesPath: 'https://wwwimages2.adobe.com/content/dam/acom/target/ace/ace0053/assets/images/transform/frames4/transform5-',
       width: 1280, //native size of images for canvas
       height: 991,
       pad: 2, //leading 0s in sequence filenames
     },
     retouch: {
-      frames: 129,
+      frames: 70,
       selector: '.retouch-sequence',
-      sequence: 'assets/images/retouch/sequence-retouch.jpg',
-      framesPath: 'assets/images/retouch/frames/retouch',
+      sequence: 'https://wwwimages2.adobe.com/content/dam/acom/target/ace/ace0046/assets/images/retouch/sequence-retouch.jpg',
+      framesPath: 'https://wwwimages2.adobe.com/content/dam/acom/target/ace/ace0053/assets/images/retouch/frames1/retouch',
       width: 1280,
       height: 843,
       pad: 3,

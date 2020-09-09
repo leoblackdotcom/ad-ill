@@ -13,12 +13,17 @@ const ps = (function () {
   //dom references
   let $retouch, $slide, $body, $retouchSequence, $transformSequence, $introVideo, $brushesVideo, $ipadVideo;
 
-
   const appState = {
     curSceneIndex: 0,
     screenDims: {},
     scrollDirection: 0,
   };
+
+  const transformSection = {
+    animationComplete: false, // animation complete state
+    autoScrollDown: false, // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
+    autoScrollUp: false // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
+  }
 
   //INITIALIZATION
 
@@ -187,34 +192,85 @@ const ps = (function () {
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onTransformEnter,
         onEnterBack: onTransformEnterBack,
+        onLeave: onTransformLeave,
         end: `+=${
           sceneConfig.scenes.transform.sceneDuration * appState.screenDims.height
         }`,
+        onUpdate: (scroll) => {
+          if(scroll.direction === 1 && transformSection.animationComplete && transformSection.autoScrollDown && window.scrollY > getOffsetTop(document.getElementById('section-transform')) + appState.screenDims.height) {
+            // scroll direction down | animation has completed | user can scroll down to initiate auto scroll | checks to make sure its at the full start of the section 
+            transformSection.autoScrollDown = false; // prevent autoscroll down
+            transformSection.autoScrollUp = true; // enable autoscroll up
+            const offsetTop = getOffsetTop(document.getElementById('section-transform')) + document.getElementById('section-transform').offsetHeight - appState.screenDims.height;
+            window.scrollTo(0, offsetTop);
+          }
+            
+          if(scroll.direction === -1 && transformSection.animationComplete && transformSection.autoScrollUp) {
+            // scroll direction up | animation has completed | user can scroll up to initiate auto scroll
+            transformSection.autoScrollDown = true; // enable autoscroll down
+            transformSection.autoScrollUp = false; // prevent autoscroll up
+            const offsetTop = getOffsetTop(document.getElementById('section-transform')) + appState.screenDims.height;
+            window.scrollTo(0, offsetTop);
+          }
+        }
       },
     });
-
+    let progress = 0;
     tlTransform
       .to(".null", { opacity: 0, duration: 7,
-        onUpdate: function () {
+        onUpdate: function() {
           const thisProgress = this.progress();
-
-          const vidConfig = sceneConfig.videos.transform;
-          const currentFrame =
-            Math.ceil(vidConfig.frames * thisProgress);
+          if (thisProgress.toFixed(1) == 0.0) {
+            progress = 0;
+          }
+          if (progress !== 1) {
+            const vidConfig = sceneConfig.videos.transform;
+            const currentFrame = Math.ceil(vidConfig.frames * thisProgress);
+            if(currentFrame != sceneConfig.videos.transform.frames) transformSection.animationComplete = false;
             const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame,'.jpg',vidConfig.pad);
             drawImageToCanvas(transformContext,currentImagePath,transformImg);
+          }
         },
       }, "spacer")
-      .from(".transform-title-line.rt1", { autoAlpha: 0}, "spacer+=.5")
-      .to('.intro-container',{ translateY: '-100vh', duration: 1, onComplete: function(){
-        //resetVideo($introVideo);
-      }}, "spacer")
-      .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none" }, "spacer+=3.5")
-      .to(".null", { opacity: 0.5, duration: 1.5},'spacer2')
-      .from(".transform-copy-container", { autoAlpha: 0 }, "spacer2")
+      .from(".transform-title-line.rt1", { autoAlpha: 0, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "spacer+=.5")
+      .to('.intro-container',{ translateY: '-100vh', duration: 1}, "spacer")
+      .from(".transform-title-line.rt2", { autoAlpha: 0,ease: "none", repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+    }, "spacer+=3.5")
+      .to(".null", { opacity: 0.5, duration: 1.5, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      },'spacer2')
+      .from(".transform-copy-container", { autoAlpha: 0, repeatRefresh: true,
+        onUpdate: function () {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "spacer2")
       .to(".transform-title-container", { autoAlpha: 0 }, "spacer2+=2")
-      .to(".transform-sequence", { autoAlpha: 0,duration: 1 }, "spacer2+=2")
-      .addLabel("end");
+      .to(".transform-sequence", { autoAlpha: 0, duration: 1,
+        onUpdate: function () {
+          const thisProgress = this.progress();
+          if (thisProgress === 1) {
+            progress = 1;
+          }
+        }
+      }, "spacer2+=2")
+      .addLabel("end")
   };
 
   initTimelineBrushesContent = function(){
@@ -223,29 +279,16 @@ const ps = (function () {
     });
 
     tlBrushesContent
-
       .from(".brushes-title", { autoAlpha: 0, translateY: 20 }, "start")
-      .from(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: 20 },
-        "start+=.5"
-      )
+      .from(".brushes-intro",{ autoAlpha: 0, translateY: 20 }, "start+=.5")
       .from(".brushes-button-container", { autoAlpha: 0 }, "start+=1")
       .addLabel("end");
   }
 
   initTimelineBrushesContentOut = function(){
-    tlBrushesContentOut = gsap.timeline({
-      paused: true,
-    });
-
-    tlBrushesContentOut
+    tlBrushesContentOut = gsap.timeline({paused: true})
       .to(".brushes-title", { autoAlpha: 0, translateY: -20 }, "brushesContentOut")
-      .to(
-        ".brushes-intro",
-        { autoAlpha: 0, translateY: -20},
-        "brushesContentOut+=.5"
-      )
+      .to(".brushes-intro", { autoAlpha: 0, translateY: -20}, "brushesContentOut+=.5")
       .to(".brushes-button-container", { autoAlpha: 0 }, "brushesContentOut+=1")
       .addLabel("end");
   }
@@ -261,16 +304,17 @@ const ps = (function () {
         anticipatePin: 1, //triggers the pin slightly early due to fact that pinning seems to happen a bit after top of this section disappears before it is re-pinned to top
         scrub: true, // smooth scrubbing, e.g. '1' takes 1 second to "catch up" to the scrollbar. `true` is a direct 1:1 between scrollbar and anim
         onEnter: onBrushesEnter,
-        onLeave: onBrushesLeave,
+        // onLeave: onBrushesLeave,
+        onEnterBack: onBrushesEnterBack,
         onLeaveBack: onBrushesLeaveBack,
       },
       paused: true,
     });
-
+ 
     tlBrushes
-      .to("#section-transform", { autoAlpha: 0, duration: 1 }, "spacer1")
-      .from(".brushes-video", { autoAlpha: 0, duration: 1 }, "spacer1")
-      .to(".null", { opacity: 0, duration: 2 }, "spacer2")
+      .to("#section-transform", { autoAlpha: 0, duration: 1}, "spacer1")
+      .from(".brushes-video", { autoAlpha: 0, duration: 1}, "spacer1")
+      .to(".null", { opacity: 0, duration: 2}, "spacer2")
       .addLabel("end");
   };
 
@@ -279,6 +323,7 @@ const ps = (function () {
   }
 
   initTimelineRetouch = function () {
+    let progress = 0;
     tlRetouch = gsap.timeline({
       scrollTrigger: {
         trigger: "#section-retouch",
@@ -292,74 +337,145 @@ const ps = (function () {
         onEnterBack: onRetouchEnterBack,
         onLeave: onRetouchLeave,
         onLeaveBack: onRetouchLeaveBack,
-        onUpdate: onRetouchUpdate,
+        onUpdate: function() {
+          if (progress === 0 ) {
+            const curProgress = tlRetouch.progress();
+            const translateYVal = mapValue(curProgress,0,1,-18,0);
+            $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
+          }
+        },
       },
     });
 
     tlRetouch
-      .from(".fixed-section.retouch", { autoAlpha: 0, duration: 2 }, "retouchIn")
-      .from(
-        ".retouch-1",
-        {
-          scale: 1.2,
-        },
-        "retouchIn"
+      .from(".fixed-section.retouch",
+        { autoAlpha: 0, duration: 2, repeatRefresh: true,
+          onUpdate: function() {
+            if (this.progress() === 0 ) {
+              progress = 0;
+            }
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          },
+        }, "retouchIn")
+      .from(".retouch-1",
+        {scale: 1.2, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "retouchIn")
+      .to(".retouch-2",
+        {width: `100vw`, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "sliderIn"
       )
-      .to(
-        ".retouch-2",
-        {
-          width: `100vw`,
-        },
-        "sliderIn"
+      .from(".retouch-title-line.l1",
+        {autoAlpha: 0, translateY: 20, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "sliderIn"
       )
-      .from(
-        ".retouch-title-line.l1",
-        { autoAlpha: 0, translateY: 20 },
-        "sliderIn"
-      )
-      .to(
-        ".null",
-        { opacity: 1, duration: 1 },
+      .to(".null",
+        {opacity: 1, duration: 1, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          } },
         "spacer1"
       )
-      .from(
-        ".retouch-title-line.l2",
-        { autoAlpha: 0, translateY: 20},
+      .from(".retouch-title-line.l2",
+        {autoAlpha: 0, translateY: 20, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }},
         "remixIn"
       )
-      .to(
-        ".retouch-image-2",
-        { autoAlpha: 0, duration: .5 },
+      .to(".retouch-image-2",
+        {autoAlpha: 0, duration: .5, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          },
+        },
         "retouch2Out"
       )
-      .to(".null", { opacity: 0, duration: 5,
+      .to(".null",
+      { opacity: 0, duration: 5, repeatRefresh: true,
         onUpdate: function () {
           const thisProgress = this.progress();
           const vidConfig = sceneConfig.videos.retouch;
-          const currentFrame =
-            Math.ceil(vidConfig.frames * thisProgress);
+          let currentFrame = Math.ceil(vidConfig.frames * thisProgress);
           const currentImagePath = getCurrentImagePath(vidConfig.framesPath,currentFrame);
-          drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
-        },
+          if (progress !== 1 ) {
+            drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
+          }
+        }
       }, "spacer2")
-      .from(
-        ".retouch-title-line.l3",
-        { autoAlpha: 0, translateY: 20 },
-        "spacer2+=5.1"
+      .from(".retouch-title-line.l3",
+        {autoAlpha: 0, translateY: 20, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "spacer2+=5.1"
       )
-      .from(".retouch-intro", { autoAlpha: 0 }, "retouchIntroIn")
-      .from(".retouch-button", { autoAlpha: 0 }, "retouchIntroButtonIn")
-      .to(".null", { opacity: 1, duration: 2 }, "spacer7")
-      .to(".retouch-content-container", { opacity: 0, duration: 1 }, "retouchContentOut")
+      .from(".retouch-intro",
+        {autoAlpha: 0, repeatRefresh: true,
+        onUpdate: function() {
+          if (progress === 1) {
+            this.progress(1, true);
+          }
+        }
+      }, "retouchIntroIn")
+      .from(".retouch-button",
+        {autoAlpha: 0, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(1, true);
+            }
+          }
+        }, "retouchIntroButtonIn")
+      .to(".null",
+        {opacity: 1, duration: 2, repeatRefresh: true,
+          onUpdate: function() {
+            if (progress === 1) {
+              this.progress(0, true);
+            }
+          }
+        }, "spacer7")
+      .to(".retouch-content-container",
+        {opacity: 0, duration: 1, repeatRefresh: true,
+          onUpdate: function() {
+            const thisProgress = this.progress();
+            if (progress === 1) {
+              // Show text container on scroll up
+              this.progress(0, true);
+            }
+            if (thisProgress === 1) {
+              progress = 1;
+            }
+          },
+        }, "retouchContentOut")
       .addLabel("end");
   };
 
   initTimelineiPadContent = function(){
-    tliPadContent = gsap.timeline({
-      paused: true,
-    });
-
-    tliPadContent
+    tliPadContent = gsap.timeline({paused: true,})
       .from(".ipad-title", { autoAlpha: 0, translateY: 20, duration: 1 }, "start")
       .from(".ipad-intro", { autoAlpha: 0, translateY: 20, duration: 1 }, "start+=.5")
       .from(".ipad-button-container", { autoAlpha: 0, duration: 1 }, "start+=1")
@@ -382,16 +498,17 @@ const ps = (function () {
         start: "top top",
         scrub: true,
         onEnter: oniPadEnter,
+        onEnterBack: oniPadEnterBack,
+        onLeave: oniPadLeave,
         onLeaveBack: oniPadLeaveBack,
         end: `+=${
           sceneConfig.scenes.ipad.sceneDuration * appState.screenDims.height
         }`,
       },
     });
-
     tliPad
-      .to(".null", { opacity: 0, duration: 2, onComplete: onTriggerIpadContentOut }, "spacer1")
-      .to(".null", { scale: .5, duration: 2 }, "spacer2")
+      .to(".null", { opacity: 0, duration: 2}, "spacer1")
+      .to(".null", { scale: .5, duration: 2}, "spacer2")
       .addLabel("end");
   };
 
@@ -458,13 +575,25 @@ const ps = (function () {
   }
 
   onTransformEnter = function () { //intro video stuff should happen in separate intro timeline?
+    transformSection.animationComplete = false;
     appState.curSceneIndex = 1;
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
   };
 
   onTransformEnterBack = function(){ //fires before brushesLeaveBack
+    transformSection.autoScrollDown = true;
+    const elemOffset = getOffsetTop(document.getElementById('section-transform')) + (appState.screenDims.height);
+    window.scrollTo(0, elemOffset); // SM - reduce amount needed to scroll up
     tlBrushesContentOut.restart();
+    gsap.from('.transform-animate-1', 1, { opacity: 0, y: 20, delay: 0.0 });
+    gsap.from('.transform-animate-2', 1, { opacity: 0, y: 20, delay: 0.3 });
+    gsap.from('.transform-animate-3', 1, { opacity: 0, y: 20, delay: 0.6 });
+    gsap.from('.transform-animate-4', 1, { opacity: 0, y: 20, delay: 0.9 });
+  }
+
+  onTransformLeave = () => {
+    transformSection.animationComplete = true;
   }
 
   onBrushesEnter = function () {
@@ -478,7 +607,11 @@ const ps = (function () {
   }
 
   onBrushesLeave = function(){
-    //
+  }
+
+  onBrushesEnterBack = function() {
+    const elemOffset = getOffsetTop(document.getElementById('section-brushes')) + appState.screenDims.height;
+    window.scrollTo(0, elemOffset);
   }
 
   onBrushesLeaveBack = function () {
@@ -490,20 +623,31 @@ const ps = (function () {
   onBrushesVideoEnded = function(){
   }
 
-  onRetouchEnter = function () {
+  onRetouchEnter = function (self) {
+    appState.curSceneIndex = 3;
+    const vidConfig = sceneConfig.videos.retouch;
+    const currentImagePath = getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad);
+    drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
     tlBrushesContentOut.restart();
-    appState.curSceneIndex = 2;
   };
 
   onRetouchEnterBack = function(){
+    const elemOffset = getOffsetTop(document.getElementById('section-retouch'));
+    window.scrollTo(0, elemOffset);
     resetTimeline(tliPadContent);
+    gsap.from('.retrouch-animate-1', 1, { opacity: 0, y: 20, delay: 0.0 });
+    gsap.from('.retrouch-animate-2', 1, { opacity: 0, y: 20, delay: 0.3 });
+    gsap.from('.retrouch-animate-3', 1, { opacity: 0, y: 20, delay: 0.6 });
+    gsap.from('.retrouch-animate-4', 1, { opacity: 0, y: 20, delay: 0.9 });
+    gsap.from('.retrouch-animate-5', 1, { opacity: 0, y: 20, delay: 1.2 });
   }
 
-  onRetouchUpdate = function(){
-    const curProgress = tlRetouch.progress();
-    const translateYVal = mapValue(curProgress,0,1,-18,0);
-    $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
-  }
+  // Moved this function to the inline onUpdate in the Retouch scrollTrigger to use the progress variable.
+  // onRetouchUpdate = function(){
+  //   const curProgress = tlRetouch.progress();
+  //   const translateYVal = mapValue(curProgress,0,1,-18,0);
+  //   $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
+  // }
 
   onRetouchLeave = function(){
     gsap.from(".ipad-video", { scale: 1.2, duration: 2 });
@@ -514,7 +658,9 @@ const ps = (function () {
       opacity: 1,
     });
     tlBrushesContent.restart();
-    appState.curSceneIndex = 3;
+    appState.curSceneIndex = 2;
+    // Reset all tweens to beginning state
+    tlRetouch.getChildren().forEach(child => child.progress(0));
   };
 
   oniPadEnter = function () {
@@ -525,6 +671,15 @@ const ps = (function () {
   };
 
   onTriggerIpadContentOut = function(){
+    tliPadContentOut.restart();
+  }
+
+  oniPadEnterBack = function () {
+    const elemOffset = getOffsetTop(document.getElementById('section-ipad'));
+    window.scrollTo(0, elemOffset);
+  }
+
+  oniPadLeave = function () {
     tliPadContentOut.restart();
   }
 
@@ -547,6 +702,21 @@ const ps = (function () {
     appState.curSceneIndex = 4;
     playVideo($ipadVideo);
     tliPadContent.restart();
+  };
+
+  // Get element offset for scroll positioning on return to top
+  var getOffsetTop = function (elem) {
+    // Set our distance placeholder
+    var distance = 0;
+    // Loop up the DOM
+    if (elem.offsetParent) {
+      do {
+        distance += elem.offsetTop;
+        elem = elem.offsetParent;
+      } while (elem);
+    }
+    // Return our distance
+    return distance < 0 ? 0 : distance;
   };
 
   //INITIALIZATION
