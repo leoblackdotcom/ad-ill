@@ -25,6 +25,12 @@ const ps = (function () {
     autoScrollUp: false // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
   }
 
+  const retouchSection = {
+    animationComplete: false, // animation complete state
+    autoScrollDown: false, // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
+    autoScrollUp: false // toggled boolean to prevent the scrollTrigger onUpdate event firing when forcing window.scrollTo
+  }
+
   //INITIALIZATION
 
   initSubmodules = function () {
@@ -337,11 +343,27 @@ const ps = (function () {
         onEnterBack: onRetouchEnterBack,
         onLeave: onRetouchLeave,
         onLeaveBack: onRetouchLeaveBack,
-        onUpdate: function() {
+        onUpdate: function(scroll) {
           if (progress === 0 ) {
             const curProgress = tlRetouch.progress();
             const translateYVal = mapValue(curProgress,0,1,-18,0);
             $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
+          }
+
+          if(scroll.direction === 1 && retouchSection.animationComplete && retouchSection.autoScrollDown && window.scrollY > getOffsetTop(document.getElementById('section-retouch')) + appState.screenDims.height) {
+            // scroll direction down | animation has completed | user can scroll down to initiate auto scroll | checks to make sure its at the full start of the section 
+            retouchSection.autoScrollDown = false; // prevent autoscroll down
+            retouchSection.autoScrollUp = true; // enable autoscroll up
+            const offsetTop = getOffsetTop(document.getElementById('section-retouch')) + document.getElementById('section-retouch').offsetHeight - appState.screenDims.height;
+            window.scrollTo(0, offsetTop);
+          }
+            
+          if(scroll.direction === -1 && retouchSection.animationComplete && retouchSection.autoScrollUp) {
+            // scroll direction up | animation has completed | user can scroll up to initiate auto scroll
+            retouchSection.autoScrollDown = true; // enable autoscroll down
+            retouchSection.autoScrollUp = false; // prevent autoscroll up
+            const offsetTop = getOffsetTop(document.getElementById('section-retouch')) + appState.screenDims.height;
+            window.scrollTo(0, offsetTop);
           }
         },
       },
@@ -625,6 +647,7 @@ const ps = (function () {
 
   onRetouchEnter = function (self) {
     appState.curSceneIndex = 3;
+    retouchSection.animationComplete = false;
     const vidConfig = sceneConfig.videos.retouch;
     const currentImagePath = getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad);
     drawImageToCanvas(retouchContext,currentImagePath,retouchImg);
@@ -632,24 +655,19 @@ const ps = (function () {
   };
 
   onRetouchEnterBack = function(){
+    retouchSection.autoScrollDown = true;
     const elemOffset = getOffsetTop(document.getElementById('section-retouch'));
     window.scrollTo(0, elemOffset);
     resetTimeline(tliPadContent);
-    gsap.from('.retrouch-animate-1', 1, { opacity: 0, y: 20, delay: 0.0 });
-    gsap.from('.retrouch-animate-2', 1, { opacity: 0, y: 20, delay: 0.3 });
-    gsap.from('.retrouch-animate-3', 1, { opacity: 0, y: 20, delay: 0.6 });
-    gsap.from('.retrouch-animate-4', 1, { opacity: 0, y: 20, delay: 0.9 });
-    gsap.from('.retrouch-animate-5', 1, { opacity: 0, y: 20, delay: 1.2 });
+    gsap.from('.retouch-animate-1', 1, { opacity: 0, y: 20, delay: 0.0 });
+    gsap.from('.retouch-animate-2', 1, { opacity: 0, y: 20, delay: 0.3 });
+    gsap.from('.retouch-animate-3', 1, { opacity: 0, y: 20, delay: 0.6 });
+    gsap.from('.retouch-animate-4', 1, { opacity: 0, y: 20, delay: 0.9 });
+    gsap.from('.retouch-animate-5', 1, { opacity: 0, y: 20, delay: 1.2 });
   }
 
-  // Moved this function to the inline onUpdate in the Retouch scrollTrigger to use the progress variable.
-  // onRetouchUpdate = function(){
-  //   const curProgress = tlRetouch.progress();
-  //   const translateYVal = mapValue(curProgress,0,1,-18,0);
-  //   $retouchContentContainer.style.transform = `translateY(${-translateYVal}vh)`;
-  // }
-
   onRetouchLeave = function(){
+    retouchSection.animationComplete = true;
     gsap.from(".ipad-video", { scale: 1.2, duration: 2 });
   }
 
@@ -675,8 +693,9 @@ const ps = (function () {
   }
 
   oniPadEnterBack = function () {
+    tliPadContent.restart();
     const elemOffset = getOffsetTop(document.getElementById('section-ipad'));
-    window.scrollTo(0, elemOffset);
+    // window.scrollTo(0, elemOffset);
   }
 
   oniPadLeave = function () {
@@ -688,6 +707,8 @@ const ps = (function () {
     resetVideo($ipadVideo);
     gsap.to(".ipad-video", { scale: 1.2, duration: 2 });
     tliPadContentOut.restart();
+
+    resetTimeline(tliPad);
   };
 
   oniPadVideoEnded = function(){
