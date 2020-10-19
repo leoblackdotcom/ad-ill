@@ -59,16 +59,16 @@
 
         <div class="retouch-content-container">
           <h2 class="retouch-title section-title">
-            <div class="retrouch-animate-1"><span class="retouch-title-line l1">Retouch.</span></div>
-            <div class="retrouch-animate-2"><span class="retouch-title-line l2">Remix.</span></div>
-            <div class="retrouch-animate-3"><span class="retouch-title-line l3">Reimagine.</span></div>
+            <div class="retouch-animate-1"><span class="retouch-title-line l1">Retouch.</span></div>
+            <div class="retouch-animate-2"><span class="retouch-title-line l2">Remix.</span></div>
+            <div class="retouch-animate-3"><span class="retouch-title-line l3">Reimagine.</span></div>
           </h2>
-          <div class="retrouch-animate-4">
+          <div class="retouch-animate-4">
             <p class="section-intro retouch-intro">Make portraits pop and expressions more expressive. Remove objects,
               retouch, remix, and recolor. With powerful editing and effects tools, you can turn imagery into artistry.
             </p>
           </div>
-          <div class="retrouch-animate-5">
+          <div class="retouch-animate-5">
             <a href="https://helpx.adobe.com/photoshop/how-to/face-paint.html"
               class="button-sm button-lt retouch-button">Try it yourself</a>
           </div>
@@ -209,9 +209,9 @@
   <script src="scripts/main.js?v=<?php echo filemtime('scripts/main.js'); ?>"></script>
   <script src="scripts/nav.js?v=<?php echo filemtime('scripts/nav.js'); ?>"></script>
   <script src="scripts/whatsnew.js?v=<?php echo filemtime('scripts/whatsnew.js'); ?>"></script>
-  <script src="scripts/main.js"></script>
+<!--   <script src="scripts/main.js"></script>
   <script src="scripts/nav.js"></script>
-  <script src="scripts/whatsnew.js"></script>
+  <script src="scripts/whatsnew.js"></script> -->
 </body>
 
 </html>
