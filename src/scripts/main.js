@@ -218,6 +218,7 @@ const ps = (function () {
             const offsetTop = getOffsetTop(document.getElementById('section-transform')) + appState.screenDims.height;
             window.scrollTo(0, offsetTop);
           }
+          
         }
       },
     });
@@ -226,10 +227,10 @@ const ps = (function () {
       .to(".null", { opacity: 0, duration: 7,
         onUpdate: function() {
           const thisProgress = this.progress();
-          if (thisProgress.toFixed(1) == 0.0) {
+          if (thisProgress.toFixed(2) == 0.00) {
             progress = 0;
           }
-          if (progress !== 1) {
+          if (progress !== 1 && !transformSection.animationComplete) {
             const vidConfig = sceneConfig.videos.transform;
             const currentFrame = Math.ceil(vidConfig.frames * thisProgress);
             if(currentFrame != sceneConfig.videos.transform.frames) transformSection.animationComplete = false;
