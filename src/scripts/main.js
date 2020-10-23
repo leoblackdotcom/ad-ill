@@ -602,6 +602,10 @@ const ps = (function () {
     appState.curSceneIndex = 1;
     const vidConfig = sceneConfig.videos.transform;
     drawImageToCanvas(transformContext,getCurrentImagePath(vidConfig.framesPath,0,'.jpg',vidConfig.pad),transformImg);
+
+    gsap.set('.transform-title-line.rt1', { opacity: 0});
+    gsap.set('.transform-title-line.rt2', { opacity: 0});
+    gsap.set('.transform-copy-container', { opacity: 0});
   };
 
   onTransformEnterBack = function(){ //fires before brushesLeaveBack
