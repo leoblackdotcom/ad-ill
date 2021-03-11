@@ -7,8 +7,8 @@
   <title>Photoshop Reimagine</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="styles/photoshop-localnav.css?v=<?php echo filemtime('styles/photoshop-localnav.css'); ?>" />
-  <link rel="stylesheet" href="styles/main.css?v=<?php echo filemtime('styles/main.css'); ?>" />
+  <link rel="stylesheet" href="dist/css/photoshop-localnav.css?v=<?php echo filemtime('dist/css/photoshop-localnav.css'); ?>" />
+  <link rel="stylesheet" href="dist/css/main.css?v=<?php echo filemtime('dist/css/main.css'); ?>" />
   <link rel="icon" href="assets/images/adobe.png" />
   <link rel="stylesheet" href="https://use.typekit.net/opx6jbj.css?v=18">
 </head>
@@ -126,10 +126,10 @@
           <div class="transform-copy-container">
             <div class="transform-animate-3">
               <p class="section-intro transform-copy-p p1">
-              With one-click selections,<br/>
-              easy masking, and unlimited<br/>
-              layers, you can turn any<br/>
-              photo into fantasy.
+                With one-click selections,<br/>
+                easy masking, and unlimited<br/>
+                layers, you can turn any<br/>
+                photo into fantasy.
               </p>
             </div>
             <div class="transform-animate-4">
@@ -180,6 +180,7 @@
       
     </section>
 
+    <?php require_once('includes/beebly.php') ?>
     <?php require_once('includes/whatsnew.php') ?>
   </main>
 
@@ -199,19 +200,19 @@
     </h2>
   </div>
 
-  <script src="scripts/libs/gsap/gsap.min.js?v=2"></script>
-  <script src="scripts/libs/gsap/CSSRulePlugin.min.js?v=2"></script>
-  <script src="scripts/libs/gsap/ScrollTrigger.min.js?v=2"></script>
-  <script src="scripts/libs/gsap/EasePack.min.js?v=2"></script>
-  <script src="scripts/libs/imagesloaded.pkgd.min.js"></script>
-  <script src="scripts/libs/headroom.min.js"></script>
-  <script src="scripts/sceneConfig.js"></script>
-  <script src="scripts/main.js?v=<?php echo filemtime('scripts/main.js'); ?>"></script>
-  <script src="scripts/nav.js?v=<?php echo filemtime('scripts/nav.js'); ?>"></script>
-  <script src="scripts/whatsnew.js?v=<?php echo filemtime('scripts/whatsnew.js'); ?>"></script>
-<!--   <script src="scripts/main.js"></script>
-  <script src="scripts/nav.js"></script>
-  <script src="scripts/whatsnew.js"></script> -->
+  <script src="src/scripts/libs/gsap/gsap.min.js?v=2"></script>
+  <script src="src/scripts/libs/gsap/CSSRulePlugin.min.js?v=2"></script>
+  <script src="src/scripts/libs/gsap/ScrollTrigger.min.js?v=2"></script>
+  <script src="src/scripts/libs/gsap/EasePack.min.js?v=2"></script>
+  <script src="src/scripts/libs/imagesloaded.pkgd.min.js"></script>
+  <script src="src/scripts/libs/headroom.min.js"></script>
+  <script src="src/scripts/sceneConfig.js"></script>
+  <script src="src/scripts/main.js?v=<?php echo filemtime('src/scripts/main.js'); ?>"></script>
+  <script src="src/scripts/nav.js?v=<?php echo filemtime('src/scripts/nav.js'); ?>"></script>
+  <script src="src/scripts/whatsnew.js?v=<?php echo filemtime('src/scripts/whatsnew.js'); ?>"></script>
+<!--   <script src="src/scripts/main.js"></script>
+  <script src="src/scripts/nav.js"></script>
+  <script src="src/scripts/whatsnew.js"></script> -->
 </body>
 
 </html>
