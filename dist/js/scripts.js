@@ -1,4 +1,5 @@
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ps = (function () {
@@ -172,6 +173,7 @@ const ps = (function () {
     initTimelineiPadContent();
     initTimelineiPadContentOut();
     initTimelineWhatsNew();
+    initTimelineBeebly();
   };
 
   initTimelineIntro = function(){
@@ -546,6 +548,20 @@ const ps = (function () {
         onEnter: onWhatsNewEnter,
         onLeaveBack: onWhatsNewLeaveBack,
       },
+    });
+  };
+
+  initTimelineBeebly = function () {
+    tlBeebly = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section-beebly",
+          toggleActions: "restart none none reverse",
+          id: "pin",
+          markers:true,
+          start: "top 300px",
+            pin: ".beebly-container",
+            end:"bottom 88%"
+      }
     });
   };
 

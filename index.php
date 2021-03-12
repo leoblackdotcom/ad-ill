@@ -210,6 +210,7 @@
   <script src="src/scripts/main.js?v=<?php echo filemtime('src/scripts/main.js'); ?>"></script>
   <script src="src/scripts/nav.js?v=<?php echo filemtime('src/scripts/nav.js'); ?>"></script>
   <script src="src/scripts/whatsnew.js?v=<?php echo filemtime('src/scripts/whatsnew.js'); ?>"></script>
+  <script src="src/scripts/beebly.js?v=<?php echo filemtime('src/scripts/beebly.js'); ?>"></script>
 <!--   <script src="src/scripts/main.js"></script>
   <script src="src/scripts/nav.js"></script>
   <script src="src/scripts/whatsnew.js"></script> -->

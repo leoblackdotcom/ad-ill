@@ -1,15 +1,303 @@
 #section-beebly {
   background-color: #A8D6E7;
+  color: #000;
+  padding-top: 140px;
+  min-height: 1600px;
+  overflow: hidden;
+
+  .beebly-container {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    z-index: 10;
+  }
 
   .beebly-container-inner {
-    min-height: 1500px;
+    padding: 0 40px;
+    p {
+      max-width: 480px;
+      margin-bottom: 1.5em;
+    }
+    .button-sm {
+      margin-right: 12px;
+    }
   }
 
-  .cute-bee {
+  .cursor {
     position: absolute;
-    top: 150px;
-    right: 120px;
+    top: 390px;
+    right: 370px;
+    width: 45px;
+    height: auto;
+    z-index: 99;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .bounding-box {
+    display: block;
+    position: absolute;
+    top: 190px;
+    right: 130px;
     width: 310px;
     height: auto;
+    border: 2px solid #0095FF;
+    &:before {
+      position: absolute;
+      content: "";
+      right: 100%;
+      top: 50%;
+      width: 25%;
+      height: 2px;
+      margin-top: -1px;
+      background: #0095FF;
+    }
+    &:after {
+      position: absolute;
+      content: "";
+      right: 125%;
+      top: 50%;
+      width: 20px;
+      height: 20px;
+      margin: -11px -10px 0 0;
+      background: #fff;
+      border: 1px solid #0095FF;
+      border-radius: 999px;
+    }
+
+    .beebly-bee {
+      width: 100%;
+      height: auto;
+    }
+
+    span {
+      width: 24px;
+      height: 24px;
+      border: 1px solid #0095FF;
+      background: #fff;
+      position: absolute;
+      z-index: 1;
+      margin: -12px 0 0 -12px;
+    }
+
+    span:nth-child(1) { left: 0; top: 0; margin: -13px 0 0 -13px; }
+    span:nth-child(2) { left: 50%; top: 0; margin: -13px 0 0 -12px; }
+    span:nth-child(3) { left: 100%; top: 0; margin: -13px 0 0 -11px; }
+    span:nth-child(4) { left: 100%; top: 50%; margin: -12px 0 0 -11px; }
+    span:nth-child(5) { left: 100%; top: 100%; margin: -12px 0 0 -11px; }
+    span:nth-child(6) { left: 50%; top: 100%; margin: -12px 0 0 -12px; }
+    span:nth-child(7) { left: 0; top: 100%;  margin: -12px 0 0 -13px;}
+    span:nth-child(8) { left: 0; top: 50%; margin: -12px 0 0 -13px; }
   }
+
+  .beebly-ground {
+    width: 90%;
+    position: absolute;
+    top: 1350px;
+    right: 0;
+
+    .beebly-jar {
+      display: block;
+      width: 1340px;
+      height: auto;
+      position: absolute;
+      top: -528px;
+      right: 0;
+      z-index: 80;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .beebly-flora {
+      position: absolute;
+      bottom: 145px;
+      right: 0;
+      width: 100%;
+      height: 750px;
+      overflow: hidden;
+      z-index: 2;
+
+      .stem {
+        position: absolute;
+        display: block;
+        bottom: 0;
+        width: 14px;
+        height: 100px;
+        z-index: 1;
+        transform-origin: bottom center;
+
+        &.stem-1 {
+          background-color: #FF6933;
+          left: 78%;
+          height: 75%;
+          margin-left: 80px;
+          animation: stemSway 20s infinite linear reverse;
+        }
+
+        &.stem-2 {
+          background-color: #3D9EE2;
+          left: 67.5%;
+          height: 37%;
+          margin-left: 93px;
+          animation: stemSway2 10s infinite linear reverse;
+        }
+
+        &.stem-3 {
+          background-color: #FFA7B2;
+          left: 51%;
+          height: 80%;
+          margin-left: 134px;
+          animation: stemSway 20s infinite linear reverse;
+        }
+
+        &.stem-4 {
+          background-color: #61B980;
+          left: 35%;
+          height: 45%;
+          margin-left: 93px;
+          animation: stemSway2 10s infinite linear reverse;
+        }
+
+        &.stem-5 {
+          background-color: #F1D99D;
+          left: 17%;
+          height: 25%;
+          margin-left: 98px;
+          animation: stemSway 10s infinite linear reverse;
+        }
+      }
+
+  
+      svg {
+        width: 200px;
+        height: auto;
+        position: absolute;
+        z-index: 2;
+
+        &.beebly-flower-1 { 
+          left: 78%; 
+          top: 12%;
+          animation: flowerSwayPinwheel 20s infinite linear reverse;
+        }
+        &.beebly-flower-2 { 
+          left: 67%;
+          top: 50%;
+          animation: flowerSway 10s infinite linear reverse;
+        }
+        &.beebly-flower-3 {
+          left: 51%;
+          top: 5%; 
+          width: 240px;
+          animation: flowerSwayPinwheel 40s infinite linear reverse;
+        }
+        &.beebly-flower-4 { 
+          left: 35%;
+          top: 35%;
+          animation: flowerSway 10s infinite linear reverse;
+        }
+        &.beebly-flower-5 { 
+          left: 17%;
+          top: 60%; 
+          width: 180px;
+          animation: flowerSway 10s infinite linear reverse;
+        }
+
+        .st0 {fill:#FF6933;}
+        .st1 {fill:#A9D6E6;}
+        .st2 {fill:#3D9EE2;}
+        .st3 {fill:#FFA7B2;}
+        .st4 {fill:#61B980;}
+        .st5 {fill:#F1D99D;}
+      }
+    }
+
+    .beebly-dirt {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start;
+      align-items: stretch;
+      height: 150px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 3;
+
+      span:nth-child(1) { width: 5%; background-color: #934044; }
+      span:nth-child(2) { width: 15%; background-color: #FF6933; }
+      span:nth-child(3) { width: 10%; background-color: #FFA7B2; }
+      span:nth-child(4) { width: 25%; background-color: #F1D99D; }
+      span:nth-child(5) { width: 18%; background-color: #3D9EE2; }
+      span:nth-child(6) { width: 10%; background-color: #ADB1D8; }
+      span:nth-child(7) { width: 12%; background-color: #61B980; }
+      span:nth-child(8) { width: 5%; background-color: #005041; }
+    }
+  }
+}
+
+@keyframes flowerPinwheel {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes stemSwayOld {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(2deg); }
+  40% { transform: rotate(3deg); }
+  60% { transform: rotate(2deg); }
+  80% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes stemSway {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(.5deg); }
+  40% { transform: rotate(1deg); }
+  60% { transform: rotate(.5deg); }
+  80% { transform: rotate(.25deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes stemSway2 {
+  0% { transform: rotate(0); }
+  10% { transform: rotate(1.5deg); }
+  40% { transform: rotate(2.5deg); }
+  60% { transform: rotate(1.5deg); }
+  80% { transform: rotate(1deg); }
+  100% { transform: rotate(0); }
+}
+
+@keyframes flowerSway {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(10px); }
+  40% { transform: translateX(15px); }
+  60% { transform: translateX(10px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes flowerSway2 {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(15px); }
+  40% { transform: translateX(20px); }
+  60% { transform: translateX(15px); }
+  80% { transform: translateX(10px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes flowerSwayPinwheel {
+  0% { transform: translateX(0) rotate(0deg); }
+  20% { transform: translateX(10px) rotate(72deg); }
+  40% { transform: translateX(15px) rotate(144deg); }
+  60% { transform: translateX(10px) rotate(216deg); }
+  80% { transform: translateX(5px) rotate(288deg); }
+  100% { transform: translateX(0) rotate(360deg); }
 }

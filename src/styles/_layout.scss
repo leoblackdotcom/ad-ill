@@ -119,6 +119,14 @@
       color: $color-button-text-active;
     }
   }
+  &-dk {
+    color: $color--white;
+    background-color: #1473E6;
+    transition: all 300ms linear;
+    &:hover {
+      background-color: #3992EA;
+    }
+  }
 }
 
 .section-gradient {
