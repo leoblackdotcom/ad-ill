@@ -1,15 +1,18 @@
 # Adobe Photoshop Reimagine Prototype
 
-[Staging Link](http://photoshop.whoisowenjones.com/src/)
+[Pre-Beebly Staging Link](http://photoshop.whoisowenjones.com/src/)
 
-### Dependencies
+### Get Started
 
-**Server/Build System**
+Install dependencies:
 
-There is currently no build system for this prototype.
-The site utilizes PHP for includes and cache busting on CSS/ JS. You can run a local PHP server to serve the files. For example, a python http server (`python -m http.server 8000`) will do fine.
+`npm install`
 
-**CSS**:
+Run server and watch php, scss:
+
+`gulp`
+
+**CSS (Old)**:
 
 Styling is handled in Sass. You should run the Sass CLI to watch for changes in the `scss` files.
 
