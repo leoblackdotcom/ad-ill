@@ -621,14 +621,15 @@ const ps = (function () {
   initTimelineLike = function () {
 
     // Repeating type SVGs instead of clogging up the index php
-    $( function() {
-      $('.like-type').each( function() {
-        var classesToAdd = [ "like-blue", "like-cyan", "like-orange", "like-red", "like-black" ];
-        for(i=0;i<5;i++) {
-          $(this).clone().insertBefore(this).removeClass('like-white').addClass(classesToAdd[i]);
-        }
-      });
-    });
+    //$( function() {
+      //$('.like-type').each( function() {
+        //var classesToAdd = [ "like-blue", "like-cyan", "like-orange", "like-red"];
+        //for(i=0;i<4;i++) {
+          //$(this).clone().insertBefore(this).removeClass('like-white').addClass(classesToAdd[i]).addClass('color-layer');
+        //}
+        //$(this).clone().insertBefore(this).removeClass('like-white').addClass('like-black');
+      //});
+    //});
 
     var slides = document.querySelectorAll(".like-panel");
     //var likeL = document.querySelectorAll(".like-l");
@@ -641,25 +642,76 @@ const ps = (function () {
       scrollTrigger: {
         trigger: "#section-like",
         pin:true,
-        scrub: 0.3,
+        scrub: .3,
         start: "top top",
         end: "+=3000"
       }
     })
     .from('.like-container', { y: 200, duration: 2 })
     .from('.like-container *', { opacity: 0, stagger: .5, delay: -2.5 })
-    .from('.bg-shape', { top: 0, stagger: .5, scrub: 1, duration: 1})
-    .to(slides, {xPercent: -100, duration:2, ease: "none", stagger:3})
-    .to('.like-colors-bg', { xPercent: -180, delay:1, duration: 3 }, '-=8')
-    .to('.like-layered', { scale:12, xPercent: -440, yPercent: -815, duration: 3 }, '-=5')
+    .from('.bg-shape', { top: 0, stagger: 2, scrub: 1, duration: 4})
+    .to(slides, {xPercent: -100, duration:4, ease: "none", stagger:3})
+    .to('.like-colors-bg', { xPercent: -180, delay:1, duration: 18 }, '-=9')
+    .to('.like-layered', { delay: 6, scale:12, xPercent: -440, yPercent: -815, duration: 10 }, '-=1')
     .to('.t-shirt-bg', { opacity: 1, duration: .01 }, '-=2')
-    .to('.like-layered', { scale:.5, xPercent: 0, yPercent: 0, duration: 3 }, '-=2')
-    .to('.like-layered', { delay: 2, scale:12, xPercent: -440, yPercent: -815, duration: 3 })
+    .to('.like-layered', { scale:.4, xPercent: 0, yPercent: 0, duration: 10 })
+    .to('.like-layered', { delay: 12, scale:12, xPercent: -440, yPercent: -815, duration: 10 })
     .to('.t-shirt-bg', { opacity: 0, duration: .01 })
-    .to('.like-layered', { xPercent: 480, duration: 3 })
+
+    .to('.like-layered', { xPercent: 480, duration: 24 })
     .to('.social-post', { opacity: 1, duration: .01 })
-    .to('.like-layered', { scale: .3, xPercent: -13, yPercent: 10, duration: 3 })
-    .to({},{duration:1}) // an empty tween to generate a pause at the end
+    .to('.like-layered', { scale: .3, xPercent: -13, yPercent: 10, duration: 10 })
+    
+    .to('.like-l.color-layer', { delay: 1, y: 0, stagger: -1, duration: 2 })
+    .to('.like-i.color-layer', { y: 0, stagger: -1, duration: 2, delay: -2 })
+    .to('.like-k.color-layer', { y: 0, stagger: -1, duration: 2, delay: -2 })
+    .to('.like-e.color-layer', { y: 0, stagger: -1, duration: 2, delay: -2 })
+    .to('.like-l', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-i', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-k', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-e', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-l', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-i', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-k', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-e', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+
+    
+    .to('.like-l.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-i.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-k.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-e.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-l', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-i', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-k', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-e', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-l', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-i', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-k', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-e', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+
+
+    
+
+
+    .to('.like-l.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-i.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-k.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-e.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
+    .to('.like-l', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-i', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-k', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-e', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
+    .to('.like-white', { yPercent: -5, stagger: -1, duration: 2, delay: -4})
+    .to('.like-black', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
+    .to('.like-red', { yPercent: 10, stagger: -1, duration: 2, delay: -4})
+    .to('.like-orange', { yPercent: 20, stagger: -1, duration: 2, delay: -4})
+    .to('.like-cyan', { yPercent: 30, stagger: -1, duration: 2, delay: -4})
+    .to('.like-blue', { yPercent: 40, stagger: -1, duration: 2, delay: -4})
+    
+    .to('.like-layered', { scale:12, xPercent: -440, yPercent: -815, duration: 30 }, '-=8')
+
+    .to('.like-final-container', { opacity: 1, duration: 12 })
+
   };
 
 
