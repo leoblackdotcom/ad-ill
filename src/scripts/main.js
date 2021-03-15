@@ -1,5 +1,7 @@
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(MotionPathPlugin);
+//gsap.registerPlugin(CSSRulePlugin);
 
 const ps = (function () {
 
@@ -173,6 +175,9 @@ const ps = (function () {
     initTimelineiPadContentOut();
     initTimelineWhatsNew();
     initTimelineBeebly();
+    initTimelineBeeblyBee();
+    initTimelineBeeblyText();
+    initTimelineLike();
   };
 
   initTimelineIntro = function(){
@@ -555,14 +560,110 @@ const ps = (function () {
       scrollTrigger: {
         trigger: "#section-beebly",
           toggleActions: "restart none none reverse",
-          id: "pin",
-          markers:true,
           start: "top 300px",
             pin: ".beebly-container",
-            end:"bottom 88%"
+            end:"bottom 92%"
       }
     });
   };
+
+  initTimelineBeeblyBee = function () {
+    gsap.set("#the-box", {
+      width: 310, 
+      transformOrigin: "50% 50%"
+    });
+
+    tlBeeblyBee = gsap.timeline({
+      defaults: {duration: 1},
+      scrollTrigger: {
+        trigger: "#section-beebly",
+        scrub: 2,
+        start: "top top",
+        end: "bottom 88%"
+      }})
+      .to("#the-box", {
+        width: 110,
+        yPercent: 88,
+        xPercent: -104,
+        motionPath: {
+          path: "#the-path"
+        }
+      }, 0)
+      .call(function() {
+        $('.bounding-box').addClass("hide-me");
+        $('.beebly-cursor').addClass("hide-me");
+      })
+  };
+
+  initTimelineBeeblyText = function () {
+    gsap.set(".bjf-1", { opacity: 0 });
+    gsap.set(".bjf-2", { opacity: 0 });
+    gsap.set(".bjf-3", { opacity: 0 });
+    tlBeeblyText = gsap.timeline({
+      defaults: {duration: 1},
+      scrollTrigger: {
+        trigger: ".beebly-dirt",
+        scrub: 2,
+        start: "top 98%",
+        end: "bottom 68%"
+      }})
+      .to(".bjf-1", { opacity: 1, duration: 0.1 })
+      .to(".bjf-1", { opacity: 1, duration: 1 })
+      .to(".bjf-1", { opacity: 0, duration: 0.1 })
+      .to(".bjf-2", { opacity: 1, duration: 0.1 })
+      .to(".bjf-2", { opacity: 1, duration: 1 })
+      .to(".bjf-2", { opacity: 0, duration: 0.1 })
+      .to(".bjf-3", { opacity: 1, duration: 0.1 })
+      .to(".bjf-3", { opacity: 1, duration: 1 })
+      .to(".bjf-3 mark", { background: "none", color: "inherit", duration: 0.1 })
+  };
+
+  initTimelineLike = function () {
+
+    // Repeating type SVGs instead of clogging up the index php
+    $( function() {
+      $('.like-type').each( function() {
+        var classesToAdd = [ "like-blue", "like-cyan", "like-orange", "like-red", "like-black" ];
+        for(i=0;i<5;i++) {
+          $(this).clone().insertBefore(this).removeClass('like-white').addClass(classesToAdd[i]);
+        }
+      });
+    });
+
+    var slides = document.querySelectorAll(".like-panel");
+    //var likeL = document.querySelectorAll(".like-l");
+    //var likeI = document.querySelectorAll(".like-i");
+    //var likeK = document.querySelectorAll(".like-k");
+    //var likeE = document.querySelectorAll(".like-e");
+    var likeHeight = $('.like-panel').height();
+
+    likeAction = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section-like",
+        pin:true,
+        scrub: 0.3,
+        start: "top top",
+        end: "+=3000"
+      }
+    })
+    .from('.like-container', { y: 200, duration: 2 })
+    .from('.like-container *', { opacity: 0, stagger: .5, delay: -2.5 })
+    .from('.bg-shape', { top: 0, stagger: .5, scrub: 1, duration: 1})
+    .to(slides, {xPercent: -100, duration:2, ease: "none", stagger:3})
+    .to('.like-colors-bg', { xPercent: -180, delay:1, duration: 3 }, '-=8')
+    .to('.like-layered', { scale:12, xPercent: -440, yPercent: -815, duration: 3 }, '-=5')
+    .to('.t-shirt-bg', { opacity: 1, duration: .01 }, '-=2')
+    .to('.like-layered', { scale:.5, xPercent: 0, yPercent: 0, duration: 3 }, '-=2')
+    .to('.like-layered', { delay: 2, scale:12, xPercent: -440, yPercent: -815, duration: 3 })
+    .to('.t-shirt-bg', { opacity: 0, duration: .01 })
+    .to('.like-layered', { xPercent: 480, duration: 3 })
+    .to('.social-post', { opacity: 1, duration: .01 })
+    .to('.like-layered', { scale: .3, xPercent: -13, yPercent: 10, duration: 3 })
+    .to({},{duration:1}) // an empty tween to generate a pause at the end
+  };
+
+
+
 
   //HELPER FUNCTIONS
 

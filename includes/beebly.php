@@ -15,13 +15,19 @@
       </div>
     </div>
   </div>
-  <div class="cursor">
-    <img class="beebly-cursor" src="assets/images/beebly/cursor.svg" />
-  </div>
-  <div class="bounding-box">
+  <div id="the-box" class="bounding-box">
+    <img id="the-cursor" class="beebly-cursor" src="assets/images/beebly/cursor.svg" />
+    <span class="rotategrab"></span>
+    <span class="rotateline"></span>
     <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
     <img class="beebly-bee" src="assets/images/beebly/bee.svg" />
   </div>
+
+  <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
+  <svg class="bee-path" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="535.92px" height="1423.5px" viewBox="0 0 535.92 1423.5" style="overflow:visible;enable-background:new 0 0 535.92 1423.5;" xml:space="preserve">
+    <path id="the-path" d="M320.76,0c0,0,70.28,301.87,22.53,551.45S0,956,0,956"/>
+  </svg>
+
   <div class="beebly-ground">
     <div class="beebly-flora">
 
@@ -282,6 +288,11 @@
       <span class="stem stem-5"></span>
     </div>
     <div class="beebly-jar">
+      <div id="the-text" class="bj-font">
+        <div class="bjf-1"><mark>BeeBly</mark></div>
+        <div class="bjf-2"><mark>BeeBly</mark></div>
+        <div class="bjf-3"><mark>BeeBly</mark></div>
+      </div>
       <img src="assets/images/beebly/jar-blank.png" />
     </div>
     <div class="beebly-dirt">

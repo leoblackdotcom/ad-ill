@@ -1,0 +1,150 @@
+$svgBlue: #7a45ff;
+$svgCyan: #00c3e8;
+$svgOrange: #ffba00;
+$svgRed: #fd344f;
+
+#section-like {
+  position:relative;
+  width:100%;
+  height:100vh;
+  border-bottom:1px solid black;
+  background: #000;
+
+  .like-container {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    height: 100%;
+    z-index: 20;
+    color: #000;
+  }
+
+  .like-colors-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    svg {
+      position: absolute;
+      width: 180%;
+      min-height: 100%;
+      left: 0;
+      top: 0;
+      stroke-width: 1px;
+      stroke: #000;
+
+      &.svg-blue { 
+        fill: $svgBlue; 
+        z-index: 2;
+      }
+      &.svg-cyan { 
+        fill: $svgCyan; 
+        z-index: 3;
+        top: 25%;
+      }
+      &.svg-orange { 
+        fill: $svgOrange; 
+        z-index: 4;
+        top: 50%;
+      }
+      &.svg-red { 
+        fill: $svgRed; 
+        z-index: 5;
+        top: 75%;
+      }
+    }
+  }
+
+  .like-title {
+    @include adobeClean;
+    text-transform: uppercase;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    text-shadow: 0px 6px 0px #000, 0 .5px 0 #000, 0 -.5px 0 #000, .5px 0 0 #000, -.5px 0 0 #000;
+    font-weight: 900;
+    font-size: 7vw;
+    max-width: 45vw;
+    -webkit-text-stroke: 1px black;
+  }
+
+  .like-intro {
+    margin-bottom: 40px;
+  }
+
+  .like-panel {
+    position:absolute;
+    width:100%;
+    height:100%;
+    left:100%;
+    top: 0;
+    z-index: 10;
+
+    &.first-like {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+
+      .t-shirt-bg,
+      .social-post {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        z-index: -1;
+        opacity: 0;
+      }
+
+      .t-shirt-bg {
+        background: url(../../assets/images/like/tshirt.png) no-repeat 50% 55%;
+      }
+
+      .social-post {
+        background: url(../../assets/images/like/social-media-ss.jpg) no-repeat 50% 50%;
+      }
+      
+      svg {
+        stroke: #000;
+        stroke-width: 2px;
+        transform: translateY(-15%);
+
+        .like-white {  
+          fill: #fff; 
+          transform: translateY(-5%);
+        }
+
+        .like-black { 
+          fill: #000; 
+        }
+
+        .like-red { 
+          fill: $svgRed; 
+          transform: translateY(10%);
+        }
+
+        .like-orange { 
+          fill: $svgOrange;
+          transform: translateY(20%);
+        }
+
+        .like-cyan { 
+          fill: $svgCyan;
+          transform: translateY(30%);
+        }
+
+        .like-blue { 
+          fill: $svgBlue;
+          transform: translateY(40%);
+        }
+      }
+    }
+  }
+}
