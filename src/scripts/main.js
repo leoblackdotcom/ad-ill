@@ -1,7 +1,7 @@
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
-//gsap.registerPlugin(CSSRulePlugin);
+gsap.registerPlugin(CSSRulePlugin);
 
 const ps = (function () {
 
@@ -175,8 +175,6 @@ const ps = (function () {
     initTimelineiPadContentOut();
     initTimelineWhatsNew();
     initTimelineBeebly();
-    initTimelineBeeblyBee();
-    initTimelineBeeblyText();
     initTimelineLike();
   };
 
@@ -555,163 +553,88 @@ const ps = (function () {
     });
   };
 
+
+  // BeeBly
+
   initTimelineBeebly = function () {
-    tlBeebly = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section-beebly",
-          toggleActions: "restart none none reverse",
-          start: "top 300px",
-            pin: ".beebly-container",
-            end:"bottom 92%"
-      }
-    });
-  };
 
-  initTimelineBeeblyBee = function () {
-    gsap.set("#the-box", {
-      width: 310, 
-      transformOrigin: "50% 50%"
-    });
-
-    tlBeeblyBee = gsap.timeline({
-      defaults: {duration: 1},
-      scrollTrigger: {
-        trigger: "#section-beebly",
-        scrub: 2,
-        start: "top top",
-        end: "bottom 88%"
-      }})
-      .to("#the-box", {
-        width: 110,
-        yPercent: 88,
-        xPercent: -104,
-        motionPath: {
-          path: "#the-path"
-        }
-      }, 0)
-      .call(function() {
-        $('.bounding-box').addClass("hide-me");
-        $('.beebly-cursor').addClass("hide-me");
-      })
-  };
-
-  initTimelineBeeblyText = function () {
-    gsap.set(".bjf-1", { opacity: 0 });
+    // set starting positions
+    gsap.set(".beebly-container", { top: 0, left: 120 });
+    gsap.set(".beebly-cursor", { top: -50, right: 200 });
+    gsap.set("#the-box", { width: 310, transformOrigin: "100% 0", right: 130 });
+    gsap.set(".bjf-1", { opacity: 1 });
     gsap.set(".bjf-2", { opacity: 0 });
     gsap.set(".bjf-3", { opacity: 0 });
-    tlBeeblyText = gsap.timeline({
-      defaults: {duration: 1},
+    gsap.set(".bjf-1 mark", { background: "none", color: "inherit", duration: 0.1 });
+
+    var fontChange = new TimelineMax();
+    fontChange.timeScale(0.5);
+    fontChange.to(".bjf-1", 0, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
+              .to(".bjf-1", 1, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
+              .to(".bjf-1", 0, { opacity: 0 })
+              .to(".bjf-2", 0, { opacity: 1 })
+              .to(".bjf-2", 1, { opacity: 1 })
+              .to(".bjf-2", 0, { opacity: 0 })
+              .to(".bjf-3", 0, { opacity: 1 })
+              .to(".bjf-3", 1, { opacity: 1 })
+              .to(".bjf-3 mark", 0, { background: "none", color: "inherit" })
+              .to(".bjf-3 mark", 1, { background: "none", color: "inherit" });
+
+    var beeTimeline = new TimelineMax({
       scrollTrigger: {
-        trigger: ".beebly-dirt",
-        scrub: 2,
-        start: "top 98%",
-        end: "bottom 68%"
-      }})
-      .to(".bjf-1", { opacity: 1, duration: 0.1 })
-      .to(".bjf-1", { opacity: 1, duration: 1 })
-      .to(".bjf-1", { opacity: 0, duration: 0.1 })
-      .to(".bjf-2", { opacity: 1, duration: 0.1 })
-      .to(".bjf-2", { opacity: 1, duration: 1 })
-      .to(".bjf-2", { opacity: 0, duration: 0.1 })
-      .to(".bjf-3", { opacity: 1, duration: 0.1 })
-      .to(".bjf-3", { opacity: 1, duration: 1 })
-      .to(".bjf-3 mark", { background: "none", color: "inherit", duration: 0.1 })
-  };
+        trigger: "#section-beebly",
+        smoothChildTiming: true,
+        start: "top top",
+        pin: true,
+        scrub: true,
+        end: "+=8400"
+      }});
+
+    beeTimeline
+      .to("#the-cursor",    1, { top: 469, right: 418 })
+      .to("#the-box",       1, { width: 110  })
+      .to("#the-cursor",    1, { top: 285, right: 218 }, "-=1")
+      .to("#the-cursor",    1, { top: 785, right: 358 })
+      .to("#the-box",       1, { top: -120 })
+      .to("#the-cursor",    1, { right: 458, top: 715 })
+      .to(".beebly-ground", 4, { top: 700 }, "-=1")
+      .to("#the-cursor",    1, { right: 660, top: 530 })
+      .add(fontChange)
+      .to("#the-cursor",    2, { right: 620, top: 660 }, "-=7")
+      .to("#the-cursor",    1, { right: 185, top: -65 })
+      .to("#the-box",       2, { right: 544, top: 570 }, "+=1")
+      .to("#the-cursor",    2, { right: 599, top: 625 }, "-=2")
+      .to("#the-box span",  0.1, { opacity: 0 }, "+=1")
+      .to( CSSRulePlugin.getRule("::before"), {duration: 0.1, cssRule: {opacity: 0}}, "-=0.1")
+      .to( CSSRulePlugin.getRule("::after"), {duration: 0.1, cssRule: {opacity: 0}}, "-=0.2")
+      .to("#the-cursor", 0.1, { opacity: 0 }, "-=0.3")
+      .to("#the-box",  0.1, { borderColor: "transparent" }, "-=0.4")
+      .to("#the-box",  2, { borderColor: "transparent" });
+  }
 
   initTimelineLike = function () {
 
-    // Repeating type SVGs instead of clogging up the index php
-    //$( function() {
-      //$('.like-type').each( function() {
-        //var classesToAdd = [ "like-blue", "like-cyan", "like-orange", "like-red"];
-        //for(i=0;i<4;i++) {
-          //$(this).clone().insertBefore(this).removeClass('like-white').addClass(classesToAdd[i]).addClass('color-layer');
-        //}
-        //$(this).clone().insertBefore(this).removeClass('like-white').addClass('like-black');
-      //});
-    //});
-
     var slides = document.querySelectorAll(".like-panel");
-    //var likeL = document.querySelectorAll(".like-l");
-    //var likeI = document.querySelectorAll(".like-i");
-    //var likeK = document.querySelectorAll(".like-k");
-    //var likeE = document.querySelectorAll(".like-e");
-    var likeHeight = $('.like-panel').height();
 
-    likeAction = gsap.timeline({
+    var bgLayers = new TimelineMax();
+    bgLayers.to();
+
+    var likeAction = new TimelineMax({
       scrollTrigger: {
         trigger: "#section-like",
-        pin:true,
-        scrub: .3,
         start: "top top",
-        end: "+=3000"
-      }
-    })
-    .from('.like-container', { y: 200, duration: 2 })
-    .from('.like-container *', { opacity: 0, stagger: .5, delay: -2.5 })
-    .from('.bg-shape', { top: 0, stagger: 2, scrub: 1, duration: 4})
-    .to(slides, {xPercent: -100, duration:4, ease: "none", stagger:3})
-    .to('.like-colors-bg', { xPercent: -180, delay:1, duration: 18 }, '-=9')
-    .to('.like-layered', { delay: 6, scale:12, xPercent: -440, yPercent: -815, duration: 10 }, '-=1')
-    .to('.t-shirt-bg', { opacity: 1, duration: .01 }, '-=2')
-    .to('.like-layered', { scale:.4, xPercent: 0, yPercent: 0, duration: 10 })
-    .to('.like-layered', { delay: 12, scale:12, xPercent: -440, yPercent: -815, duration: 10 })
-    .to('.t-shirt-bg', { opacity: 0, duration: .01 })
-
-    .to('.like-layered', { xPercent: 480, duration: 24 })
-    .to('.social-post', { opacity: 1, duration: .01 })
-    .to('.like-layered', { scale: .3, xPercent: -13, yPercent: 10, duration: 10 })
+        pin: true,
+        scrub: true,
+        markers: true,
+        end: "+=8400"
+      }});
     
-    .to('.like-l.color-layer', { delay: 1, y: 0, stagger: -1, duration: 2 })
-    .to('.like-i.color-layer', { y: 0, stagger: -1, duration: 2, delay: -2 })
-    .to('.like-k.color-layer', { y: 0, stagger: -1, duration: 2, delay: -2 })
-    .to('.like-e.color-layer', { y: 0, stagger: -1, duration: 2, delay: -2 })
-    .to('.like-l', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-i', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-k', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-e', { yPercent: 40, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-l', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-i', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-k', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-e', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-
-    
-    .to('.like-l.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-i.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-k.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-e.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-l', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-i', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-k', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-e', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-l', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-i', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-k', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-e', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-
-
-    
-
-
-    .to('.like-l.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-i.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-k.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-e.color-layer', { y: 0, stagger: -1, duration: 2, delay: -4 })
-    .to('.like-l', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-i', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-k', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-e', { yPercent: 40, stagger: -1, duration: 2, delay: -6 })
-    .to('.like-white', { yPercent: -5, stagger: -1, duration: 2, delay: -4})
-    .to('.like-black', { yPercent: 0, stagger: -1, duration: 2, delay: -4})
-    .to('.like-red', { yPercent: 10, stagger: -1, duration: 2, delay: -4})
-    .to('.like-orange', { yPercent: 20, stagger: -1, duration: 2, delay: -4})
-    .to('.like-cyan', { yPercent: 30, stagger: -1, duration: 2, delay: -4})
-    .to('.like-blue', { yPercent: 40, stagger: -1, duration: 2, delay: -4})
-    
-    .to('.like-layered', { scale:12, xPercent: -440, yPercent: -815, duration: 30 }, '-=8')
-
-    .to('.like-final-container', { opacity: 1, duration: 12 })
-
+    likeAction
+      .from('.like-container', 2, { y: 200 })
+      .from('.like-container *', 1, { opacity: 0, stagger: .5 }, "-=2.5")
+      .from('.bg-shape', 4, { top: 0, stagger: 2, scrub: 1 })
+      .to(slides, 4, {xPercent: -100, ease: "none", stagger: 3 })
+      .to('.like-colors-bg', 18, { xPercent: -180 }, '-=9');
   };
 
 

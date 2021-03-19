@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="dist/css/main.css?v=<?php echo filemtime('dist/css/main.css'); ?>" />
   <link rel="icon" href="assets/images/adobe.png" />
   <link rel="stylesheet" href="https://use.typekit.net/opx6jbj.css?v=18">
-  <!--<link rel="stylesheet" href="https://use.typekit.net/hxr0yuk.css">-->
+  <link rel="stylesheet" href="https://use.typekit.net/etn5htz.css">
 </head>
 
 <body class="loading">
