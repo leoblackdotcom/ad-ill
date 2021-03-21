@@ -36,7 +36,7 @@ $svgRed: #fd344f;
       min-height: 100%;
       left: 0;
       top: 0;
-      stroke-width: 1px;
+      stroke-width: 3px;
       stroke: #000;
 
       &.svg-blue { 
@@ -113,11 +113,8 @@ $svgRed: #fd344f;
     }
 
     &.first-like {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: center;
-      align-items: center;
-
+      position: relative;
+      
       .t-shirt-bg,
       .social-post {
         position: absolute;
@@ -138,11 +135,22 @@ $svgRed: #fd344f;
       .social-post {
         background: url(../../assets/images/like/social-media-ss.jpg) no-repeat 50% 50%;
       }
+
+      .like-layered-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      }
       
       svg {
         stroke: #000;
-        stroke-width: 2px;
-        transform: translateY(-15%);
+        stroke-width: 1px;
+        height: 100%;
+        width: auto;
+
+        path {
+          box-shadow: 0 10px rgba(0,0,0,.8);
+        }
 
         .like-white {  
           fill: #fff; 
