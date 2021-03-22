@@ -20,8 +20,9 @@
       </div>
     </div>
     <img id="the-cursor" class="beebly-cursor" src="assets/images/beebly/cursor.svg" />
+    <img id="the-text-cursor" class="beebly-text-cursor" src="assets/images/beebly/textcursor.svg" />
     <div id="the-box" class="bounding-box">
-      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
       <img class="beebly-bee" src="assets/images/beebly/bee.svg" />
     </div>
 

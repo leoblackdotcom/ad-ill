@@ -49,10 +49,17 @@
     height: auto;
     z-index: 102;
     transition: opacity .3s; 
+  }
 
-    &.hide-me {
-      opacity: 0;
-    }
+  .beebly-text-cursor {
+    position: absolute;
+    top: 536px;
+    right: 630px;
+    transform: translate(-50%, -50%);
+    height: 42px;
+    width: auto;
+    z-index: 102;
+    transition: opacity .3s; 
   }
 
   .bee-path {
@@ -86,7 +93,7 @@
       span { opacity: 0; }
     }
 
-    &:before {
+    span:nth-child(9) {
       position: absolute;
       content: "";
       right: 100%;
@@ -95,8 +102,9 @@
       height: 2px;
       margin-top: -1px;
       background: #0095FF;
+      z-index: 1;
     }
-    &:after {
+    span:nth-child(10) {
       position: absolute;
       content: "";
       right: 125%;
@@ -107,6 +115,7 @@
       background: #fff;
       border: 1px solid #0095FF;
       border-radius: 999px;
+      z-index: 2;
     }
 
     .beebly-bee {
@@ -120,7 +129,7 @@
       border: 1px solid #0095FF;
       background: #fff;
       position: absolute;
-      z-index: 1;
+      z-index: 2;
       margin: -9px 0 0 -9px;
     }
 
@@ -326,6 +335,12 @@
   }
 }
 
+.beebly-link {
+  color: #1473E6;
+  font-weight: bold;
+  font-size: 96%;
+}
+
 @keyframes flowerPinwheel {
   0% { transform: rotate(0); }
   100% { transform: rotate(360deg); }
@@ -374,10 +389,4 @@
   60% { transform: translateX(10px) rotate(216deg); }
   80% { transform: translateX(5px) rotate(288deg); }
   100% { transform: translateX(0) rotate(360deg); }
-}
-
-.beebly-link {
-  color: #1473E6;
-  font-weight: bold;
-  font-size: 96%;
 }

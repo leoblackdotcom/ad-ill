@@ -74,3 +74,36 @@ section {
 button,a {
   cursor: pointer;
 }
+
+.button {
+  &-sm {
+    border-radius: 16px;
+    height: 32px;
+    padding: 0 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    @include adobeClean();
+    font-weight: bold;
+    font-size: .875rem;
+  }
+  &-lt {
+    border: 2px solid $color--white;
+    color: $color--white;
+    background-color: transparent;
+    transition: all 300ms linear;
+    &:hover {
+      background-color: $color-button-bg-active;
+      border-color: $color-button-bg-active;
+      color: $color-button-text-active;
+    }
+  }
+  &-dk {
+    color: $color--white;
+    background-color: #1473E6;
+    transition: all 300ms linear;
+    &:hover {
+      background-color: #3992EA;
+    }
+  }
+}
