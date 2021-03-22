@@ -34,6 +34,7 @@ body {
   background-color: $color--bg;
   @include adobeClean;
   color: $color--body;
+  padding: 0;
   &.loading {
     overflow: hidden;
     .loader-container {

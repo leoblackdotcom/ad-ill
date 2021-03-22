@@ -70,7 +70,7 @@ $svgRed: #fd344f;
     text-shadow: 0px 6px 0px #000, 0 .5px 0 #000, 0 -.5px 0 #000, .5px 0 0 #000, -.5px 0 0 #000;
     font-weight: 900;
     font-size: 6vw;
-    max-width: 45vw;
+    max-width: 38vw;
     -webkit-text-stroke: 1px black;
   }
 
@@ -108,7 +108,20 @@ $svgRed: #fd344f;
       height: 100%;
       opacity: 0;
 
-      .like-title {max-width: none;margin-top: 80px}
+      .like-title {font-size: 110px;max-width: none;margin-top: 4vw}
+
+      .like-button-container {
+        position: relative;
+
+        a.beebly-link {
+          position: absolute;
+          display: inline-block;
+          left: 50%;
+          top: 100%;
+          margin-bottom: -50px;
+          transform: translateX(-50%);
+        }
+      }
     }
 
     &.first-like {
