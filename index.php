@@ -15,8 +15,10 @@
 
 <body>
   <main id="main" class="main">
+    <div class="noahspan">Scroll Down</div>
     <?php require_once('includes/beebly.php') ?>
     <?php require_once('includes/like.php') ?>
+    <div class="noahspan">Scroll Up</div>
   </main>
 
   <script src="//code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

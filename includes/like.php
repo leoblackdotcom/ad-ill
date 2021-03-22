@@ -92,10 +92,10 @@
             class="button-sm button-lt">Start free trial</a>
           <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"
             class="button-sm button-dk">Buy now</a>
+          <a class="section-intro beebly-link">
+            Try this tutorial series: Animate Lettering
+          </a>
         </div>
-        <a class="section-intro beebly-link">
-          Try this tutorial series: Animate Lettering
-        </a>
      </div>
      <div class="ender-slide"></div>
   </div>
