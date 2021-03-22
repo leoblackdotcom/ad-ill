@@ -31,9 +31,6 @@
         <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"
           class="button-sm button-dk">Buy now</a>
       </div>
-      <a class="section-intro beebly-link">
-        Try this tutorial series: Animate Lettering
-      </a>
     </div>
   </div>
   <div class="like-panel first-like">

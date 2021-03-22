@@ -24,7 +24,6 @@
       font-weight: bold;
       margin-top: 30px;
       display: block;
-      font-size: 94%;
     }
   }
 
@@ -53,7 +52,7 @@
 
   .beebly-text-cursor {
     position: absolute;
-    top: 536px;
+    top: 716px;
     right: 630px;
     transform: translate(-50%, -50%);
     height: 42px;
@@ -175,6 +174,13 @@
             color: rgba(170,170,170,.7);
             backdrop-filter: invert(100%);
           }
+        }
+
+        .bjf-0 {
+          font-family: relation-one,sans-serif;
+          font-weight: 400;
+          font-style: normal;
+          font-size: 120%;
         }
 
         .bjf-1 {
@@ -338,7 +344,6 @@
 .beebly-link {
   color: #1473E6;
   font-weight: bold;
-  font-size: 96%;
 }
 
 @keyframes flowerPinwheel {

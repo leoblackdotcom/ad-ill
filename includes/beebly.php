@@ -292,6 +292,7 @@
       </div>
       <div class="beebly-jar">
         <div id="the-text" class="bj-font">
+          <div class="bjf-0"><mark>BeeBly</mark></div>
           <div class="bjf-1"><mark>BeeBly</mark></div>
           <div class="bjf-2"><mark>BeeBly</mark></div>
           <div class="bjf-3"><mark>BeeBly</mark></div>

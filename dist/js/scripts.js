@@ -14,10 +14,13 @@ window.onload = function () {
   gsap.set(".bjf-3", { opacity: 0 });
   gsap.set(".bjf-1 mark", { background: "none", color: "inherit", duration: 0.1 });
   gsap.set(".beebly-text-cursor", { opacity: 0 });
+  gsap.set(".bjf-0", { opacity: 0, background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
 
   var fontChange = new TimelineMax();
   fontChange.timeScale(0.5);
-  fontChange.to(".bjf-1", 0, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
+  fontChange.to("#the-text-cursor", .5, { x: -170 })
+            .to("#the-text-cursor", 0.3, { opacity: 0 })
+            .to(".bjf-1", 0, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)', delay: -.5 })
             .to(".bjf-1", 1, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
             .to(".bjf-1", 0, { opacity: 0 })
             .to(".bjf-2", 0, { opacity: 1 })
@@ -43,17 +46,16 @@ window.onload = function () {
     .to("#the-cursor",    1, { top: 285, right: 218 }, "-=1")
     .to("#the-cursor",    1, { top: -65 })
     .to("#the-box",       1, { top: -120 }, "-=1")
-    .to(".beebly-ground", 4, { top: 700 }, "-=1")
-    .to("#the-cursor",    2, { right: 630, top: 536 })
+    .to(".beebly-ground", 4, { top: 900 }, "-=1")
+    .to(".beebly-ground", 1, { top: 900 })
     .to("#the-text-cursor",  0.1, { opacity: 1 })
-    .to("#the-cursor",  0.1, { opacity: 0 }, "-=0.1")
-    .to("#the-text-cursor",  0.5, { opacity: 1 })
+    .to("#the-text-cursor",  1, { opacity: 1 })
     .add(fontChange)
     .to("#the-text-cursor",  0.1, { opacity: 0 }, "-=0.1")
     .to("#the-cursor",  0.1, { opacity: 1 }, "-=0.1")
     .to("#the-cursor",    2, { top: -65, right: 218 })
-    .to("#the-box",       2, { right: 544, top: 570 }, "+=1")
-    .to("#the-cursor",    2, { right: 599, top: 625 }, "-=2")
+    .to("#the-box",       2, { right: 544, top: 770 }, "+=1")
+    .to("#the-cursor",    2, { right: 599, top: 825 }, "-=2")
     .to("#the-box span",  0.1, { opacity: 0 }, "+=1")
     .to("#the-cursor", 0.1, { opacity: 0 }, "-=0.1")
     .to("#the-box",  0.1, { borderColor: "transparent" }, "-=0.2")
@@ -64,7 +66,7 @@ window.onload = function () {
 
   var likeHeight = $('#section-like').height();
   var originalLikeHeight = $('.like-layered-wrapper').height();
-  tshirtLikeHeight = originalLikeHeight * .5;
+  tshirtLikeHeight = originalLikeHeight * .65;
   socialLikeHeight = originalLikeHeight * .35;
   likeHeight = likeHeight * 2.5;
   
@@ -73,7 +75,6 @@ window.onload = function () {
 
   var likeBouncing = new TimelineMax({ defaults: {stagger: -5}});
   //likeBouncing.timeScale(2);
-  likeBouncing.repeat(2);
   likeBouncing
     .to('.like-l', 10, { yPercent: 40, delay: -20 }, "-=2")
     .to('.like-i', 10, { yPercent: 40, delay: -20 }, "-=2")
