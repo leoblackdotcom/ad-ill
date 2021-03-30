@@ -16,7 +16,7 @@
 <body>
   <main id="main" class="main">
     <div class="noahspan">Scroll Down</div>
-    <?php require_once('includes/beebly.php') ?>
+    <!--<php require_once('includes/beebly.php') ?>-->
     <?php require_once('includes/like.php') ?>
     <div class="noahspan">Scroll Up</div>
   </main>

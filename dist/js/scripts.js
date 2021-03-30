@@ -3,134 +3,183 @@
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(MotionPathPlugin);
 
-window.onload = function () {
-
-  // set starting positions
-  gsap.set(".beebly-container", { top: 0, left: 120 });
-  gsap.set(".beebly-cursor", { top: -50, right: 200 });
-  gsap.set("#the-box", { width: 310, transformOrigin: "100% 0", right: 130 });
-  gsap.set(".bjf-1", { opacity: 1 });
-  gsap.set(".bjf-2", { opacity: 0 });
-  gsap.set(".bjf-3", { opacity: 0 });
-  gsap.set(".bjf-1 mark", { background: "none", color: "inherit", duration: 0.1 });
-  gsap.set(".beebly-text-cursor", { opacity: 0 });
-  gsap.set(".bjf-0", { opacity: 0, background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
-
-  var fontChange = new TimelineMax();
-  fontChange.timeScale(0.5);
-  fontChange.to("#the-text-cursor", .5, { x: -170 })
-            .to("#the-text-cursor", 0.3, { opacity: 0 })
-            .to(".bjf-1", 0, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)', delay: -.5 })
-            .to(".bjf-1", 1, { background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
-            .to(".bjf-1", 0, { opacity: 0 })
-            .to(".bjf-2", 0, { opacity: 1 })
-            .to(".bjf-2", 1, { opacity: 1 })
-            .to(".bjf-2", 0, { opacity: 0 })
-            .to(".bjf-3", 0, { opacity: 1 })
-            .to(".bjf-3", 1, { opacity: 1 })
-            .to(".bjf-3 mark", 0, { background: "none", color: "inherit" });
-
-  var beeTimeline = new TimelineMax({
-    scrollTrigger: {
-      trigger: "#section-beebly",
-      smoothChildTiming: true,
-      start: "top top",
-      pin: true,
-      scrub: true,
-      end: "+=15400"
-    }});
-
-  beeTimeline
-    .to("#the-cursor",    1, { top: 469, right: 418 })
-    .to("#the-box",       1, { width: 110 })
-    .to("#the-cursor",    1, { top: 285, right: 218 }, "-=1")
-    .to("#the-cursor",    1, { top: -65 })
-    .to("#the-box",       1, { top: -120 }, "-=1")
-    .to(".beebly-ground", 4, { top: 900 }, "-=1")
-    .to(".beebly-ground", 1, { top: 900 })
-    .to("#the-text-cursor",  0.1, { opacity: 1 })
-    .to("#the-text-cursor",  1, { opacity: 1 })
-    .add(fontChange)
-    .to("#the-text-cursor",  0.1, { opacity: 0 }, "-=0.1")
-    .to("#the-cursor",  0.1, { opacity: 1 }, "-=0.1")
-    .to("#the-cursor",    2, { top: -65, right: 218 })
-    .to("#the-box",       2, { right: 544, top: 770 }, "+=1")
-    .to("#the-cursor",    2, { right: 599, top: 825 }, "-=2")
-    .to("#the-box span",  0.1, { opacity: 0 }, "+=1")
-    .to("#the-cursor", 0.1, { opacity: 0 }, "-=0.1")
-    .to("#the-box",  0.1, { borderColor: "transparent" }, "-=0.2")
-    .to("#the-box",  10, { borderColor: "transparent" });
+// BEEBLY ----
 
 
-  // LIKE
+// LIKE ----
 
-  var likeHeight = $('#section-like').height();
-  var originalLikeHeight = $('.like-layered-wrapper').height();
-  tshirtLikeHeight = originalLikeHeight * .65;
-  socialLikeHeight = originalLikeHeight * .35;
-  likeHeight = likeHeight * 2.5;
+// ---- variables
+
+// like section height + large LIKE type height
+var likeHeight = $('#section-like').height();
+likeHeight = likeHeight * 2.5;
+// starting LIKE type height
+var originalLikeHeight = $('.like-layered-wrapper').height();
+// LIKE type height for social view
+socialLikeHeight = originalLikeHeight * .35;
+// Top of LIKE section position
+var likeSection     = document.getElementById('section-like');
+var likeSectionPos  = likeSection.getBoundingClientRect().top + document.documentElement.scrollTop
+console.log(likeSectionPos);
+
+// ---- gsap settings
+
+// Set LIKE type position
+gsap.set(".like-layered-wrapper", { yPercent: -65, xPercent: -50 });
+// Set LIKE type stroke
+gsap.set(".like-layered", { strokeWidth: 2 });
+// Adjust first slide position so LIKE is partially visible
+gsap.set(".first-like", { xPercent: -60 });
+// Set title
+gsap.set(".like-title", { width: "50%" });
+
+// ---- ANIM: Slide LIKE in
+
+var likeSlideIn = new TimelineMax();
+likeSlideIn
+  .to('.like-colors-bg', 1, { xPercent: -180 })
+  .to('.first-like', 2, { xPercent: -100 }, "-=1")
+  .set('.like-colors-bg', { opacity: 0, xPercent: 0, zIndex: 11 })
+  .set('.like-colors-bg svg', { opacity: 0 })
+  .set(".like-title", { width: "100%", marginTop: "115px"  })
+  .set(".like-container", { alignItems: "center", textAlign: "center" })
+
+// ---- ANIM: Scale LIKE to large
+
+var likeScaleLarge = new TimelineMax();
+likeScaleLarge
+  .to('.like-layered-wrapper', 2, { 
+    height: likeHeight, 
+    xPercent: 0, 
+    yPercent: -100, 
+    top: 0, 
+    left: 0 
+  })
+  .to('.like-layered-wrapper', 1, { xPercent: -80 })
+  .to('.social-post', .01,  { opacity: 1 })
+
+// ---- ANIM: Scale LIKE to small for instagram
+
+var likeScaleSmall = new TimelineMax();
+likeScaleSmall
+  .to('.like-layered-wrapper', 1, { 
+    height: socialLikeHeight, 
+    xPercent: -85, 
+    yPercent: -65, 
+    top: "50%", 
+    left: "50%"
+  })
+  .to('.like-layered', 0.1, { strokeWidth: 1 }, "-=0.5")
   
-  gsap.set(".like-layered-wrapper", { yPercent: -65, xPercent: -50 });
-  gsap.set(".like-layered", { strokeWidth: 2 });
+// ---- ANIM: Stack like layers
 
-  var likeBouncing = new TimelineMax({ defaults: {stagger: -5}});
-  //likeBouncing.timeScale(2);
-  likeBouncing
-    .to('.like-l', 10, { yPercent: 40, delay: -20 }, "-=2")
-    .to('.like-i', 10, { yPercent: 40, delay: -20 }, "-=2")
-    .to('.like-k', 10, { yPercent: 40, delay: -20 }, "-=2")
-    .to('.like-e', 10, { yPercent: 40, delay: -20 }, "-=2")
-    .to('.like-l', 10, { yPercent: 0, delay: -20 }, "-=2")
-    .to('.like-i', 10, { yPercent: 0, delay: -20 }, "-=2")
-    .to('.like-k', 10, { yPercent: 0, delay: -20 }, "-=2")
-    .to('.like-e', 10, { yPercent: 0, delay: -20 }, "-=2");
+var likeLayersStack = new TimelineMax({ 
+  defaults: {
+    duration: 5, 
+    stagger: -2, 
+    delay: -.5}
+  });
+likeLayersStack
+  .timeScale(12)
+  .to('.like-l.color-layer', { y: 0 })
+  .to('.like-i.color-layer', { y: 0 }, "-=5")
+  .to('.like-k.color-layer', { y: 0 }, "-=5")
+  .to('.like-e.color-layer', { y: 0 }, "-=5");
 
-  var slides = document.querySelectorAll(".like-panel");
-  
-  var likeAction = new TimelineMax({
-    scrollTrigger: {
-      trigger: "#section-like",
-      start: "top top",
-      pin: true,
-      scrub: true,
-      end: "+=28400"
-    }});
-  
-  likeAction
-    .from('.like-container', 2, { y: 200 })
-    .from('.like-container *', 1, { opacity: 0, stagger: .5 }, "-=2.5")
-    .from('.bg-shape', 4, { top: 0, stagger: 2, scrub: 1 })
-    .to(slides, 4, {xPercent: -100, ease: "none", stagger: 3 }, "+=10")
-    .to('.like-colors-bg', 18, { xPercent: -180 }, '-=9')
-    .to('.like-layered-wrapper', 30, { height: likeHeight, xPercent: 0, yPercent: -100, top: 0, left: 0 }, '+=6')
-    .to('.t-shirt-bg', .01, { opacity: 1 }, '-=2')
-    .to('.like-layered-wrapper', 10, { height: tshirtLikeHeight, xPercent: -50, yPercent: -65, top: "50%", left: "50%"})
-    .to('.like-layered', 0.1, { strokeWidth: 1 }, "-=2")
-    .to('.like-layered-wrapper', 10, { height: tshirtLikeHeight })
-    .to('.like-layered-wrapper', 30, { height: likeHeight, xPercent: 0, yPercent: -100, top: 0, left: 0 }, '+=6')
-    .to('.like-layered', 0.1, { strokeWidth: 2 }, "-=2")
-    .to('.t-shirt-bg', .01, { opacity: 0 })
-    .to('.like-layered-wrapper', 20, { xPercent: -80})
-    .to('.social-post', .01,  { opacity: 1 })
-    .to('.like-layered-wrapper', 10, { height: socialLikeHeight, xPercent: -85, yPercent: -65, top: "50%", left: "50%"})
-    .to('.like-layered', 0.1, { strokeWidth: 1 }, "-=2")
-    .to('.like-l.color-layer', 10, { y: 0, stagger: -1, duration: 2 })
-    .to('.like-i.color-layer', 10, { y: 0, stagger: -1, duration: 2 }, "-=2")
-    .to('.like-k.color-layer', 10, { y: 0, stagger: -1, duration: 2 }, "-=2")
-    .to('.like-e.color-layer', 10, { y: 0, stagger: -1, duration: 2 }, "-=2")
-    .add(likeBouncing)
-    .to('.like-red', 0.1, { fill: "#7a45ff" })
-    .to('.like-orange', 0.1, { fill: "#00c3e8" })
-    .to('.like-cyan', 0.1, { fill: "#ffba00" })
-    .to('.like-blue', 0.1, { fill: "#fd344f" })
-    .to('.like-red', 2, { yPercent: 10, stagger: -1 })
-    .to('.like-orange', 2, { yPercent: 20, stagger: -1 })
-    .to('.like-cyan', 2, { yPercent: 30, stagger: -1 })
-    .to('.like-blue', 2, { yPercent: 40, stagger: -1 })
-    .to('.social-post', 20,  { opacity: 0 }, "+=4")
-    .to('.like-layered-wrapper', 50, { height: likeHeight, xPercent: -80, yPercent: -100, top: 0, left: 0 }, '-=30')
-    .to('.like-final-container', { opacity: 1, duration: 12 })
-};
+// ---- ANIM: Bouncing like layers
+
+var likeBouncing = new TimelineMax({ 
+  duration: 1,
+  defaults: {
+    duration: 1, 
+    stagger: -0.5, 
+    delay: -2.3}
+  });
+likeBouncing
+  .timeScale(4)
+  .to('.like-l', { yPercent: 40 })
+  .to('.like-i', { yPercent: 40 })
+  .to('.like-k', { yPercent: 40 })
+  .to('.like-e', { yPercent: 40 })
+  .to('.like-l', { yPercent: 0 })
+  .to('.like-i', { yPercent: 0 })
+  .to('.like-k', { yPercent: 0 })
+  .to('.like-e', { yPercent: 0 });
+
+// ---- ANIM: Change layer colors
+
+var likeLayersColorChange = new TimelineMax();
+likeLayersColorChange
+  .set('.like-red', { fill: "#7a45ff" })
+  .set('.like-orange', { fill: "#00c3e8" })
+  .set('.like-cyan', { fill: "#ffba00" })
+  .set('.like-blue', { fill: "#fd344f" })
+
+// ---- ANIM: Unstack like layers
+
+var likeLayersUnstack = new TimelineMax({ 
+  defaults: {
+    duration: .1, 
+    stagger: -0.05 }
+  });
+likeLayersUnstack
+  .to('.like-red', { yPercent: 10 })
+  .to('.like-orange', { yPercent: 20 })
+  .to('.like-cyan', { yPercent: 30 })
+  .to('.like-blue', { yPercent: 40 })
+  .to('.social-post', 2, { opacity: 0, scale: 3 }, '-=1')
+
+// ---- ANIM: LIKE scale final
+
+var likeScaleFinal = new TimelineMax();
+likeScaleFinal
+  .to('.like-layered-wrapper', 3, { 
+    height: likeHeight, 
+    xPercent: -80, 
+    yPercent: -100, 
+    top: 0, 
+    left: 0 
+  })
+  .to('.like-colors-bg', 1, { opacity: 1 })
+
+// ----- ANIM: LIKE index
+var likeIndex = new TimelineMax({
+    paused: true,
+    defaults: {
+      ease: "none"
+    }
+  });
+likeIndex
+  .add(likeSlideIn)
+  .add(likeScaleLarge, '-=1')
+  .add(likeScaleSmall)
+  .add(likeLayersStack)
+  .add(likeBouncing)
+  .add(likeLayersColorChange)
+  .add(likeLayersUnstack)
+  .add(likeScaleFinal, '-=2')
+
+// ---- TRIG: LIKE start
+
+var likeTrigger = ScrollTrigger.create({
+    trigger: "#section-like",
+    id: "likeStart",
+    start: "top top",
+    pin: true,
+    scrub: 3,
+    end: "+=8400",
+    pinType: "fixed"
+    //onUpdate: ({progress}) => likeIndex.progress() < progress ? likeIndex.progress(progress) : null,
+    //onEnter: () => likeTrigger.enable(),
+    //onLeave: () => console.log("onLeave"),
+    //onEnterBack: () => window.scrollTo(0, likeSectionPos)
+    //onLeaveBack: () => likeIndex.disable()
+    //onScrubComplete: () => likeTrigger.disable()
+  });
+
+// ---- TRIG: LIKE pause when complete
+
+
 ps.whatsNewModule = (function() {
   let experience, category;
 

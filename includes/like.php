@@ -1,4 +1,6 @@
 <section id="section-like">
+
+  <!-- Layered background -->
   <div class="like-colors-bg">
     <svg class="bg-shape svg-red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 517.3 284.64">
       <g data-name="Layer 6">
@@ -29,13 +31,21 @@
         <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"
           class="button-sm button-lt">Start free trial</a>
         <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"
-          class="button-sm button-dk">Buy now</a>
+          class="button-sm button-dk buy-now-button">Buy now</a>
+        <a class="section-intro beebly-link">
+          Try this tutorial series: Animate Lettering
+        </a>
       </div>
     </div>
   </div>
+  <!-- End layered background -->
+
+  <!-- Social Post Background -->
+  <div class="social-post"></div>
+  <!-- End Social Post Background -->
+
+  <!-- LIKE -->
   <div class="like-panel first-like">
-    <div class="t-shirt-bg"></div>
-    <div class="social-post"></div>
     <div class="like-layered-wrapper">
       <svg class="like-layered" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         width="1172.5px" height="278.2px" viewBox="0 0 1172.5 278.2" style="overflow:visible;enable-background:new 0 0 1172.5 278.2;"
@@ -78,25 +88,6 @@
       </svg>
     </div>
   </div>
-  <div class="like-panel">
+  <!-- LIKE -->
 
-  </div>
-  <div class="like-panel">
-     <div class="like-final-container">
-      <h2 class="section-title like-title">Sharp at any scale.</h2> 
-        <p class="section-intro like-intro">
-          Bring your vision to life precisely, with the industry-standard for vector art.
-        </p>
-        <div class="like-button-container">
-          <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"
-            class="button-sm button-lt">Start free trial</a>
-          <a href="https://www.adobe.com/products/photoshop/photoshop-brushes.html"
-            class="button-sm button-dk">Buy now</a>
-          <a class="section-intro beebly-link">
-            Try this tutorial series: Animate Lettering
-          </a>
-        </div>
-     </div>
-     <div class="ender-slide"></div>
-  </div>
 </section>

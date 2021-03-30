@@ -4,14 +4,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html,body {
+body {
   overflow-x: hidden;
-  @include breakpoint(laptop_xs){
-    overflow: hidden;
-  }
-  @include breakpoint(xshort){
-    overflow: hidden;
-  }
 }
 
 html {
@@ -35,12 +29,6 @@ body {
   @include adobeClean;
   color: $color--body;
   padding: 0;
-  &.loading {
-    overflow: hidden;
-    .loader-container {
-      display: flex;
-    }
-  }
 }
 
 h1,
@@ -87,6 +75,10 @@ button,a {
     @include adobeClean();
     font-weight: bold;
     font-size: 1rem;
+    margin-right: 30px;
+    &.buy-now-button {
+      margin-right: 0;
+    }
   }
   &-lt {
     border: 2px solid $color--black;
@@ -110,9 +102,25 @@ button,a {
 }
 
 .noahspan {
-  height: 100vh;
+  height: 120vh;
   width: 100%;
   display: block;
   text-align: center;
-  line-height: 100vh;
+  line-height: 120vh;
+}
+
+.like-button-container {
+  position: relative;
+
+  a.beebly-link {
+    //position: absolute;
+    display: block;
+    //left: 50%;
+    //top: 100%;
+    //margin-bottom: -50px;
+    //transform: translateX(-50%);
+    //width: 400px;
+    text-align: center;
+    margin-top: 30px;
+  }
 }
