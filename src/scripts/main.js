@@ -9,6 +9,8 @@ gsap.registerPlugin(MotionPathPlugin);
 var beeSection     = document.getElementById('section-beebly');
 var beeSectionPos  = beeSection.getBoundingClientRect().top + document.documentElement.scrollTop;
 
+
+
 // ---- gsap settings
 
 gsap.set(".bjf-1", { opacity: 1 });
@@ -17,50 +19,193 @@ gsap.set(".bjf-3", { opacity: 0 });
 gsap.set(".bjf-1 mark", { background: "none", color: "inherit", duration: 0.1 });
 gsap.set(".bjf-0", { opacity: 0, background: 'rgba(68,68,68,.7)', color: 'rgba(170,170,170,.7)' })
 
-// ---- ANIM: Flower stem sway
+// ---- ANIM: Flower sway
 
-var path = document.getElementById('curve');
+var path1 = document.getElementById('curve1');
 var path2 = document.getElementById('curve2');
-//var flowerA = document.getElementById('flowerA');
+var path3 = document.getElementById('curve3');
+var path4 = document.getElementById('curve4');
+var path5 = document.getElementById('curve5');
+var stem1 = $('.stem-1 .flower');
+var stem2 = $('.stem-2 .flower');
+var stem3 = $('.stem-3 .flower');
+var stem4 = $('.stem-4 .flower');
+var stem5 = $('.stem-5 .flower');
 
-/* I'm using tween.js a simple JavaScript tweening engine for tweens */
-var tween;
-function animateCurve() {
+var flowerSway = new TimelineMax({
+  defaults: {
+    duration: 3,
+    yoyo: true,
+    repeat: -1,
+    ease: "power2.inOut" }
+});
+flowerSway
+  .to(stem1, 4, { left: 140})
+  .fromTo(stem2, 5, { left: 40 }, { left: 100}, '-=4')
+  .to(stem3, { left: 140}, '-=11')
+  .fromTo(stem4, { left: 30 }, { left: 110}, '-=15')
+  .fromTo(stem5, { left: 40 }, { left: 100}, '-=23')
+
+
+
+ 
+var tween1;
+function animateCurve1() {
   // sway goes left
-  tween = new TWEEN.Tween({ x: 60 })
-  .to({ x: 200 }, 4000)
+  tween1 = new TWEEN.Tween({ x: 0 })
+  .to({ x: 140 }, 4000)
   .easing( TWEEN.Easing.Cubic.InOut )
   .onUpdate( function () {
-    updatePath(this.x);
+    updatePath1(this.x);
   }).onComplete(function() {
     // sway goes right
-    tween = new TWEEN.Tween({ x: 200 })
-    .to({ x: 60 }, 4000)
+    tween1 = new TWEEN.Tween({ x: 140 })
+    .to({ x: 0 }, 4000)
     .easing( TWEEN.Easing.Cubic.InOut )
     .onUpdate( function () {
-      updatePath(this.x);
+      updatePath1(this.x);
     }).onComplete(function() {
-      animateCurve();
+      animateCurve1();
     }).start();
   }).start();
 }
-
-function updatePath(x) {
-  // update SVG path control point
-  path.setAttribute('d', 'M130,540 Q130,270 '+x+', 10');
-  path2.setAttribute('d', 'M130,240 Q130,120 '+x+', 10');
+function updatePath1(x) {
+  path1.setAttribute('d', 'M70,540 Q70,270 '+x+', 10');
 }
-
-function animate(time) {
-  // this just keeps the tween engine ticking
-  requestAnimationFrame( animate );
+function animate1(time) {
+  requestAnimationFrame( animate1 );
   TWEEN.update(time);
 }
+animate1();
+animateCurve1(); 
 
-animate();
-animateCurve(); 
+
+ 
+var tween2;
+function animateCurve2() {
+  // sway goes left
+  tween2 = new TWEEN.Tween({ x: 40 })
+  .to({ x: 100 }, 5000)
+  .easing( TWEEN.Easing.Cubic.InOut )
+  .onUpdate( function () {
+    updatePath2(this.x);
+  }).onComplete(function() {
+    // sway goes right
+    tween2 = new TWEEN.Tween({ x: 100 })
+    .to({ x: 40 }, 5000)
+    .easing( TWEEN.Easing.Cubic.InOut )
+    .onUpdate( function () {
+      updatePath2(this.x);
+    }).onComplete(function() {
+      animateCurve2();
+    }).start();
+  }).start();
+}
+function updatePath2(x) {
+  path2.setAttribute('d', 'M70,240 Q70,120 '+x+', 10');
+}
+function animate2(time) {
+  requestAnimationFrame( animate2 );
+  TWEEN.update(time);
+}
+animate2();
+animateCurve2(); 
 
 
+ 
+var tween3;
+function animateCurve3() {
+  // sway goes left
+  tween3 = new TWEEN.Tween({ x: 0 })
+  .to({ x: 140 }, 3000)
+  .easing( TWEEN.Easing.Cubic.InOut )
+  .onUpdate( function () {
+    updatePath3(this.x);
+  }).onComplete(function() {
+    // sway goes right
+    tween3 = new TWEEN.Tween({ x: 140 })
+    .to({ x: 0 }, 3000)
+    .easing( TWEEN.Easing.Cubic.InOut )
+    .onUpdate( function () {
+      updatePath3(this.x);
+    }).onComplete(function() {
+      animateCurve3();
+    }).start();
+  }).start();
+}
+function updatePath3(x) {
+  path3.setAttribute('d', 'M70,500 Q70,250 '+x+', 10');
+}
+function animate3(time) {
+  requestAnimationFrame( animate3 );
+  TWEEN.update(time);
+}
+animate3();
+animateCurve3(); 
+
+
+ 
+var tween4;
+function animateCurve4() {
+  // sway goes left
+  tween4 = new TWEEN.Tween({ x: 30 })
+  .to({ x: 110 }, 3000)
+  .easing( TWEEN.Easing.Cubic.InOut )
+  .onUpdate( function () {
+    updatePath4(this.x);
+  }).onComplete(function() {
+    // sway goes right
+    tween4 = new TWEEN.Tween({ x: 110 })
+    .to({ x: 30 }, 3000)
+    .easing( TWEEN.Easing.Cubic.InOut )
+    .onUpdate( function () {
+      updatePath4(this.x);
+    }).onComplete(function() {
+      animateCurve4();
+    }).start();
+  }).start();
+}
+function updatePath4(x) {
+  path4.setAttribute('d', 'M70,310 Q70,155 '+x+', 10');
+}
+function animate4(time) {
+  requestAnimationFrame( animate4 );
+  TWEEN.update(time);
+}
+animate4();
+animateCurve4(); 
+
+
+ 
+var tween5;
+function animateCurve5() {
+  // sway goes left
+  tween5 = new TWEEN.Tween({ x: 40 })
+  .to({ x: 100 }, 3000)
+  .easing( TWEEN.Easing.Cubic.InOut )
+  .onUpdate( function () {
+    updatePath5(this.x);
+  }).onComplete(function() {
+    // sway goes right
+    tween5 = new TWEEN.Tween({ x: 100 })
+    .to({ x: 40 }, 3000)
+    .easing( TWEEN.Easing.Cubic.InOut )
+    .onUpdate( function () {
+      updatePath5(this.x);
+    }).onComplete(function() {
+      animateCurve5();
+    }).start();
+  }).start();
+}
+function updatePath5(x) {
+  path5.setAttribute('d', 'M70,180 Q70,90 '+x+', 10');
+}
+function animate5(time) {
+  requestAnimationFrame( animate5 );
+  TWEEN.update(time);
+}
+animate5();
+animateCurve5(); 
 
 // ---- ANIM: Build the bee from pieces
 
@@ -110,7 +255,7 @@ var beePlaceOnJar = new TimelineMax({
   });
 beePlaceOnJar
   .to('.beebly-cursor', { opacity: 1, y: -50, x: 55 })
-  .to('.bounding-box', { right: 518, bottom: 580 })
+  .to('.bounding-box', { right: 516, bottom: 576 })
   .to('.bounding-box span', 0.5, { opacity: 0 })
   .to('.bounding-box', 0.5, { borderColor: "transparent" }, '-=0.5')
   .to('.beebly-cursor', 0.5, { opacity: 0 }, '-=1')
@@ -168,7 +313,7 @@ var beeTrigger = ScrollTrigger.create({
 ScrollTrigger.create({
   trigger: "#section-beebly",
   start: "top bottom",
-  onLeaveBack: () => beeIndex.progress(0)
+  onLeaveBack: () => location.reload()
 });
 
 
@@ -318,7 +463,7 @@ var likeIndex = new TimelineMax({
   });
 likeIndex
   .add(likeSlideIn, '+=1')
-  .add(likeScaleLarge, '-=1')
+  .add(likeScaleLarge)
   .add(likeScaleSmall, '+=1')
   .add(likeLayersStack)
   .add(likeBouncing)
@@ -347,3 +492,4 @@ ScrollTrigger.create({
     onLeaveBack: () => likeIndex.progress(0)
   });
 
+//window.onresize = function(){ location.reload(); }
