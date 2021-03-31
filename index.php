@@ -16,7 +16,7 @@
 <body>
   <main id="main" class="main">
     <div class="noahspan">Scroll Down</div>
-    <!--<php require_once('includes/beebly.php') ?>-->
+    <?php require_once('includes/beebly.php') ?>
     <?php require_once('includes/like.php') ?>
     <div class="noahspan">Scroll Up</div>
   </main>
@@ -25,6 +25,7 @@
   <script src="src/scripts/libs/gsap/gsap.min.js?v=2"></script>
   <script src="src/scripts/libs/gsap/ScrollTrigger.min.js?v=2"></script>
   <script src="src/scripts/libs/gsap/MotionPathPlugin.min.js?v=2"></script>
+  <script src="//s3-us-west-2.amazonaws.com/s.cdpn.io/53148/tween.min.js"></script>
   <script src="src/scripts/main.js?v=<?php echo filemtime('src/scripts/main.js'); ?>"></script>
   <script src="src/scripts/beebly.js?v=<?php echo filemtime('src/scripts/beebly.js'); ?>"></script>
 </body>

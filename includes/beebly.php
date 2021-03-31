@@ -19,11 +19,17 @@
         </a>
       </div>
     </div>
-    <img id="the-cursor" class="beebly-cursor" src="assets/images/beebly/cursor.svg" />
-    <img id="the-text-cursor" class="beebly-text-cursor" src="assets/images/beebly/textcursor.svg" />
     <div id="the-box" class="bounding-box">
       <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-      <img class="beebly-bee" src="assets/images/beebly/bee.svg" />
+      <svg class="beebly-bee" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 319.1 298.4" style="fill: #3C2D2C; enable-background:new 0 0 319.1 298.4;" xml:space="preserve">
+        <path class="bee-body st0" d="M123.7,91.9l-49.5,49.5l49.5,49.5l49.5-49.5L123.7,91.9 M123.7,61.9l79.5,79.5l-79.5,79.5l-79.5-79.5 L123.7,61.9L123.7,61.9z"/>
+        <rect class="bee-stripe-bottom st0" x="123.7" y="220.9" width="112.5" height="21.2"/>
+        <rect class="bee-stripe-top st0" x="119.6" y="189.2" transform="matrix(0.927 -0.375 0.375 0.927 -62.1124 80.5345)" width="112.5" height="21.2"/>
+        <path class="bee-butt st0" d="M127.9,263.4c11.7,28.8,44.6,42.6,73.3,30.8c14-5.7,25.1-16.8,30.8-30.8H127.9z"/>
+        <path class="bee-head st0" d="M123.7,61.9H0c-0.1-34.2,27.4-62,61.6-62.1s62,27.4,62.1,61.6C123.7,61.5,123.7,61.7,123.7,61.9zM41.1,38.3 c0-5.2-4.2-9.4-9.4-9.4s-9.4,4.2-9.4,9.4c0,5.2,4.2,9.4,9.4,9.4C36.9,47.6,41.1,43.4,41.1,38.3C41.1,38.3,41.1,38.3,41.1,38.3L41.1,38.3z"/>
+        <path class="bee-wing st0" d="M262.9,26.9c-5.8,0-11.5,1.4-16.6,4.2l-0.8,0.4l-0.8,0.3l-68,30.1l68,30l0.8,0.3l0.8,0.4c5.1,2.8,10.8,4.2,16.6,4.2c19.3,0,35-15.7,35-35S282.2,26.9,262.9,26.9L262.9,26.9 M262.9,5.6c31.1,0,56.2,25.2,56.2,56.3 c0,31.1-25.2,56.2-56.3,56.2c-9.3,0-18.5-2.3-26.8-6.8L124.2,61.9l112-49.5C244.3,7.9,253.5,5.6,262.9,5.6L262.9,5.6z"/>
+      </svg>
+      <img id="the-cursor" class="beebly-cursor" src="assets/images/beebly/cursor.svg" />
     </div>
 
     <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
@@ -34,68 +40,8 @@
     <div class="beebly-ground">
       <div class="beebly-flora">
 
-        <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
-        <svg class="beebly-flower-1" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="209.6px" height="211.2px" viewBox="0 0 209.6 211.2" style="overflow:visible;enable-background:new 0 0 209.6 211.2;" xml:space="preserve">
-          <g id="flower_1_" transform="translate(0)">
-            <path class="st0" d="M119.5,70.8L102.3,0L88.8,3.4l15.6,64.2C109.6,67.6,114.8,68.7,119.5,70.8z"/>
-            <path class="st0" d="M134.3,82.3l17.4-71.4l-13.5-3.4l-15.8,64.7C127,74.7,131.1,78.1,134.3,82.3z"/>
-            <path class="st0" d="M100.9,67.7L53.5,13.6l-10.4,9.3l43.1,49.2C90.8,69.7,95.8,68.2,100.9,67.7z"/>
-            <path class="st0" d="M142.5,105.2c0.1,4.1-0.5,8.2-1.7,12.2L209.6,91l-4.9-13.1l-62.5,24C142.3,103,142.4,104.1,142.5,105.2z"/>
-            <path class="st0" d="M141.8,99.2l48.6-55.5L180,34.4l-44,50.3C138.9,89.1,140.9,94,141.8,99.2z"/>
-            <path class="st0" d="M83.1,74.1L16.6,48.5l-4.9,13.1L72.4,85C75.2,80.6,78.9,76.9,83.1,74.1z"/>
-            <path class="st0" d="M105.2,144.8c-2,0-3.9-0.1-5.9-0.3l33.9,65.4l12.3-6.5l-31.1-59.9C111.4,144.2,108.3,144.7,105.2,144.8z"/>
-            <path class="st0" d="M116.9,142.6l60.5,42.2l7.9-11.6L130,134.7C126.2,138.2,121.8,140.9,116.9,142.6z"/>
-            <path class="st0" d="M131.8,133l73.2,9l1.7-13.9l-66.6-8.2C138.2,124.7,135.4,129.2,131.8,133z"/>
-            <path class="st0" d="M70.5,88.2L0,96.8l1.7,13.9l64.6-7.9C66.7,97.7,68.1,92.7,70.5,88.2z"/>
-            <path class="st0" d="M82.7,138v73.2h13.9V144C91.6,142.9,86.9,140.9,82.7,138z"/>
-            <path class="st0" d="M70.7,124.4l-33.3,64.3l12.3,6.5l30.7-59.1C76.3,132.9,73.1,128.9,70.7,124.4z"/>
-            <path class="st0" d="M66.1,107.1c0-0.2,0-0.4,0-0.6l-58.7,41l7.9,11.6l53.9-37.6C67.3,116.9,66.3,112,66.1,107.1z"/>
-            <ellipse class="st1" cx="104.2" cy="106.2" rx="38.1" ry="38.6"/>
-          </g>
-        </svg>
 
-        <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
-        <svg class="beebly-flower-2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="206.76px" height="193.56px" viewBox="0 0 206.76 193.56" style="overflow:visible;enable-background:new 0 0 206.76 193.56;" xml:space="preserve">
-          <g id="flower_1_">
-            <g transform="translate(0)">
-              <g transform="translate(73.612)">
-                <path class="st2" d="M7.3,27.19c-3.5,6.1-5.7,12.6-6.7,19.1c-2.8,18.9,4.5,38.3,19.9,50.5c2.1,1.7,4.3,3.2,6.7,4.5l2.6-4.5l0,0
-                  l0,0l2.6-4.5l2-3.5l24.5-42.5l22.5-39C55.5-7.71,22.3,1.19,7.3,27.19z M23.4,81.29c-11.5-13.2-13.4-32.3-4.6-47.5
-                  s26.2-23.1,43.4-19.8L23.4,81.29z"/>
-              </g>
-              <g transform="translate(98.161 42.515)">
-                <path class="st2" d="M54.3-0.01c-7,0-13.8,1.3-19.9,3.8c-17.8,7-30.9,23.1-33.8,42.5l0,0c-0.4,2.6-0.6,5.3-0.6,8l0,0h108.6
-                  C108.6,24.29,84.3-0.01,54.3-0.01z M15.5,40.99c5.7-16.6,21.3-27.7,38.8-27.8c17.5,0,33.1,11.2,38.8,27.8H15.5z"/>
-              </g>
-              <g transform="translate(100.77 85.011)">
-                <path class="st2" d="M74.2,27.19c-3.5-6.1-8-11.2-13.2-15.3c-15-12-35.5-15.4-53.8-8.1c-2.4,1-4.8,2.1-7.2,3.5l2.6,4.5l0,0l0,0
-                  l2.6,4.5l2,3.5l24.5,42.5l22.5,39C80.3,86.29,89.2,53.09,74.2,27.19z M58.1,81.29l-38.9-67.3c17.2-3.4,34.7,4.6,43.5,19.8
-                  C71.4,48.99,69.6,68.09,58.1,81.29z"/>
-              </g>
-              <g transform="translate(51.688 92.295)">
-                <path class="st2" d="M60.9,4.49c-2.1-1.7-4.3-3.2-6.6-4.5l-2.6,4.5l0,0l0,0l-2.6,4.5l-2,3.5l-24.6,42.5L0,93.99
-                  c15.6,9,33.8,9.4,49.1,2.6c4.4-1.9,8.6-4.5,12.4-7.6c5-4,9.3-9.1,12.7-14.9l0,0c3.5-6.1,5.7-12.6,6.7-19.1
-                  C83.7,36.19,76.3,16.69,60.9,4.49z M62.7,67.49c-8.8,15.2-26.2,23.1-43.5,19.8l38.9-67.3C69.6,33.29,71.4,52.29,62.7,67.49z"/>
-              </g>
-              <g transform="translate(0 96.812)">
-                <path class="st2" d="M0-0.01c0,30,24.3,54.3,54.3,54.3c7,0,13.8-1.3,19.9-3.8c17.8-7,30.9-23.1,33.8-42.5l0,0
-                  c0.4-2.6,0.6-5.3,0.6-8l0,0C108.6-0.01,0-0.01,0-0.01z M54.3,40.99c-17.5,0-33.1-11.2-38.8-27.8h77.7
-                  C87.4,29.89,71.8,40.99,54.3,40.99z"/>
-              </g>
-              <g transform="translate(24.531 7.284)">
-                <path class="st2" d="M78.9,89.49L78.9,89.49L78.9,89.49l-2.7-4.5l-2-3.5l-24.5-42.5l-22.5-39c-26,15-34.9,48.2-19.9,74.2l0,0
-                  c3.5,6.1,8,11.2,13.2,15.3c14.9,11.9,35.5,15.2,53.7,8c2.5-1,4.9-2.1,7.2-3.5L78.9,89.49z M18.8,67.49
-                  c-8.8-15.2-6.9-34.2,4.6-47.5l38.8,67.2C45,90.59,27.6,82.69,18.8,67.49z"/>
-              </g>
-            </g>
-            <path class="st1" d="M86.8,94.59c-17.3,3.3-34.7-4.6-43.5-19.8s-6.9-34.3,4.6-47.5L86.8,94.59z"/>
-            <path class="st1" d="M93.1,110.09c-5.7,16.6-21.3,27.7-38.8,27.8c-17.5,0-33.1-11.2-38.8-27.8H93.1z"/>
-            <path class="st1" d="M114.4,159.79c-8.8,15.2-26.2,23.1-43.5,19.8l38.8-67.2C121.3,125.49,123.1,144.59,114.4,159.79z"/>
-            <path class="st1" d="M158.8,166.29L120,98.99c17.2-3.4,34.7,4.6,43.5,19.8C172.2,133.99,170.3,153.09,158.8,166.29z"/>
-            <path class="st1" d="M191.3,83.49h-77.7c5.7-16.6,21.3-27.7,38.8-27.8C170,55.79,185.6,66.99,191.3,83.49z"/>
-            <path class="st1" d="M135.8,13.99L97,81.29c-11.5-13.2-13.4-32.3-4.6-47.5S118.6,10.69,135.8,13.99z"/>
-          </g>
-        </svg>
+
 
         <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
         <svg class="beebly-flower-3" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="222.4px" height="237.83px" viewBox="0 0 222.4 237.83" style="overflow:visible;enable-background:new 0 0 222.4 237.83;" xml:space="preserve">
@@ -219,7 +165,7 @@
         </svg>
 
         <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
-        <svg class="beebly-flower-5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="185.39px" height="198.37px" viewBox="0 0 185.39 198.37" style="overflow:visible;enable-background:new 0 0 185.39 198.37;" xml:space="preserve">
+        <svg class="beebly-flower-5 beebly-flower" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="185.39px" height="198.37px" viewBox="0 0 185.39 198.37" style="overflow:visible;enable-background:new 0 0 185.39 198.37;" xml:space="preserve">
           <g id="flower_1_">
             <g transform="translate(37.15)">
               <g transform="translate(0 101.078)">
@@ -284,11 +230,87 @@
             <polygon class="st1" points="113.01,104.9 97.91,119.7 77.51,113.9 72.31,93.5 87.51,78.7 107.81,84.4 	"/>
           </g>
         </svg>
-        <span class="stem stem-1"></span>
-        <span class="stem stem-2"></span>
-        <span class="stem stem-3"></span>
-        <span class="stem stem-4"></span>
-        <span class="stem stem-5"></span>
+
+        
+
+        <div class="stem stem-2">
+          <!-- Generator: Adobe Illustrator 25.2.0, SVG Export Plug-In  -->
+          <svg class="beebly-flower-2" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="206.76px" height="193.56px" viewBox="0 0 206.76 193.56" style="overflow:visible;enable-background:new 0 0 206.76 193.56;" xml:space="preserve">
+            <g id="flower_1_">
+              <g transform="translate(0)">
+                <g transform="translate(73.612)">
+                  <path class="st2" d="M7.3,27.19c-3.5,6.1-5.7,12.6-6.7,19.1c-2.8,18.9,4.5,38.3,19.9,50.5c2.1,1.7,4.3,3.2,6.7,4.5l2.6-4.5l0,0
+                    l0,0l2.6-4.5l2-3.5l24.5-42.5l22.5-39C55.5-7.71,22.3,1.19,7.3,27.19z M23.4,81.29c-11.5-13.2-13.4-32.3-4.6-47.5
+                    s26.2-23.1,43.4-19.8L23.4,81.29z"/>
+                </g>
+                <g transform="translate(98.161 42.515)">
+                  <path class="st2" d="M54.3-0.01c-7,0-13.8,1.3-19.9,3.8c-17.8,7-30.9,23.1-33.8,42.5l0,0c-0.4,2.6-0.6,5.3-0.6,8l0,0h108.6
+                    C108.6,24.29,84.3-0.01,54.3-0.01z M15.5,40.99c5.7-16.6,21.3-27.7,38.8-27.8c17.5,0,33.1,11.2,38.8,27.8H15.5z"/>
+                </g>
+                <g transform="translate(100.77 85.011)">
+                  <path class="st2" d="M74.2,27.19c-3.5-6.1-8-11.2-13.2-15.3c-15-12-35.5-15.4-53.8-8.1c-2.4,1-4.8,2.1-7.2,3.5l2.6,4.5l0,0l0,0
+                    l2.6,4.5l2,3.5l24.5,42.5l22.5,39C80.3,86.29,89.2,53.09,74.2,27.19z M58.1,81.29l-38.9-67.3c17.2-3.4,34.7,4.6,43.5,19.8
+                    C71.4,48.99,69.6,68.09,58.1,81.29z"/>
+                </g>
+                <g transform="translate(51.688 92.295)">
+                  <path class="st2" d="M60.9,4.49c-2.1-1.7-4.3-3.2-6.6-4.5l-2.6,4.5l0,0l0,0l-2.6,4.5l-2,3.5l-24.6,42.5L0,93.99
+                    c15.6,9,33.8,9.4,49.1,2.6c4.4-1.9,8.6-4.5,12.4-7.6c5-4,9.3-9.1,12.7-14.9l0,0c3.5-6.1,5.7-12.6,6.7-19.1
+                    C83.7,36.19,76.3,16.69,60.9,4.49z M62.7,67.49c-8.8,15.2-26.2,23.1-43.5,19.8l38.9-67.3C69.6,33.29,71.4,52.29,62.7,67.49z"/>
+                </g>
+                <g transform="translate(0 96.812)">
+                  <path class="st2" d="M0-0.01c0,30,24.3,54.3,54.3,54.3c7,0,13.8-1.3,19.9-3.8c17.8-7,30.9-23.1,33.8-42.5l0,0
+                    c0.4-2.6,0.6-5.3,0.6-8l0,0C108.6-0.01,0-0.01,0-0.01z M54.3,40.99c-17.5,0-33.1-11.2-38.8-27.8h77.7
+                    C87.4,29.89,71.8,40.99,54.3,40.99z"/>
+                </g>
+                <g transform="translate(24.531 7.284)">
+                  <path class="st2" d="M78.9,89.49L78.9,89.49L78.9,89.49l-2.7-4.5l-2-3.5l-24.5-42.5l-22.5-39c-26,15-34.9,48.2-19.9,74.2l0,0
+                    c3.5,6.1,8,11.2,13.2,15.3c14.9,11.9,35.5,15.2,53.7,8c2.5-1,4.9-2.1,7.2-3.5L78.9,89.49z M18.8,67.49
+                    c-8.8-15.2-6.9-34.2,4.6-47.5l38.8,67.2C45,90.59,27.6,82.69,18.8,67.49z"/>
+                </g>
+              </g>
+              <path class="st1" d="M86.8,94.59c-17.3,3.3-34.7-4.6-43.5-19.8s-6.9-34.3,4.6-47.5L86.8,94.59z"/>
+              <path class="st1" d="M93.1,110.09c-5.7,16.6-21.3,27.7-38.8,27.8c-17.5,0-33.1-11.2-38.8-27.8H93.1z"/>
+              <path class="st1" d="M114.4,159.79c-8.8,15.2-26.2,23.1-43.5,19.8l38.8-67.2C121.3,125.49,123.1,144.59,114.4,159.79z"/>
+              <path class="st1" d="M158.8,166.29L120,98.99c17.2-3.4,34.7,4.6,43.5,19.8C172.2,133.99,170.3,153.09,158.8,166.29z"/>
+              <path class="st1" d="M191.3,83.49h-77.7c5.7-16.6,21.3-27.7,38.8-27.8C170,55.79,185.6,66.99,191.3,83.49z"/>
+              <path class="st1" d="M135.8,13.99L97,81.29c-11.5-13.2-13.4-32.3-4.6-47.5S118.6,10.69,135.8,13.99z"/>
+            </g>
+          </svg>
+
+          <svg class="curvePath" width="260" height="240" 
+                                 viewbox="0 0 260 240" id="svg">
+            <path id="curve2" d="M130,240 Q130,120 10,10" fill="none"/>
+          </svg>
+        </div>
+
+        <div class="stem stem-1">
+          <div class="beebly-flower-1"">
+            <svg class="pinwheel"" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="209.6px" height="211.2px" viewBox="0 0 209.6 211.2" style="overflow:visible;enable-background:new 0 0 209.6 211.2;" xml:space="preserve">
+              <g id="flower_1_" transform="translate(0)">
+                <path class="st0" d="M119.5,70.8L102.3,0L88.8,3.4l15.6,64.2C109.6,67.6,114.8,68.7,119.5,70.8z"/>
+                <path class="st0" d="M134.3,82.3l17.4-71.4l-13.5-3.4l-15.8,64.7C127,74.7,131.1,78.1,134.3,82.3z"/>
+                <path class="st0" d="M100.9,67.7L53.5,13.6l-10.4,9.3l43.1,49.2C90.8,69.7,95.8,68.2,100.9,67.7z"/>
+                <path class="st0" d="M142.5,105.2c0.1,4.1-0.5,8.2-1.7,12.2L209.6,91l-4.9-13.1l-62.5,24C142.3,103,142.4,104.1,142.5,105.2z"/>
+                <path class="st0" d="M141.8,99.2l48.6-55.5L180,34.4l-44,50.3C138.9,89.1,140.9,94,141.8,99.2z"/>
+                <path class="st0" d="M83.1,74.1L16.6,48.5l-4.9,13.1L72.4,85C75.2,80.6,78.9,76.9,83.1,74.1z"/>
+                <path class="st0" d="M105.2,144.8c-2,0-3.9-0.1-5.9-0.3l33.9,65.4l12.3-6.5l-31.1-59.9C111.4,144.2,108.3,144.7,105.2,144.8z"/>
+                <path class="st0" d="M116.9,142.6l60.5,42.2l7.9-11.6L130,134.7C126.2,138.2,121.8,140.9,116.9,142.6z"/>
+                <path class="st0" d="M131.8,133l73.2,9l1.7-13.9l-66.6-8.2C138.2,124.7,135.4,129.2,131.8,133z"/>
+                <path class="st0" d="M70.5,88.2L0,96.8l1.7,13.9l64.6-7.9C66.7,97.7,68.1,92.7,70.5,88.2z"/>
+                <path class="st0" d="M82.7,138v73.2h13.9V144C91.6,142.9,86.9,140.9,82.7,138z"/>
+                <path class="st0" d="M70.7,124.4l-33.3,64.3l12.3,6.5l30.7-59.1C76.3,132.9,73.1,128.9,70.7,124.4z"/>
+                <path class="st0" d="M66.1,107.1c0-0.2,0-0.4,0-0.6l-58.7,41l7.9,11.6l53.9-37.6C67.3,116.9,66.3,112,66.1,107.1z"/>
+                <ellipse class="st1" cx="104.2" cy="106.2" rx="38.1" ry="38.6"/>
+              </g>
+            </svg>
+          </div>
+
+          <svg class="curvePath" width="260" height="540" 
+                                 viewbox="0 0 260 540" id="svg">
+            <path id="curve" d="M130,540 Q130,270 10,10" fill="none"/>
+          </svg>
+        </div>
+
       </div>
       <div class="beebly-jar">
         <div id="the-text" class="bj-font">

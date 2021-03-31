@@ -1,3 +1,5 @@
+@use "sass:color";
+
 #section-beebly {
   background-color: #f1d99d;
   color: #000;
@@ -7,7 +9,7 @@
   .beebly-container-outer {
     position: relative;
     min-height: 100vh;
-    max-width: 1440px;
+    max-width: 1240px;
     margin: 0 auto;
     z-index: 1;
   }
@@ -16,11 +18,12 @@
     position: relative;
     display: block;
     width: 100%;
-    max-width: 1440px;
+    max-width: 1240px;
     margin: 0 auto;
     z-index: 10;
 
-    .beebly-link {
+    a.beebly-link {
+      font-size: 20px;
       color: #1473E6;
       font-weight: bold;
       margin-top: 30px;
@@ -29,34 +32,20 @@
   }
 
   .beebly-container-inner {
-    padding: 160px 40px 0;
+    padding: 160px 0 0;
     p {
-      max-width: 480px;
+      max-width: 430px;
       margin-bottom: 1.5em;
     }
   }
 
   .beebly-cursor {
     position: absolute;
-    top: 35%;
-    right: 25%;
-    transform: translate(-50%, -50%);
-    width: 36px;
-    margin: 24px 0 0 -18px;
+    top: 75%;
+    right: 75%;
+    width: 45px;
     height: auto;
-    z-index: 102;
-    transition: opacity .3s; 
-  }
-
-  .beebly-text-cursor {
-    position: absolute;
-    top: 716px;
-    right: 630px;
-    transform: translate(-50%, -50%);
-    height: 42px;
-    width: auto;
-    z-index: 102;
-    transition: opacity .3s; 
+    z-index: 10;
   }
 
   .bee-path {
@@ -76,13 +65,13 @@
   .bounding-box {
     display: block;
     position: absolute;
-    top: 180px;
-    right: 430px;
+    bottom: 100%;
+    margin-bottom: -484px;
+    right: 0;
     width: 310px;
     height: auto;
-    border: 2px solid #0095FF;
+    border: 3px solid #0095FF;
     z-index: 101;
-
     &.hide-me {
       border-color: transparent;
       &:before { background: none; }
@@ -95,7 +84,7 @@
       content: "";
       right: 100%;
       top: 50%;
-      width: 25%;
+      width: 35%;
       height: 2px;
       margin-top: -1px;
       background: #0095FF;
@@ -104,13 +93,13 @@
     span:nth-child(10) {
       position: absolute;
       content: "";
-      right: 125%;
+      right: 135%;
       top: 50%;
-      width: 16px;
-      height: 16px;
-      margin: -9px -8px 0 0;
+      width: 26px;
+      height: 26px;
+      margin: -13px -13px 0 0;
       background: #fff;
-      border: 1px solid #0095FF;
+      border: 2px solid #0095FF;
       border-radius: 999px;
       z-index: 2;
     }
@@ -121,29 +110,28 @@
     }
 
     span {
-      width: 18px;
-      height: 18px;
-      border: 1px solid #0095FF;
+      width: 28px;
+      height: 28px;
+      border: 2px solid #0095FF;
       background: #fff;
       position: absolute;
       z-index: 2;
-      margin: -9px 0 0 -9px;
     }
 
-    span:nth-child(1) { left: 0; top: 0; margin: -10px 0 0 -10px; }
-    span:nth-child(2) { left: 50%; top: 0; margin: -10px 0 0 -9px; }
-    span:nth-child(3) { left: 100%; top: 0; margin: -10px 0 0 -8px; }
-    span:nth-child(4) { left: 100%; top: 50%; margin: -9px 0 0 -8px; }
-    span:nth-child(5) { left: 100%; top: 100%; margin: -9px 0 0 -8px; }
-    span:nth-child(6) { left: 50%; top: 100%; margin: -9px 0 0 -9px; }
-    span:nth-child(7) { left: 0; top: 100%;  margin: -9px 0 0 -10px;}
-    span:nth-child(8) { left: 0; top: 50%; margin: -9px 0 0 -10px; }
+    span:nth-child(1) { left: 0; top: 0; margin: -16px 0 0 -16px; }
+    span:nth-child(2) { left: 50%; top: 0; margin: -16px 0 0 -15px; }
+    span:nth-child(3) { left: 100%; top: 0; margin: -16px 0 0 -12px; }
+    span:nth-child(4) { left: 100%; top: 50%; margin: -13px 0 0 -12px; }
+    span:nth-child(5) { left: 100%; top: 100%; margin: -13px 0 0 -12px; }
+    span:nth-child(6) { left: 50%; top: 100%; margin: -13px 0 0 -15px; }
+    span:nth-child(7) { left: 0; top: 100%;  margin: -13px 0 0 -16px;}
+    span:nth-child(8) { left: 0; top: 50%; margin: -13px 0 0 -16px; }
   }
 
   .beebly-ground {
-    width: 90%;
+    width: 100%;
     position: absolute;
-    top: 2150px;
+    bottom: -900px;
     right: 0;
 
     .beebly-jar {
@@ -151,9 +139,10 @@
       width: 1340px;
       height: auto;
       position: absolute;
-      top: -538px;
-      right: 0;
+      top: -543px;
+      right: -30px;
       z-index: 80;
+      transform: scale(.98);
 
       .bj-font {
         position: absolute;
@@ -221,88 +210,117 @@
         position: absolute;
         display: block;
         bottom: 0;
-        width: 14px;
-        height: 100px;
+        width: 260px;
         z-index: 1;
         transform-origin: bottom center;
+        
+
+        svg {
+          width: 100%;
+          height: 100%;
+          #curve {
+            stroke-width: 14;
+          }
+        }
 
         &.stem-1 {
-          background-color: #FF6933;
-          left: 78%;
-          height: 75%;
-          margin-left: 80px;
-          animation: stemSway3 10s infinite linear reverse;
+          left: 76%;
+          #curve {
+            stroke: mix(#f1d99d,#FF6933, 60%);
+          }
         }
 
         &.stem-2 {
-          background-color: #3D9EE2;
           left: 67.5%;
-          height: 37%;
-          margin-left: 93px;
-          animation: stemSway2 10s infinite linear reverse;
+          #curve2 {
+            stroke: mix(#f1d99d,#3D9EE2, 60%);
+          }
         }
 
         &.stem-3 {
-          background-color: #FFA7B2;
           left: 51%;
-          height: 80%;
-          margin-left: 134px;
-          animation: stemSway3 10s infinite linear reverse;
+          #curve3 {
+            stroke: mix(#f1d99d,#FFA7B2, 20%);
+          }
         }
 
         &.stem-4 {
-          background-color: #61B980;
           left: 35%;
-          height: 45%;
-          margin-left: 93px;
-          animation: stemSway2 10s infinite linear reverse;
+          #curve4 {
+            stroke: mix(#f1d99d,#61B980, 20%);
+          }
         }
 
         &.stem-5 {
-          background-color: #a8d6e7;
           left: 17%;
-          height: 25%;
-          margin-left: 98px;
-          animation: stemSway 10s infinite linear reverse;
+          #curve5 {
+            stroke: mix(#f1d99d,#a8d6e7, 50%);
+          }
         }
       }
 
+      .beebly-flower-1 { 
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        left: 60px; 
+        top: -100px;
+        transform: translateX(-50%);
+        animation: flowerSwayed 4s infinite cubic-bezier(.55,0,.53,.99) alternate backwards;
+        .pinwheel {
+          animation: flowerPinwheel 40s infinite linear;
+        }
+        .st0 {
+          fill: mix(#f1d99d,#FF6933, 60%);
+        }
+      }
+
+      .beebly-flower-2 {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        left: 60px; 
+        top: -100px;
+        transform: translateX(-50%);
+        animation: flowerSwayed 4s infinite cubic-bezier(.55,0,.53,.99) alternate backwards;
+        .st2 {
+          fill: mix(#f1d99d,#3D9EE2, 40%);
+        }
+      }
   
-      svg {
+      svg:not(.curvePath) {
         width: 200px;
         height: auto;
         position: absolute;
         z-index: 2;
 
-        &.beebly-flower-1 { 
-          left: 78%; 
-          top: 12%;
-          animation: flowerSwayPinwheel 10s infinite linear reverse;
-        }
-        &.beebly-flower-2 { 
-          left: 67%;
-          top: 50%;
-          animation: flowerSway 10s infinite linear reverse;
-        }
         &.beebly-flower-3 {
           left: 51%;
           top: 5%; 
           width: 240px;
-          animation: flowerSway 10s infinite linear reverse;
+          //animation: flowerSway 10s infinite linear reverse;
+          .st3 {
+            fill: mix(#f1d99d,#FFA7B2, 20%);
+          }
         }
         &.beebly-flower-4 { 
           left: 35%;
           top: 35%;
-          animation: flowerSway 10s infinite linear reverse;
+          //animation: flowerSway 10s infinite linear reverse;
+          .st4 {
+            fill: mix(#f1d99d,#61B980, 20%);
+          }
         }
         &.beebly-flower-5 { 
           left: 17%;
           top: 60%; 
           width: 180px;
-          animation: flowerSway 10s infinite linear reverse;
+          //animation: flowerSway 10s infinite linear reverse;
+          .st5 {
+            fill: mix(#f1d99d,#a8d6e7, 50%);
+          }
         }
 
-        .st0 {fill:#FF6933;}
         .st1 {fill:#f1d99d;}
         .st2 {fill:#3D9EE2;}
         .st3 {fill:#FFA7B2;}
@@ -325,6 +343,7 @@
 
       &.beebly-dirt-extra {
         left: 100%;
+        margin-left: -1px;
         span:nth-child(1) { width: 10%; background-color: #3D9EE2; }
       }
       span:nth-child(1) { width: 5%; background-color: #934044; }
@@ -349,47 +368,8 @@
   100% { transform: rotate(360deg); }
 }
 
-@keyframes stemSway {
-  0% { transform: rotate(0); }
-  10% { transform: rotate(.5deg); }
-  40% { transform: rotate(1deg); }
-  60% { transform: rotate(.5deg); }
-  80% { transform: rotate(.25deg); }
-  100% { transform: rotate(0); }
+@keyframes flowerSwayed {
+  0% { left: 60px; }
+  100% { left: 200px; }
 }
 
-@keyframes stemSway2 {
-  0% { transform: rotate(0); }
-  10% { transform: rotate(1.5deg); }
-  40% { transform: rotate(2.5deg); }
-  60% { transform: rotate(1.5deg); }
-  80% { transform: rotate(1deg); }
-  100% { transform: rotate(0); }
-}
-
-@keyframes stemSway3 {
-  0% { transform: rotate(0); }
-  10% { transform: rotate(1deg); }
-  40% { transform: rotate(2deg); }
-  60% { transform: rotate(1deg); }
-  80% { transform: rotate(.5deg); }
-  100% { transform: rotate(0); }
-}
-
-@keyframes flowerSway {
-  0% { transform: translateX(0); }
-  10% { transform: translateX(10px); }
-  40% { transform: translateX(15px); }
-  60% { transform: translateX(10px); }
-  80% { transform: translateX(5px); }
-  100% { transform: translateX(0); }
-}
-
-@keyframes flowerSwayPinwheel {
-  0% { transform: translateX(0) rotate(0deg); }
-  20% { transform: translateX(10px) rotate(72deg); }
-  40% { transform: translateX(15px) rotate(144deg); }
-  60% { transform: translateX(10px) rotate(216deg); }
-  80% { transform: translateX(5px) rotate(288deg); }
-  100% { transform: translateX(0) rotate(360deg); }
-}

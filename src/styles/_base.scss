@@ -74,7 +74,7 @@ button,a {
     align-items: center;
     @include adobeClean();
     font-weight: bold;
-    font-size: 1rem;
+    font-size: 22px;
     margin-right: 30px;
     &.buy-now-button {
       margin-right: 0;
@@ -107,20 +107,17 @@ button,a {
   display: block;
   text-align: center;
   line-height: 120vh;
+  background: #444;
 }
 
 .like-button-container {
   position: relative;
 
   a.beebly-link {
-    //position: absolute;
     display: block;
-    //left: 50%;
-    //top: 100%;
-    //margin-bottom: -50px;
-    //transform: translateX(-50%);
-    //width: 400px;
     text-align: center;
     margin-top: 30px;
+    font-size: 20px;
   }
 }
+
