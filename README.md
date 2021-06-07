@@ -1,7 +1,5 @@
 # Adobe Photoshop Reimagine Prototype
 
-[Pre-Beebly Staging Link](http://photoshop.whoisowenjones.com/src/)
-
 ### Get Started
 
 Install dependencies:
@@ -11,22 +9,6 @@ Install dependencies:
 Run server and watch php, scss:
 
 `gulp`
-
-**CSS (Old)**:
-
-Styling is handled in Sass. You should run the Sass CLI to watch for changes in the `scss` files.
-
-Install: `npm install -g sass`
-
-Watch for changes:
-
-From the `src/styles` directory: `sass --watch main.scss:main.css`
-
-optionally, compress and include sourcemaps:
-
-`sass --watch main.scss:main.css --style=compressed --source-map`
-
-`main.scss` imports all other relevant scss files in its compilation.
 
 **JS**
 
